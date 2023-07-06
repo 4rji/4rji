@@ -35,3 +35,5 @@ rm -r Public Videos Music Pictures Templates Public Documents
 
 
 sudo mv ips expo1 expo3 fastscan puertos sweep whichsys /usr/bin
+
+rm -r 4rji
