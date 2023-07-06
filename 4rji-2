@@ -32,3 +32,6 @@ echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.bashrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.bashrc
 
 rm -r Public Videos Music Pictures Templates Public Documents
+
+
+sudo mv ips expo1 expo3 fastscan puertos sweep whichsys /usr/bin
