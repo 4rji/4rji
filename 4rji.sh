@@ -1,7 +1,9 @@
 #!/usr/bin/env zsh
 
+sudo apt install lsd -y
+
 # Descargar el repositorio
-git clone https://github.com/xJackSx/BSPWMkali.git
+git clone https://github.com/4rji/polybar.git
 
 # Navegar al directorio clonado
 cd BSPWMkali

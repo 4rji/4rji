@@ -2,13 +2,12 @@
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
-
-sudo apt install lsd
-sudo apt install net-tools
-sudo apt install wormhole
-sudo apt install ranger
-sudo apt install scrub
-sudo apt install shred
+sudo apt update
+sudo apt install net-tools -y
+sudo apt install wormhole -y
+sudo apt install ranger -y
+sudo apt install scrub -y
+sudo apt install shred -y
 
 # Clonar fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -31,9 +30,12 @@ echo "alias cx='chmod +x '" >> ~/.bashrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.bashrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.bashrc
 
-rm -r Public Videos Music Pictures Templates Public Documents
+
 
 
 sudo mv ips expo1 expo3 fastscan puertos sweep whichsys /usr/bin
 
-rm -r 4rji
+#rm -rf 4rji
+#sudo rm -r Public Videos Music Pictures Templates Public Documents Wallpaper 4rji
+
+kill -9 -1
