@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+sudo git clone https://github.com/4rji/surfeandoano.git
+
+cd surfeandoano
+sudo ./installer.sh
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
 sudo apt update
@@ -31,6 +35,8 @@ echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
 echo "alias ippp='curl ifconfig.me'" >> ~/.zshrc
+echo "alias surfeando='sudo anonsurf start'" >> ~/.zshrc
+echo "alias servidor='python3 -m http.server 8000'"
 
 
 sudo mv ips expo1 expo3 fastscan puertos sweep whichsys /usr/bin
@@ -38,7 +44,7 @@ sudo mv ips expo1 expo3 fastscan puertos sweep whichsys /usr/bin
 source ~/.zshrc
 
 cd ..
-sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots
+sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano
 
 
 
