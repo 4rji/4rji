@@ -26,9 +26,12 @@ echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 
 ## de el archivo primera
-echo "alias cx='chmod +x '" >> ~/.bashrc
-echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.bashrc
-echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.bashrc
+echo "alias cx='chmod +x '" >> ~/.zshrc
+echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
+echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
+echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
+echo "alias ippp='curl ifconfig.me'" >> ~/.zshrc
+
 
 sudo mv ips expo1 expo3 fastscan puertos sweep whichsys /usr/bin
 
@@ -37,8 +40,7 @@ source ~/.zshrc
 cd ..
 sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots
 
-#kill -9 -1
 
 
-
+nano ~/.config/sxhkd/sxhkdrc 
 
