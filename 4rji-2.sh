@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+sudo apt update
+
 sudo apt install kali-linux-top10 kali-linux-default -f
 chmod +x ruta
 
@@ -13,7 +15,6 @@ sudo ./installer.sh
 cd ..
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
-sudo apt update
 sudo apt install net-tools -y
 sudo apt install wormhole -y
 sudo apt install ranger -y
