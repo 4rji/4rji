@@ -47,31 +47,6 @@ echo "alias ippp='curl ifconfig.me'" >> ~/.zshrc
 echo "alias surfeando='sudo anonsurf start'" >> ~/.zshrc
 echo "alias servidor='python3 -m http.server 8000'"
 echo "alias shortc='nano ~/.config/sxhkd/sxhkdrc'"
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-echo "
-
-
-
-
-
 
 
 
@@ -86,7 +61,7 @@ sudo mv ips expo1 expo3 fastscan puertos sweep whichsys ruta /usr/bin
 cd ..
 sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano
 
-ch
+cd
 
 
 
