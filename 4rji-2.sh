@@ -2,9 +2,8 @@
 
 sudo apt update
 
-chmod +x ruta pvpn pgg
+chmod +x ruta pvpn pgg fix-4rji.sh
 sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn ruta /usr/bin
-
 
 
 #mkdir $HOME/Downloads/vpnit
@@ -12,15 +11,6 @@ unzip Ban1_aa@2.zip
 mv vpnitos $HOME/Downloads/
 sudo mv $HOME/Downloads/vpnitos/cc.txt /
 
-
-
-sudo git clone https://github.com/4rji/surfeandoano.git
-
-cd surfeandoano
-sudo ./installer.sh
-
-
-cd ..
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
 sudo apt install net-tools -y
@@ -32,12 +22,20 @@ sudo apt install curl -y
 sudo apt install kitty -y
 sudo apt install tmux -y
 sudo apt install dialog -y
+./fix-4rji.sh
+
 
 # Clonar fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 #mkdir $HOME/Downloads/vpnitos
+
+sudo git clone https://github.com/4rji/surfeandoano.git
+cd surfeandoano
+sudo ./installer.sh
+
+cd ..
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
