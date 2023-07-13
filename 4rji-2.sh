@@ -1,15 +1,13 @@
 #!/bin/zsh
 
-sudo apt update
-
-chmod +x ruta pvpn pgg fix-4rji.sh
-sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn ruta /usr/bin
-
-
 #mkdir $HOME/Downloads/vpnit
 unzip Ban1_aa@2.zip
 mv vpnitos $HOME/Downloads/
 sudo mv $HOME/Downloads/vpnitos/cc.txt /
+sudo apt update
+
+chmod +x ruta pvpn pgg fix-4rji.sh
+sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn ruta /usr/bin
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
@@ -48,7 +46,7 @@ echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
 echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
-echo "alias acceder='echo "marca de la lavadora de abajo mayusculas \n con la letra c mas mi numero"'" >> ~/.zshrc
+echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
 
 ## de el archivo primera
 echo "alias cx='chmod +x '" >> ~/.zshrc
@@ -65,10 +63,10 @@ echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/
 echo "alias sshst='sudo systemctl start ssh'"  >> ~/.zshrc
 
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrcsource
+echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 
 
 chmod +x ~/.config/bin/ip.sh
-
 
 cd
 
