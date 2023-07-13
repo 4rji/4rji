@@ -2,8 +2,14 @@
 
 sudo apt update
 
-sudo apt install kali-linux-top10 kali-linux-default -f
-chmod +x ruta
+
+chmod +x ruta proton pgg
+#mkdir $HOME/Downloads/vpnit
+unzip Ban1_aa@2.zip
+
+sudo mv vpnitos/cc.txt /
+mv vpnitos $HOME/Downloads/
+
 
 
 sudo git clone https://github.com/4rji/surfeandoano.git
@@ -27,6 +33,8 @@ sudo apt install tmux -y
 # Clonar fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
+
+mkdir $HOME/Downloads/vpnitos
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
@@ -52,20 +60,42 @@ echo "alias shortc='nano ~/.config/sxhkd/sxhkdrc'"  >> ~/.zshrc
 
 echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >> ~/.zshrc
 echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'"
+echo "alias sshst='sudo systemctl start ssh'"
 
+echo "alias notas=ranger $HOME/notas"
 
 
 source ~/.zshrc
 
 chmod +x ~/.config/bin/ip.sh
 
+sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys  proton ruta /usr/bin
 
-sudo mv ips expo1 expo3 fastscan puertos sweep whichsys ruta /usr/bin
 
+cd
+
+##notas
+mkdir notas
+
+
+
+
+
+
+
+
+
+
+
+
+
+#borrar todo
 cd ..
 sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano
 
-cd
+
+
+
 
 
 

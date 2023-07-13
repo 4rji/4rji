@@ -13,3 +13,7 @@ chmod +x install.sh
 
 # Ejecutar el script de instalación
 ./install.sh
+
+sudo rm -f 4rji.sh
+
+#kill -9 -1
