@@ -21,6 +21,8 @@ sudo apt install ranger -y
 sudo apt install scrub -y
 sudo apt install shred -y
 sudo apt install curl -y
+sudo apt install kitty -y
+sudo apt install tmux -y
 
 # Clonar fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
