@@ -6,6 +6,7 @@ chmod +x ruta pvpn pgg
 sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn ruta /usr/bin
 
 
+
 #mkdir $HOME/Downloads/vpnit
 unzip Ban1_aa@2.zip
 mv vpnitos $HOME/Downloads/
@@ -49,6 +50,7 @@ echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
 echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
+echo "alias acceder='echo "marca de la lavadora de abajo mayusculas \n con la letra c mas mi numero"'" >> ~/.zshrc
 
 ## de el archivo primera
 echo "alias cx='chmod +x '" >> ~/.zshrc
