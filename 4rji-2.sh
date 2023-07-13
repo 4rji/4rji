@@ -61,10 +61,10 @@ echo "alias servidor='python3 -m http.server 8000'"  >> ~/.zshrc
 echo "alias shortc='nano ~/.config/sxhkd/sxhkdrc'"  >> ~/.zshrc
 
 echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >> ~/.zshrc
-echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'"
+echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/.zshrc
 echo "alias sshst='sudo systemctl start ssh'"  >> ~/.zshrc
 
-echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
+echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrcsource
 
 
 chmod +x ~/.config/bin/ip.sh
