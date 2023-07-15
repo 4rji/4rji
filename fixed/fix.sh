@@ -1,7 +1,8 @@
 #!/bin/zsh
 
 #fix scripts
-sudo mv ruta pgg pvpn expo3 /usr/bin/
+sudo mv ruta pgg pvpn sss expo3 /usr/bin/
+mv 4rji.png $HOME/Wallpaper/4rji.png
 
 
 #fix alias

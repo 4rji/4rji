@@ -9,7 +9,7 @@ sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
-sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn brillo ruta /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn brillo sss ruta /usr/bin
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
