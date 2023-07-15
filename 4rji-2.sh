@@ -67,17 +67,16 @@ echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >
 echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/.zshrc
 echo "alias sshst='sudo systemctl start ssh'"  >> ~/.zshrc
 
-echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrcsource
-echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 
 #nuevos
+echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
+echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias 4rji='git clone https://github.com/4rji/4rji.git'"  >> ~/.zshrc
 
 
 chmod +x ~/.config/bin/ip.sh
-
 cd
 
 
