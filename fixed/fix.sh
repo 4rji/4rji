@@ -9,7 +9,7 @@ sudo mv ruta pgg pvpn expo3 /usr/bin/
 
 
 #delete
-cd 
+cd
 rm -rf 4rji
 
 
