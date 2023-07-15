@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+# Mensaje al usuario
+echo "Por favor, ingresa el nivel de brillo deseado (entre 50 y 7500):"
+read brightness_level
+
+# Verificación del valor ingresado
+if ! [[ "$brightness_level" =~ ^[0-9]+$ ]]; then
+  echo "Error: El nivel de brillo debe ser un número entero."
+  exit 1
+fi
+
+if (( brightness_level < 50 || brightness_level > 7500 )); then
+  echo "Error: El nivel de brillo debe estar entre 50 y 7500."
+  exit 1
+fi
+
+# Cambiar el brillo
+cd /sys/class/backlight/intel_backlight && echo "$brightness_level" | sudo tee brightness
+
+echo "El nivel de brillo se ha cambiado a $brightness_level."

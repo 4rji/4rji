@@ -7,7 +7,7 @@ sudo mv $HOME/Downloads/vpnitos/cc.txt /
 sudo apt update
 
 chmod +x ruta pvpn pgg fix-4rji.sh
-sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn ruta /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn brillo ruta /usr/bin
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
@@ -20,8 +20,9 @@ sudo apt install curl -y
 sudo apt install kitty -y
 sudo apt install tmux -y
 sudo apt install dialog -y
+sudo apt install iptables -y
 ./fix-4rji.sh
-
+./tmux_zsh.sh
 
 # Clonar fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
