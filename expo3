@@ -1,9 +1,10 @@
 #!/bin/zsh
 
-echo "Ingrese la dirección IP:"
-read ip_address
+ip_address=$(grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' allPorts | uniq)
 
-echo "Ingrese los puertos separados por comas (por ejemplo, 80,443,22):  o tambien copia los puertos generados de expo2"
+echo "Dirección IP encontrada: $ip_address"
+
+echo "Ingrese los puertos separados por comas (por ejemplo, 80,443,22) o también copie los puertos generados de expo2:"
 read ports
 
 command="nmap -sCV -p $ports $ip_address -oN targeted"
