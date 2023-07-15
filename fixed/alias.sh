@@ -2,7 +2,7 @@
 
 #mkdir $HOME/Downloads/vpnit
 
-
+cd $HOME/4rji/fixed
 #nuevos
 echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
