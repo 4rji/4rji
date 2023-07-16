@@ -9,7 +9,7 @@ sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
-sudo mv ips expo1 expo3 fastscan puertos sweep pgg whichsys pvpn brillo sss ruta /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep pgg nombres nombre whichsys pvpn brillo sss ruta /usr/bin
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
@@ -68,14 +68,14 @@ echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/
 echo "alias sshst='sudo systemctl start ssh'"  >> ~/.zshrc
 echo "alias sshsts='sudo systemctl status ssh'"  >> ~/.zshrc
 
-
-#nuevos
 echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
+#nuevos
+
 echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias 4rji='git clone https://github.com/4rji/4rji.git'"  >> ~/.zshrc
-echo "alias fixsc='$HOME/4rji/fixed/./fix.sh'" >> ~/.zshrc
+echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 
 chmod +x ~/.config/bin/ip.sh
 cd
