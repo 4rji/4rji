@@ -2,7 +2,7 @@
 
 #mkdir $HOME/Downloads/vpnit
 sudo apt install zip -y
-unzip Ban1_aa@2.zip
+unzip Ban1_aa12.zip
 mv vpnitos $HOME/Downloads/
 sudo mv $HOME/Downloads/vpnitos/cc.txt /
 sudo apt update
