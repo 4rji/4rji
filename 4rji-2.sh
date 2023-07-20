@@ -65,8 +65,6 @@ echo "alias shortc='nano ~/.config/sxhkd/sxhkdrc'"  >> ~/.zshrc
 
 echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >> ~/.zshrc
 echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/.zshrc
-echo "alias sshst='sudo systemctl start ssh'"  >> ~/.zshrc
-echo "alias sshsts='sudo systemctl status ssh'"  >> ~/.zshrc
 
 echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
@@ -77,7 +75,7 @@ echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias 4rji='git clone https://github.com/4rji/4rji.git'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 echo "alias bateria='acpi -b'" >> ~/.zshrc
-
+alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'
 
 
 chmod +x ~/.config/bin/ip.sh
