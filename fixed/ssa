@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if [ "$1" = "--start" ]; then
+    sudo service ssh start
+elif [ "$1" = "--stop" ]; then
+    sudo service ssh stop
+else
+    sudo service ssh start
+fi
