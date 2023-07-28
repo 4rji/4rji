@@ -14,6 +14,7 @@ chmod +x install.sh
 # Ejecutar el script de instalación
 ./install.sh
 
+cd ..
 # adding wallpaper for me
 mv Wallpaper ~/.config
 
