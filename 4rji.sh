@@ -14,26 +14,6 @@ chmod +x install.sh
 # Ejecutar el script de instalación
 ./install.sh
 
-cd ..
-# adding wallpaper for me
-mv Wallpaper ~/.config
-
-#directorio de inicio de sesion de del grub
-#sudo cp -r background.png /boot/grub/themes/kali/grub-4x3.png
-#sudo cp -r background.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/.config/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/.config/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.png
-sudo cp -r ~/.config/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
-sudo update-grub
-
-
-
-#Directorio de las imagenes del login in
-#cd /usr/share/desktop-base/kali-theme/login/
-
-
-sudo cp ~/.config/Wallpaper/background.png /usr/share/desktop-base/kali-theme/login/background
-
 
 
 sleep 4
