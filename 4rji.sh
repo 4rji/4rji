@@ -20,7 +20,8 @@ mv Wallpaper ~/.config
 #directorio de inicio de sesion de del grub
 #sudo cp -r background.png /boot/grub/themes/kali/grub-4x3.png
 #sudo cp -r background.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp ~/.config/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/themes/kali/grub-16x9.png
+sudo cp -r ~/.config/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/themes/kali/grub-16x9.png
+sudo cp -r ~/.config/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/themes/kali/grub-4x3.png
 sudo cp -r ~/.config/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
 sudo update-grub
 
