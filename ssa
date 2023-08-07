@@ -7,3 +7,5 @@ elif [ "$1" = "--stop" ]; then
 else
     sudo service ssh start
 fi
+
+ip r
