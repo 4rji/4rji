@@ -47,7 +47,9 @@ sudo apt install dialog -y
 sudo apt install iptables -y
 sudo apt install openvpn -y
 sudo apt install nmap -y
-sudo apt-get install mesa-utils -y
+sudo apt install mesa-utils -y
+sudo apt install lm-sensors -y
+
 
 ./fix-4rji.sh
 ./tmux_zsh.sh
