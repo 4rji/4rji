@@ -31,7 +31,7 @@ sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd /usr/bin
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
@@ -115,6 +115,7 @@ echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1
 echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
 echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf'"  >> ~/.zshrc
 echo "alias fixwifi2='sudo dhclient wlan0'"  >> ~/.zshrc
+echo "alias wsend='wormhole send '"  >> ~/.zshrc
 
 
 

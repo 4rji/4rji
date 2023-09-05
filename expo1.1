@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "Ingrese la dirección IP:"
+read ip_address
+
+command="sudo nmap -sC -sV $ip_address -oA expo1.1"
+
+echo "Ejecutando el comando:"
+echo "$command"
+
+eval "$command"

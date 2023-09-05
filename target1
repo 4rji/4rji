@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Solicitar la dirección IP de destino al usuario
+read -p "Por favor, ingresa la nueva dirección IP de destino: " ip_target
+
+# Actualizar el contenido del archivo bateria.sh
+echo "echo \"$ip_target\"" > ~/.config/bin/bateria.sh
+
+# Confirmar la actualización
+echo "El archivo ~/.config/bin/bateria.sh ha sido actualizado con la nueva dirección IP: $ip_target"
