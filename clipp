@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Verificar si se proporciona un nombre de archivo como argumento
+if [ $# -eq 0 ]; then
+  echo "Uso: $0 <nombre_del_archivo>"
+  exit 1
+fi
+
+# Verificar si el archivo existe
+if [ ! -e "$1" ]; then
+  echo "El archivo '$1' no existe."
+  exit 1
+fi
+
+# Copiar el contenido del archivo al portapapeles
+cat "$1" | xclip -sel clip
+
+# Confirmar que se copió el contenido
+echo "El contenido del archivo '$1' se ha copiado al portapapeles."
