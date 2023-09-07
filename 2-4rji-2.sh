@@ -118,7 +118,7 @@ echo "alias wsend='wormhole send '"  >> ~/.zshrc
 echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.sh '"  >> ~/.zshrc
 
 
-
+sudo mv ~/Downloads/vpnitos ~/Downloads/.vpnitos
 
 chmod +x ~/.config/bin/ip.sh
 cd

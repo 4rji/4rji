@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Obtener la lista de archivos en la carpeta "$HOME/Downloads/vpnitos"
-file_list=($HOME/Downloads/vpnitos/*)
+file_list=($HOME/Downloads/.vpnitos/*)
 
 # Crear un menú de configuración con dialog
 menu_options=()
