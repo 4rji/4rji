@@ -11,62 +11,37 @@ sudo cp ~/4rji/Wallpaper/background.png /usr/share/desktop-base/kali-theme/login
 
 #directorio de inicio de sesion de del grub
 #sudo cp -r background.png /boot/grub/themes/kali/grub-4x3.png
-#sudo cp -r background.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.png
-sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
-sudo update-grub
-
+#s
 sudo mv ~/4rji/Wallpaper ~/.config
 
 
+
+
 #mkdir $HOME/Downloads/vpnit
-sudo apt install zip -y
 unzip Ban1_aa12.zip
 mv vpnitos $HOME/Downloads/
 sudo mv $HOME/Downloads/vpnitos/cc.txt /
-sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
-#binarios
 sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar /usr/bin
+
+#fix QUbeOS repositorios
+sudo mv sources.list.deb /etc/apt/sources.list.deb
+sudo mv sources.list.kali /etc/apt/sources.list.kali
+sudo mv firmar_kali_deb /etc/apt/firmar_kali_deb
+
+
 
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
-sudo apt install net-tools -y
-sudo apt install wormhole -y
-sudo apt install ranger -y
-sudo apt install scrub -y
-sudo apt install shred -y
-sudo apt install curl -y
-sudo apt install kitty -y
-sudo apt install tmux -y
-sudo apt install dialog -y
-sudo apt install iptables -y
-sudo apt install openvpn -y
-sudo apt install nmap -y
-sudo apt install mesa-utils -y
-sudo apt install lm-sensors -y
 
 
-./fix-4rji.sh
-./tmux_zsh.sh
-
-# Clonar fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-#mkdir $HOME/Downloads/vpnitos
-
-sudo git clone https://github.com/4rji/surfeandoano.git
-cd surfeandoano
-sudo ./installer.sh
-
-cd ..
 
 # Agregar alias a .zshrc
+echo "alias kalideb='sudo cp /etc/apt/sources.list.kali /etc/apt/sources.list'"
+echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'"
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
 echo "alias rmk='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
 echo "alias inst='sudo apt install'" >> ~/.zshrc
