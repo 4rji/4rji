@@ -40,8 +40,8 @@ sudo mv firmar_kali_deb /etc/apt/firmar_kali_deb
 
 
 # Agregar alias a .zshrc
-echo "alias kalideb='sudo cp /etc/apt/sources.list.kali /etc/apt/sources.list'"
-echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'"
+echo "alias kalideb='sudo cp /etc/apt/sources.list.kali /etc/apt/sources.list'" >> ~/.zshrc
+echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'" >> ~/.zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
 echo "alias rmk='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
 echo "alias inst='sudo apt install'" >> ~/.zshrc
