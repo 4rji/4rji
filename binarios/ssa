@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+if [ "$1" = "--start" ]; then
+    sudo service ssh start
+elif [ "$1" = "--stop" ]; then
+    sudo service ssh stop
+else
+    sudo service ssh start
+fi
+
+
+
+echo ""
+echo ""
+
+ip addr | grep "inet "
+echo""
+
+
+echo "$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)"
+
+
+
+# Agregamos el mensaje con la IP local
+echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig eth0 | grep "inet " | awk '{print $2}')"

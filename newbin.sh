@@ -3,7 +3,7 @@
 
 
 #binarios
-cd newbin
+cd binarios
 sudo mv miip /usr/bin
 
 cd
