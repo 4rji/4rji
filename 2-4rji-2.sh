@@ -49,6 +49,8 @@ sudo apt install openvpn -y
 sudo apt install nmap -y
 sudo apt install mesa-utils -y
 sudo apt install lm-sensors -y
+sudo apt install firejail -y 
+sudo apt install lf -f
 
 
 ./fix-4rji.sh
@@ -116,6 +118,9 @@ echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop 
 echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
 echo "alias wsend='wormhole send '"  >> ~/.zshrc
 echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.sh '"  >> ~/.zshrc
+
+#newbin script with new alias
+echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 
 
 sudo mv ~/Downloads/vpnitos ~/Downloads/.vpnitos

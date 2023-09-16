@@ -22,7 +22,7 @@ rm -rf 4rji
 #whx binario = hace un xargs cat a un binario
 
 
-
-
+#new alias
+echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 
 
