@@ -51,6 +51,8 @@ sudo apt install mesa-utils -y
 sudo apt install lm-sensors -y
 sudo apt install firejail -y 
 sudo apt install lf -f
+sudo apt install bc -f
+
 
 
 ./fix-4rji.sh
@@ -148,6 +150,7 @@ sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji
 #asd = copia el contenido de target1 a el portapapeles
 #clipp archivo = copia el contenido del archivo al portapapeles 
 #whx binario = hace un xargs cat a un binario
+#lf video https://www.youtube.com/watch?v=eLEo4OQ-cuQ
 
 
 

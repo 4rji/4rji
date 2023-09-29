@@ -16,4 +16,6 @@ clipp {archivo} = copia el contenido del archivo al portapapeles
 whx {binario} = hace un xargs cat a un binario
 mired = copia eth0 al portapapeles y muestra todas las ips del equipo
 miwl = copia wlan0 al portapapeles
+lfcd para moverme con cd  #copiar el plugin a zsh
+
 
