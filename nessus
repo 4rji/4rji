@@ -1,0 +1,6 @@
+!#/bin/zsh
+
+sudo systemctl start nessusd.service
+
+echo "- Then go to https://Desktop20f0:8834/ to configure your scanner"
+

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Script 1 - AWK
+awk -F '.' '{if ($1==ip1 && $2==ip2 && $3==ip3) printf(",%d",$4); else {if (NR>1) printf("\n"); printf("%s.%s.%s.%d", $1, $2, $3, $4); ip1=$1; ip2=$2; ip3=$3;}} END {printf("\n")}' ips.txt > resultado.txt
+
+# Script 2 - NMAP
+# Leer los datos del archivo resultado.txt
+datos=$(cat resultado.txt)
+
+# Construir el comando completo incluyendo los datos del archivo resultado.txt
+
+#comando="sudo nmap -A -O -sR -sV -oX puerto.xml --stylesheet="https://svn.nmap.org/nmap/docs/nmap.xsl" $datos"
+comando="sudo nmap -A -O -sV -oX puerto.xml --stylesheet="https://svn.nmap.org/nmap/docs/nmap.xsl" $datos"
+
+#comando="nmap -v --reason -sS -oX puertos.xml --stylesheet="https://svn.nmap.org/nmap/docs/nmap.xsl" $datos"
+# Ejecutar el comando completo
+eval "$comando"
+
+
+
+
+
+
+
+
+####!/bin/bash
+
+#awk -F '.' '{if ($1==ip1 && $2==ip2 && $3==ip3) printf(",%d",$4); else {if (NR>1) printf("\n"); #printf("%s.%s.%s.%d", $1, $2, $3, $4); ip1=$1; ip2=$2; ip3=$3;}} END {printf("\n")}' ips.txt > resultado.txt
+
+
+####!/bin/bash
+
+# #Leer los datos del archivo resultado.txt
+#datos=$(cat resultado.txt)
+
+## Construir el comando completo incluyendo los datos del archivo resultado.txt
+##comando="nmap -v --reason -sS -oX puertos.xml --stylesheet=\"https://svn.nmap.org/nmap/docs/nmap.xsl\" $datos"
+
+##Ejecutar el comando completo
+#eval "$comando"

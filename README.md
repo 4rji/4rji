@@ -17,5 +17,11 @@ whx {binario} = hace un xargs cat a un binario
 mired = copia eth0 al portapapeles y muestra todas las ips del equipo
 miwl = copia wlan0 al portapapeles
 lfcd para moverme con cd  #copiar el plugin a zsh
-
+repos = vuelve a instalar por defaul los repos de kali cuando no funcionan.
+copyssh = copia mui clave a una maquina remota
+jfirefox = firejail a firefox
+surfeando2 = crea una conexion ssh para proxychains por 1080
+puertos2 = version de puertos nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl ( esta funcion solo abrio con mac el firefox, no con kali.) 
+nessus =  activa nesus y muestra el puerto donde abrirlo en firefox
+nsweep 192.168.1 = hace un nmap -sn en la red para buscar maquinas activas.
 

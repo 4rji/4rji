@@ -30,7 +30,7 @@ sudo apt update
 chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired repos copyssh puertos2 nessus nsweep /usr/bin
 
 
 
@@ -51,8 +51,10 @@ sudo apt install mesa-utils -y
 sudo apt install lm-sensors -y
 sudo apt install firejail -y 
 sudo apt install lf -f
+sudo apt install proxychains -f
 sudo apt install bc -f
 
+#sudo apt install bc -f
 
 
 ./fix-4rji.sh
@@ -123,6 +125,7 @@ echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.
 
 #newbin script with new alias
 echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
+echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
 
 
 sudo mv ~/Downloads/vpnitos ~/Downloads/.vpnitos
