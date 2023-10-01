@@ -21,3 +21,7 @@ echo "$ruta_comando"
 
 # Muestra el contenido del archivo binario
 cat "$ruta_comando"
+
+echo "$ruta_comando" | xclip -selection c
+
+echo "ruta copia a la papelera"
