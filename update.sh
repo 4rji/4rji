@@ -15,7 +15,7 @@ sudo mv ~/4rji/Wallpaper ~/.config
 
 
 #fix scripts
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres fixme nessusinst nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
@@ -31,6 +31,34 @@ echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.
 #newbin script with new alias
 echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
+echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
+echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+
+
+
+
+#paso 2 instalar herramientas, crear alias, y mover binarios
+sudo apt install net-tools -y
+sudo apt install wormhole -y
+sudo apt install ranger -y
+sudo apt install scrub -y
+sudo apt install shred -y
+sudo apt install curl -y
+sudo apt install kitty -y
+sudo apt install tmux -y
+sudo apt install dialog -y
+sudo apt install iptables -y
+sudo apt install openvpn -y
+sudo apt install nmap -y
+sudo apt install mesa-utils -y
+sudo apt install lm-sensors -y
+sudo apt install firejail -y 
+sudo apt install lf -f
+sudo apt install proxychains -f
+sudo apt install bc -f
+
+
+
 
 
 
