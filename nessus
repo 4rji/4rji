@@ -2,5 +2,4 @@
 
 sudo systemctl start nessusd.service
 
-echo "- Then go to https://127.0.0.1:8834/ to configure your scanner"
-
+echo "- Then go to https://Desktop20f0:8834/ to configure your scanner"

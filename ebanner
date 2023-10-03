@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+# Paso 1: Eliminar la línea 'Banner no'
+sed -i '/Banner no/d' /etc/ssh/sshd_config
+
+# Paso 2: Habilitar la característica de pre login banner en sshd
+sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
+
+# Paso 3: Crear el archivo de banner de inicio de sesión
+echo "hola cachetonn!" > /etc/ssh/sshd-banner
+
+# Paso 4: Añadir la línea 'Banner /etc/ssh/sshd-banner' si no existe
+if ! grep -q "Banner /etc/ssh/sshd-banner" /etc/ssh/sshd_config; then
+  echo "Banner /etc/ssh/sshd-banner" >> /etc/ssh/sshd_config
+  echo "¡Listo! El banner de pre login de OpenSSH ha sido configurado."
+fi
+
+# Paso 5: Guardar el archivo y reiniciar el servidor sshd
+sudo systemctl restart ssh
+
+# Alias para editar el banner con nano
+echo "alias bannere='sudo nano /etc/ssh/sshd-banner'" >> ~/.zshrc

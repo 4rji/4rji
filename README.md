@@ -24,4 +24,8 @@ surfeando2 = crea una conexion ssh para proxychains por 1080
 puertos2 = version de puertos nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl ( esta funcion solo abrio con mac el firefox, no con kali.) 
 nessus =  activa nesus y muestra el puerto donde abrirlo en firefox
 nsweep 192.168.1 = hace un nmap -sn en la red para buscar maquinas activas.
-
+fixme = corre fix-4rji para solucionar repositorios despuies de la instalacion
+ebanner = cambia el banner de ssh y crea un alias
+bannere = abre el editor de ssh
+sssr = reinicia ssh
+ssse = edita ssh

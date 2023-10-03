@@ -3,8 +3,19 @@
 #This script update the bins and add some alias
 
 
+#directorio de inicio de sesion de del grub
+#sudo cp -r background.png /boot/grub/themes/kali/grub-4x3.png
+#sudo cp -r background.png /boot/grub/themes/kali/grub-16x9.png
+sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-16x9.png
+sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.png
+sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
+sudo update-grub
+
+sudo mv ~/4rji/Wallpaper ~/.config
+
+
 #fix scripts
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nessusinst nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres fixme nessusinst nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc

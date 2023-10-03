@@ -22,3 +22,5 @@ echo 'also for dockers: docker pull tenable/nessus:latest-ubuntu'
 
 # Instrucciones para iniciar Nessus
 echo 'para iniciar nessus solo escribe nessus o systemctl start nessusd.service'
+
+rm -f Nessus-10.6.1-debian10_amd64.deb
