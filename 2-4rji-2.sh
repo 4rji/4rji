@@ -23,14 +23,22 @@ sudo mv ~/4rji/Wallpaper ~/.config
 #mkdir $HOME/Downloads/vpnit
 sudo apt install zip -y
 unzip Ban1_aa12.zip
-mv vpnitos $HOME/Downloads/
-sudo mv $HOME/Downloads/vpnitos/cc.txt /
+mv vpnitos $HOME/Downloads/.vpnitos
+sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
 sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
+
+#pwndoc pentester doc
+
+
+#unzip pwndoc-main.zip
+mv pwndoc-main $HOME/Downloads/.pwndoc-main
+#ejecutar el script de instalacion pwndoc
+
 
 
 
@@ -128,14 +136,19 @@ echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 
 
 #echo "alias nombre='comando' '"  >> ~/.zshrc
 
 
+
+
+
+
 sudo mv ~/Downloads/vpnitos ~/Downloads/.vpnitos
 
-chmod +x ~/.config/bin/ip.sh
+
 cd
 
 
