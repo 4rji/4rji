@@ -33,6 +33,7 @@ echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias wre='wormhole receive '"  >> ~/.zshrc
 
 
 
@@ -56,7 +57,7 @@ sudo apt install firejail -y
 sudo apt install lf -f
 sudo apt install proxychains -f
 sudo apt install bc -f
-
+sudo apt install ufw -f
 
 
 
