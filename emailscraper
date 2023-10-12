@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Mostrar el mensaje
+echo ""
+echo "*******  ATENCION   ATENCION   ATENCION  *******"
+echo ""
+echo "Poner la URL con http o https para que funcione"
+echo ""
+
+# Ejecutar el comando
+python3 /usr/bin/email-scraper.py

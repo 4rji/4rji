@@ -30,7 +30,7 @@ sudo apt update
 chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
 
 #pwndoc pentester doc
 
@@ -140,9 +140,13 @@ echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
+echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
+#echo "alias nombre='comando'"  >> ~/.zshrc
+#echo "alias nombre='comando'"  >> ~/.zshrc
 
 
-#echo "alias nombre='comando' '"  >> ~/.zshrc
+
+#echo "alias nombre='comando''"  >> ~/.zshrc
 
 
 
