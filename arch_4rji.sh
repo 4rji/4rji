@@ -9,10 +9,10 @@ git clone https://github.com/4rji/polybar.git
 cd polybar
 
 # Dar permisos de ejecución al archivo install.sh
-chmod +x install.sh
+chmod +x install_arch.sh
 
 # Ejecutar el script de instalación
-./install.sh
+./install_arch.sh
 
 
 
@@ -20,7 +20,3 @@ sleep 4
 
 kill -9 -1
 
-
-#sudo rm -f 4rji.sh
-
-#kill -9 -1

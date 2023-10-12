@@ -1,77 +1,32 @@
 #!/bin/zsh
 
+# Copiar imagen de fondo para el inicio de sesión
+sudo cp ~/4rji/Wallpaper/background.png /usr/share/sddm/themes/archlinux/background.png
 
-# adding wallpaper for me
+# Copiar imágenes de fondo para GRUB
+sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/archlinux/background4x3.png
+sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/archlinux/background16x9.png
+sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/themes/archlinux/background.png
+sudo grub-mkconfig -o /boot/grub/grub.cfg
 
-#login picture #Directorio de las imagenes del login in
-#cd /usr/share/desktop-base/kali-theme/login/
+# Mover la carpeta Wallpaper a ~/.config
+mv ~/4rji/Wallpaper ~/.config
 
-sudo cp ~/4rji/Wallpaper/background.png /usr/share/desktop-base/kali-theme/login/background
-
-
-#directorio de inicio de sesion de del grub
-#sudo cp -r background.png /boot/grub/themes/kali/grub-4x3.png
-#sudo cp -r background.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.png
-sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
-sudo update-grub
-
-sudo mv ~/4rji/Wallpaper ~/.config
+# Instalar paquetes necesarios
+sudo pacman -S --noconfirm zip net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
 
 
-#mkdir $HOME/Downloads/vpnit
-sudo apt install zip -y
-unzip Ban1_aa12.zip
-mv vpnitos $HOME/Downloads/.vpnitos
-sudo mv $HOME/Downloads/.vpnitos/cc.txt /
-sudo apt update
+####MANUAL ####
+# Clonar fzf y configurarlo
+#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+#~/.fzf/install
 
-chmod +x fix-4rji.sh tmux_zsh.sh
 
-#binarios
+# Mover binarios a /usr/bin
 sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
 
 
 
-#paso 2 instalar herramientas, crear alias, y mover binarios
-sudo apt install net-tools -y
-sudo apt install wormhole -y
-sudo apt install ranger -y
-sudo apt install scrub -y
-sudo apt install shred -y
-sudo apt install curl -y
-sudo apt install kitty -y
-sudo apt install tmux -y
-sudo apt install dialog -y
-sudo apt install iptables -y
-sudo apt install openvpn -y
-sudo apt install nmap -y
-sudo apt install mesa-utils -y
-sudo apt install lm-sensors -y
-sudo apt install firejail -y 
-sudo apt install lf -f
-sudo apt install proxychains -f
-sudo apt install bc -f
-sudo apt install ufw -f
-
-#sudo apt install bc -f
-
-
-./fix-4rji.sh
-./tmux_zsh.sh
-
-# Clonar fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-#mkdir $HOME/Downloads/vpnitos
-
-sudo git clone https://github.com/4rji/surfeandoano.git
-cd surfeandoano
-sudo ./installer.sh
-
-cd ..
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
@@ -138,33 +93,16 @@ echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
 
 
 
-#echo "alias nombre='comando''"  >> ~/.zshrc
+cd ~
 
 
-
-
-cd
-
-
-#borrar todo
-
-sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano Wallpaper
-
-
-
-#some binarios
-
-
-#nombre IP = da el nombre de la maquina si es linux o windows
-#ruta archivo = copia la ruta del archivo en el portapapeles
-#target1 = cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi
-#asd = copia el contenido de target1 a el portapapeles
-#clipp archivo = copia el contenido del archivo al portapapeles 
-#whx binario = hace un xargs cat a un binario
-#lf video https://www.youtube.com/watch?v=eLEo4OQ-cuQ
+# Borrar carpetas
+rm -rf Public Videos Music Pictures Desktop Templates Documents 4rji ScreenShots surfeandoano Wallpaper
 
 
 
 
 
 
+# Limpiar y actualizar sistema
+sudo pacman -Syyu --noconfirm
