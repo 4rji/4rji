@@ -30,7 +30,7 @@ sudo apt update
 chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
 
 
 
@@ -75,6 +75,8 @@ cd ..
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
+echo "alias kalideb='sudo cp /etc/apt/sources.list.kali /etc/apt/sources.list'" >> ~/.zshrc
+echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'" >> ~/.zshrc
 echo "alias rmk='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
 echo "alias inst='sudo apt install'" >> ~/.zshrc
 echo "alias bas='nano ~/.zshrc'" >> ~/.zshrc
