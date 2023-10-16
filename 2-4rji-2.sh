@@ -30,7 +30,7 @@ sudo apt update
 chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
+sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres bateria nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
 
 
 
@@ -108,8 +108,8 @@ echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
-echo "alias bateria='acpi -b'" >> ~/.zshrc
-echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
+#echo "alias bateria='acpi -b'" >> ~/.zshrc
+#echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc

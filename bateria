@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+#se ejecuta dos comando en este script
+#upower -i /org/freedesktop/UPower/devices/battery_BAT0
+#acpi -b
+
+# Ejecuta el comando y guarda la salida en una variable
+battery_info=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0)
+
+# Extrae los datos relevantes de la batería
+#battery_status=$(echo $battery_info | grep -oP 'state:\s+\K\w+')
+energy_rate=$(echo $battery_info | grep -oP 'energy-rate:\s+\K[\d.]+')
+time_to_full=$(echo $battery_info | grep -oP 'time to full:\s+\K[\d.]+')
+#percentage=$(echo $battery_info | grep -oP 'percentage:\s+\K[\d.]+')
+
+# Imprime los resultados
+#echo "Estado de la batería: $battery_status"
+echo "Consumo de energía: $energy_rate W"
+echo "Tiempo estimado para carga completa: $time_to_full minutos"
+#echo "Porcentaje de batería: $percentage%"
+acpi -b
