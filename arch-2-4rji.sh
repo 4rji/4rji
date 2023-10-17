@@ -1,14 +1,5 @@
 #!/bin/zsh
 
-# Copiar imagen de fondo para el inicio de sesión
-sudo cp ~/4rji/Wallpaper/background.png /usr/share/sddm/themes/archlinux/background.png
-
-# Copiar imágenes de fondo para GRUB
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/archlinux/background4x3.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/archlinux/background16x9.png
-sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/themes/archlinux/background.png
-sudo grub-mkconfig -o /boot/grub/grub.cfg
-
 # Mover la carpeta Wallpaper a ~/.config
 mv ~/4rji/Wallpaper ~/.config
 
@@ -16,16 +7,8 @@ mv ~/4rji/Wallpaper ~/.config
 sudo pacman -S --noconfirm zip net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
 
 
-####MANUAL ####
-# Clonar fzf y configurarlo
-#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-#~/.fzf/install
-
-
 # Mover binarios a /usr/bin
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
-
-
+sudo mv tempe ips expo1 expo3 fastscan puertos sweep adios pgg nombres bateria nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
 
 
 # Agregar alias a .zshrc
