@@ -67,11 +67,10 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 #mkdir $HOME/Downloads/vpnitos
 
-sudo git clone https://github.com/4rji/surfeandoano.git
-cd surfeandoano
-sudo ./installer.sh
-
-cd ..
+#sudo git clone https://github.com/4rji/surfeandoano.git
+#cd surfeandoano
+#sudo ./installer.sh
+#cd ..
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
