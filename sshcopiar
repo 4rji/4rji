@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+# Generar la clave SSH
+ssh-keygen -t ed25519
+
+# Obtener el nombre de usuario y la dirección IP del host
+echo "Ingresa el nombre de usuario del host:"
+read host_user
+
+echo "Ingresa la dirección IP del host:"
+read host_ip
+
+# Copiar la clave SSH al host
+ssh-copy-id -i ~/.ssh/id_ed25519.pub "${host_user}@${host_ip}"
+

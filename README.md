@@ -35,3 +35,4 @@ emailscraper = ejecuta una herramienta de un curso para buscar emails
 scanporty= python3 program que hace un escaneo y pregunta el numero de puertos. 
 bateria = new script con bateria en lugar de alias
 tempe = temperatura de arch linux
+sshcopiar = genera y copia al host la clave ssh
