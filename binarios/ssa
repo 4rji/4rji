@@ -23,3 +23,5 @@ echo "$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)"
 
 # Agregamos el mensaje con la IP local
 echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig eth0 | grep "inet " | awk '{print $2}')"
+echo "user:"
+whoami
