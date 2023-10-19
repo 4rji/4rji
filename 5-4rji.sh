@@ -24,7 +24,8 @@ sudo mv $HOME/Downloads/vpnitos/cc.txt /
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar /usr/bin
+sudo mv ~/4rji/binarios/* /usr/bin/
+
 
 #fix QUbeOS repositorios
 sudo mv sources.list.debian /etc/apt/sources.list.debian

@@ -35,3 +35,4 @@ bateria = new script con bateria en lugar de alias
 tempe = temperatura de arch linux
 sshcopiar = genera y copia al host la clave ssh
 worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta
+solobin = actualiza solo los binarios despues de descargarlso de nuevo
