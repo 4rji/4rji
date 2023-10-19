@@ -2,9 +2,6 @@ Github binarios
 
 #some binarios
 
-ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys rompewifi pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired /usr/bin
-
-
 
 
 
@@ -28,6 +25,7 @@ nessusinst = instalar nessus
 nsweep 192.168.1 = hace un nmap -sn en la red para buscar maquinas activas.
 fixme = corre fix-4rji para solucionar repositorios despuies de la instalacion
 ebanner = cambia el banner de ssh y crea un alias
+pant = arregla la pantalla para monitor de 34 pulgadas xrandr
 bannere = abre el editor de ssh
 sssr = reinicia ssh
 ssse = edita ssh
@@ -36,3 +34,4 @@ scanporty= python3 program que hace un escaneo y pregunta el numero de puertos.
 bateria = new script con bateria en lugar de alias
 tempe = temperatura de arch linux
 sshcopiar = genera y copia al host la clave ssh
+worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta

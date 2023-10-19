@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+if [ -z "$1" ]; then
+    echo "Por favor, especifique la carpeta."
+    exit 1
+fi
+
+if [ ! -d "$1" ]; then
+    echo "La ruta especificada no es una carpeta válida."
+    exit 1
+fi
+
+carpeta=$1
+
+# Obtener el nombre de la carpeta
+nombre=$(basename "$carpeta")
+
+# Reemplazar espacios con guiones bajos
+nombre="${nombre// /_}"
+
+# Agregar la extensión .zip
+nombre="$nombre.zip"
+
+# Comprimir la carpeta con el nombre obtenido
+zip -r "$nombre" "$carpeta"
+
+# Mandar la carpeta comprimida por wormhole send
+wormhole send "$nombre"
+
