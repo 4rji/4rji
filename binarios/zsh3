@@ -79,4 +79,4 @@ echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
 #echo "alias nombre='comando'"  >> ~/.zshrc
 
 
-sudo mv ~/ccdc/binarios/* /usr/bin/
+

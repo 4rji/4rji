@@ -134,6 +134,7 @@ echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
+#echo "alias binar='sudo mv'"  >> ~/.zshrc 
 #echo "alias nombre='comando'"  >> ~/.zshrc
 #echo "alias nombre='comando'"  >> ~/.zshrc
 
