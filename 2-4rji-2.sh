@@ -130,8 +130,10 @@ echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.
 #newbin script with new alias
 echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
-echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
-echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
+echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias ssa='sudo systemctl start ssh'"  >> ~/.zshrc
+echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
 #echo "alias binar='sudo mv'"  >> ~/.zshrc 
