@@ -38,4 +38,6 @@ sshcopiar = genera y copia al host la clave ssh
 worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta
 solobin = actualiza solo los binarios despues de descargarlso de nuevo
 binar = mueve un script a el directorio /usr/bin
+fixssh = arregla cuando la clave ssh no se conecta porque hay un duplicado.
+
 
