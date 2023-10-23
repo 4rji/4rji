@@ -34,14 +34,11 @@ sshcopiar = genera y copia al host la clave ssh
 worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta
 solobin = actualiza solo los binarios despues de descargarlso de nuevo
 binar = mueve un script a el directorio /usr/bin
-<<<<<<< HEAD
 4rjic = muestra 4rji en python3 lista
 4scp = copiar archivos en scp en lugar de sftp 
 lid = cambia el comportamiento de lid laptop
 cx = chmod +x y luego ./ ejecuta el script
 4rji = el programa y busqueda de scripts
-=======
 fixssh = arregla cuando la clave ssh no se conecta porque hay un duplicado.
 csftp = copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo
 ssa_arch = ssa para arch linux
->>>>>>> 26f7191e59ab1faa76e55d4c27fc7ec50c993baf
