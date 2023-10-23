@@ -1,16 +1,6 @@
 #!/bin/zsh
 
-if [[ $# -ne 1 ]]; then
-    echo "Por favor, especifique un archivo para mover."
-    exit 1
-fi
+archivo=$1
 
-file=$1
-
-if [[ -f $file ]]; then
-    sudo mv $file /usr/bin/
-    echo "El archivo $file se ha movido a /usr/bin/ con éxito."
-else
-    echo "El archivo especificado no existe o no es un archivo regular."
-    exit 1
-fi
+sudo cp $archivo /usr/bin/
+mv $archivo ~/Documents/GitHub/4rji/binarios/

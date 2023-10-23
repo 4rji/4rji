@@ -4,7 +4,7 @@ Github binarios
 
 
 
-
+cx = chmod +x y luego ./ ejecuta el script
 nombre {IP} = da el nombre de la maquina si es linux o windows
 ruta {archivo} = copia la ruta del archivo en el portapapeles
 target1 = cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi

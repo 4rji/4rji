@@ -88,7 +88,6 @@ echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
 
 ## de el archivo primera
-echo "alias cx='chmod +x '" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
