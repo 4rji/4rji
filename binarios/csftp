@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+echo " sftp usuario@ip:archivo ~ "
 # Solicitar el nombre de usuario
 echo "Ingresa el nombre de usuario: "
 read username

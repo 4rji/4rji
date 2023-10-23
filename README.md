@@ -36,5 +36,5 @@ worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpet
 solobin = actualiza solo los binarios despues de descargarlso de nuevo
 binar = mueve un script a el directorio /usr/bin
 fixssh = arregla cuando la clave ssh no se conecta porque hay un duplicado.
-copiarsftp = copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo
+csftp = copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo
 ssa_arch = ssa para arch linux
