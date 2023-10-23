@@ -31,6 +31,7 @@ chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
 sudo mv ~/4rji/binarios/* /usr/bin/
+sudo mv ~/4rji/README.md /usr/bin/
 
 
 
@@ -111,7 +112,7 @@ echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
-echo "alias 4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
+echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
@@ -129,11 +130,13 @@ echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.
 #newbin script with new alias
 echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
-echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
-echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
+echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
-#echo "alias binar='sudo mv'"  >> ~/.zshrc 
+
+
 #echo "alias nombre='comando'"  >> ~/.zshrc
 #echo "alias nombre='comando'"  >> ~/.zshrc
 

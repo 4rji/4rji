@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Ruta al archivo que contiene la lista de archivos a modificar
+file_list="list.txt"
+
+# Verificar si el archivo list.txt existe
+if [ -f "$file_list" ]; then
+    while IFS= read -r file
+    do
+        # Verificar si el archivo existe
+        if [ -f "$file" ]; then
+            # Agregar comentarios a las líneas específicas
+            sed -i '/^script-security 2/s/^/# /' "$file"
+            sed -i '/^up \/etc\/openvpn\/update-resolv-conf/s/^/# /' "$file"
+            sed -i '/^down \/etc\/openvpn\/update-resolv-conf/s/^/# /' "$file"
+            echo "Se han comentado las líneas en el archivo $file"
+        else
+            echo "El archivo $file no existe."
+        fi
+    done < "$file_list"
+else
+    echo "El archivo $file_list no existe."
+fi
+
+echo "Proceso completado."

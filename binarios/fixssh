@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+if [ -z "$1" ]; then
+    echo "Debe especificar la dirección IP después del nombre del script."
+else
+    ssh-keygen -f "$HOME/.ssh/known_hosts" -R "$1"
+fi
+
+
+#este es el comando original, no lo he podido probar
+
+#ssh-keygen -f "/home/natasha/.ssh/known_hosts" -R "192.168.142.132"
