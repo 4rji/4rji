@@ -31,6 +31,7 @@ chmod +x fix-4rji.sh tmux_zsh.sh
 
 #binarios
 sudo mv ~/4rji/binarios/* /usr/bin/
+sudo mv ~/4rji/README.md /usr/bin/
 
 
 
@@ -112,7 +113,7 @@ echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
-echo "alias 4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
+echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc

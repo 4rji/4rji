@@ -2,9 +2,6 @@ Github binarios
 
 #some binarios
 
-
-
-
 nombre {IP} = da el nombre de la maquina si es linux o windows
 ruta {archivo} = copia la ruta del archivo en el portapapeles
 target1 = cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi
@@ -39,5 +36,5 @@ worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpet
 solobin = actualiza solo los binarios despues de descargarlso de nuevo
 binar = mueve un script a el directorio /usr/bin
 fixssh = arregla cuando la clave ssh no se conecta porque hay un duplicado.
-
-
+copiarsftp = copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo
+ssa_arch = ssa para arch linux
