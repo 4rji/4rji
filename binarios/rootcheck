@@ -1,0 +1,27 @@
+
+#!/bin/zsh
+
+read -p "¿Desea ejecutar los comandos? (y/n): " yn
+
+case $yn in
+    [Yy]* )
+        read -p "Presiona Enter para ejecutar 'sudo cat /root/.bashrc': " 
+        sudo cat /root/.bashrc
+        read -p "Presiona Enter para ejecutar 'sudo cat /root/.shrc': " 
+        sudo cat /root/.shrc
+        read -p "Presiona Enter para ejecutar 'sudo cat /root/.cshrc': " 
+        sudo cat /root/.cshrc
+        read -p "Presiona Enter para ejecutar 'sudo cat /root/.tcshrc': " 
+        sudo cat /root/.tcshrc
+        read -p "Presiona Enter para ejecutar 'sudo cat /root/.profile': " 
+        sudo cat /root/.profile
+        read -p "Presiona Enter para ejecutar 'sudo cat /root/.bash_profile': " 
+        sudo cat /root/.bash_profile
+        ;;
+    [Nn]* ) 
+        echo "No se ejecutaron los comandos."
+        ;;
+    * ) 
+        echo "Por favor responda y o n."
+        ;;
+esac

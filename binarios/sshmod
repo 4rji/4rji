@@ -1,0 +1,53 @@
+#!/bin/zsh
+
+# Hacer una copia de seguridad del archivo sshd_config
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+
+# Definir las líneas a buscar e insertar en el archivo
+lines_to_insert=(
+    "PermitRootLogin no"
+    "PermitEmptyPasswords no"
+    "KerberosAuthentication no"
+    "GSSAPIAuthentication no"
+    "X11Forwarding no"
+    "MaxAuthTries 3"
+    "LoginGraceTime 20"
+    "PermitUserEnvironment no"
+    "AllowAgentForwarding no"
+    "AllowTcpForwarding no"
+    "PermitTunnel no"
+    "MaxSessions 2"
+    "Compression no"
+    "TCPKeepAlive no"
+    "UseDNS no"
+    "LogLevel VERBOSE"
+    "MaxAuthTries 2"
+    "MaxSessions 1"
+    "PubkeyAuthentication yes"
+    "ClientMaxAliveCount 2"
+    "Banner /etc/mctcbanner"
+)
+
+# Reemplazar o agregar las líneas especificadas en el archivo sshd_config
+for line in "${lines_to_insert[@]}"; do
+    if ! sudo grep -q "^$line" /etc/ssh/sshd_config; then
+        echo "$line" | sudo tee -a /etc/ssh/sshd_config
+    else
+        sudo sed -i "s/^$line.*/$line/" /etc/ssh/sshd_config
+    fi
+done
+
+# Preguntar si se desea reiniciar el servicio sshd
+read -p "¿Desea reiniciar el servicio SSH? (s/n): " response
+
+# Verificar la respuesta
+if [[ $response == "s" ]]; then
+    # Reiniciar el servicio sshd
+    sudo service ssh restart
+else
+    echo "Operación cancelada."
+fi
+
+# Mostrar la configuración actual de sshd
+echo "sudo sshd -T"
+sudo sshd -T
