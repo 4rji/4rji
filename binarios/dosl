@@ -35,4 +35,5 @@
  Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta
  actualiza solo los binarios despues de descargarlso de nuevo
  mueve un script a el directorio /usr/bin
+test
 
