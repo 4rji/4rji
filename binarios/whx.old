@@ -21,3 +21,15 @@ echo "$ruta_comando"
 
 # Muestra el contenido del archivo binario
 cat "$ruta_comando"
+
+echo "$ruta_comando" | xclip -selection c
+
+echo "ruta copia a la papelera"
+
+# Pregunta si el usuario quiere editar el archivo
+echo "¿Desea editar el archivo? (y/n) enter to cancel"
+read respuesta
+
+if [ "$respuesta" = "y" ]; then
+  sudo nano "$ruta_comando"
+fi
