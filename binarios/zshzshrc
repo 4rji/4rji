@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Verifica si el archivo ~/.zshrc existe
+if [ -f "$HOME/.zshrc" ]; then
+    # Agrega las líneas al principio del archivo ~/.zshrc
+    echo '
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+' | cat - $HOME/.zshrc > temp && mv temp $HOME/.zshrc
+
+    echo "Se han agregado las líneas al archivo ~/.zshrc."
+else
+    echo "El archivo ~/.zshrc no se encontró."
+fi
+
