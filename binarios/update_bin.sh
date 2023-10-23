@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+#fix scripts
+sudo mv ~/4rji/binarios/* /usr/bin/
+
+cd ..
+rm -rf 4rji
+echo "binarios actualizados"
