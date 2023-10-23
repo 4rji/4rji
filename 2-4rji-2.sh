@@ -87,6 +87,11 @@ echo "alias c3='sed -i \"s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-sy
 echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'" >> ~/.zshrc
 echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
 
+#f2ban
+echo "alias rs2='sudo nano /etc/rsyslog.conf'" >> ~/.zshrc 
+echo "alias f2mod='sudo nano /etc/fail2ban/jail.local'" >> ~/.zshrc
+echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
+echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
@@ -155,6 +160,10 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
+
+
+#nuevos
+echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 
 
 #echo "alias nombre='comando'"  >> ~/.zshrc

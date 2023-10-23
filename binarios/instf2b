@@ -1,0 +1,44 @@
+#!/bin/bash
+
+sudo apt install fail2ban
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+
+#esto de arriba se cambio por el script binario f2u 
+#echo "alias ub='read -p "Ingresa la dirección IP que deseas remover del jail: " ip_address && sudo fail2ban-client set sshd unbanip $ip_address'" >> ~/.bashrc
+#echo 'alias ub="read -p '\''Ingresa la dirección IP que deseas remover del jail: '\'' ip_address && sudo fail2ban-client set sshd unbanip \$ip_address"' >> ~/.zshrc
+
+
+# Iniciar el servicio Fail2ban
+sudo systemctl enable --now fail2ban
+#sudo systemctl start fail2ban
+
+
+#security onion o para enviar log a el servidor
+#read -p "Ingrese la dirección IP de Security Onion: " ip_address
+#echo "*.* @$ip_address" | sudo tee -a /etc/rsyslog.conf >/dev/null
+#sudo systemctl restart fail2ban
+#sudo systemctl restart rsyslog
+
+
+
+#este script muestra los comandos de abajo
+f2bcomm
+
+echo ""
+
+echo "IMPORTANTE"
+echo ""
+
+echo "no se te olvide cambiar los tiempos de jail con f2mod alias"
+echo "para tiempo ilimitado: bantime = -1"
+#Comandos de fail2ban f2b
+
+#f2b = banea una IP
+#f2u = remueve la IP de jail
+#f2j = muestra jail
+
+#f2mod = modifica archivo de configuracion y reiniciar despues
+#f2r = reinicia f2ban
+#f2s = status 
+#rs2 = creo para security onion 

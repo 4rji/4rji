@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Mostrar el contenido de /etc/resolv.conf
+cat /etc/resolv.conf
+
+# Preguntar si se desean cambiar los servidores DNS
+read -p "¿Desea cambiar los servidores DNS? (s/n): " response
+
+# Verificar la respuesta
+if [[ $response == "s" ]]; then
+    # Crear una copia de seguridad de /etc/resolv.conf si no existe
+    if [ -f /etc/resolv.conf.backup ]; then
+        count=1
+        while [ -f /etc/resolv.conf.backup$count ]; do
+            ((count++))
+        done
+        sudo cp /etc/resolv.conf "/etc/resolv.conf.backup$count"
+    else
+        sudo cp /etc/resolv.conf /etc/resolv.conf.backup
+    fi
+
+    # Comentar todas las líneas que comienzan con 'nameserver' en /etc/resolv.conf
+    sudo sed -i '/^nameserver/s/^/# /' /etc/resolv.conf
+
+    # Abrir /etc/resolv.conf para editar
+    sudo nano /etc/resolv.conf
+
+    # Preguntar si se desea reiniciar el servicio
+    read -p "¿Desea reiniciar el servicio ahora? (s/enter para no): " restart_response
+    if [[ $restart_response == "s" ]]; then
+        sudo systemctl restart systemd-resolved
+    else
+        echo "No se reiniciará el servicio."
+    fi
+
+else
+    echo "Operación cancelada."
+fi

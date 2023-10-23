@@ -43,10 +43,14 @@ fixssh = arregla cuando la clave ssh no se conecta porque hay un duplicado.
 csftp = copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo
 ssa_arch = ssa para arch linux
 bannerm = Hace un banner para ssh
-hardnet = modifica ipv4 y tambien ipv6
-nameser = cambia name server y hace copia
+hardnet = modifica ipv4 y tambien ipv6  hardnetu p/ubuntu
+nameser = cambia name server y hace copia #nameseru p/ubuntu
 netevils = 
 rootcheck = checa varios archivos .bash ...
 sntp = instala chrony
 sshmod = modifica ssh y hace copia
 ufwinst = instala ufw y crea regla para puerto ssh
+ddf = hace un diff archivo vs archivo.backup
+instf2b = instala ubuntu f2ban
+f2bcomm = fail2ban f2b comandos
+

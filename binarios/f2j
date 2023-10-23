@@ -1,0 +1,4 @@
+#!/bin/zsh
+tail -3 /var/log/fail2ban.log
+
+sudo fail2ban-client status sshd

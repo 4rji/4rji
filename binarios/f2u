@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+# Pedir al usuario que ingrese la dirección IP
+echo "Ingresa la dirección IP que deseas remover del jail: \c"
+read ip_address
+
+# Ejecutar el comando de fail2ban-client para eliminar la dirección IP especificada del jail de sshd
+sudo fail2ban-client set sshd unbanip $ip_address

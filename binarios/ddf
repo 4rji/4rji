@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 archivo"
+    exit 1
+fi
+
+file=$1
+backup_file="${file}.backup"
+
+if [ ! -f "$backup_file" ]; then
+    echo "El archivo de respaldo $backup_file no existe."
+    exit 1
+fi
+
+# Realizar el diff entre el archivo y su respaldo
+diff $file $backup_file
+
