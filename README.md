@@ -1,29 +1,25 @@
 Github binarios
 
-#some binarios
 
-
-
-cx = chmod +x y luego ./ ejecuta el script
-nombre {IP} = da el nombre de la maquina si es linux o windows
-ruta {archivo} = copia la ruta del archivo en el portapapeles
-target1 = cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi
+nombre_{IP} = da el nombre de la maquina si es linux o windows
+ruta_{archivo} = copia la ruta del archivo en el portapapeles
+target1 = cambia el estatus de la bateria por cualquier otra cosa que se quiera poner ahi
 asd = copia el contenido de target1 a el portapapeles
-clipp {archivo} = copia el contenido del archivo al portapapeles 
-whx {binario} = hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired
-whr {binario}= hace un nano a un binario 
+clipp_{archivo} = copia el contenido del archivo al portapapeles 
+whx_{binario} = hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired
+whr_{binario}= hace un nano a un binario 
 mired = copia eth0 al portapapeles y muestra todas las ips del equipo
 miwl = copia wlan0 al portapapeles
-lfcd para moverme con cd  #copiar el plugin a zsh
+lfcd = para moverme con cd  #copiar el plugin a zsh
 repos = vuelve a instalar por defaul los repos de kali cuando no funcionan.
 copyssh = copia mui clave a una maquina remota
 jfirefox = firejail a firefox
 surfeando2 = crea una conexion ssh para proxychains por 1080
 puertos2 = version de puertos nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl ( esta funcion solo abrio con mac el firefox, no con kali.) 
 nessus =  activa nesus y muestra el puerto donde abrirlo en firefox
-nessus -s = para nessus
+nessus_-s = para nessus
 nessusinst = instalar nessus
-nsweep 192.168.1 = hace un nmap -sn en la red para buscar maquinas activas.
+nsweep_{192.168.1} = hace un nmap -sn en la red para buscar maquinas activas.
 fixme = corre fix-4rji para solucionar repositorios despuies de la instalacion
 ebanner = cambia el banner de ssh y crea un alias
 pant = arregla la pantalla para monitor de 34 pulgadas xrandr
@@ -33,9 +29,13 @@ ssse = edita ssh
 emailscraper = ejecuta una herramienta de un curso para buscar emails
 scanporty= python3 program que hace un escaneo y pregunta el numero de puertos. 
 bateria = new script con bateria en lugar de alias
-tempe or tempe -f= temperatura de arch linux y -f crea un archivo con los datos de tempe
+tempe=  or tempe -f temperatura de arch linux y -f crea un archivo con los datos de tempe
 sshcopiar = genera y copia al host la clave ssh
 worms = Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta
 solobin = actualiza solo los binarios despues de descargarlso de nuevo
 binar = mueve un script a el directorio /usr/bin
-
+4rjic = muestra 4rji en python3 lista
+4scp = copiar archivos en scp en lugar de sftp 
+lid = cambia el comportamiento de lid laptop
+cx = chmod +x y luego ./ ejecuta el script
+4rji = el programa y busqueda de scripts

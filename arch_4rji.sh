@@ -16,6 +16,9 @@ chmod +x install_arch.sh
 
 
 
+
+
+
 sleep 4
 
 kill -9 -1

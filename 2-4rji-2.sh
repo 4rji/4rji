@@ -17,6 +17,8 @@ sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.pn
 sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
 sudo update-grub
 
+
+
 sudo mv ~/4rji/Wallpaper ~/.config
 
 
@@ -29,13 +31,18 @@ sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
+#mover readme con lista en dos para 4rjic
+./partir_readme
+mv README.md dosl unol binarios
+
 #binarios
 sudo mv ~/4rji/binarios/* /usr/bin/
-sudo mv ~/4rji/README.md /usr/bin/
+#sudo mv ~/4rji/README.md /usr/bin/
 
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
+sudo apt-get install python3-pip -y
 sudo apt install net-tools -y
 sudo apt install wormhole -y
 sudo apt install ranger -y
@@ -135,7 +142,11 @@ echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
+echo "alias itec='sudo openvpn ~/Downloads/.vpnitos/itec.ovpn'"  >> ~/.zshrc
+echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
+echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
+echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 
 #echo "alias nombre='comando'"  >> ~/.zshrc
 #echo "alias nombre='comando'"  >> ~/.zshrc
