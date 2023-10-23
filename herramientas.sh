@@ -29,8 +29,14 @@ sudo apt update
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
+#mover readme con lista en dos para 4rjic
+./partir_readme
+mv README.md dosl unol binarios
+
 #binarios
-sudo mv ips expo1 expo3 fastscan puertos sweep adios pgg nombres nombre whichsys fixme rompewifi ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl miip repos copyssh puertos2 nessus nsweep /usr/bin
+sudo mv ~/4rji/binarios/* /usr/bin/
+#sudo mv ~/4rji/README.md /usr/bin/
+
 
 #pwndoc pentester doc
 
@@ -80,6 +86,15 @@ cd surfeandoano
 sudo ./installer.sh
 
 cd ..
+
+#instalar zsh solamente
+echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
+echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
+echo "alias c3='sed -i \"s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/\" ~/.zshrc'" >> ~/.zshrc
+echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'" >> ~/.zshrc
+echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
+
+
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
@@ -138,6 +153,12 @@ echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
+echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
+echo "alias itec='sudo openvpn ~/Downloads/.vpnitos/itec.ovpn'"  >> ~/.zshrc
+echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
+
+echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
+echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 
 
 #echo "alias nombre='comando' '"  >> ~/.zshrc

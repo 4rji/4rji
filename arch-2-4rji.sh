@@ -7,11 +7,29 @@ mv ~/4rji/Wallpaper ~/.config
 sudo pacman -S --noconfirm zip net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
 
 
-# Mover binarios a /usr/bin
-sudo mv tempe ips expo1 expo3 fastscan puertos sweep adios pgg nombres bateria nombre whichsys fixme rompewifi  ebanner nessusinst pvpn brillo xpsbrillo sss ssa ruta target1 expo1.1 asd clipp whx empezar miwl mired repos copyssh puertos2 nessus nsweep emailscraper email-scraper.py scanporty.py /usr/bin
+#mkdir $HOME/Downloads/vpnit
+
+unzip Ban1_aa12.zip
+mv vpnitos $HOME/Downloads/.vpnitos
+sudo mv $HOME/Downloads/.vpnitos/cc.txt /
+
+#chmod +x fix-4rji.sh tmux_zsh.sh
+
+#mover readme con lista en dos para 4rjic
+./partir_readme
+mv README.md dosl unol binarios
+
+#binarios
+sudo mv ~/4rji/binarios/* /usr/bin/
+#sudo mv ~/4rji/README.md /usr/bin/
 
 
-
+#instalar zsh solamente
+echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
+echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
+echo "alias c3='sed -i \"s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/\" ~/.zshrc'" >> ~/.zshrc
+echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'" >> ~/.zshrc
+echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
 
 
 # Agregar alias a .zshrc
@@ -79,6 +97,9 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
+
+
+
 
 
 #echo "alias nombre='comando'"  >> ~/.zshrc
