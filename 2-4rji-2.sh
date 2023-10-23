@@ -103,7 +103,7 @@ echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/
 echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 #nuevos
-
+echo "alias cx1='chmod +x '" >> ~/.zshrc
 echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
