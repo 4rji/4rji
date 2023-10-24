@@ -1,0 +1,52 @@
+# Verificar si el archivo ~/.zshrc existe
+if [[ -f ~/.zshrc ]]; then
+    # Extraer líneas que comienzan con "alias" y guardarlas en /tmp/list.txt
+    grep "^alias" ~/.zshrc > /tmp/list.txt
+    echo "Se han extraído las líneas que comienzan con 'alias' y se han guardado en /tmp/list.txt"
+else
+    echo "El archivo ~/.zshrc no existe."
+fi
+
+
+
+
+
+
+#!/bin/zsh
+
+# Definir la ruta completa al archivo /tmp/list.txt
+file="/tmp/list.txt"
+
+# Verificar la existencia del archivo
+if [ ! -f "$file" ]; then
+    echo "El archivo $file no existe."
+    exit 1
+fi
+
+
+# Bucle principal para mantener el programa en funcionamiento después de mostrar el contenido y los resultados de búsqueda
+while true; do
+    # Leer el contenido del archivo
+    content=$(cat "$file")
+
+    # Mostrar el contenido del archivo en una lista
+    dialog --backtitle "README.md Viewer" --title "Contenido de README.md" --msgbox "$content" 20 80
+
+    # Mostrar el menú de búsqueda
+    search=$(dialog --backtitle "README.md Viewer" --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
+
+    # Realizar la búsqueda en el archivo
+    result=$(grep -i "$search" "$file")
+
+    # Mostrar los resultados de la búsqueda
+    dialog --backtitle "README.md Viewer" --title "Resultados de la búsqueda" --msgbox "$result" 20 80
+
+    # Preguntar al usuario si desea continuar o salir del programa
+    dialog --backtitle "README.md Viewer" --yesno "¿Desea realizar otra búsqueda?" 7 40
+
+    # Salir del bucle si el usuario elige salir
+    response=$?
+    if [ $response -ne 0 ]; then
+        break
+    fi
+done

@@ -1,4 +1,4 @@
-Github binarios
+Github =  binarios
 
 
 nombre_{IP} = da el nombre de la maquina si es linux o windows
@@ -15,7 +15,7 @@ repos = vuelve a instalar por defaul los repos de kali cuando no funcionan.
 copyssh = copia mui clave a una maquina remota
 jfirefox = firejail a firefox
 surfeando2 = crea una conexion ssh para proxychains por 1080
-puertos2 = version de puertos nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl ( esta funcion solo abrio con mac el firefox, no con kali.) 
+puertos2 = nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl (probar varios firefox)
 nessus =  activa nesus y muestra el puerto donde abrirlo en firefox
 nessus_-s = para nessus
 nessusinst = instalar nessus
