@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+
+#mover readme con lista en dos para 4rjic
+./partir_readme
+mv README.md dosl unol binarios
+
+sudo adio /usr/bin/dosl
+sudo adio /usr/bin/unol
+
+#fix scripts
+sudo mv ~/4rji/binarios/* /usr/bin/
+
+cd ..
+adios 4rji
+echo "binarios actualizados y 4rji borrado"
+
