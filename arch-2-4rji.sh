@@ -4,7 +4,8 @@
 mv ~/4rji/Wallpaper ~/.config
 
 # Instalar paquetes necesarios
-sudo pacman -S --noconfirm zip net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
+sudo pacman -S --noconfirm zip fzf net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
+#sudo pacman -S fzf dont forget this. 
 
 
 #mkdir $HOME/Downloads/vpnit
@@ -102,13 +103,8 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
+echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 
-
-
-
-
-#echo "alias nombre='comando'"  >> ~/.zshrc
-#echo "alias nombre='comando'"  >> ~/.zshrc
 
 
 

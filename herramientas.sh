@@ -38,14 +38,6 @@ sudo mv ~/4rji/binarios/* /usr/bin/
 #sudo mv ~/4rji/README.md /usr/bin/
 
 
-#pwndoc pentester doc
-
-
-#unzip pwndoc-main.zip
-mv pwndoc-main $HOME/Downloads/.pwndoc-main
-#ejecutar el script de instalacion pwndoc
-
-
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
@@ -164,35 +156,13 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
-
-
-#echo "alias nombre='comando' '"  >> ~/.zshrc
-
-
+echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 
 
 cd
 
-
 #borrar todo
 
 sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano Wallpaper
-
-
-
-#some binarios
-
-
-#nombre IP = da el nombre de la maquina si es linux o windows
-#ruta archivo = copia la ruta del archivo en el portapapeles
-#target1 = cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi
-#asd = copia el contenido de target1 a el portapapeles
-#clipp archivo = copia el contenido del archivo al portapapeles 
-#whx binario = hace un xargs cat a un binario
-#lf video https://www.youtube.com/watch?v=eLEo4OQ-cuQ
-
-
-
-
 
 
