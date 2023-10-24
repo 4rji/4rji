@@ -173,7 +173,7 @@ echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 
 
-#echo "alias nombre='comando'"  >> ~/.zshrc
+echo "alias sss='sudo systemctl status'"  >> ~/.zshrc
 #echo "alias nombre='comando'"  >> ~/.zshrc
 
 
