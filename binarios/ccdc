@@ -1,0 +1,62 @@
+#!/bin/zsh
+
+# Mostrar el arte y el texto
+echo "
+┌────────────────────────────────────────┐
+│                                        │
+│                                        │
+│                                        │
+│   :####:    :####:  #####:      :####: │
+│   ######    ######  #######     ###### │
+│ :##:  .#  :##:  .#  ##  :##:  :##:  .# │
+│ ##        ##        ##   :##  ##       │
+│ ##.       ##.       ##   .##  ##.      │
+│ ##        ##        ##    ##  ##       │
+│ ##        ##        ##    ##  ##       │
+│ ##.       ##.       ##   .##  ##.      │
+│ ##        ##        ##   :##  ##       │
+│ :##:  .#  :##:  .#  ##  :##:  :##:  .# │
+│   ######    ######  #######     ###### │
+│   :####:    :####:  #####:      :####: │
+│                                        │
+│                                        │
+│                                        │
+│                                        │
+└────────────────────────────────────────┘
+
+No for competition. For learning purposes only.
+"
+sleep 1
+
+file_list=($HOME/ccdc/*)
+# Crear un menú de configuración con dialog
+menu_options=()
+for ((i=0; i<${#file_list[@]}; i++)); do
+  file="${file_list[$i]}"
+  file_name=$(basename "$file") # Obtener solo el nombre del archivo
+  menu_options+=("$i" "$file_name")
+done
+
+menu_options+=("0" "Salir")
+
+# Mostrar el menú y obtener la opción seleccionada
+option=$(dialog --backtitle "Menú de configuración" --title "Configuración" --menu "Selecciona un archivo:" 25 50 4 "${menu_options[@]}" 2>&1 >/dev/tty)
+
+# Verificar la opción seleccionada
+if [[ $option == "0" ]]; then
+  echo "Saliendo..."
+elif [[ $option =~ [0-9]+ && $option -lt ${#file_list[@]} ]]; then
+  # Obtener el nombre del archivo seleccionado
+  selected_file="${file_list[$option]}"
+  selected_file_name=$(basename "$selected_file") # Obtener solo el nombre del archivo seleccionado
+
+  echo "Ejecutando el script del archivo: $selected_file_name con sudo"
+  # Ejecutar el archivo seleccionado con sudo
+  if [[ -x "$selected_file" ]]; then
+    sudo "$selected_file"
+  else
+    echo "No se puede ejecutar el archivo. Permiso denegado."
+  fi
+else
+  echo "Opción inválida."
+fi

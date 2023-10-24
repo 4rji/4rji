@@ -1,0 +1,30 @@
+#!/bin/bash
+
+sudo systemctl start sshd
+
+# Obtener la lista de interfaces de red y sus direcciones IP
+echo
+interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+
+# Mostrar las interfaces y sus direcciones IP
+echo "Interfaces de red y sus direcciones IP:"
+echo "$interfaces"
+
+# Ejecutar el comando y almacenar la salida en una variable
+output=$(systemctl status sshd)
+
+echo ""
+echo "SSH status:"
+# Buscar la línea que contiene 'Active:' en la salida y mostrarla
+echo "$output" | grep 'Active:'
+
+# Agregar un renglón de separación
+echo ""
+
+# Obtener la dirección IP de la interfaz wlp0s20f3
+ip_address=$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)
+
+# Mostrar la dirección IP de wlp0s20f3
+echo "Dirección IP de wlp0s20f3: $ip_address"
+echo ""
+whoami

@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+echo "¿Quieres enviar o recibir un archivo? (escriba 'e' o 'r')"
+read option
+
+if [[ $option == "e" ]]; then
+    echo "Escriba el nombre del archivo que desea enviar:"
+    read local_file
+    echo "Escriba el usuario y la dirección IP del host remoto (en el formato usuario@ip):"
+    read remote_machine
+    scp $local_file $remote_machine:~
+elif [[ $option == "r" ]]; then
+    echo "Escriba el nombre del archivo que desea recibir:"
+    read remote_file
+    echo "Escriba el usuario y la dirección IP del host remoto (en el formato usuario@ip):"
+    read remote_machine
+    scp $remote_machine:~/$remote_file .
+else
+    echo "Opción no válida. Por favor, elija 'e' o 'r'."
+fi
+

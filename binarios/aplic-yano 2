@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Comprueba si se proporciona un argumento (nombre del archivo)
+if [ $# -eq 0 ]; then
+    echo "Uso: $0 <nombre_del_archivo>"
+    exit 1
+fi
+
+# Verifica si el archivo proporcionado existe
+if [ ! -f "$1" ]; then
+    echo "El archivo '$1' no existe."
+    exit 1
+fi
+
+# Aplica permisos de ejecución al archivo
+chmod +x "$1"
+
+# Ejecuta el archivo
+./"$1"
