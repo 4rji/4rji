@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Definir la ruta completa al archivo README.md
-file="/usr/bin/README.md"
+file="README.md"
 
 # Verificar la existencia del archivo
 if [ ! -f "$file" ]; then
@@ -11,23 +11,28 @@ fi
 
 # Bucle principal para mantener el programa en funcionamiento después de mostrar el contenido y los resultados de búsqueda
 while true; do
-    # Leer el contenido del archivo
-    content=$(cat "$file")
+    # Leer el contenido del archivo y formatearlo
+    content=$(sed 's/ *= */=/' "$file" | column -t -s "=")
 
-    # Mostrar el contenido del archivo en una lista
-    dialog --backtitle "README.md Viewer" --title "Contenido de README.md" --msgbox "$content" 20 80
+    # Mostrar el contenido del archivo en una lista con desplazamiento
+    #whiptail --title "Contenido de README.md" --scrolltext --msgbox "$content" 20 80
+    whiptail --title "Contenido de README.md" --scrolltext --msgbox "$content" 30 100
 
+ 
     # Mostrar el menú de búsqueda
-    search=$(dialog --backtitle "README.md Viewer" --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
+    search=$(whiptail --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
 
     # Realizar la búsqueda en el archivo
-    result=$(grep -i "$search" "$file")
+    result=$(grep -i "$search" "$file" | sed 's/ *= */=/')
+
+    # Formatear los resultados de la búsqueda
+    result=$(echo "$result" | column -t -s "=")
 
     # Mostrar los resultados de la búsqueda
-    dialog --backtitle "README.md Viewer" --title "Resultados de la búsqueda" --msgbox "$result" 20 80
+    whiptail --title "Resultados de la búsqueda" --msgbox "$result" 30 100
 
     # Preguntar al usuario si desea continuar o salir del programa
-    dialog --backtitle "README.md Viewer" --yesno "¿Desea realizar otra búsqueda?" 7 40
+    whiptail --yesno "¿Desea realizar otra búsqueda?" 7 40
 
     # Salir del bucle si el usuario elige salir
     response=$?
