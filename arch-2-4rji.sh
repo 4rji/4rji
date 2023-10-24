@@ -14,7 +14,9 @@ unzip Ban1_aa12.zip
 mv vpnitos $HOME/Downloads/.vpnitos
 sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
-#chmod +x fix-4rji.sh tmux_zsh.sh
+#algunos script que se deben ejecutar al inicio para instalacion
+agregapgg
+
 
 #Neovim
 

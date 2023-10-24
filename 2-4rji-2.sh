@@ -17,6 +17,8 @@ sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.pn
 sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
 sudo update-grub
 
+#algunos script que se deben ejecutar al inicio para instalacion
+agregapgg
 
 
 sudo mv ~/4rji/Wallpaper ~/.config
