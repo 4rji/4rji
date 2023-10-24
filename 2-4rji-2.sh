@@ -166,8 +166,9 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
-#ufw alias
 
+#nuevos
+echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 
 
 #echo "alias nombre='comando'"  >> ~/.zshrc
