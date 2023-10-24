@@ -64,5 +64,5 @@ adios = borra toda una carpeta con scrub
 
 #instalaciones
 instsurf = instala surfeando 
-
+instparu = instala para y scrub para arch (debian no necesita)
 
