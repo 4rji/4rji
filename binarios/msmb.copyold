@@ -1,27 +1,11 @@
 #!/bin/bash
 
-default_mount_point="/mnt/smb"
-
 echo "Este es el comando:"
 echo "sudo mount -t cifs //server_name/shared_directory mount_point -o username=username,password=password"
 echo ""
-echo "Si no funciona, instalar cifs-utils, samba o smb."
+echo "si no funciona, instalar cifs-utils "
+echo "samba o smb"
 echo ""
-
-# Solicitar al usuario si desea cambiar el punto de montaje
-read -p "El punto de montaje por defecto es $default_mount_point. ¿Desea cambiarlo? (s/enter para no): " change_mount
-if [ "$change_mount" == "s" ]; then
-    read -p "Ingrese el nuevo directorio de montaje local: " mount_point
-else
-    mount_point=$default_mount_point
-fi
-
-# Verificar si el directorio de montaje local existe, de lo contrario, crearlo con sudo
-if [ ! -d "$mount_point" ]; then
-    echo "Creando el directorio de montaje local..."
-    sudo mkdir -p "$mount_point"
-fi
-
 # Solicitar los datos necesarios
 read -p "Ingrese el nombre del servidor o la dirección IP: " server_name
 read -p "Ingrese el nombre de usuario: " username
@@ -29,6 +13,13 @@ read -s -p "Ingrese la contraseña: " password
 echo
 
 read -p "Ingrese el nombre del directorio compartido: " shared_directory
+read -p "Ingrese el nombre de la carpeta de montaje local: " mount_point
+
+# Verificar si el directorio de montaje local existe, de lo contrario, crearlo
+if [ ! -d "$mount_point" ]; then
+    echo "Creando el directorio de montaje local..."
+    mkdir -p "$mount_point"
+fi
 
 # Montar el servidor SMB
 sudo mount -t cifs //$server_name/$shared_directory $mount_point -o username=$username,password=$password
@@ -41,3 +32,4 @@ if [ $? -eq 0 ]; then
 else
     echo "Hubo un problema al intentar montar el servidor SMB. Por favor, verifique sus credenciales y la conexión."
 fi
+

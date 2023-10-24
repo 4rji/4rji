@@ -156,10 +156,9 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 
-cd
 
+cd ~
 #borrar todo
 
-sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano Wallpaper
-
+sudo rm -rf 4rji 
 

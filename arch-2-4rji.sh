@@ -4,7 +4,7 @@
 mv ~/4rji/Wallpaper ~/.config
 
 # Instalar paquetes necesarios
-sudo pacman -S --noconfirm zip fzf net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
+sudo pacman -S --noconfirm neovim zip fzf lsd bat  net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
 #sudo pacman -S fzf dont forget this. 
 
 
@@ -15,6 +15,11 @@ mv vpnitos $HOME/Downloads/.vpnitos
 sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
 #chmod +x fix-4rji.sh tmux_zsh.sh
+
+#Neovim
+
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
+
 
 #mover readme con lista en dos para 4rjic
 ./partir_readme
@@ -46,7 +51,7 @@ echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
-echo "alias rmk='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
+echo "alias adio='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
 echo "alias inst='sudo apt install'" >> ~/.zshrc
 echo "alias bas='nano ~/.zshrc'" >> ~/.zshrc
 echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
