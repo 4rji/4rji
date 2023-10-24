@@ -15,8 +15,7 @@ mv vpnitos $HOME/Downloads/.vpnitos
 sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
 #algunos script que se deben ejecutar al inicio para instalacion
-agregapgg
-
+agregarpgg
 
 #Neovim
 
@@ -65,7 +64,7 @@ echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
 
 ## de el archivo primera
-echo "alias cx1='chmod +x '" >> ~/.zshrc
+#echo "alias cx1='chmod +x '" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
@@ -81,8 +80,7 @@ echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 #nuevos
 
-echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
-echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
+#echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
