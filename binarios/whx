@@ -19,5 +19,8 @@ fi
 echo "Ubicación de $comando:"
 echo "$ruta_comando"
 
+# Copia la ubicación del comando al portapapeles
+echo "$ruta_comando" | xclip -selection clipboard
+
 # Muestra el contenido del archivo binario
 cat "$ruta_comando"
