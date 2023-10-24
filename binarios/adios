@@ -1,19 +1,30 @@
 #!/bin/zsh
 
-function rmk() {
-  scrub -p dod "$1"
-  shred -zun 10 -v "$1"
-}
-
-target_folder="${1}"
-
-if [[ -z "$target_folder" ]]; then
-  echo "Especificar ruta de la carpeta con el comando RUTA"
+# Verificación de argumento
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <directory>"
   exit 1
 fi
 
-for file in "$target_folder"/*; do
-  if [[ -f "$file" ]]; then
-    rmk "$file"
-  fi
+# Verificar si el directorio existe
+if [ ! -d "$1" ]; then
+    echo "El directorio especificado no existe."
+    exit 1
+fi
+
+# Aplicar el comando 'scrub' a todos los archivos dentro del directorio
+for file in "$1"/*; do
+    if [ -f "$file" ]; then
+        scrub -p dod "$file"
+    fi
 done
+
+# Aplicar el comando 'shred' a todos los archivos dentro del directorio
+for file in "$1"/*; do
+    if [ -f "$file" ]; then
+        shred -zun 10 -v "$file"
+    fi
+done
+
+# Borrar el directorio después de ejecutar los comandos
+rm -rf "$1"

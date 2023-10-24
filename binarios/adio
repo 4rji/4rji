@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Verificación de argumento
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <filename>"
+  exit 1
+fi
+
+# Verificar si el archivo existe
+if [ ! -f "$1" ]; then
+    echo "El archivo especificado no existe."
+    exit 1
+fi
+
+# Aplicar el comando 'scrub'
+scrub -p dod "$1"
+
+# Aplicar el comando 'shred'
+shred -zun 10 -v "$1"
