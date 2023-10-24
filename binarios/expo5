@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+# Verificar si ambos archivos existen
+if [ ! -f "clip1" ]; then
+    echo "El archivo 'clip1' no existe."
+    exit 1
+fi
+
+if [ ! -f "targeted" ]; then
+    echo "El archivo 'targeted' no existe."
+    exit 1
+fi
+
+# Verificar si el archivo resumen ya existe y hacer una copia de seguridad si es necesario
+if [ -f "resumen" ]; then
+    mv resumen resumen.old
+fi
+
+# Leer el archivo clip1 y buscar coincidencias en targeted
+while IFS= read -r number; do
+    grep -w "$number" targeted | grep -v "^#" >> resumen
+done < clip1
+
+# Mostrar el contenido del archivo resumen
+cat resumen

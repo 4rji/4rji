@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Obtener el contenido del portapapeles y dividirlo en palabras separadas por comas
+CLIP_CONTENT=$(xclip -selection clipboard -o)
+IFS=',' read -r -A WORDS <<< "$CLIP_CONTENT"
+
+# Crear un archivo nuevo llamado clip1 y escribir el contenido del portapapeles
+for word in "${WORDS[@]}"; do
+  echo "$word" >> clip1
+done
+
+# Notificar al usuario que se ha creado el archivo clip1 con el contenido del portapapeles
+echo "Se ha creado el archivo clip1 con el contenido del portapapeles segmentado por comas."
