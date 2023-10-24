@@ -10,7 +10,17 @@ check_internet_and_pgg() {
     fi
 }
 
+check_ip() {
+    echo "¿Desea verificar su dirección IP pública? (s/n): "
+    read choice
+    if [ "$choice" = "s" ]; then
+        echo "Su dirección IP pública es:"
+        curl -s ifconfig.me
+    fi
+}
+
 check_internet_and_pgg
+check_ip
 EOF
 )
 
@@ -24,7 +34,3 @@ else
     rm /tmp/temp_zshrc
     echo "La función se ha agregado al archivo .zshrc."
 fi
-
-
-
-
