@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Crear directorio para los archivos de prueba
+mkdir test_files
+
+# Generar archivos de 10, 20, 30 y 40 MB respectivamente
+dd if=/dev/urandom of=test_files/file_10MB bs=1M count=10
+dd if=/dev/urandom of=test_files/file_20MB bs=1M count=20
+dd if=/dev/urandom of=test_files/file_30MB bs=1M count=30
+dd if=/dev/urandom of=test_files/file_40MB bs=1M count=40
+
+# Mostrar mensaje de finalización
+echo "Archivos generados con éxito."
