@@ -32,11 +32,12 @@ sshcopiar           genera y copia al host la clave ssh
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 solobin             actualiza solo los binarios despues de descargarlso de nuevo                       
 binar               mueve un script a el directorio /usr/bin                                           
-4rjic               muestra 4rji en python3 lista                                                      
 cscp                copiar archivos en scp en lugar de sftp                                            
 lid                 cambia el comportamiento de lid laptop                                             
 cxx                 chmod +x y luego ./ ejecuta el script                                              
 4rji                el programa y busqueda de scripts                                                  
+4rjic		    Muestra una lista simple de 4rji
+4rjia		    Muestra los alias
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 csftp               copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo     
 ssa_arch            ssa para arch linux                                                                
