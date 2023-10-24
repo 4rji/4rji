@@ -15,7 +15,7 @@ mv vpnitos $HOME/Downloads/.vpnitos
 sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
 #algunos script que se deben ejecutar al inicio para instalacion
-agregarpgg
+#agregarpgg
 
 #Neovim
 
@@ -53,6 +53,7 @@ echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 # Agregar alias a .zshrc
 echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
 echo "alias adio='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
+echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias inst='sudo apt install'" >> ~/.zshrc
 echo "alias bas='nano ~/.zshrc'" >> ~/.zshrc
 echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
@@ -82,6 +83,8 @@ echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 
 #echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
+echo "alias fixssa='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
+
 echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 

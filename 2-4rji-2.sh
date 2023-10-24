@@ -18,7 +18,7 @@ sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
 sudo update-grub
 
 #algunos script que se deben ejecutar al inicio para instalacion
-agregarpgg
+#agregarpgg
 
 
 sudo mv ~/4rji/Wallpaper ~/.config
@@ -132,7 +132,7 @@ echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 #nuevos
 #echo "alias cx1='chmod +x '" >> ~/.zshrc
-#echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
+echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc

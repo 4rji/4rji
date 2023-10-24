@@ -1,11 +1,38 @@
 #!/bin/zsh
 
-host="google.com"  # Cambia "google.com" por el host que desees
+# Función para comprobar la conexión a Internet
+check_internet_connection() {
+    local host="google.com"  # Cambia "google.com" por el host que desees
 
-ping -c 1 "$host" > /dev/null 2>&1
+    ping -c 1 "$host" > /dev/null 2>&1
 
-if [[ $? -eq 0 ]]; then
-  echo "The Internet connection is active."
-else
-  echo "Unable to access the Internet."
+    if [[ $? -eq 0 ]]; then
+        echo "La conexión a Internet está ACTIVA."
+    else
+        echo "No se puede acceder a Internet."
+    fi
+}
+
+# Verificar la conexión a Internet
+echo "¿Verificar tu conexión a Internet? (s/enter continuar)."
+echo
+read check_internet
+
+if [ "$check_internet" = "s" ]; then
+    check_internet_connection
 fi
+
+# Dejar un espacio
+echo
+
+# Obtener la IP pública
+echo "¿Quieres conocer tu IP pública? (s/enter continuar)."
+echo
+read option
+echo
+if [ "$option" = "s" ]; then
+    echo "Tu dirección IP pública es: $(curl -s ifconfig.me 2>&1)"
+fi
+
+echo ""
+echo

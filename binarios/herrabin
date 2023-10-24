@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+cd ~/4rji
 
 #mover readme con lista en dos para 4rjic
 ./partir_readme
@@ -14,6 +15,6 @@ sudo cp -f ~/4rji/binarios/* /usr/bin/
 cd ..
 
 cd ~
-adios 4rji
+rm -rf 4rji
 echo "binarios actualizados y 4rji borrado"
 
