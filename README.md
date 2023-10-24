@@ -57,4 +57,10 @@ expo4 = crea un archibo clip1 del portapapeles para expo5
 expo5 = limpia el archivo targeted y muestra solo los servicios, crea resumen
 msmb = monta un smb o samba.
 fzf = buscador bueno, solo tipiar fzf
+pchains = inicia proxychain ssh -D 1080 IP, ejecutar con ip despues
+
+
+#instalaciones
+instsurf = instala surfeando 
+
 

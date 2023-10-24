@@ -80,6 +80,12 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 #sudo ./installer.sh
 #cd ..
 
+#ufw alias
+echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
+echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
+echo "alias ufwst='sudo ufw start'"  >> ~/.zshrc
+echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
+
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
 echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
@@ -160,10 +166,8 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
+#ufw alias
 
-
-#nuevos
-echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 
 
 #echo "alias nombre='comando'"  >> ~/.zshrc

@@ -71,13 +71,12 @@ sudo apt install ufw -f
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-#mkdir $HOME/Downloads/vpnitos
+#ufw alias
+echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
+echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
+echo "alias ufwst='sudo ufw start'"  >> ~/.zshrc
+echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
 
-sudo git clone https://github.com/4rji/surfeandoano.git
-cd surfeandoano
-sudo ./installer.sh
-
-cd ..
 
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
@@ -146,7 +145,7 @@ echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.
 
 #newbin script with new alias
 echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
-echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
+echo "alias pchains='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias ssse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias sssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
@@ -156,8 +155,6 @@ echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
-echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
-
 
 cd
 
