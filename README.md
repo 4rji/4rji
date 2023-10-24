@@ -61,7 +61,7 @@ pchains = inicia proxychain ssh -D 1080 IP, ejecutar con ip despues
 adio = borra un archivo con scrub
 adios = borra toda una carpeta con scrub
 herra = actualiza los binarios 
-
+genarc = genera archivos conjuntos de 100 MB
 
 #instalaciones
 instsurf = instala surfeando 
