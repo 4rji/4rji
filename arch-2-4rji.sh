@@ -23,8 +23,8 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 
 
 #mover readme con lista en dos para 4rjic
-./partir_readme
-mv README.md dosl unol binarios
+#./partir_readme
+mv README.md binarios
 
 #binarios
 sudo mv ~/4rji/binarios/* /usr/bin/
