@@ -11,7 +11,7 @@ sudo adio /usr/bin/unol
 #fix scripts
 sudo mv ~/4rji/binarios/* /usr/bin/
 
-cd ..
+cd ~
 adios 4rji
 echo "binarios actualizados y 4rji borrado"
 
