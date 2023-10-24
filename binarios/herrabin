@@ -3,13 +3,15 @@
 
 #mover readme con lista en dos para 4rjic
 ./partir_readme
-mv README.md dosl unol binarios
+cp -f README.md dosl unol ~/4rji/binarios/
 
-sudo adio /usr/bin/dosl
-sudo adio /usr/bin/unol
+sudo rm /usr/bin/dosl
+sudo rm /usr/bin/unol
 
 #fix scripts
-sudo mv ~/4rji/binarios/* /usr/bin/
+#sudo mv -f ~/4rji/binarios/* /usr/bin/
+sudo cp -f ~/4rji/binarios/* /usr/bin/
+cd ..
 
 cd ~
 adios 4rji

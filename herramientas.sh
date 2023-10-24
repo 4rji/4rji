@@ -31,10 +31,10 @@ chmod +x fix-4rji.sh tmux_zsh.sh
 
 #mover readme con lista en dos para 4rjic
 ./partir_readme
-mv README.md dosl unol binarios
+cp -f README.md dosl unol ~/4rji/binarios
 
 #binarios
-sudo mv ~/4rji/binarios/* /usr/bin/
+sudo cp -f ~/4rji/binarios/* /usr/bin/
 #sudo mv ~/4rji/README.md /usr/bin/
 
 
