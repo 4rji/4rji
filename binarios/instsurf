@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# Solicitar contraseña sudo al principio
+sudo echo "Iniciando el script..."
+
+# Clonar el repositorio de GitHub
+sudo git clone https://github.com/4rji/surfeandoano.git
+
+# Moverse al directorio clonado
+cd surfeandoano
+
+# Ejecutar el script de instalación
+sudo ./installer.sh
+
+# Salir del script
+echo "El script ha finalizado."
