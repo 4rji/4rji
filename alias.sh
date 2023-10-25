@@ -1,85 +1,22 @@
 #!/bin/zsh
 
-
-# adding wallpaper for me
-
-#login picture #Directorio de las imagenes del login in
-#cd /usr/share/desktop-base/kali-theme/login/
-
-sudo cp ~/4rji/Wallpaper/background.png /usr/share/desktop-base/kali-theme/login/background
+#eliminamos los actuales y hacemos copia en /respaldo
 
 
-#directorio de inicio de sesion de del grub
-#sudo cp -r background.png /boot/grub/themes/kali/grub-4x3.png
-#sudo cp -r background.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-16x9.png
-sudo cp -r ~/4rji/Wallpaper/background4x3.png /boot/grub/themes/kali/grub-4x3.png
-sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
-sudo update-grub
+# Crear el directorio si no existe
+sudo mkdir -p /respaldos
 
-#algunos script que se deben ejecutar al inicio para instalacion
-./alias.sh
-
-sudo mv ~/4rji/Wallpaper ~/.config
+# Copiar ~/.zshrc a /respaldos/zshrc
+sudo cp ~/.zshrc /respaldos/zshrc
 
 
-#mkdir $HOME/Downloads/vpnit
-sudo apt install zip -y
-unzip Ban1_aa12.zip
-mv vpnitos $HOME/Downloads/.vpnitos
-sudo mv $HOME/Downloads/.vpnitos/cc.txt /
-sudo apt update
+# Eliminar las líneas que comienzan con "alias" en ~/.zshrc
+sed -i.bak '/^alias/d' ~/.zshrc
 
-chmod +x fix-4rji.sh tmux_zsh.sh
-
-#mover readme con lista en dos para 4rjic
-./partir_readme
-mv README.md dosl unol binarios
-
-#binarios
-sudo mv ~/4rji/binarios/* /usr/bin/
-#sudo mv ~/4rji/README.md /usr/bin/
+echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de ~/.zshrc"
 
 
-
-#paso 2 instalar herramientas, crear alias, y mover binarios
-sudo apt-get install python3-pip -y
-sudo apt install net-tools -y
-sudo apt install wormhole -y
-sudo apt install ranger -y
-sudo apt install scrub -y
-sudo apt install shred -y
-sudo apt install curl -y
-sudo apt install kitty -y
-sudo apt install tmux -y
-sudo apt install dialog -y
-sudo apt install iptables -y
-sudo apt install openvpn -y
-sudo apt install nmap -y
-sudo apt install mesa-utils -y
-sudo apt install lm-sensors -y
-sudo apt install firejail -y 
-sudo apt install lf -f
-sudo apt install proxychains -f
-sudo apt install bc -f
-sudo apt install ufw -f
-
-#sudo apt install bc -f
-
-
-./fix-4rji.sh
-./tmux_zsh.sh
-
-# Clonar fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-#mkdir $HOME/Downloads/vpnitos
-
-#sudo git clone https://github.com/4rji/surfeandoano.git
-#cd surfeandoano
-#sudo ./installer.sh
-#cd ..
+echo ""
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
@@ -111,6 +48,7 @@ echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
 echo "alias mkt='mkdir content exploits nmap'" >> ~/.zshrc
 echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
+echo "alias apua='sudo pacman -Syu'" >> ~/.zshrc
 echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
@@ -148,7 +86,7 @@ echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
 echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1" ' >> ~/.zshrc
 
 echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
-#echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
+echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
 echo "alias wsend='wormhole send '"  >> ~/.zshrc
 echo "alias wre='wormhole receive '"  >> ~/.zshrc
 
@@ -172,36 +110,8 @@ echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 
 
-echo "alias sss='sudo systemctl status'"  >> ~/.zshrc
-#echo "alias nombre='comando'"  >> ~/.zshrc
-
-
-
-#echo "alias nombre='comando''"  >> ~/.zshrc
-
-
-
-
-cd
-
-
-#borrar todo
-
-sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano Wallpaper
-
-
-
-#some binarios
-
-
-#nombre IP = da el nombre de la maquina si es linux o windows
-#ruta archivo = copia la ruta del archivo en el portapapeles
-#target1 = cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi
-#asd = copia el contenido de target1 a el portapapeles
-#clipp archivo = copia el contenido del archivo al portapapeles 
-#whx binario = hace un xargs cat a un binario
-#lf video https://www.youtube.com/watch?v=eLEo4OQ-cuQ
-
+echo "alias sss='sudo systemctl status sshd'"  >> ~/.zshrc
+echo "alias fixssa='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
 
 
 

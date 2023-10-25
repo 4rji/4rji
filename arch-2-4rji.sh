@@ -51,7 +51,7 @@ echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 
 # Agregar alias a .zshrc
-echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support -username 4rji -password 4rji123'" >> ~/.zshrc
+echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support'" >> ~/.zshrc
 echo "alias adio='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
 echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias inst='sudo apt install'" >> ~/.zshrc
@@ -90,7 +90,7 @@ echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" 
 
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
-echo "alias 4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
+echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc

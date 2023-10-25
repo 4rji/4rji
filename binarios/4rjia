@@ -16,12 +16,12 @@ sed -i 's/ *= */=/' /tmp/list.txt
 column -t -s "=" /tmp/list.txt > /tmp/lists.txt
 
 # Mover el archivo formateado a ~/.config/aliase
-sudo mv /tmp/lists.txt /usr/bin/aliaseses.md
+mv /tmp/lists.txt ~/.aliaseses.md
 
 #!/bin/zsh
 
 # Definir la ruta completa al archivo README.md
-file="/usr/bin/aliaseses.md"
+file="$HOME/.aliaseses.md"
 
 # Verificar la existencia del archivo
 if [ ! -f "$file" ]; then
