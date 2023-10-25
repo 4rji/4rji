@@ -1,7 +1,32 @@
 #!/bin/zsh
 
+#primero creo el archivo actualizado de alias
+
+
+# Copiar ~/.zshrc a /tmp/
+cp ~/.zshrc /tmp/
+
+# Extraer líneas que comienzan con 'alias' de /tmp/.zshrc a /tmp/list.txt
+grep '^alias' /tmp/.zshrc > /tmp/list.txt
+
+# Eliminar la primera palabra de cada línea en /tmp/list.txt
+sed -i 's/^[^ ]* //' /tmp/list.txt
+
+# Eliminar espacios alrededor del igual en /tmp/list.txt
+sed -i 's/ *= */=/' /tmp/list.txt
+
+# Formatear el archivo usando column
+column -t -s "=" /tmp/list.txt > /tmp/lists.txt
+
+# Mover el archivo formateado a ~/.config/aliase
+mv /tmp/lists.txt ~/.aliaseses.md
+
+
+#se mezcla
+
+cat /usr/bin/README.md ~/.aliaseses.md  > ~/.todo.txt
 # Definir la ruta completa al archivo README.md
-file="README.md"
+file="$HOME/.todo.txt"
 
 # Verificar la existencia del archivo
 if [ ! -f "$file" ]; then
@@ -15,10 +40,16 @@ while true; do
     content=$(sed 's/ *= */=/' "$file" | column -t -s "=")
 
     # Mostrar el contenido del archivo en una lista con desplazamiento
-    #whiptail --title "Contenido de README.md" --scrolltext --msgbox "$content" 20 80
-    whiptail --title "Contenido de README.md" --scrolltext --msgbox "$content" 30 100
+    whiptail --title "Contenido de README.md" --scrolltext --yes-button "OK" --no-button "Salir" --yesno "$content" 30 100
 
- 
+    # Obtener la respuesta del usuario
+    response=$?
+
+    # Salir del bucle si el usuario elige salir
+    if [ $response -ne 0 ]; then
+        break
+    fi
+
     # Mostrar el menú de búsqueda
     search=$(whiptail --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
 
@@ -40,3 +71,4 @@ while true; do
         break
     fi
 done
+#
