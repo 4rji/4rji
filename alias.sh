@@ -48,6 +48,7 @@ echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
 echo "alias mkt='mkdir content exploits nmap'" >> ~/.zshrc
 echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
+echo "alias apua='sudo pacman -Syu'" >> ~/.zshrc
 echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
@@ -109,8 +110,8 @@ echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 
 
-echo "alias sss='sudo systemctl status'"  >> ~/.zshrc
-
+echo "alias sss='sudo systemctl status sshd'"  >> ~/.zshrc
+echo "alias fixssa='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
 
 
 
