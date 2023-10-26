@@ -18,6 +18,7 @@ echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de 
 
 echo ""
 
+
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
@@ -48,7 +49,6 @@ echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
 echo "alias mkt='mkdir content exploits nmap'" >> ~/.zshrc
 echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
-echo "alias apua='sudo pacman -Syu'" >> ~/.zshrc
 echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
@@ -74,6 +74,9 @@ echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 #echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
+echo "alias fixssh='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
+echo "alias bateria='acpi -b'" >> ~/.zshrc
+echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
@@ -82,36 +85,35 @@ echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
-echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
+#echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
 echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1" ' >> ~/.zshrc
 
-echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
-echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
-echo "alias wsend='wormhole send '"  >> ~/.zshrc
+#echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
+#echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
+echo "alias wse='wormhole send '"  >> ~/.zshrc
 echo "alias wre='wormhole receive '"  >> ~/.zshrc
 
 echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.sh '"  >> ~/.zshrc
 
 #newbin script with new alias
 echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
-echo "alias surfeando2='ssh -D 1080 '"  >> ~/.zshrc
+echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
+echo "alias sss='sudo systemctl status'"  >> ~/.zshrc
+
+echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
+
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
 echo "alias itec='sudo openvpn ~/Downloads/.vpnitos/itec.ovpn'"  >> ~/.zshrc
-echo "alias 4rj='cd /home/natasha/Documents/GitHub/4rji'"  >> ~/.zshrc
+echo "alias 4rj='cd $HOME/Documents/GitHub/4rji'"  >> ~/.zshrc
 
-echo "alias sst='sudo systemctl stop sshd'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
-
-#nuevos
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 
 
-echo "alias sss='sudo systemctl status sshd'"  >> ~/.zshrc
-echo "alias fixssa='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
 
 
 
