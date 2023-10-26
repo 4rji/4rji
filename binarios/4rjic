@@ -1,0 +1,19 @@
+import csv
+
+# Definir la ruta completa al archivo README.md
+file_one = "/usr/bin/README.md"
+
+# Leer el archivo y guardar el contenido en una lista
+content_one = []
+
+with open(file_one, 'r') as f1:
+    reader = csv.reader(f1)
+    for row in reader:
+        content_one.append(row)
+
+# Mostrar el contenido en una tabla
+print(f"{'File One':<20}")
+print('-' * 20)
+
+for i in range(len(content_one)):
+    print(f"{content_one[i][0] if content_one[i] else '':<20}")
