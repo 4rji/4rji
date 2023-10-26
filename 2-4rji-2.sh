@@ -18,7 +18,6 @@ sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
 sudo update-grub
 
 #algunos script que se deben ejecutar al inicio para instalacion
-./alias.sh
 
 sudo mv ~/4rji/Wallpaper ~/.config
 
@@ -32,9 +31,6 @@ sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
 chmod +x fix-4rji.sh tmux_zsh.sh
 
-#mover readme con lista en dos para 4rjic
-./partir_readme
-mv README.md binarios
 
 #binarios
 sudo mv ~/4rji/binarios/* /usr/bin/
@@ -63,6 +59,8 @@ sudo apt install lf -f
 sudo apt install proxychains -f
 sudo apt install bc -f
 sudo apt install ufw -f
+sudo apt install lsd -y
+
 
 #sudo apt install bc -f
 
@@ -87,10 +85,10 @@ cd
 
 #borrar todo
 
-sudo rm -rf Public Videos Music Pictures Desktop Templates Public Documents 4rji ScreenShots surfeandoano Wallpaper
+sudo rm -rf Public Videos Music Pictures Templates Public  ScreenShots surfeandoano Wallpaper
 
 
-
+cd 4rji
 
 
 
