@@ -111,7 +111,11 @@ echo "alias 4rj='cd $HOME/Documents/GitHub/4rji'"  >> ~/.zshrc
 
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
+<<<<<<< Updated upstream
 echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
+=======
+echo "alias ls='lsd'"  >> ~/.zshrc
+>>>>>>> Stashed changes
 
 
 
