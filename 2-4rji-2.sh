@@ -1,11 +1,13 @@
 #!/bin/zsh
 
+sudo mkdir -p /respaldos
 
+sudo cp zshrc.original /respaldos
 # adding wallpaper for me
 
 #login picture #Directorio de las imagenes del login in
 #cd /usr/share/desktop-base/kali-theme/login/
-
+sudo cp .zshrc.original ~
 sudo cp ~/4rji/Wallpaper/background.png /usr/share/desktop-base/kali-theme/login/background
 
 
@@ -33,8 +35,7 @@ chmod +x fix-4rji.sh tmux_zsh.sh
 
 
 #binarios
-sudo mv ~/4rji/binarios/* /usr/bin/
-#sudo mv ~/4rji/README.md /usr/bin/
+sudo cp ~/4rji/binarios/* /usr/bin/
 
 
 

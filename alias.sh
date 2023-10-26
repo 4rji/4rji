@@ -3,11 +3,10 @@
 #eliminamos los actuales y hacemos copia en /respaldo
 
 
-# Crear el directorio si no existe
-sudo mkdir -p /respaldos
 
 # Copiar ~/.zshrc a /respaldos/zshrc
-sudo cp ~/.zshrc /respaldos/zshrc
+sudo cp ~/.zshrc /respaldos/zshrc.alias_backup
+
 
 
 # Eliminar las líneas que comienzan con "alias" en ~/.zshrc
@@ -101,7 +100,7 @@ echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
-echo "alias sss='sudo systemctl status'"  >> ~/.zshrc
+echo "alias sss='sudo systemctl status ssh'"  >> ~/.zshrc
 
 echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
 
