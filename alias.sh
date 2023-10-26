@@ -23,7 +23,7 @@ echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
 echo "alias ufwst='sudo ufw start'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
-
+echo "alias cat ='batcat'" >> ~/.zshrc
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
 echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
@@ -87,8 +87,8 @@ echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 #echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
 echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1" ' >> ~/.zshrc
 
-#echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
-#echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
+echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
+echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
 echo "alias wse='wormhole send '"  >> ~/.zshrc
 echo "alias wre='wormhole receive '"  >> ~/.zshrc
 
