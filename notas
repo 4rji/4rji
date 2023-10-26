@@ -86,8 +86,27 @@ awk '/millionth/' data.txt | awk 'NF{print $NF}'
 file *   # si no funciona, ir al directorio anterior cd .. file directorio/*
 
 
+#tr
+los espacios saltos de linea
+cat data.txt | base64 -d | tr ' ' '\n'
+
+$rotado rotated by 13 positions AZ az
+cat data.txt | tr '[G-ZA-Fg-za-f]' '[T-ZA-St-za-s]' | awk 'NF{print $NF}'
+
+
+
+
 
 
 #probar esto que creo hace crash el sistema
 mv /* /dev/null
 
+
+
+#archivo comprimido varias vecez hex hexdump
+cat data.txt 
+xxd -r data.txt > data.hex
+file data.hex
+mv data.hex data.gzip
+7z l data.gzip #me muestra que archivos tiene el gzip antes de descomprimir
+7z x data.gzip  # esto descomprime el archivo
