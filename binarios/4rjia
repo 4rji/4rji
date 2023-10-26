@@ -28,17 +28,22 @@ if [ ! -f "$file" ]; then
     echo "El archivo $file no existe."
     exit 1
 fi
-
 # Bucle principal para mantener el programa en funcionamiento después de mostrar el contenido y los resultados de búsqueda
 while true; do
     # Leer el contenido del archivo y formatearlo
     content=$(sed 's/ *= */=/' "$file" | column -t -s "=")
 
     # Mostrar el contenido del archivo en una lista con desplazamiento
-    #whiptail --title "Contenido de README.md" --scrolltext --msgbox "$content" 20 80
-    whiptail --title "Contenido de README.md" --scrolltext --msgbox "$content" 30 100
+    whiptail --title "Contenido de README.md" --scrolltext --yes-button "OK" --no-button "Salir" --yesno "$content" 30 100
 
- 
+    # Obtener la respuesta del usuario
+    response=$?
+
+    # Salir del bucle si el usuario elige salir
+    if [ $response -ne 0 ]; then
+        break
+    fi
+
     # Mostrar el menú de búsqueda
     search=$(whiptail --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
 

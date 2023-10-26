@@ -2,13 +2,14 @@
 
 
 # Definir la ruta completa al archivo README.md
-file="$HOME/.README.md"
+file="/usr/bin/README.md"
 
 # Verificar la existencia del archivo
 if [ ! -f "$file" ]; then
     echo "El archivo $file no existe."
     exit 1
 fi
+
 
 # Bucle principal para mantener el programa en funcionamiento después de mostrar el contenido y los resultados de búsqueda
 while true; do
