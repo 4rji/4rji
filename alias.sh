@@ -114,7 +114,7 @@ echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
 echo "alias ls='lsd'"  >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
-
+echo "alias dockerst='sudo systemctl start docker.service'" >> ~/.zshrc
 
 
 
