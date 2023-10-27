@@ -1,0 +1,39 @@
+
+
+
+ chmod +x y luego ./ ejecuta el script
+ da el nombre de la maquina si es linux o windows
+ copia la ruta del archivo en el portapapeles
+ cambia el estatus de la bateria por la direccion IP target o cualquier otra cosa que se quiera poner ahi
+ copia el contenido de target1 a el portapapeles
+ copia el contenido del archivo al portapapeles 
+ hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired
+ hace un nano a un binario 
+ copia eth0 al portapapeles y muestra todas las ips del equipo
+ copia wlan0 al portapapeles
+ para moverme con cd  #copiar el plugin a zsh
+ vuelve a instalar por defaul los repos de kali cuando no funcionan.
+ copia mui clave a una maquina remota
+ firejail a firefox
+ crea una conexion ssh para proxychains por 1080
+ version de puertos nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet
+  activa nesus y muestra el puerto donde abrirlo en firefox
+ para nessus
+ instalar nessus
+ hace un nmap -sn en la red para buscar maquinas activas.
+ corre fix-4rji para solucionar repositorios despuies de la instalacion
+ cambia el banner de ssh y crea un alias
+ arregla la pantalla para monitor de 34 pulgadas xrandr
+ abre el editor de ssh
+ reinicia ssh
+ edita ssh
+ ejecuta una herramienta de un curso para buscar emails
+ python3 program que hace un escaneo y pregunta el numero de puertos. 
+ new script con bateria en lugar de alias
+  or tempe -f temperatura de arch linux y -f crea un archivo con los datos de tempe
+ genera y copia al host la clave ssh
+ Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta
+ actualiza solo los binarios despues de descargarlso de nuevo
+ mueve un script a el directorio /usr/bin
+test
+
