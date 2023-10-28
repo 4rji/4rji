@@ -18,15 +18,15 @@ echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de 
 echo ""
 
 #custom alias
+echo 'alias ll="lsd -lh --group-dirs=first"' >> ~/.zshrc
+echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
+echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
+echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
+echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
+echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
+echo 'alias catn="cat"' >> ~/.zshrc
+echo 'alias catnl="batcat"' >> ~/.zshrc
 
-alias ll='lsd -lh --group-dirs=first'
-alias la='lsd -a --group-dirs=first'
-alias l='lsd --group-dirs=first'
-alias lla='lsd -lha --group-dirs=first'
-alias ls='lsd --group-dirs=first'
-alias cat='/bin/batcat --paging=never'
-alias catn='cat'
-alias catnl='batcat'
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
