@@ -1,0 +1,11 @@
+# Especifica el directorio de instalación personalizado
+install_dir="/home/nat/.oh-my-zsh"
+
+# Descarga el script de instalación
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O /tmp/ohmyzsh-install.sh
+
+# Ejecuta el script de instalación en el directorio personalizado
+ZSH="$install_dir" sh /tmp/ohmyzsh-install.sh
+
+# Cambia el propietario del directorio de instalación al usuario "nat"
+sudo chown -R nat:nat "$install_dir"
