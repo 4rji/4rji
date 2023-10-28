@@ -63,6 +63,12 @@ herrabin            actualiza los binarios
 genarc              genera archivos conjuntos de 100 MB                                                
 dockerun            Menu para Docker
 zshpath		        export PATH=$PATH:/usr/bin
+zshforzar		    para forzar un directorio de instsalacion en dockers
+copdir 			    Copia un directorio, se ejecuta y se llena /ruta/toda usuario@ip
+catt 				Me da un conteo de las lineas de un archivo
+cats				Me da un conteo de lineas pero con salto
+busme				Busca en 4rjic algo que quiera, hace un grep
+
 
 
 #instalaciones                                                                                         
