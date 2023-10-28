@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Crear directorio temporal
+new_dir=$(mktemp -d)
+
+# Mostrar el mensaje con la ruta del directorio creado
+echo "Directorio creado en: $new_dir"
+
+# Copiar la ruta del directorio al portapapeles usando xclip
+echo "$new_dir" | xclip -selection clipboard
+echo "solo pega el portapapeles sin cd e iras al directorio creado"
+
+cd "$(xclip -o -sel clip)"
