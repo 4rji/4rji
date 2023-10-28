@@ -30,6 +30,18 @@ elif [[ $choice == 3 ]]; then
     read image_id_to_delete
     # Intentar eliminar la imagen forzadamente
     sudo docker rmi -f $image_id_to_delete
+
+    # Mostrar el mensaje independientemente del resultado
+    echo " "
+    echo ""
+    echo "Para eliminar todas las imágenes no utilizadas y no borrar las que corren:"
+    echo "Debes de correr la imagen que quieres salvar"
+    echo "docker system prune -a"
+    echo ""   
+    echo "En caso de error, para purgar TODO (borrar):"
+    echo "Para eliminar todos los contenedores en ejecución y sin ejecutar:"
+    echo "docker rm -f \$(docker ps -aq)"
+    echo ""
 else
     echo "Opción no válida."
 fi
