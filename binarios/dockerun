@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Mostrar la lista de imágenes Docker
-sudo docker images
+#sudo docker images
 
 # Preguntar al usuario si quiere correr, guardar o borrar
 echo "¿Quieres correr (1), guardar (2) o borrar (3)?"
@@ -9,10 +9,8 @@ read choice
 
 if [[ $choice == 1 ]]; then
     # Si elige correr, preguntar por el ImageID
-    echo "Ingresa el ImageID:"
-    read image_id
     # Ejecutar el contenedor
-    sudo docker run -it $image_id
+    dockerrr
 elif [[ $choice == 2 ]]; then
     # Si elige guardar, mostrar la lista de contenedores
     sudo docker ps
@@ -25,7 +23,8 @@ elif [[ $choice == 2 ]]; then
     sudo docker commit $container_id $image_name
 elif [[ $choice == 3 ]]; then
     # Si elige borrar, mostrar la lista de imágenes
-    # Preguntar por el ImageID a borrar
+    sudo docker images
+   # Preguntar por el ImageID a borrar
     echo "Ingresa el ImageID a borrar:"
     read image_id_to_delete
     # Intentar eliminar la imagen forzadamente
