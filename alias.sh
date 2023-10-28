@@ -17,6 +17,16 @@ echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de 
 
 echo ""
 
+#custom alias
+
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -lha --group-dirs=first'
+alias ls='lsd --group-dirs=first'
+alias cat='/bin/batcat --paging=never'
+alias catn='cat'
+alias catnl='batcat'
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
@@ -114,7 +124,7 @@ echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
 echo "alias ls='lsd'"  >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
-
+echo "alias busme='4rjic | grep '" >> ~/.zshrc
 
 
 
