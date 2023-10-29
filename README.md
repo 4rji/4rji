@@ -52,8 +52,7 @@ ufwinst             instala ufw y crea regla para puerto ssh
 ddf                 hace un diff archivo vs archivo.backup                                             
 instf2b             instala ubuntu f2ban                                                               
 f2bcomm             fail2ban f2b comandos                                                              
-expo4               crea un archibo clip1 del portapapeles para expo5                                  
-expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen              
+expo4               limpia el archivo targeted y muestra solo los servicios, crea resumen              
 msmb                monta un smb o samba.                                                              
 fzf                 buscador bueno, solo tipiar fzf                                                    
 pchains             inicia proxychain ssh -D 1080 IP, ejecutar con ip despues                          
@@ -69,6 +68,8 @@ catt 				Me da un conteo de las lineas de un archivo
 cats				Me da un conteo de lineas pero con salto
 busme				Busca en 4rjic algo que quiera, hace un grep
 alis 				crea alias y tambien los guarda en el archivo aliaszsh 
+mktem				crea un directorio temporal y solo pegando ctrl + v me manda a ese directorio
+instgenwiz			nwiz es un generador de palabras para hash cracking
 
 
 #instalaciones                                                                                         
