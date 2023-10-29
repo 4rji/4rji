@@ -68,7 +68,7 @@ copdir 			    Copia un directorio, se ejecuta y se llena /ruta/toda usuario@ip
 catt 				Me da un conteo de las lineas de un archivo
 cats				Me da un conteo de lineas pero con salto
 busme				Busca en 4rjic algo que quiera, hace un grep
-
+alis 				crea alias y tambien los guarda en el archivo aliaszsh 
 
 
 #instalaciones                                                                                         
