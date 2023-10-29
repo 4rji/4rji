@@ -34,6 +34,7 @@ echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
 echo "alias ufwst='sudo ufw start'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
 echo "alias cat ='batcat'" >> ~/.zshrc
+
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
 echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
@@ -78,7 +79,7 @@ echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 #nuevos
 #echo "alias cx1='chmod +x '" >> ~/.zshrc
-echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
+#echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
@@ -122,12 +123,9 @@ echo "alias 4rj='cd $HOME/Documents/GitHub/4rji'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
-echo "alias ls='lsd'"  >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 
 echo "alias busme='4rjic | grep '" >> ~/.zshrc
-
-echo "alias dockerst='sudo systemctl start docker.service'" >> ~/.zshrc
 
 
 
