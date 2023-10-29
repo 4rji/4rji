@@ -125,10 +125,6 @@ echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 
-echo "alias busme='4rjic | grep '" >> ~/.zshrc
-
-
-
-
-
+#echo "alias busme='4rjic | grep '" >> ~/.zshrc
+echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
 

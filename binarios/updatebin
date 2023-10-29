@@ -1,0 +1,10 @@
+#!/bin/zsh
+mktem
+cd "$(xclip -o -sel clip)"
+
+git clone https://github.com/4rji/4rji.git
+cd 4rji/
+sudo cp README.md /usr/bin
+cd binarios
+sudo cp * /usr/bin
+

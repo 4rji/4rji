@@ -66,11 +66,11 @@ zshforzar		    para forzar un directorio de instsalacion en dockers
 copdir 			    Copia un directorio, se ejecuta y se llena /ruta/toda usuario@ip
 catt 				Me da un conteo de las lineas de un archivo
 cats				Me da un conteo de lineas pero con salto
-busme				Busca en 4rjic algo que quiera, hace un grep
 alis 				crea alias y tambien los guarda en el archivo aliaszsh 
 mktem				crea un directorio temporal y solo pegando ctrl + v me manda a ese directorio
 instgenwiz			nwiz es un generador de palabras para hash cracking
-
+updatebin	    crea una carpeta temporar, descarga nuevos binarios/Readme y vuelve directorio original
+todo     	busqueda de 
 
 #instalaciones                                                                                         
 instsurf            instala surfeando                                                                  
