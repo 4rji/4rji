@@ -68,7 +68,7 @@ catt 				Me da un conteo de las lineas de un archivo
 cats				Me da un conteo de lineas pero con salto
 busme				Busca en 4rjic algo que quiera, hace un grep
 mktem				crea un directorio temporal y solo pegando ctrl + v me manda a ese directorio
-
+instgenwiz			nwiz es un generador de palabras para hash cracking
 
 
 #instalaciones                                                                                         
