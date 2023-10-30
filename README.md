@@ -36,8 +36,8 @@ cscp                copiar archivos en scp en lugar de sftp
 lid                 cambia el comportamiento de lid laptop                                             
 cxx                 chmod +x y luego ./ ejecuta el script                                              
 4rji                el programa y busqueda de scripts                                                  
-4rjic		    Muestra una lista simple de 4rji
-4rjia		    Muestra los alias
+4rjic		        Muestra una lista simple de 4rji
+4rjia		        Muestra los alias
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 csftp               copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo     
 ssa_arch            ssa para arch linux                                                                
@@ -69,8 +69,8 @@ cats				Me da un conteo de lineas pero con salto
 alis 				crea alias y tambien los guarda en el archivo aliaszsh 
 mktem				crea un directorio temporal y solo pegando ctrl + v me manda a ese directorio
 instgenwiz			nwiz es un generador de palabras para hash cracking
-updatebin	    crea una carpeta temporar, descarga nuevos binarios/Readme y vuelve directorio original
-todo     	busqueda de 
+updatebin	  	    crea una carpeta temporar, descarga nuevos binarios/Readme y vuelve directorio original
+todo     	    	busqueda de alias y binarios ejemplo: todo ssh
 
 #instalaciones                                                                                         
 instsurf            instala surfeando                                                                  
