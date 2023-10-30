@@ -24,14 +24,13 @@ echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
-echo 'alias catn="cat"' >> ~/.zshrc
+echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
 
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
-echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
-echo "alias ufwst='sudo ufw start'"  >> ~/.zshrc
+echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
 echo "alias cat ='batcat'" >> ~/.zshrc
 
