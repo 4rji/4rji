@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+sudo systemctl start ssh
+
+
+echo ""
+# Ejecutar el comando y almacenar la salida en una variable
+output=$(systemctl status sshd)
+
+echo ""
+echo "SSH status:"
+# Buscar la línea que contiene 'Active:' en la salida y mostrarla
+echo "$output" | grep 'Active:'
+
+# Agregar un renglón de separación
+echo ""
+echo ""
+
+ip addr | grep "inet "
+echo""
+
+
+echo "$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)"
+
+
+
+# Agregamos el mensaje con la IP local
+echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig eth0 | grep "inet " | awk '{print $2}')"
+echo ""
+echo "user:"
+whoami

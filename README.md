@@ -32,12 +32,12 @@ sshcopiar           genera y copia al host la clave ssh
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 solobin             actualiza solo los binarios despues de descargarlso de nuevo                       
 binar               mueve un script a el directorio /usr/bin                                           
-cscp                copiar archivos en scp en lugar de sftp                                            
+cscp                copiar archivos en scp en lugar de sftp                                            ASDASDSADSAD
 lid                 cambia el comportamiento de lid laptop                                             
 cxx                 chmod +x y luego ./ ejecuta el script                                              
 4rji                el programa y busqueda de scripts                                                  
-4rjic		        Muestra una lista simple de 4rji
-4rjia		        Muestra los alias
+4rjic		    Muestra una lista simple de 4rji
+4rjia		    Muestra los alias
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 csftp               copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo     
 ssa_arch            ssa para arch linux                                                                
@@ -52,7 +52,8 @@ ufwinst             instala ufw y crea regla para puerto ssh
 ddf                 hace un diff archivo vs archivo.backup                                             
 instf2b             instala ubuntu f2ban                                                               
 f2bcomm             fail2ban f2b comandos                                                              
-expo4               limpia el archivo targeted y muestra solo los servicios, crea resumen              
+expo4               crea un archibo clip1 del portapapeles para expo5                                  
+expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen              
 msmb                monta un smb o samba.                                                              
 fzf                 buscador bueno, solo tipiar fzf                                                    
 pchains             inicia proxychain ssh -D 1080 IP, ejecutar con ip despues                          
@@ -60,21 +61,6 @@ adio                borra un archivo con scrub
 adios               borra toda una carpeta con scrub                                                   
 herrabin            actualiza los binarios                                                             
 genarc              genera archivos conjuntos de 100 MB                                                
-dockerun            Menu para Docker
-zshpath		        export PATH=$PATH:/usr/bin
-zshforzar		    para forzar un directorio de instsalacion en dockers
-copdir 			    Copia un directorio, se ejecuta y se llena /ruta/toda usuario@ip
-binali.sh 			Se instala desde 4rji e instala los alias y binarios.
-catt 				Me da un conteo de las lineas de un archivo
-cats				Me da un conteo de lineas pero con salto
-alis 				crea alias y tambien los guarda en el archivo aliaszsh 
-mktem				crea un directorio temporal y solo pegando ctrl + v me manda a ese directorio
-instgenwiz			nwiz es un generador de palabras para hash cracking
-updatebin	  	    crea una carpeta temporar, descarga nuevos binarios/Readme y vuelve directorio original
-todo     	    	busqueda de alias y binarios ejemplo: todo ssh
-
-
 #instalaciones                                                                                         
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
-
