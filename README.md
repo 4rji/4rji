@@ -67,3 +67,5 @@ instparu            instala para y scrub para arch (debian no necesita)
 mackali		    Cambia la MAC de kali
 mackarch	    Cambia la MAC de arch linux
 buscando	    Busca comandos para usar grep awk
+busme_{algo}	    Busca en alias algo
+todo_{algo}	    Busca en alias y readme info
