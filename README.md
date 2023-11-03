@@ -64,3 +64,5 @@ genarc              genera archivos conjuntos de 100 MB
 #instalaciones                                                                                         
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
+mackali		    Cambia la MAC de kali
+mackarch	    Cambia la MAC de arch linux
