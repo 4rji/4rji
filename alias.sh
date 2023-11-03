@@ -58,7 +58,7 @@ echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
 echo "alias mkt='mkdir content exploits nmap'" >> ~/.zshrc
 echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
-echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
+echo "alias pg='ping 8.8.8.8 -c4'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
 
@@ -126,4 +126,5 @@ echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 
 #echo "alias busme='4rjic | grep '" >> ~/.zshrc
 echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
-
+echo "alias wm='whoami'" >> ~/.zshrc
+echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc

@@ -13,26 +13,12 @@ check_internet_connection() {
     fi
 }
 
-# Verificar la conexión a Internet
-echo "¿Verificar tu conexión a Internet? (s/enter continuar)."
-echo
-read check_internet
+# Preguntar si se desea ejecutar el script
+echo "¿Deseas verificar la conexion? (s para sí, enter para continuar)"
+read response
 
-if [ "$check_internet" = "s" ]; then
+if [[ "$response" == "s" ]]; then
     check_internet_connection
-fi
-
-# Dejar un espacio
-echo
-
-# Obtener la IP pública
-echo "¿Quieres conocer tu IP pública? (s/enter continuar)."
-echo
-read option
-echo
-if [ "$option" = "s" ]; then
     echo "Tu dirección IP pública es: $(curl -s ifconfig.me 2>&1)"
+    echo ""
 fi
-
-echo ""
-echo

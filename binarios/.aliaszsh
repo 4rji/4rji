@@ -1,0 +1,1 @@
+echo "alias whoami='wm'" >> ~/.zshrc
