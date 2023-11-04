@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# Solicitar al usuario el comando a monitorear
+read -r "comando?Ingresa el comando a monitorear con watch: "
+
+# Ejecutar watch con el comando proporcionado
+watch -n 1 $comando
