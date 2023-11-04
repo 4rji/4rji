@@ -68,3 +68,4 @@ mackarch		    Cambia la MAC de arch linux
 buscando	    	Busca comandos para usar grep awk
 busme_{algo}	    Busca en alias algo
 todo_{algo}	    	Busca en alias y readme info
+mirar				Hace un watch -n 1 comando, como netstat, o reglas.
