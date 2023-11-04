@@ -1,16 +1,18 @@
 #!/bin/zsh
 
-cd ~/4rji
+mktem
+cd "$(xclip -o -sel clip)"
 
-cp  README.md ~/4rji/binarios/
+git clone https://github.com/4rji/4rji.git
+cd 4rji/
+
+cp README.md binarios
 
 
 #fix scripts
 #sudo mv -f ~/4rji/binarios/* /usr/bin/
-sudo cp -f ~/4rji/binarios/* /usr/bin/
-cd ..
+sudo cp -f binarios/* /usr/bin/
 
-cd ~
-rm -rf 4rji
+cd
 echo "binarios actualizados y 4rji borrado"
 

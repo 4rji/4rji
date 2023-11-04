@@ -32,12 +32,12 @@ sshcopiar           genera y copia al host la clave ssh
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 solobin             actualiza solo los binarios despues de descargarlso de nuevo                       
 binar               mueve un script a el directorio /usr/bin                                           
-cscp                copiar archivos en scp en lugar de sftp                                            ASDASDSADSAD
+cscp                copiar archivos en scp en lugar de sftp                       
 lid                 cambia el comportamiento de lid laptop                                             
 cxx                 chmod +x y luego ./ ejecuta el script                                              
 4rji                el programa y busqueda de scripts                                                  
-4rjic		    Muestra una lista simple de 4rji
-4rjia		    Muestra los alias
+4rjic			    Muestra una lista simple de 4rji
+4rjia			    Muestra los alias
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 csftp               copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo     
 ssa_arch            ssa para arch linux                                                                
@@ -60,12 +60,11 @@ pchains             inicia proxychain ssh -D 1080 IP, ejecutar con ip despues
 adio                borra un archivo con scrub                                                         
 adios               borra toda una carpeta con scrub                                                   
 herrabin            actualiza los binarios                                                             
-genarc              genera archivos conjuntos de 100 MB                                                
-#instalaciones                                                                                         
+genarc              genera archivos conjuntos de 100 MB                                                                                              
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
-mackali		    Cambia la MAC de kali
-mackarch	    Cambia la MAC de arch linux
-buscando	    Busca comandos para usar grep awk
+mackali			    Cambia la MAC de kali
+mackarch		    Cambia la MAC de arch linux
+buscando	    	Busca comandos para usar grep awk
 busme_{algo}	    Busca en alias algo
-todo_{algo}	    Busca en alias y readme info
+todo_{algo}	    	Busca en alias y readme info
