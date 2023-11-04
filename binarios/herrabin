@@ -2,9 +2,7 @@
 
 cd ~/4rji
 
-#mover readme con lista en dos para 4rjic
-./partir_readme
-cp -f README.md ~/4rji/binarios/
+cp  README.md ~/4rji/binarios/
 
 
 #fix scripts

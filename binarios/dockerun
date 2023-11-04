@@ -1,5 +1,25 @@
 #!/bin/zsh
 
+# Verificar si el servicio de Docker está activo o inactivo
+docker_service_status=$(systemctl is-active docker)
+
+if [[ $docker_service_status == "active" ]]; then
+    echo "El servicio de Docker está activo."
+else
+    echo "El servicio de Docker está inactivo. ¿Quieres activarlo? (s para activarlo, enter continuar.)"
+    read activate_docker
+
+    if [[ $activate_docker == "s" ]]; then
+        sudo systemctl start docker
+        echo "El servicio de Docker ha sido activado."
+    else
+        echo "No se ha activado el servicio de Docker. Saliendo."
+        exit 1
+    fi
+fi
+
+#!/bin/zsh
+
 # Mostrar la lista de imágenes Docker
 #sudo docker images
 
