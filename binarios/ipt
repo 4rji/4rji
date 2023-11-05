@@ -1,0 +1,31 @@
+#!/bin/zsh
+sudo iptables -L
+
+echo "               ^^^^     Selecciona una opción:    ^^^^ "
+echo "************             1. Activar iptables"
+echo "************             2. Desactivar iptables"
+read option
+
+case $option in
+    1)
+        echo "Desactivando iptables..."
+        sudo iptables -P INPUT DROP
+        sudo iptables -P FORWARD DROP
+        sudo iptables -P OUTPUT DROP
+        echo "iptables desactivado."
+        ;;
+    2)
+        echo "Activando iptables..."
+        sudo iptables -P INPUT ACCEPT
+        sudo iptables -P FORWARD ACCEPT
+        sudo iptables -P OUTPUT ACCEPT
+        sudo iptables -F
+        echo "iptables activado."
+        ;;
+    *)
+        echo "Opción inválida. Saliendo del script."
+        ;;
+esac
+
+echo "Mostrando reglas actuales de iptables:"
+sudo iptables -L
