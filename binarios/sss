@@ -1,9 +1,21 @@
 #!/bin/zsh
-
-if [ "$1" = "--start" ]; then
-    sudo service ssh start
-elif [ "$1" = "-s" ]; then
-    sudo service ssh stop
+echo ""
+# Comprobamos si el servicio SSH está activo o inactivo
+if systemctl is-active --quiet ssh.service; then
+    echo "El servicio SSH está   ^^^^ ACTIVO ^^^^ ."
 else
-    sudo service ssh status
+    echo "El servicio SSH está     ^^^^ INACTIVO ^^^^."
 fi
+
+
+
+echo
+interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+
+# Mostrar las interfaces y sus direcciones IP
+    echo "Interfaces de red y sus direcciones IP:"
+    echo "$interfaces"
+
+ip_address=$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)
+
+

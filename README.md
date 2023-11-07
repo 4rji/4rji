@@ -60,7 +60,9 @@ pchains             inicia proxychain ssh -D 1080 IP, ejecutar con ip despues
 adio                borra un archivo con scrub                                                         
 adios               borra toda una carpeta con scrub                                                   
 herrabin            actualiza los binarios                                                             
-genarc              genera archivos conjuntos de 100 MB                                                                                              
+genarc              genera archivos conjuntos de 100 MB
+dockercp			alias que muestra el formato para copiar archivos en docker
+
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
 mackali			    Cambia la MAC de kali

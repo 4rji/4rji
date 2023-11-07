@@ -32,7 +32,6 @@ echo 'alias catnl="batcat"' >> ~/.zshrc
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
-echo "alias cat ='batcat'" >> ~/.zshrc
 
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
@@ -130,4 +129,3 @@ echo "alias wm='whoami'" >> ~/.zshrc
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-echo "alias ass='ass'" >> ~/.zshrc
