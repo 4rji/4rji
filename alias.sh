@@ -82,7 +82,9 @@ echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 #echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
-echo "alias fixssh='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
+echo "alias fixssaarch='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
+echo "alias fixsssarch='sudo mv /usr/bin/sss_arch /usr/bin/sss'" >> ~/.zshrc
+
 echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
@@ -109,7 +111,7 @@ echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
 echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
-echo "alias sss='sudo systemctl status ssh'"  >> ~/.zshrc
+#echo "alias sss='sudo systemctl status ssh'"  >> ~/.zshrc
 
 echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
 

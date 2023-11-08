@@ -1,3 +1,17 @@
 #!/bin/zsh
+echo ""
+# Comprobamos si el servicio SSH está activo o inactivo
+if systemctl is-active --quiet sshd.service; then
+    echo "El servicio SSH está   ^^^^ ACTIVO ^^^^ ."
+else
+    echo "El servicio SSH está     ^^^^ INACTIVO ^^^^."
+fi
 
-sudo systemctl status sshd
+echo
+interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+
+# Mostrar las interfaces y sus direcciones IP
+echo "Interfaces de red y sus direcciones IP:"
+echo "$interfaces"
+
+ip_address=$(ip addr show <nombre-de-tu-interfaz> | awk '/inet / {print $2}' | cut -d/ -f1)
