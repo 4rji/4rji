@@ -18,19 +18,19 @@ else
     fi
 fi
 
-#!/bin/zsh
+# Mostrar el menú principal
+echo ""
+echo "[1] Iniciar contenedor"
+echo "[2] Guardar"
+echo "[3] Borrar "
+echo "[4] Descargar"
 
-# Mostrar la lista de imágenes Docker
-#sudo docker images
-
-# Preguntar al usuario si quiere correr, guardar o borrar
-echo "¿Quieres correr (1), guardar (2) o borrar (3)?"
 read choice
 
 if [[ $choice == 1 ]]; then
     # Si elige correr, preguntar por el ImageID
     # Ejecutar el contenedor
-    dockerrr
+    sudo dockerrr
 elif [[ $choice == 2 ]]; then
     # Si elige guardar, mostrar la lista de contenedores
     sudo docker ps
@@ -61,6 +61,20 @@ elif [[ $choice == 3 ]]; then
     echo "Para eliminar todos los contenedores en ejecución y sin ejecutar:"
     echo "docker rm -f \$(docker ps -aq)"
     echo ""
+elif [[ $choice == 4 ]]; then
+    # Si elige descargar imágenes, mostrar el menú de opciones
+    echo "¿Qué imagen deseas descargar?"
+    echo "1.- docker pull kalilinux/kali-rolling"
+    echo "2.- docker pull ubuntu"
+    read download_choice
+
+    if [[ $download_choice == 1 ]]; then
+        sudo docker pull kalilinux/kali-rolling
+    elif [[ $download_choice == 2 ]]; then
+        sudo docker pull ubuntu
+    else
+        echo "Opción no válida."
+    fi
 else
     echo "Opción no válida."
 fi
