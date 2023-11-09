@@ -1,37 +1,57 @@
 #!/bin/zsh
 
+# Ejecutar el comando y almacenar la salida en una variable
+output=$(systemctl status ssh)
+
+echo ""
+echo "SSH status:"
+# Buscar la línea que contiene 'Active:' en la salida y mostrarla
+echo "$output" | grep 'Active:'
+
+# Agregar un renglón de separación
+echo ""
+echo ""
+
+ip addr | grep "inet "
+echo""
+
+
+echo "$(ip addr show eth0 | awk '/inet / {print $2}' | cut -d/ -f1)"
+
+
+
+# Agregamos el mensaje con la IP local
+echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig eth0 | grep "inet " | awk '{print $2}')"
+echo ""
+echo "  *** user ***"
+whoami
+echo ""
+echo ""
 # Verifica el estado del servicio SSH
-if systemctl is-active sshd &> /dev/null; then
+if systemctl is-active ssh &> /dev/null; then
   echo "El servicio SSH está          **^^   ACTIVO   ^^**."
-  read "desactivar_ssh?¿Desea desactivar el servicio SSH? (s para si/Enter para continuar)"
+  echo ""
+  read "desactivar_ssh?¿Desea  * DESACTIVAR * el servicio SSH? (s para si/Enter para continuar)"
   if [[ "$desactivar_ssh" == "s" ]]; then
-    sudo systemctl stop sshd
+    sudo systemctl stop ssh
+    echo ""
     echo "El servicio SSH ha sido         ***  DESACTIVADO  *** ."
   else
     echo "No se ha desactivado el servicio SSH."
   fi
 else
   echo "El servicio SSH está              ***  INACTIVO  ***."
-  read "activar_ssh?¿Desea activar el servicio SSH? (s para si/Enter para continuar)"
+  echo ""
+  read "activar_ssh?¿Desea  * ACTIVAR * el servicio SSH? (s para si/Enter para continuar)"
   if [[ "$activar_ssh" == "s" ]]; then
-    sudo systemctl start sshd
-	echo
-	interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
-
-# Mostrar las interfaces y sus direcciones IP
-	echo "Interfaces de red y sus direcciones IP:"
-	echo "$interfaces"
-
-    ip_address=$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)
-
-# Mostrar la dirección IP de wlp0s20f3
-	echo ""
-	echo "Dirección IP de wlp0s20f3: $ip_address"
-	echo -n "user: "
-	whoami
-	echo ""
+    sudo systemctl start ssh
+    echo
+    interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+  echo ""
     echo "El servicio SSH ha sido         **^^  ACTIVADO  ^^**."
-
+    echo -e "\n\n\n\nTu IP es:      **** $(/usr/sbin/ifconfig eth0 | grep "inet " | awk '{print $2}')  ****"
+    echo "*** Tu usuario es: *** "
+    whoami
   else
     echo "No se ha activado el servicio SSH."
   fi
