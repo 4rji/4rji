@@ -1,0 +1,62 @@
+#!/bin/zsh
+
+# Pregunta al usuario qué quiere hacer
+echo "¿Qué quieres hacer?"
+echo "1.- Buscar una palabra: grep -r 'palabra' ruta"
+echo "2.- Para eliminar la primera palabra con awk"
+echo "3.- Para eliminar la última palabra con awk"
+echo "4.- Para eliminar espacios en blanco"
+echo ""
+read opcion
+
+# Verifica si se proporcionó un archivo después del script
+if [ -n "$1" ]; then
+    archivo="$1"
+else
+    echo "No se proporcionó ningún archivo. Saliendo del script."
+    exit 1
+fi
+
+# Extraer el nombre del archivo sin extensión
+nombre_archivo_sin_extension="${archivo%.*}"
+nuevo_archivo="${nombre_archivo_sin_extension}_n"
+
+# Evalúa la opción seleccionada
+case $opcion in
+    1)
+        # Si selecciona 1, pide al usuario que ingrese la palabra a buscar, luego ejecuta el comando grep con el archivo proporcionado
+        echo "Introduce la palabra a buscar:"
+        read palabra
+        grep -r "$palabra" "$archivo" > "$nuevo_archivo"
+        ;;
+    2)
+        # Si selecciona 2, muestra el mensaje para copiar el comando al portapapeles con clip
+        comando="awk '{\$1=\"\"; print \$0}' $archivo > \"$nuevo_archivo\""
+        echo "$comando" | xclip -selection clipboard
+        echo ""
+        echo "Comando copiado al portapapeles: $comando"
+        ;;
+    3) 
+        # Si selecciona 3, muestra el mensaje para copiar el comando al portapapeles con clip
+        comando="awk '{for(i=1;i<NF;i++) printf \"%s \", \$i; print \"\"}' $archivo > \"$nuevo_archivo\""
+        echo "$comando" | xclip -selection clipboard
+        echo ""
+        echo "Comando copiado al portapapeles: $comando"
+        ;;
+    4)
+        # Si selecciona 4, muestra el mensaje para copiar el comando al portapapeles con clip
+        comando="sed 's/^[[:space:]]*//' $archivo > \"$nuevo_archivo\""
+        echo "$comando" | xclip -selection clipboard
+        echo ""
+        echo "Comando copiado al portapapeles: $comando"
+        ;;
+    *)
+        # Si selecciona una opción inválida
+        echo ""
+        echo "Opción no válida."
+        ;;
+esac
+
+echo ""
+echo "     ******  Solo pega con el portapapeles para ejecutar  ***** "
+echo ""
