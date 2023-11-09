@@ -72,3 +72,4 @@ todo_{algo}	    	Busca en alias y readme info
 mirar				Hace un watch -n 1 comando, como netstat, o reglas.
 sweepall_{ip}		Hace un sweep a toda la subnet, 10.0 o 192.168
 torrelay			Instala tor relay, probado en debian
+catr 				es un alias para aplicar un cat con colores para codigo, ruby

@@ -26,6 +26,7 @@ echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
 echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
+echo 'alias catr="cat -l ruby" ' >> ~/.zshrc
 
 
 #ufw alias
