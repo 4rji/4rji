@@ -1,4 +1,4 @@
-Github              binarios                                                                           
+todGithub              binarios                                                                           
 nombre_{IP}         da el nombre de la maquina si es linux o windows                                   
 ruta_{archivo}      copia la ruta del archivo en el portapapeles                                       
 target1             cambia el estatus de la bateria por cualquier otra cosa que se quiera poner ahi    
@@ -62,7 +62,6 @@ adios               borra toda una carpeta con scrub
 herrabin            actualiza los binarios                                                             
 genarc              genera archivos conjuntos de 100 MB
 dockercp			alias que muestra el formato para copiar archivos en docker
-relaytor			instala tor relay en debian ############################################################ ARREGLAR ####################
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
 mackali			    Cambia la MAC de kali
@@ -72,3 +71,4 @@ busme_{algo}	    Busca en alias algo
 todo_{algo}	    	Busca en alias y readme info
 mirar				Hace un watch -n 1 comando, como netstat, o reglas.
 sweepall_{ip}		Hace un sweep a toda la subnet, 10.0 o 192.168
+torrelay			Instala tor relay, probado en debian
