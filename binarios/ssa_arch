@@ -23,7 +23,7 @@ echo ""
 
 # Obtener la dirección IP de la interfaz wlp0s20f3
 ip_address=$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)
-
+s
 # Mostrar la dirección IP de wlp0s20f3
 echo "Dirección IP de wlp0s20f3: $ip_address"
 echo ""
