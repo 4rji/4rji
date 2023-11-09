@@ -59,7 +59,8 @@ fzf                 buscador bueno, solo tipiar fzf
 pchains             inicia proxychain ssh -D 1080 IP, ejecutar con ip despues                          
 adio                borra un archivo con scrub                                                         
 adios               borra toda una carpeta con scrub                                                   
-herrabin            actualiza los binarios                                                             
+herrabin            actualiza los binarios
+crackmapexec		se ejecutaria crackmapexec smb {ip} para active directory                                                           
 genarc              genera archivos conjuntos de 100 MB
 dockercp			alias que muestra el formato para copiar archivos en docker
 instsurf            instala surfeando                                                                  

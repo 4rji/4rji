@@ -4,7 +4,7 @@
 mv ~/4rji/Wallpaper ~/.config
 
 # Instalar paquetes necesarios
-sudo pacman -S --noconfirm neovim zip fzf lsd bat  net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
+sudo pacman -S --noconfirm neovim zip fzf lsd bat net-tools wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
 #sudo pacman -S fzf dont forget this. 
 
 
