@@ -78,3 +78,7 @@ elif [[ $choice == 4 ]]; then
 else
     echo "Opción no válida."
 fi
+
+echo ""
+echo "MEnsaje"
+echo " *** Control p and Control q para salir del contenedor sin cerrarlo"
