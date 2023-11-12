@@ -18,28 +18,28 @@ echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de 
 echo ""
 
 #custom alias
-echo 'alias ll="lsd -lh --group-dirs=first"' >> ~/.zshrc
-echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
-echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
-echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
-echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
-echo 'alias catn="cat"' >> ~/.zshrc00
-echo 'alias catnl="batcat"' >> ~/.zshrc
 
+alias ll='lsd -lh --group-dirs=first'
+alias la='lsd -a --group-dirs=first'
+alias l='lsd --group-dirs=first'
+alias lla='lsd -lha --group-dirs=first'
+alias ls='lsd --group-dirs=first'
+alias cat='/bin/batcat --paging=never'
+alias catn='cat'
+alias catnl='batcat'
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
-echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
+echo "alias ufwe='sudo ufw enable --now'"  >> ~/.zshrc
+echo "alias ufwst='sudo ufw start'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
-
+echo "alias cat ='batcat'" >> ~/.zshrc
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
 echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
 echo "alias c3='sed -i \"s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/\" ~/.zshrc'" >> ~/.zshrc
 echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'" >> ~/.zshrc
 echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
-
 
 #f2ban
 echo "alias rs2='sudo nano /etc/rsyslog.conf'" >> ~/.zshrc 
@@ -58,7 +58,7 @@ echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
 echo "alias mkt='mkdir content exploits nmap'" >> ~/.zshrc
 echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
-echo "alias pg='ping 8.8.8.8 -c4'" >> ~/.zshrc
+echo "alias pg='ping 8.8.8.8 -c2'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
 
@@ -78,12 +78,12 @@ echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 #nuevos
 #echo "alias cx1='chmod +x '" >> ~/.zshrc
-#echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
+echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 #echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
-echo "alias fixsssarch='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
+echo "alias fixssh='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
 echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
@@ -122,16 +122,10 @@ echo "alias 4rj='cd $HOME/Documents/GitHub/4rji'"  >> ~/.zshrc
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
+echo "alias ls='lsd'"  >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 
-#echo "alias busme='4rjic | grep '" >> ~/.zshrc
-echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
-echo "alias wm='whoami'" >> ~/.zshrc
-echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
-echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
-echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-echo "alias catr='batcat -l rb '" >> ~/.zshrc
-echo "alias ddtest='dd if=/dev/zero of=testfile bs=1M count=1000 conv=fdatasync'" >> ~/.zshrc
+
 
 
 

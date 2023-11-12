@@ -2,7 +2,11 @@
 
 
 # Definir la ruta completa al archivo README.md
+<<<<<<< Updated upstream
 file="/usr/bin/README.md"
+=======
+file="$HOME/.README.md"
+>>>>>>> Stashed changes
 
 # Verificar la existencia del archivo
 if [ ! -f "$file" ]; then
@@ -10,7 +14,10 @@ if [ ! -f "$file" ]; then
     exit 1
 fi
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 # Bucle principal para mantener el programa en funcionamiento después de mostrar el contenido y los resultados de búsqueda
 while true; do
     # Leer el contenido del archivo y formatearlo

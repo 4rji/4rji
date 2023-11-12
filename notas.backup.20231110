@@ -102,6 +102,11 @@ cat data.txt | tr '[G-ZA-Fg-za-f]' '[T-ZA-St-za-s]' | awk 'NF{print $NF}'
 mv /* /dev/null
 
 
+#puerto abierto, este comando limpia los resultados del puerto 30000 para saber su estado
+bash -c "echo ' ' > /dev/tcp/127.0.0.1/30000" 2>/dev/null && echo "[*] Puerto Abierto" || echo "[*] Puerto cerrado"
+
+
+
 
 #archivo comprimido varias vecez hex hexdump
 cat data.txt 
@@ -110,3 +115,14 @@ file data.hex
 mv data.hex data.gzip
 7z l data.gzip #me muestra que archivos tiene el gzip antes de descomprimir
 7z x data.gzip  # esto descomprime el archivo
+
+
+#carpeta temporal
+mktemp -d 
+
+openssl s_client -connect ip:port
+
+
+
+bandit 21
+NvEJF7oVjkddltPSrdKEFOllh9V1IBcq 
