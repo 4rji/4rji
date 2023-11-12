@@ -23,6 +23,7 @@ sudo update-grub
 
 sudo mv ~/4rji/Wallpaper ~/.config
 
+./alias.sh
 
 #mkdir $HOME/Downloads/vpnit
 sudo apt install zip -y
