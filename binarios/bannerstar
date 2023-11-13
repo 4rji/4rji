@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Verificar si el usuario tiene privilegios de superusuario
+if [ "$(id -u)" != "0" ]; then
+    echo "Este script debe ejecutarse con privilegios de superusuario. Usa sudo."
+    exit 1
+fi
+
+# Realizar la copia del archivo
+cp /usr/bin/banner.txt /etc/ssh/sshd-banner
+
+# Verificar si la operación de copia fue exitosa
+if [ $? -eq 0 ]; then
+    echo "Copia exitosa."
+else
+    echo "Error al copiar el archivo."
+    exit 1
+fi
+

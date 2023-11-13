@@ -1,0 +1,55 @@
+#!/bin/bash
+echo ""
+echo ""
+echo "Current DNS"
+
+echo ""
+cat /etc/resolv.conf
+echo ""
+
+# Función para cambiar el DNS a Google
+change_dns_google() {
+    echo "Comentando todas las líneas en /etc/resolv.conf"
+    sudo sed -i 's/^/#/' /etc/resolv.conf
+    echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.conf
+    echo "DNS cambiado a Google (8.8.8.8)"
+}
+
+# Función para cambiar el DNS a una dirección IP específica
+change_dns_custom() {
+    read -p "Ingrese la dirección IP del DNS deseado: " user_ip
+    echo "Comentando todas las líneas en /etc/resolv.conf"
+    sudo sed -i 's/^/#/' /etc/resolv.conf
+    echo "nameserver $user_ip" | sudo tee -a /etc/resolv.conf
+    echo "DNS cambiado a $user_ip"
+}
+
+# Función para bloquear el archivo /etc/resolv.conf
+lock_dns() {
+    sudo chattr +i /etc/resolv.conf
+    echo "El archivo /etc/resolv.conf ha sido bloqueado."
+}
+
+# Función para desbloquear el archivo /etc/resolv.conf
+unlock_dns() {
+    sudo chattr -i /etc/resolv.conf
+    echo "El archivo /etc/resolv.conf ha sido desbloqueado."
+}
+
+# Menú de selección
+echo "Seleccione una opción:"
+echo "1. Cambiar DNS a Google (8.8.8.8)"
+echo "2. Cambiar DNS a una dirección IP personalizada"
+echo "3. Bloquear DNS"
+echo "4. Desbloquear DNS"
+read -p "Opción: " option
+
+# Ejecutar la opción seleccionada
+case $option in
+    1) change_dns_google ;;
+    2) change_dns_custom ;;
+    3) lock_dns ;;
+    4) unlock_dns ;;
+    *) echo "Opción no válida. Saliendo." ;;
+esac
+
