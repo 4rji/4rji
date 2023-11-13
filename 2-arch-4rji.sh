@@ -22,8 +22,7 @@ sudo pacman -Syu --noconfirm lf
 sudo pacman -Syu --noconfirm proxychains 
 sudo pacman -Syu --noconfirm ufw
 sudo pacman -Syu --noconfirm zsh
-sudo pacman -Syu --noconfirm qemu virt-manager libvirt dnsmasq ebtables
-
+sudo pacman -Syu --noconfirm btop
 
 
 git clone https://aur.archlinux.org/backintime.git

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Create a working account `mctc`:
+groupadd -g 999999 mctc
+useradd -u 999999 -g 999999 -s /bin/bash -c "MCTC" -m mctc
+passwd mctc
+echo "mctc ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/mctc
+
+#lock root
+sudo usermod -L root
+

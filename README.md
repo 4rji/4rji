@@ -76,3 +76,5 @@ torrelay			Instala tor relay, probado en debian
 catr 				es un alias para aplicar un cat con colores para codigo, ruby
 btop				Bueno, mejor que htop top #m to see the menu
 tldr				Te dice como usar otras herramientas #ejemplo tldr ffmpeg
+instdebian			basic debian apps for clean debian12
+maskapps			hace un mask a telnet ftp para ccdc
