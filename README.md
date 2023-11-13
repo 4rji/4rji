@@ -74,3 +74,5 @@ mirar				Hace un watch -n 1 comando, como netstat, o reglas.
 sweepall_{ip}		Hace un sweep a toda la subnet, 10.0 o 192.168
 torrelay			Instala tor relay, probado en debian
 catr 				es un alias para aplicar un cat con colores para codigo, ruby
+btop				Bueno, mejor que htop top #m to see the menu
+tldr				Te dice como usar otras herramientas #ejemplo tldr ffmpeg

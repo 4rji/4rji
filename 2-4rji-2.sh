@@ -63,8 +63,10 @@ sudo apt install bc -f
 sudo apt install ufw -f
 sudo apt install lsd -y
 sudo apt install bat -y
+sudo apt install btop -y
+sudo apt install tldr -y
+sudo apt install backintime-qt -y
 
-#sudo apt install bc -f
 
 
 ./fix-4rji.sh

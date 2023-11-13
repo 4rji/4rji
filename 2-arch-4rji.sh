@@ -4,9 +4,33 @@
 mv ~/4rji/Wallpaper ~/.config
 
 # Instalar paquetes necesarios
-sudo pacman -S --noconfirm neovim zip fzf lsd bat net-tools magic-wormhole wormhole ranger scrub shred curl kitty tmux dialog iptables openvpn nmap mesa lm_sensors firejail lf proxychains bc ufw
-#sudo pacman -S fzf dont forget this. 
+sudo pacman -S neovim 
+sudo pacman -S zip
+sudo pacman -S fzf
+sudo pacman -S lsd 
+sudo pacman -S bat 
+sudo pacman -S tldr 
+sudo pacman -S btop 
+sudo pacman -S net-tools
+sudo pacman -S magic-wormhole
+sudo pacman -S ranger 
+sudo pacman -S scrub 
+sudo pacman -S shred 
+sudo pacman -S openvpn 
+sudo pacman -S firejail 
+sudo pacman -S lf 
+sudo pacman -S proxychains 
+sudo pacman -S ufw
+sudo pacman -S zsh
+sudo pacman -S git
+sudo pacman -S base-devel
+sudo pacman -S linux-headers
+sudo pacman -S dolphin 
 
+
+git clone https://aur.archlinux.org/backintime.git
+cd backin
+makepkg -si PKGBUILD
 
 #mkdir $HOME/Downloads/vpnit
 
@@ -18,6 +42,11 @@ sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 #agregarpgg
 
 #Neovim
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+
+
 
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
 
