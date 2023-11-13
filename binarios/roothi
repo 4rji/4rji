@@ -1,7 +1,7 @@
 #!/bin/bash
 
 while true; do
-    files=("/root/.bashrc" "/root/.shrc" "/root/.cshrc" "/root/.tcshrc" "/root/>
+    files=("/root/.bashrc" "/root/.shrc" "/root/.cshrc" "/root/.tcshrc" "/root/.zshrc")
 
     echo "Selecciona un archivo para inspeccionar:"
     for ((i=0; i<${#files[@]}; i++)); do
@@ -19,4 +19,3 @@ while true; do
         echo "Selección no válida. Inténtalo de nuevo."
     fi
 done
-

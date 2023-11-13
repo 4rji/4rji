@@ -22,5 +22,5 @@ install_chrony
 
 echo ""
 echo ""
-echo " **** **** **** just in case *** *** ***
+echo " **** **** **** just in case *** *** *** "
 echo "timedatctl set-timezone America/Chicago"
