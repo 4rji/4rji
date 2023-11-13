@@ -22,10 +22,7 @@ sudo pacman -S lf
 sudo pacman -S proxychains 
 sudo pacman -S ufw
 sudo pacman -S zsh
-sudo pacman -S git
-sudo pacman -S base-devel
-sudo pacman -S linux-headers
-sudo pacman -S dolphin 
+
 
 
 git clone https://aur.archlinux.org/backintime.git
