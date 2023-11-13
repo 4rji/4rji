@@ -4,24 +4,25 @@
 mv ~/4rji/Wallpaper ~/.config
 
 # Instalar paquetes necesarios
-sudo pacman -S neovim 
-sudo pacman -S zip
-sudo pacman -S fzf
-sudo pacman -S lsd 
-sudo pacman -S bat 
-sudo pacman -S tldr 
-sudo pacman -S btop 
-sudo pacman -S net-tools
-sudo pacman -S magic-wormhole
-sudo pacman -S ranger 
-sudo pacman -S scrub 
-sudo pacman -S shred 
-sudo pacman -S openvpn 
-sudo pacman -S firejail 
-sudo pacman -S lf 
-sudo pacman -S proxychains 
-sudo pacman -S ufw
-sudo pacman -S zsh
+sudo pacman -Syu --noconfirm neovim 
+sudo pacman -Syu --noconfirm  zip
+sudo pacman -Syu --noconfirm  fzf
+sudo pacman -Syu --noconfirm lsd 
+sudo pacman -Syu --noconfirm bat 
+sudo pacman -Syu --noconfirm tldr 
+sudo pacman -Syu --noconfirm btop 
+sudo pacman -Syu --noconfirm net-tools
+sudo pacman -Syu --noconfirm magic-wormhole
+sudo pacman -Syu --noconfirm ranger 
+sudo pacman -Syu --noconfirm scrub 
+sudo pacman -Syu --noconfirm shred 
+sudo pacman -Syu --noconfirm openvpn 
+sudo pacman -Syu --noconfirm firejail 
+sudo pacman -Syu --noconfirm lf 
+sudo pacman -Syu --noconfirm proxychains 
+sudo pacman -Syu --noconfirm ufw
+sudo pacman -Syu --noconfirm zsh
+sudo pacman -Syu --noconfirm qemu virt-manager libvirt dnsmasq ebtables
 
 
 
