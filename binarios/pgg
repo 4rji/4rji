@@ -1,5 +1,21 @@
 #!/bin/zsh
 
+# Ejecutar hostnamectl y guardar la salida en un archivo temporal
+tmpfile=$(mktemp)
+hostnamectl > "$tmpfile"
+
+# Eliminar las líneas no deseadas del archivo temporal
+sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
+
+# Mostrar el contenido del archivo modificado
+cat "$tmpfile"
+
+# Eliminar el archivo temporal
+rm "$tmpfile"
+
+
+echo ""
+
 # Función para comprobar la conexión a Internet
 check_internet_connection() {
     local host="google.com"  # Cambia "google.com" por el host que desees
