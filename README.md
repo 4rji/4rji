@@ -83,3 +83,4 @@ trash				Papelera, se cambia por rm en zshrc
 ncdu				para ver los archivos grandes, muestra el directorio como tree cool
 reset				limpia la terminal
 weather				Muestra el clima geolocalizacion usar
+procesos			Muestra los procesos de los usuarios 

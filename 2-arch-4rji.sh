@@ -27,7 +27,7 @@ sudo pacman -Syu --noconfirm trash-cli
 sudo pacman -Syu --noconfirm ncdu
 
 
-
+#backup backintime
 git clone https://aur.archlinux.org/backintime.git
 cd backin
 makepkg -si PKGBUILD
@@ -38,17 +38,9 @@ unzip Ban1_aa12.zip
 mv vpnitos $HOME/Downloads/.vpnitos
 sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
-#algunos script que se deben ejecutar al inicio para instalacion
-#agregarpgg
 
-#Neovim
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
-
-
-
-
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 
 
 ./alias.sh
 
@@ -56,15 +48,19 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 #./partir_readme
 mv README.md binarios
 
+
 #binarios
 sudo mv ~/4rji/binarios/* /usr/bin/
 #sudo mv ~/4rji/README.md /usr/bin/
 
+git clone https://aur.archlinux.org/backintime.git
+cd backintime
+makepkg -si PKGBUILD
+
 
 # Borrar carpetas
-rm -rf Public Videos Music Pictures Templates 4rji ScreenShots surfeandoano Wallpaper
-
-
+cd ~
+rm -rf 4rji backintime Music Pictures Public Templates Videos
 
 
 # Limpiar y actualizar sistema

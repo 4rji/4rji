@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+import subprocess
+
+def mostrar_procesos():
+    print("Usuarios, Procesos y PIDs:")
+    print("----------------------------")
+
+    # Obtener la lista de usuarios, procesos y PIDs
+    ps_output = subprocess.check_output(["ps", "-eo", "user,comm,pid"]).decode("utf-8")
+    lines = ps_output.strip().split('\n')
+
+    # Imprimir el encabezado
+    print(f"{'Usuario':<15}{'Proceso':<20}{'PID':<10}")
+    print("----------------------------")
+
+    # Imprimir la lista de usuarios, procesos y PIDs en un formato más legible
+    for line in lines[1:]:
+        user, process, pid = line.split()
+        if user.lower() != "root":
+            print(f"{user:<15}{process:<20}{pid:<10}")
+
+    # Preguntar si se quiere incluir al usuario root
+    include_root = input("¿Quieres incluir a root? (s/Enter): ")
+
+    if include_root.lower() == "s":
+        print("Procesos de root:")
+        print("----------------------------")
+
+        # Mostrar procesos de root
+        root_output = subprocess.check_output(["ps", "-eo", "user,comm,pid"]).decode("utf-8")
+        root_lines = root_output.strip().split('\n')
+        for root_line in root_lines[1:]:
+            root_user, root_process, root_pid = root_line.split()
+            print(f"{root_user:<15}{root_process:<20}{root_pid:<10}")
+
+    print("Fin del script.")
+
+if __name__ == "__main__":
+    mostrar_procesos()
+
