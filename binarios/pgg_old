@@ -14,20 +14,11 @@ check_internet_connection() {
 }
 
 # Preguntar si se desea ejecutar el script
-echo "¿Deseas verificar la conexión? (s para sí, enter para continuar)"
+echo "¿Deseas verificar la conexion? (s para sí, enter para continuar)"
 read response
 
 if [[ "$response" == "s" ]]; then
     check_internet_connection
+    echo "Tu dirección IP pública es: $(curl -s ifconfig.me 2>&1)"
     echo ""
-
-    # Guardar la salida de ipinfo.io en un archivo temporal
-    tmpfile=$(mktemp)
-    curl -s ipinfo.io | jq 'del(.loc, .org, .readme)' > "$tmpfile"
-
-    # Mostrar el contenido del archivo temporal con bat
-    bat -l rb "$tmpfile"
-
-    # Eliminar el archivo temporal
-    rm "$tmpfile"
 fi
