@@ -131,6 +131,6 @@ echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync
 echo "alias tr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
-
+echo "alias weather='curl wttr.in '" >> ~/.zshrc
 
 
