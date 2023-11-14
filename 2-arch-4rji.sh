@@ -23,6 +23,11 @@ sudo pacman -Syu --noconfirm proxychains
 sudo pacman -Syu --noconfirm ufw
 sudo pacman -Syu --noconfirm zsh
 sudo pacman -Syu --noconfirm btop
+sudo pacman -Syu --noconfirm trash-cli
+
+
+sudo mv /usr/bin/rm /usr/bin/rmm
+
 
 
 git clone https://aur.archlinux.org/backintime.git

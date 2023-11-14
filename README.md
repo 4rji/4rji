@@ -79,3 +79,4 @@ tldr				Te dice como usar otras herramientas #ejemplo tldr ffmpeg
 instdebian			basic debian apps for clean debian12
 maskapps			hace un mask a telnet ftp para ccdc
 chdns				Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
+trash				Papelera, se cambia por rm en zshrc

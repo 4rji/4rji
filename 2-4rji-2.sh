@@ -3,6 +3,8 @@
 sudo mkdir -p /respaldos
 
 sudo cp zshrc.original /respaldos
+
+sudo mv /usr/bin/rm /usr/bin/rmm
 # adding wallpaper for me
 
 #login picture #Directorio de las imagenes del login in
@@ -66,6 +68,8 @@ sudo apt install bat -y
 sudo apt install btop -y
 sudo apt install tldr -y
 sudo apt install backintime-qt -y
+sudo apt install trash-cli -y
+
 
 
 
