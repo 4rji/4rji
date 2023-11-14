@@ -23,8 +23,9 @@ mostrar_procesos() {
     echo "Fin del script."
     echo "Ejecuta este comando para que no muestre los procesos de root:"
     echo ""
-    echo "Comando copiado al portapapeles"
+    echo "Comando copiado al portapapeles: usar procesos > procesos"
     echo "procesos | grep -v root"
+    echo "ejemplos: cat procesos | sort | uniq | grep -v palabra1 | grep -v palabra2"
 }
 
 mostrar_procesos
