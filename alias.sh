@@ -128,9 +128,9 @@ echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
 echo "alias catr='batcat -l rb '" >> ~/.zshrc
 echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync'" >> ~/.zshrc
-echo "alias tra='trash '" >> ~/.zshrc
-
-
+echo "alias tr='trash '" >> ~/.zshrc
+echo "alias trl='trash-list '" >> ~/.zshrc
+echo "alias tre='trash-empty '" >> ~/.zshrc
 
 
 
