@@ -21,16 +21,18 @@ mostrar_procesos() {
     done
 
     echo "Fin del script."
+    echo "Ejecuta este comando para que no muestre los procesos de root:"
+    echo ""
+    echo "Comando copiado al portapapeles"
+    echo "procesos | grep -v root"
 }
 
 mostrar_procesos
 
 echo ""
-echo "Ejecuta este comando para que no muestre los procesos de root:"
 
-echo " procesos | grep -v root" | xclip -selection clipboard
+echo " procesos | grep -v root" | xclip -selection clipboard | exit
 
 echo ""
-echo "Comando copiado al portapapeles"
 
-exit  # Agrega esta línea para salir del script
+exit
