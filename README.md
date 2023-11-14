@@ -79,7 +79,6 @@ tldr				Te dice como usar otras herramientas #ejemplo tldr ffmpeg
 instdebian			basic debian apps for clean debian12
 maskapps			hace un mask a telnet ftp para ccdc
 chdns				Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
-trash				Papelera, se cambia por rm en zshrc
 ncdu				para ver los archivos grandes, muestra el directorio como tree cool
 reset				limpia la terminal
 weather				Muestra el clima geolocalizacion usar
@@ -88,4 +87,4 @@ crontt				Muestra crontabs de usuario actual y root
 crontodo			Muestra crontab de todos
 rempal				Reemplaza una palabra dentro de un archivo
 surempal			Reemplaza una palabra con sudo dentro de un archivo
-
+aliasarch			Arregla los alias en arch
