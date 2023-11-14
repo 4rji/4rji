@@ -21,7 +21,7 @@ echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
 echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
+echo 'alias cat="/bin/bat --paging=never"' >> ~/.zshrc
 echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
 
@@ -133,5 +133,5 @@ echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
 echo "alias weather='curl wttr.in '" >> ~/.zshrc
 echo "alias leert='cat /usr/bin/README.md  '" >> ~/.zshrc
-
+echo "alias nn='nano '" >> ~/.zshrc
 
