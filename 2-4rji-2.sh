@@ -4,7 +4,6 @@ sudo mkdir -p /respaldos
 
 sudo cp zshrc.original /respaldos
 
-sudo mv /usr/bin/rm /usr/bin/rmm
 # adding wallpaper for me
 
 #login picture #Directorio de las imagenes del login in
