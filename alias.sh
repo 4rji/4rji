@@ -28,11 +28,6 @@ echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
 
 
-# Para el alias pgginst
-#echo 'alias pgginst="pgg"' >> ~/.zshrc
-#echo 'alias pfetch="hostnamectl"' >> ~/.zshrc
-echo 'alias pgginst="pgg"' >> ~/.zshrc && echo 'alias pfetch="hostnamectl"' >> ~/.zshrc
-
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
@@ -82,9 +77,7 @@ echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/
 
 echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
-#nuevos
-#echo "alias cx1='chmod +x '" >> ~/.zshrc
-#echo "pgg" | cat - ~/.zshrc > temp && mv temp ~/.zshrc
+
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
@@ -92,7 +85,6 @@ echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 echo "alias fixsssarch='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
 echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
-
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
 echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
@@ -132,7 +124,7 @@ echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 
 #echo "alias busme='4rjic | grep '" >> ~/.zshrc
 echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
-echo "alias wm='whoami'" >> ~/.zshrc
+echo "alias wm='whoami && hostnamectl'" >> ~/.zshrc
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
