@@ -80,3 +80,4 @@ instdebian			basic debian apps for clean debian12
 maskapps			hace un mask a telnet ftp para ccdc
 chdns				Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
 trash				Papelera, se cambia por rm en zshrc
+ncdu				para ver los archivos grandes, muestra el directorio como tree cool

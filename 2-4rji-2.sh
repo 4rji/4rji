@@ -68,6 +68,7 @@ sudo apt install btop -y
 sudo apt install tldr -y
 sudo apt install backintime-qt -y
 sudo apt install trash-cli -y
+sudo apt install ncdu -y
 
 
 

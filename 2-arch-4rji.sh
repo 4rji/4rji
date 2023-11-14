@@ -24,7 +24,7 @@ sudo pacman -Syu --noconfirm ufw
 sudo pacman -Syu --noconfirm zsh
 sudo pacman -Syu --noconfirm btop
 sudo pacman -Syu --noconfirm trash-cli
-
+sudo pacman -Syu --noconfirm ncdu
 
 
 
