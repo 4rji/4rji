@@ -10,14 +10,11 @@ echo "$output" | grep 'Active:'
 
 # Agregar un renglón de separación
 echo ""
-echo ""
 
 ip addr | grep "inet "
-echo""
 
 
-echo "$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)"
-
+#echo "$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)"
 
 
 # Agregamos el mensaje con la IP local

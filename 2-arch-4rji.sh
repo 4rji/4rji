@@ -30,9 +30,11 @@ sudo pacman -Syu --noconfirm bat
 sudo pacman -Syu --noconfirm wireguard-tools
 sudo pacman -Syu --noconfirm jq
 sudo pacman -Syu --noconfirm bc
+sudo pacman -Syu --noconfirm nodejs npm
+sudo pacman -Syu --noconfirm trash-cli
 
 
-
+sudo npm install -g joplin
 
 #backup backintime
 git clone https://aur.archlinux.org/backintime.git
