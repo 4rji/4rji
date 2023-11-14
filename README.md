@@ -86,3 +86,6 @@ weather				Muestra el clima geolocalizacion usar
 procesos			Muestra los procesos de los usuarios 
 crontt				Muestra crontabs de usuario actual y root
 crontodo			Muestra crontab de todos
+rempal				Reemplaza una palabra dentro de un archivo
+surempal			Reemplaza una palabra con sudo dentro de un archivo
+
