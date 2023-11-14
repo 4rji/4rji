@@ -33,4 +33,4 @@ echo " procesos | grep -v root" | xclip -selection clipboard
 echo ""
 echo "Comando copiado al portapapeles"
 
-
+exit  # Agrega esta línea para salir del script
