@@ -132,5 +132,6 @@ echo "alias tr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
 echo "alias weather='curl wttr.in '" >> ~/.zshrc
+echo "alias leert='cat /usr/bin/README.md  '" >> ~/.zshrc
 
 
