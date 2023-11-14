@@ -6,6 +6,7 @@ cd "$(xclip -o -sel clip)"
 git clone https://github.com/4rji/4rji.git
 cd 4rji/
 
+./alias.sh
 cp README.md binarios
 
 
