@@ -28,6 +28,12 @@ echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
 
 
+# Para el alias pgginst
+#echo 'alias pgginst="pgg"' >> ~/.zshrc
+#echo 'alias pfetch="hostnamectl"' >> ~/.zshrc
+echo 'alias pgginst="pgg"' >> ~/.zshrc && echo 'alias pfetch="hostnamectl"' >> ~/.zshrc
+
+
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
