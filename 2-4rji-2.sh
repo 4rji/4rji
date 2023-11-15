@@ -69,7 +69,11 @@ sudo apt install tldr -y
 sudo apt install backintime-qt -y
 sudo apt install trash-cli -y
 sudo apt install ncdu -y
-
+sudo apt install ruby-rouge -y
+sudo apt install bat -y
+sudo apt install wireguard-tools -y
+sudo apt install jq -y
+sudo apt install bc -y
 
 
 
