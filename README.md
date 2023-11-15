@@ -41,6 +41,7 @@ cxx                 chmod +x y luego ./ ejecuta el script
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 csftp               copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo     
 ssa_arch            ssa para arch linux                                                                
+archivotemporal	    Un binario que muestra como hacer un archivo en la carpeta tmp temporal
 bannerm             Hace un banner para ssh                                                            
 hardnet             modifica ipv4 y tambien ipv6  hardnetu p/ubuntu                                    
 nameser             cambia name server y hace copia #nameseru p/ubuntu                                 
