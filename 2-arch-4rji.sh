@@ -26,7 +26,6 @@ sudo pacman -Syu --noconfirm btop
 sudo pacman -Syu --noconfirm trash-cli
 sudo pacman -Syu --noconfirm ncdu
 sudo pacman -Syu --noconfirm ruby-rouge
-sudo pacman -Syu --noconfirm bat
 sudo pacman -Syu --noconfirm wireguard-tools
 sudo pacman -Syu --noconfirm jq
 sudo pacman -Syu --noconfirm bc
