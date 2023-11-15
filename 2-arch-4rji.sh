@@ -3,6 +3,10 @@
 # Mover la carpeta Wallpaper a ~/.config
 mv ~/4rji/Wallpaper ~/.config
 
+cp kitty/* ~/.config/kitty/ 
+
+
+
 # Instalar paquetes necesarios
 sudo pacman -Syu --noconfirm neovim 
 sudo pacman -Syu --noconfirm  zip

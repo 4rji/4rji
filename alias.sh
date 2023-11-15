@@ -4,7 +4,6 @@
 
 # Copiar ~/.zshrc a /respaldos/zshrc
 sudo cp ~/.zshrc /respaldos/zshrc.alias_backup
-cp kitty/* ~/.config/kitty/ 
 
 
 # Eliminar las líneas que comienzan con "alias" en ~/.zshrc
