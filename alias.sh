@@ -21,7 +21,7 @@ echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
 echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
+echo 'alias cat="/bin/bat --paging=never"' >> ~/.zshrc
 echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
 
@@ -80,7 +80,6 @@ echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
 echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 #echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
-echo "alias fixsssarch='sudo mv /usr/bin/ssa_arch /usr/bin/ssa'" >> ~/.zshrc
 echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
@@ -105,8 +104,6 @@ echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
-echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
-echo "alias sss='sudo systemctl status ssh'"  >> ~/.zshrc
 
 echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
 
@@ -126,12 +123,12 @@ echo "alias wm='whoami && hostnamectl'" >> ~/.zshrc
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-echo "alias catr='batcat -l rb '" >> ~/.zshrc
+echo "alias catr='bat -l rb '" >> ~/.zshrc
 echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync'" >> ~/.zshrc
 echo "alias tr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
 echo "alias weather='curl wttr.in '" >> ~/.zshrc
 echo "alias leert='cat /usr/bin/README.md  '" >> ~/.zshrc
-
+echo "alias na='nano '" >> ~/.zshrc
 

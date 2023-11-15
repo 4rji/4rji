@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Archivo donde se realizarán los cambios
+archivo_zshrc=~/.zshrc
+
+# Comprobamos si el archivo existe
+if [ -f "$archivo_zshrc" ]; then
+    # Búsqueda y reemplazo de las líneas especificadas
+    sed -i '' -e 's|^alias i='\''sudo apt install'\''$|alias i='\''sudo pacman -S'\''|' "$archivo_zshrc"
+    sed -i '' -e 's|^alias ssr='\''sudo systemctl restart ssh'\''$|alias ssr='\''sudo systemctl restart sshd'\''|' "$archivo_zshrc"
+    sed -i '' -e 's|^alias sst='\''sudo systemctl stop ssh'\''$|alias sst='\''sudo systemctl stop sshd'\''|' "$archivo_zshrc"
+    sed -i '' -e 's|^alias sss='\''sudo systemctl status ssh'\''$|alias sss='\''sudo systemctl status sshd'\''|' "$archivo_zshrc"
+    sed -i '' -e 's|^alias apu='\''sudo apt update && sudo apt upgrade'\''$|alias apu='\''sudo pacman -Syu'\''|' "$archivo_zshrc"
+
+    echo "Cambios realizados en $archivo_zshrc"
+else
+    echo "El archivo $archivo_zshrc no existe."
+fi
