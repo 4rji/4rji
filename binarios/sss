@@ -1,21 +1,17 @@
 #!/bin/zsh
+
+# Crear un archivo temporal
+tempfile=$(mktemp)
+
+# Ejecutar el comando y almacenar la salida en el archivo temporal
+ssa1 > "$tempfile"
+
+# Puedes realizar otras operaciones con el archivo si es necesario
+# Por ejemplo, mostrar su contenido con cat
+bat -l rb "$tempfile"
+
+
+# Verifica el estado del servicio SSH
+systemctl is-active sshd &> /dev/null; 
+echo "El servicio SSH está          **^^   ACTIVO   ^^**."
 echo ""
-# Comprobamos si el servicio SSH está activo o inactivo
-if systemctl is-active --quiet ssh.service; then
-    echo "El servicio SSH está   ^^^^ ACTIVO ^^^^ ."
-else
-    echo "El servicio SSH está     ^^^^ INACTIVO ^^^^."
-fi
-
-
-
-echo
-interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
-
-# Mostrar las interfaces y sus direcciones IP
-    echo "Interfaces de red y sus direcciones IP:"
-    echo "$interfaces"
-
-ip_address=$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)
-
-
