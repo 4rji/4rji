@@ -3,6 +3,8 @@
 sudo mkdir -p /respaldos
 
 sudo cp zshrc.original /respaldos
+cp kitty/* ~/.config/kitty/ 
+
 
 # adding wallpaper for me
 

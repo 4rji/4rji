@@ -4,7 +4,6 @@
 
 # Copiar ~/.zshrc a /respaldos/zshrc
 sudo cp ~/.zshrc /respaldos/zshrc.alias_backup
-cp kitty/* ~/.config/kitty/ 
 
 
 # Eliminar las líneas que comienzan con "alias" en ~/.zshrc
@@ -131,4 +130,46 @@ echo "alias tre='trash-empty '" >> ~/.zshrc
 echo "alias weather='curl wttr.in '" >> ~/.zshrc
 echo "alias leert='cat /usr/bin/README.md  '" >> ~/.zshrc
 echo "alias na='nano '" >> ~/.zshrc
+echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
+
+
+
+
+
+
+
+#si funciono para la zsh
+#https://youtu.be/nkvW0-bVXPc?si=1rv9No2jaiT5I7Aa
+
+
+#BRACKET_COLOR="\[\033[38;5;35m\]"
+#CLOCK_COLOR="\[\033[38;5;35m\]"
+# ... (otras configuraciones de colores)   
+
+#PS1_PREFIX="$LINE_COLOR$LINE_UPPER_CORNER$LINE_STRAIGHT$LINE_STRAIGHT$BRACKET_COLOR\[$CLOCK_COLOR\t$BRACKET_COLOR\]$LINE_COLOR$LINE_STRAIGHT$BRACKET_COLOR\[$JOB_COLOR\j$BRACKET_COLOR\]$LINE_COLOR$LINE_STRAIGHT$BRACKET_COLOR\[\H:\]$PATH_COLOR\w$BRACKET_COLOR]"
+#PS1_SUFFIX="\n$LINE_COLOR$LINE_BOTTOM_CORNER$LINE_STRAIGHT$LINE_BOTTOM$END_CHARACTER\[$(tput sgr0)\] "
+#
+#tty -s && export PS1="${PS1_PREFIX}${PS1_SUFFIX}"
+
+
+
+
+
+#no funciono esto, pero lo anterior si (original este)
+#https://youtu.be/nkvW0-bVXPc?si=1rv9No2jaiT5I7Aa
+#BRACKET_COLOR="\[\033[38;5;35m\]"
+#CLOCK_COLOR="\[\033[38;5;35m\]"
+#JOB_COLOR="\[\033[38;5;33m\]"
+#PATH_COLOR="\[\033[38;5;33m\]"
+#LINE_BOTTOM="\342\224\200"
+#LINE_BOTTOM_CORNER="\342\224\224"
+#LINE_COLOR="\[\033[38;5;248m\]"
+#LINE_STRAIGHT="\342\224\200"
+#LINE_UPPER_CORNER="\342\224\214"
+#END_CHARACTER="|"
+
+#tty -s && export PS1="$LINE_COLOR$LINE_UPPER_CORNER$LINE_STRAIGHT$LINE_STRAIGHT$BRACKET_COLOR[$CLOCK_COLOR\t$BRACKET_COLOR]$LINE_COLOR$LINE_STRAIGHT$BRACKET_COLOR[$JOB_COLOR\j$BRACKET_COLOR]$LINE_COLOR$LINE_STRAIGHT$BRACKET_COLOR[\H:\]$PATH_COLOR\w$BRACKET_COLOR]\n$LINE_COLOR$LINE_BOTTOM_CORNER$LINE_STRAIGHT$LINE_BOTTOM$END_CHARACTER\[$(tput sgr0)\] "
+
+
+
 

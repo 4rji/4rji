@@ -67,6 +67,7 @@ genarc              genera archivos conjuntos de 100 MB
 dockercp	    alias que muestra el formato para copiar archivos en docker
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
+<<<<<<< HEAD
 mackali		    Cambia la MAC de kali
 mackarch	    Cambia la MAC de arch linux
 buscando  	    Busca comandos para usar grep awk
@@ -91,3 +92,28 @@ surempal	    Reemplaza una palabra con sudo dentro de un archivo
 aliasarch	    Arregla los alias en arch
 copdir		    Copia un directorio por medio de ssh scp
 fixsshhost	    Seguido de la ip, para borrar la ip del localhost cuando se duplica	
+=======
+mackali			    Cambia la MAC de kali
+mackarch		    Cambia la MAC de arch linux
+buscando	    	Busca comandos para usar grep awk
+todo_{algo}	    	Busca en alias y readme info
+mirar				Hace un watch -n 1 comando, como netstat, o reglas.
+sweepall_{ip}		Hace un sweep a toda la subnet, 10.0 o 192.168
+torrelay			Instala tor relay, probado en debian
+catr 				es un alias para aplicar un cat con colores para codigo, ruby
+btop				Bueno, mejor que htop top #m to see the menu
+tldr				Te dice como usar otras herramientas #ejemplo tldr ffmpeg
+instdebian			basic debian apps for clean debian12
+maskapps			hace un mask a telnet ftp para ccdc
+chdns				Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
+ncdu				para ver los archivos grandes, muestra el directorio como tree cool
+reset				limpia la terminal
+weather				Muestra el clima geolocalizacion usar
+procesos			Muestra los procesos de los usuarios 
+crontt				Muestra crontabs de usuario actual y root
+crontodo			Muestra crontab de todos
+rempal				Reemplaza una palabra dentro de un archivo
+surempal			Reemplaza una palabra con sudo dentro de un archivo
+aliasarch			Arregla los alias en arch
+instqemukali		instala qemu y virtual en kali
+>>>>>>> 541c53d918666d16569cbaa150b9e482462ca081
