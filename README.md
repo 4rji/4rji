@@ -99,3 +99,4 @@ aliasarch			Arregla los alias en arch
 instqemukali		        instala qemu y virtual en kali
 clipo                           Copia el ultimo comando escrito en la terminal
 instpkg                         Instala un paquete en arch makepkg -si PKGBUILD
+instermius                      Instala termius en arch con yay   
