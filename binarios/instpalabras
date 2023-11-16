@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+mktem
+cd "$(xclip -o -sel clip)"
+
+# Clonar el repositorio Narthex desde GitHub
+git clone https://github.com/MichaelDim02/Narthex.git && cd Narthex
+
+# Instalar con make (requiere permisos de superusuario)
+sudo make install
+
+echo ""
+# Mostrar un mensaje informativo
+echo "Para ejecutar, simplemente escribe 'nwiz'."
+
+echo "==> "
