@@ -102,3 +102,4 @@ instpkg             Instala un paquete en arch makepkg -si PKGBUILD
 instermius          Instala termius en arch con yay   
 aliasybinarios.sh   Para instalar los binarios y alias, desde 4rji folder, no es binario
 instpalabras.       el diccionario para crear palabras o al revez nwiz se llama
+instzero	    Zerotier scrip like tailscale
