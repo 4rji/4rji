@@ -12,12 +12,12 @@ bat -l rb "$tempfile"
 
 
 # Verifica el estado del servicio SSH
-if systemctl is-active sshd &> /dev/null; then
+if systemctl is-active ssh &> /dev/null; then
   echo "El servicio SSH está          **^^   ACTIVO   ^^**."
   echo ""
-  read "desactivar_sshd?¿Desea  * DESACTIVAR * el servicio SSH? (s para si/Enter para continuar)"
-  if [[ "$desactivar_sshd" == "s" ]]; then
-    sudo systemctl stop sshd
+  read "desactivar_ssh?¿Desea  * DESACTIVAR * el servicio SSH? (s para si/Enter para continuar)"
+  if [[ "$desactivar_ssh" == "s" ]]; then
+    sudo systemctl stop ssh
     echo ""
     echo "El servicio SSH ha sido         ***  DESACTIVADO  *** ."
   else
@@ -26,14 +26,14 @@ if systemctl is-active sshd &> /dev/null; then
 else
   echo "El servicio SSH está              ***  INACTIVO  ***."
   echo ""
-  read "activar_sshd?¿Desea  * ACTIVAR * el servicio SSH? (s para si/Enter para continuar)"
-  if [[ "$activar_sshd" == "s" ]]; then
-    sudo systemctl start sshd
+  read "activar_ssh?¿Desea  * ACTIVAR * el servicio SSH? (s para si/Enter para continuar)"
+  if [[ "$activar_ssh" == "s" ]]; then
+    sudo systemctl start ssh
     echo
     interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
   echo ""
     echo "El servicio SSH ha sido         **^^  ACTIVADO  ^^**."
-    echo -e "\n\n\n\nTu IP es:      **** $(/usr/sbin/ifconfig wlp0s20f3 | grep "inet " | awk '{print $2}')  ****"
+    echo -e "\n\n\n\nTu IP es:      **** $(/usr/sbin/ifconfig wlan0 | grep "inet " | awk '{print $2}')  ****"
     echo "*** Tu usuario es: *** "
     whoami
   else
