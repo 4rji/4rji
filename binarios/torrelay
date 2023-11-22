@@ -4,10 +4,8 @@
 sudo apt update
 
 # Install unattended upgrades
-sudo apt-get install unattended-upgrades apt-listchanges nyx gnupg
+sudo apt-get install unattended-upgrades apt-listchanges nyx gnupg curl git wget kitty nano sudo btop apt-transport-https
 
-# Install prereqs for ToR
-sudo apt install apt-transport-https
 
 # Extract VERSION_CODENAME from /etc/os-release
 VERSION_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2)

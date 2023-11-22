@@ -23,6 +23,7 @@ echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias cat="/bin/bat --paging=never"' >> ~/.zshrc
 echo 'alias catn="cat"' >> ~/.zshrc00
 echo 'alias catnl="batcat"' >> ~/.zshrc
+echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
 
 
 
@@ -122,7 +123,6 @@ echo "alias wm='whoami && hostnamectl'" >> ~/.zshrc
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-echo "alias catr='bat -l rb '" >> ~/.zshrc
 echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync'" >> ~/.zshrc
 echo "alias tr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc

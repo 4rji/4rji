@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+if [ "$#" -ne 1 ]; then
+  echo "Uso: $0 <nuevo_valor>"
+  exit 1
+fi
+
+nuevo_valor=$1
+archivo="$HOME/.config/bin/ethernet_status.sh"
+
+if [ ! -f "$archivo" ]; then
+  echo "El archivo $archivo no existe."
+  exit 1
+fi
+
+# Reemplazar cualquier palabra en la posición específica
+sed -i "s/\(\/usr\/sbin\/ifconfig \)[^ ]*\( \|$\)/\1$nuevo_valor\2/g" "$archivo"
+
+echo "Se ha modificado el archivo $archivo. Se reemplazó la palabra en la posición específica con $nuevo_valor."
+

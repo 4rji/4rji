@@ -66,12 +66,15 @@ elif [[ $choice == 4 ]]; then
     echo "¿Qué imagen deseas descargar?"
     echo "1.- docker pull kalilinux/kali-rolling"
     echo "2.- docker pull ubuntu"
+    echo "3.- docker pull debian"
     read download_choice
 
     if [[ $download_choice == 1 ]]; then
         sudo docker pull kalilinux/kali-rolling
     elif [[ $download_choice == 2 ]]; then
         sudo docker pull ubuntu
+    elif [[ $download_choice == 3 ]]; then
+        sudo docker pull debian
     else
         echo "Opción no válida."
     fi
