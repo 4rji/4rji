@@ -104,3 +104,4 @@ aliasybinarios.sh   Para instalar los binarios y alias, desde 4rji folder, no es
 instpalabras.       El diccionario para crear palabras o al revez nwiz se llama
 instzero	        Zerotier scrip like tailscale
 fixethernet         Arregla la red del script ethernet_status para bspwx escritorio
+nerdfonts			Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
