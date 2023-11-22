@@ -132,6 +132,7 @@ echo "alias leert='cat /usr/bin/README.md  '" >> ~/.zshrc
 echo "alias na='nano '" >> ~/.zshrc
 echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
 
+echo "alias bye='kill -9 -1 '" >> ~/.zshrc
 
 
 
