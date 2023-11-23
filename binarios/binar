@@ -2,6 +2,6 @@
 
 archivo=$1
 
-sudo mv $archivo /usr/bin/
-#mv $archivo ~/Documents/GitHub/4rji/binarios/
+sudo cp $archivo /usr/bin/
+mv $archivo ~/Documents/GitHub/4rji/binarios/
 
