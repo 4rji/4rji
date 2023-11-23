@@ -105,3 +105,4 @@ instpalabras.       El diccionario para crear palabras o al revez nwiz se llama
 instzero	        Zerotier scrip like tailscale
 fixethernet         Arregla la red del script ethernet_status para bspwx escritorio
 nerdfonts			Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
+fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp

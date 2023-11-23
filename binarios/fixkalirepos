@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Eliminar /etc/apt/*
+sudo rm /etc/apt/* -rf
+
+# Crear directorios necesarios
+sudo mkdir /etc/apt/apt.conf.d/
+sudo mkdir /etc/apt/sources.list.d/
+sudo mkdir -p /etc/apt/preferences.d/
+
+# Crear archivo sources.list y agregar el contenido
+echo "deb http://kali.download/kali kali-rolling main contrib non-free non-free-firmware" | sudo tee /etc/apt/sources.list
+
+# Importar clave GPG
+sudo apt-key adv --keyserver hkp://keys.gnupg.net --recv-keys ED444FF07D8D0BF6
+
+# Actualizar la lista de paquetes
+sudo apt update
