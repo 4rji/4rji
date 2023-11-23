@@ -64,45 +64,47 @@ herrabin            actualiza los binarios
 herralias           Actualiza los binarios descargando solo alias
 crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory                                                      
 genarc              genera archivos conjuntos de 100 MB
-dockercp	        alias que muestra el formato para copiar archivos en docker
+dockercp            Alias que muestra el formato para copiar archivos en docker
 instsurf            instala surfeando                                                                  
 instparu            instala para y scrub para arch (debian no necesita)                                
-rempal		        Reemplaza una palabra dentro de un archivo
-surempal	        Reemplaza una palabra con sudo dentro de un archivo
-aliasarch	        Arregla los alias en arch
-copdir		        Copia un directorio por medio de ssh scp
-fixsshhost	        Seguido de la ip, para borrar la ip del localhost cuando se duplica	
+rempal              Reemplaza una palabra dentro de un archivo
+surempal            Reemplaza una palabra con sudo dentro de un archivo
+aliasarch           Arregla los alias en arch
+copdir	            Copia un directorio por medio de ssh scp
+fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se duplica	
 
 
-mackali			    Cambia la MAC de kali
-mackarch		    Cambia la MAC de arch linux
-buscando	    	Busca comandos para usar grep awk
-todo_{algo}	    	Busca en alias y readme info
-mirar				Hace un watch -n 1 comando, como netstat, o reglas.
-sweepall_{ip}		Hace un sweep a toda la subnet, 10.0 o 192.168
-torrelay			Instala tor relay, probado en debian
-catr 				es un alias para aplicar un cat con colores para codigo, ruby
-btop				Bueno, mejor que htop top #m to see the menu
-tldr				Te dice como usar otras herramientas #ejemplo tldr ffmpeg
-instdebian			basic debian apps for clean debian12
-maskapps			hace un mask a telnet ftp para ccdc
-chdns				Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
-ncdu				para ver los archivos grandes, muestra el directorio como tree cool
-reset				limpia la terminal
-weather				Muestra el clima geolocalizacion usar
-procesos			Muestra los procesos de los usuarios 
-crontt				Muestra crontabs de usuario actual y root
-crontodo			Muestra crontab de todos
-rempal				Reemplaza una palabra dentro de un archivo
-surempal			Reemplaza una palabra con sudo dentro de un archivo
-aliasarch			Arregla los alias en arch
-instqemukali		Instala qemu y virtual en kali
+mackali		    Cambia la MAC de kali
+mackarch	    Cambia la MAC de arch linux
+buscando            Busca comandos para usar grep awk
+todo_{algo}         Busca en alias y readme info
+mirar		    Hace un watch -n 1 comando, como netstat, o reglas.
+sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
+torrelay	    Instala tor relay, probado en debian
+catr 		    Es un alias para aplicar un cat con colores para codigo, ruby
+btop		    Bueno, mejor que htop top #m to see the menu
+tldr		    Te dice como usar otras herramientas #ejemplo tldr ffmpeg
+instdebian	    basic debian apps for clean debian12
+maskapps	    hace un mask a telnet ftp para ccdc
+chdns		    Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
+ncdu		    para ver los archivos grandes, muestra el directorio como tree cool
+reset		    limpia la terminal
+weather		    Muestra el clima geolocalizacion usar
+procesos	    Muestra los procesos de los usuarios 
+crontt		    Muestra crontabs de usuario actual y root
+crontodo	    Muestra crontab de todos
+rempal		    Reemplaza una palabra dentro de un archivo
+surempal	    Reemplaza una palabra con sudo dentro de un archivo
+aliasarch	    Arregla los alias en arch
+instqemukali	    Instala qemu y virtual en kali
 clipo               Copia el ultimo comando escrito en la terminal
 instpkg             Instala un paquete en arch makepkg -si PKGBUILD
 instermius          Instala termius en arch con yay   
 aliasybinarios.sh   Para instalar los binarios y alias, desde 4rji folder, no es binario
 instpalabras.       El diccionario para crear palabras o al revez nwiz se llama
-instzero	        Zerotier scrip like tailscale
+instzero            Zerotier scrip like tailscale
 fixethernet         Arregla la red del script ethernet_status para bspwx escritorio
-nerdfonts			Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
+nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
 fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp
+instsublime         Instala sublime en kali
+instgithub          Instala github desktop en kali
