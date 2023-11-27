@@ -16,7 +16,7 @@ hostnamectl > "$tmpfile"
 sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
 
 # Mostrar el contenido del archivo modificado
-bat -l rb "$tmpfile"
+batcat -l rb "$tmpfile"
 # Eliminar el archivo temporal
 rm "$tmpfile"
 
@@ -48,8 +48,8 @@ if [[ "$response" == "s" ]]; then
     tmpfile=$(mktemp)
     curl -s ipinfo.io | jq 'del(.loc, .org, .readme)' > "$tmpfile"
 
-    # Mostrar el contenido del archivo temporal con bat
-    bat -l rb "$tmpfile"
+    # Mostrar el contenido del archivo temporal con batcat
+    batcat -l rb "$tmpfile"
     # Eliminar el archivo temporal
     #rm "$tmpfile"
 fi
