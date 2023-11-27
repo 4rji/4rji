@@ -134,7 +134,6 @@ echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest
 
 echo "alias bye='kill -9 -1 '" >> ~/.zshrc
 
-echo "alias conexiones='nmcli connection show --active'" >> ~/.zshrc
 
 
 

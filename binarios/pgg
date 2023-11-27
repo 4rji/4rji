@@ -1,4 +1,12 @@
 #!/bin/zsh
+echo ""
+echo "***************IP local ********"
+hostname -I | awk '{print $1}'
+echo ""
+echo "IP publica localmente encontrada"
+dig +short myip.opendns.com @resolver1.opendns.com
+echo ""
+
 
 # Ejecutar hostnamectl y guardar la salida en un archivo temporal
 tmpfile=$(mktemp)

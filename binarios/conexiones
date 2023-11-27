@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Mostrar conexiones activas
+echo "Conexiones activas:"
+nmcli connection show --active
+
+# Preguntar al usuario si desea ver más detalles
+read -p "¿Desea ver más detalles de las conexiones activas? (s/n): " choice
+
+# Verificar la respuesta del usuario
+if [ "$choice" = "s" ]; then
+    # Mostrar detalles de las conexiones activas
+    nmcli -p device show
+else
+    # Cancelar la acción si no se elige 's'
+    echo "Acción cancelada."
+fi
+
