@@ -109,4 +109,5 @@ fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descar
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 conexiones          Muestra nmcli conexiones nmcli -p device show y show --active
+limpiar				Limpiar un archivo buscando, awk grep palabra.
  
