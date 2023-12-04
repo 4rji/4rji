@@ -110,4 +110,5 @@ instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 conexiones          Muestra nmcli conexiones nmcli -p device show y show --active
 limpiar				Limpiar un archivo buscando, awk grep palabra.
+grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
  
