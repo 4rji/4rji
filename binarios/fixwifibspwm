@@ -1,0 +1,38 @@
+#!/bin/zsh
+
+# Update package lists
+echo "Updating package lists..."
+sudo apt update
+
+# Install NetworkManager and nm-applet
+echo "Installing NetworkManager and nm-applet..."
+sudo apt install -y network-manager network-manager-gnome
+
+# Enable and start NetworkManager service
+#echo "Enabling and starting NetworkManager service..."
+#sudo systemctl enable NetworkManager
+#sudo systemctl start NetworkManager
+
+
+# Configure BSPWM to start nm-applet
+#BSPWM_CONFIG="$HOME/.config/bspwm/bspwmrc"
+#echo "Configuring BSPWM to start nm-applet..."
+
+#This add the line to the second line in the file
+sed -i '2i\nm-applet &' $HOME/.config/bspwm/bspwmrc
+
+
+# Create BSPWM config directory if it doesn't exist
+#mkdir -p $(dirname $BSPWM_CONFIG)
+
+# Add nm-applet to BSPWM configuration
+#if ! grep -q "nm-applet &" $BSPWM_CONFIG; then
+#    echo "nm-applet &" >> $BSPWM_CONFIG
+#fi
+#sed -i '1i\nm-applet &' $HOME/.config/bspwm/bspwmrc
+
+# Make BSPWM configuration file executable
+#chmod +x $BSPWM_CONFIG
+
+echo "Setup complete. Please restart BSPWM or log out and back in for the changes to take effect."
+
