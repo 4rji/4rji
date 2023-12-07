@@ -113,4 +113,5 @@ grephn              Hace una busqueda de una palabra especifica en un directorio
 
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
-
+sshmonitor          Loop para correr el sshmonitorsc
+sshmonitorsc        Script que checa conexiones ssh activas 
