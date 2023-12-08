@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Clone the Artillery repository
+git clone https://github.com/BinaryDefense/artillery.git
+
+# Change to the artillery directory
+cd artillery/
+
+# Run the setup script
+sudo ./setup.py
+
