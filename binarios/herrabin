@@ -17,3 +17,18 @@ sudo cp -f binarios/* /usr/bin/
 cd
 echo "binarios actualizados y 4rji borrado"
 
+
+
+
+#esto sirve para descargar solo alias.sh pero no sirve para carpeta porque github no permite
+#solo descargar una carpeta. tengo que bajar todo aun. a menos que lo comprima pero por ahora asi.
+# URL del archivo
+#URL="https://raw.githubusercontent.com/4ras/aias.sh"
+
+# Descarga el archivo
+#curl -o aias.sh $URL
+
+# Otorga permisos de ejecución
+#chmod +x aias.sh
+# Ejecuta el script
+#./aias.sh
