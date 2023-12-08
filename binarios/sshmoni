@@ -18,6 +18,7 @@ check_ssh_connections() {
     local connections=$(netstat -tnp | grep ':'"$SSH_PORT" | grep 'ESTABLISHED')
     if [ ! -z "$connections" ]; then
         echo "         **********   ALERT : Active SSH connection detected.   ***********"
+        #echo "   **********   Alert: Active SSH connection detected.   ***********"
         # Process each connection
         echo "$connections" | while IFS= read -r line; do
             local ip=$(echo "$line" | awk '{print $5}')
@@ -35,4 +36,4 @@ check_ssh_connections() {
 # Call the check function once
 check_ssh_connections
 
-./kk
+/usr/bin/killsshmanual
