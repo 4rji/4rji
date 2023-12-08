@@ -9,3 +9,6 @@ cd artillery/
 # Run the setup script
 sudo ./setup.py
 
+
+echo "modificar el archivo"
+echo "/var/artillery/config"
