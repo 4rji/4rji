@@ -113,5 +113,8 @@ grephn              Hace una busqueda de una palabra especifica en un directorio
 
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
-sshmonitor          Loop para correr el sshmonitorsc
-sshmonitorsc        Script que checa conexiones ssh activas 
+sshmonitor          sshmoni loop para correr el sshmoni while loop
+sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
+killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
+killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
+sshmoni             Este busca conexiones activas ssh, muestra procesos PID y luego ejecuta killsshmanual

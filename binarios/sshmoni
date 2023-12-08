@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# SSH Port
+SSH_PORT=22
+PID_FILE="/tmp/pidssh"
+
+# Check if the script is running as root
+if [ "$EUID" -ne 0 ]; then
+  echo "Some process details might not be shown. Please run as root for complete details."
+fi
+
+# Function to check for SSH connections
+check_ssh_connections() {
+    # Clear the PID file
+    > "$PID_FILE"
+
+    # Use netstat to search for connections on the SSH port
+    local connections=$(netstat -tnp | grep ':'"$SSH_PORT" | grep 'ESTABLISHED')
+    if [ ! -z "$connections" ]; then
+        echo "         **********   ALERT : Active SSH connection detected.   ***********"
+        # Process each connection
+        echo "$connections" | while IFS= read -r line; do
+            local ip=$(echo "$line" | awk '{print $5}')
+            local pid=$(echo "$line" | awk '{print $7}' | grep -o '[0-9]*')
+            local user=$(ps -o user= -p "$pid" 2>/dev/null)
+            echo "IP: $ip, User: $user, PID: $pid"
+            # Append PID to the file
+            echo "$pid" >> "$PID_FILE"
+        done
+    else
+        echo "No active SSH connections at this time."
+    fi
+}
+
+# Call the check function once
+check_ssh_connections
+
+./kk

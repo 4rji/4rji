@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PID_FILE="/tmp/pidssh"
+
+# Check if the PID file exists
+if [ ! -f "$PID_FILE" ]; then
+    echo "PID file not found."
+    exit 1
+fi
+
+# Read PIDs into an array
+mapfile -t pids < "$PID_FILE"
+
+# Ask for action on each PID with a 2-second timeout
+for pid in "${pids[@]}"; do
+    if [ ! -z "$pid" ]; then
+        echo "Found PID: $pid"
+        echo -n "Press Enter to execute 'sudo kill' on this PID, or wait to skip: "
+	
+        
+        # Set a 2-second timer for user input
+        read -t 2 -r answer
+        if [ $? -eq 0 ]; then  # Check if Enter was pressed
+            sudo kill "$pid"
+            echo "Executed 'sudo kill' on PID $pid."
+	    echo ""        
+else
+            echo -e "\nSkipping PID $pid."
+	    echo ""        
+fi
+    fi
+done
