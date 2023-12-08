@@ -122,4 +122,4 @@ sshmoni             Este busca conexiones activas ssh, muestra procesos PID y lu
 
 #artilleria
 artilleria          Instala el honeypot artilleria
-unbanar {IP}        Comenta la ip de banlist de artilleria
+unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP me pregunta

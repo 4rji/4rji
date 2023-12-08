@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# Check if an argument is given
-if [ $# -eq 0 ]; then
-    echo "Usage: ./script.sh [IP]"
-    exit 1
-fi
+# Display the banlist
+tail /var/artillery/banlist.txt
 
-IP=$1
+# Check if an IP address is provided
+if [ $# -eq 0 ]; then
+    echo "Enter an IP address to comment out:"
+    read IP
+else
+    IP=$1
+fi
 
 # Validate IP address format
 if ! [[ $IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -22,3 +25,9 @@ else
     echo "IP $IP not found in banlist."
 fi
 
+# Ask to restart Artillery service
+echo "Do you want to restart the Artillery service? (y/n)"
+read answer
+if [ "$answer" = "y" ]; then
+    sudo restartarti
+fi
