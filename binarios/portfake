@@ -29,3 +29,5 @@ echo ""
 echo "para ejecutar solo escribir"
 echo "portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures"
 
+cd ~
+rm -rf portspoof
