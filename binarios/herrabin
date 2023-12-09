@@ -15,10 +15,12 @@ cd 4rji/
 #sudo mv -f ~/4rji/binarios/* /usr/bin/
 sudo cp -f binarios/* /usr/bin/
 
+
 cd
 echo "binarios actualizados y 4rji borrado"
 
-
+#para borrar el script cuando se descarga
+rm herrabin
 
 
 #esto sirve para descargar solo alias.sh pero no sirve para carpeta porque github no permite
