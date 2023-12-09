@@ -124,5 +124,6 @@ tcpd
 artilleria          Instala el honeypot artilleria
 unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP me pregunta
 portfake            Instala portspoof emula servicios para nmap, instala todo
+restartarti         Reinicia el servicio artilleria
 
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)

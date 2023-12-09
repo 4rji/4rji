@@ -1,18 +1,23 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Clone the Artillery repository
-#git clone https://github.com/BinaryDefense/artillery.git
+git clone https://github.com/BinaryDefense/artillery.git
 
 #Download from my repo
-wget https://github.com/4rji/4rji/blob/main/artillery.zip
-
-unzip artillery.zip
+#git clone https://github.com/4rji/4rji.git
+#unzip artillery.zip
 # Change to the artillery directory
-cd artillery/
-
+#cd artillery/
+cd artillery
 # Run the setup script
-sudo ./setup.py
+sudo python3 setup.py
 
 
 echo "modificar el archivo"
 echo "/var/artillery/config"
+echo "unbanar para banlist"
+echo "restartarti para reiniciar el servicio"
+echo ""
+echo "Se iniciara nano config en 2 segundos"
+sleep 2
+sudo nano /var/artillery/config

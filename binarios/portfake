@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Instalar dependencias necesarias
-sudo apt install git make g++ -f
+sudo apt install git make g++ iptables -f
 #sudo apt-get install g++
 
 # Clonar el repositorio de Portspoof
@@ -24,7 +24,11 @@ sudo mv tools/portspoof_signatures /etc/portspoof/
 echo "Archivos movidos a /etc/portspoof:"
 ls /etc/portspoof
 echo ""
-
+echo "agregar iptables"
+echo "sudo iptables -t nat -A PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444"
+echo "para eliminar esa regla"
+echo "sudo iptables -t nat -D PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444"
+echo ""
 # Instrucciones para ejecutar Portspoof
 echo "para ejecutar solo escribir"
 echo "portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures"
