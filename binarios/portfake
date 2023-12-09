@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Instalar dependencias necesarias
+sudo apt install git
+sudo apt-get install g++
+
+# Clonar el repositorio de Portspoof
+git clone https://github.com/drk1wi/portspoof.git
+cd portspoof/
+
+# Compilar e instalar Portspoof
+./configure
+make
+sudo make install
+sudo make installcheck
+make clean
+
+# Crear directorio para la configuración de Portspoof y mover archivos
+sudo mkdir -p /etc/portspoof
+sudo mv tools/portspoof.conf /etc/portspoof/
+sudo mv tools/portspoof_signatures /etc/portspoof/
+
+# Verificar el movimiento de los archivos
+echo "Archivos movidos a /etc/portspoof:"
+ls /etc/portspoof
+echo ""
+
+# Instrucciones para ejecutar Portspoof
+echo "para ejecutar solo escribir"
+echo "portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures"
+

@@ -4,7 +4,7 @@
 #git clone https://github.com/BinaryDefense/artillery.git
 
 #Download from my repo
-https://github.com/4rji/4rji/blob/main/artillery.zip
+wget https://github.com/4rji/4rji/blob/main/artillery.zip
 
 unzip artillery.zip
 # Change to the artillery directory
