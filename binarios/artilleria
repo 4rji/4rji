@@ -1,5 +1,14 @@
 #!/bin/bash
-sudo apt install iptables
+
+# Verificar si iptables está instalado
+if ! dpkg -l | grep -qw iptables; then
+    echo "iptables no está instalado. Instalando..."
+    sudo apt-get update
+    sudo apt-get install -y iptables
+else
+    echo "iptables ya está instalado."
+fi
+
 # Clone the Artillery repository
 git clone https://github.com/BinaryDefense/artillery.git
 
