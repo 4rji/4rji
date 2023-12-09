@@ -118,7 +118,7 @@ sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por ssh
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
 killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
 sshmoni             Este busca conexiones activas ssh, muestra procesos PID y luego ejecuta killsshmanual
-tcpd
+itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap -sV -sC
 
 #artilleria
 artilleria          Instala el honeypot artilleria
