@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sudo apt install iptables
 # Clone the Artillery repository
 git clone https://github.com/BinaryDefense/artillery.git
 
