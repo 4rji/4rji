@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Instalar dependencias necesarias
-sudo apt install git
-sudo apt-get install g++
+sudo apt install git make g++ -f
+#sudo apt-get install g++
 
 # Clonar el repositorio de Portspoof
 git clone https://github.com/drk1wi/portspoof.git
