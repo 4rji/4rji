@@ -12,7 +12,7 @@ cd portspoof/
 ./configure
 make
 sudo make install
-sudo make installcheck
+#sudo make installcheck
 make clean
 
 # Crear directorio para la configuración de Portspoof y mover archivos

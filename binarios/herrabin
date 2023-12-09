@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+sudo apt install xclip 
 mktem
 cd "$(xclip -o -sel clip)"
 
