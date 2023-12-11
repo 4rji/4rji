@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Ejecutar el comando y almacenar la salida en una variable
-output=$(systemctl status sshd)
+output=$(systemctl status ssh)
 
 echo ""
 echo "SSH status:"
@@ -14,11 +14,9 @@ echo ""
 ip addr | grep "inet "
 
 
-#echo "$(ip addr show wlp0s20f3 | awk '/inet / {print $2}' | cut -d/ -f1)"
-
 
 # Agregamos el mensaje con la IP local
-echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlp0s20f3 | grep "inet " | awk '{print $2}')"
+echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlan0 | grep "inet " | awk '{print $2}')"
 echo ""
 echo "  *** user ***"
 whoami
