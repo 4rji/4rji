@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo apt-get install tcpd
+
+echo "Editar"
+echo "sudo nano /etc/hosts.allow"
+echo "sudo nano /etc/hosts.deny"
+
+
+echo "En hosts.allow, agrega una línea para permitir conexiones SSH desde direcciones IP confiables:"
+echo "sshd: 192.168.1.0/24"
+
+echo ""
+echo "En hosts.deny, agrega una línea para denegar todas las demás conexiones SSH:"
+echo "sshd: ALL"
+
+echo "sudo systemctl restart ssh - para aplicar los cambios en ssh"

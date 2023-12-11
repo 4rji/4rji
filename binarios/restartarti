@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Restart the Artillery server
+sudo python3 /var/artillery/restart_server.py
+
+# Run the Artillery main program and send it to the background
+#sudo nohup /var/artillery/artillery.py &
+sudo python3 /var/artillery/artillery.py
+
+#echo "Artillery has been started in the background."

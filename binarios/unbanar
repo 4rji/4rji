@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Display the banlist
+tail /var/artillery/banlist.txt
+
+# Check if an IP address is provided
+if [ $# -eq 0 ]; then
+    echo "Enter an IP address to comment out:"
+    read IP
+else
+    IP=$1
+fi
+
+# Validate IP address format
+if ! [[ $IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "Invalid IP format. Please provide a valid IP address."
+    exit 1
+fi
+
+# Check if the IP exists in banlist.txt and comment it out
+if grep -q $IP "/var/artillery/banlist.txt"; then
+    sudo sed -i "/$IP/ s/^/#/" "/var/artillery/banlist.txt"
+    echo "IP $IP found and commented out in banlist."
+else
+    echo "IP $IP not found in banlist."
+fi
+
+# Ask to restart Artillery service
+echo "Do you want to restart the Artillery service? (y/n)"
+read answer
+if [ "$answer" = "y" ]; then
+    sudo restartarti
+fi

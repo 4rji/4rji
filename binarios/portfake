@@ -1,0 +1,54 @@
+#!/bin/bash
+
+
+# Función para verificar e instalar un paquete si no está instalado
+install_if_not_present() {
+    package=$1
+    if ! dpkg -l | grep -qw $package; then
+        echo "$package no está instalado. Instalando..."
+        sudo apt-get install -y $package
+    else
+        echo "$package ya está instalado."
+    fi
+}
+
+# Actualizar la lista de paquetes
+sudo apt-get update
+
+# Verificar e instalar cada paquete
+install_if_not_present git
+install_if_not_present make
+install_if_not_present g++
+install_if_not_present iptables
+
+# Clonar el repositorio de Portspoof
+git clone https://github.com/drk1wi/portspoof.git
+cd portspoof/
+
+# Compilar e instalar Portspoof
+./configure
+make
+sudo make install
+#sudo make installcheck
+make clean
+
+# Crear directorio para la configuración de Portspoof y mover archivos
+sudo mkdir -p /etc/portspoof
+sudo mv tools/portspoof.conf /etc/portspoof/
+sudo mv tools/portspoof_signatures /etc/portspoof/
+
+# Verificar el movimiento de los archivos
+echo "Archivos movidos a /etc/portspoof:"
+ls /etc/portspoof
+echo ""
+echo "agregar iptables"
+echo "sudo iptables -t nat -A PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444"
+echo "para eliminar esa regla"
+echo "sudo iptables -t nat -D PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444"
+echo ""
+# Instrucciones para ejecutar Portspoof
+echo "para ejecutar solo escribir"
+echo "portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures"
+
+cd ~
+rm -rf portspoof

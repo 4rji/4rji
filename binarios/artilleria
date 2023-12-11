@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Verificar si iptables está instalado
+if ! dpkg -l | grep -qw iptables; then
+    echo "iptables no está instalado. Instalando..."
+    sudo apt-get update
+    sudo apt-get install -y iptables
+else
+    echo "iptables ya está instalado."
+fi
+
+# Clone the Artillery repository
+git clone https://github.com/BinaryDefense/artillery.git
+
+#Download from my repo
+#git clone https://github.com/4rji/4rji.git
+#unzip artillery.zip
+# Change to the artillery directory
+#cd artillery/
+cd artillery
+# Run the setup script
+sudo python3 setup.py
+
+
+echo "modificar el archivo"
+echo "/var/artillery/config"
+echo "unbanar para banlist"
+echo "restartarti para reiniciar el servicio"
+echo ""
+echo "Se iniciara nano config en 2 segundos"
+sleep 2
+sudo nano /var/artillery/config
