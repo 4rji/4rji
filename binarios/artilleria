@@ -21,6 +21,7 @@ cd artillery
 # Run the setup script
 sudo python3 setup.py
 
+echo "      *************** INSTRUCCIONES **************"
 
 echo "modificar el archivo"
 echo "/var/artillery/config"
@@ -28,5 +29,5 @@ echo "unbanar para banlist"
 echo "restartarti para reiniciar el servicio"
 echo ""
 echo "Se iniciara nano config en 2 segundos"
-sleep 2
+sleep 3
 sudo nano /var/artillery/config

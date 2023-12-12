@@ -108,7 +108,7 @@ nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts
 fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
-conexiones          Muestra nmcli conexiones nmcli -p device show y show --active
+conexiones          Muestra nmcli conexiones nmcli -p device show y show --active red ethernet speed 
 grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
 
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
