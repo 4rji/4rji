@@ -127,3 +127,5 @@ portfake            Instala portspoof emula servicios para nmap, instala todo
 restartarti         Reinicia el servicio artilleria
 
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
+bateriamonitor      Muestra los watts y el estado de carga en kali
+wificonect          Usa el comando nmcli para conectar una red wifi en kali  
