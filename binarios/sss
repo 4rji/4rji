@@ -11,7 +11,12 @@ ssa1 > "$tempfile"
 bat -l rb "$tempfile"
 
 
-# Verifica el estado del servicio SSH
-systemctl is-active sshd &> /dev/null; 
-echo "El servicio SSH está          **^^   ACTIVO   ^^**."
+## Verifica el estado del servicio SSH
+
+if systemctl is-active --quiet ssh; then  
+echo "El servicio SSH está **^^ ACTIVO ^^**."  
+else  
+echo "El servicio SSH está *** INACTIVO ***."  
+fi  
 echo ""
+

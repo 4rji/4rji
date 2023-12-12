@@ -1,7 +1,28 @@
 #!/bin/zsh
 echo ""
+
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" )
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+
+
 echo "***************IP local ********"
-hostname -I | awk '{print $1}'
+
+#hostname -I | awk '{print $1}'
+hostname -I | awk '{print $1 " | " $2}'
+#hostname -I | awk '{print $1 " | " $2 " | " $3}'
 echo ""
 echo "IP publica localmente encontrada"
 dig +short myip.opendns.com @resolver1.opendns.com

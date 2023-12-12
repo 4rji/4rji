@@ -1,5 +1,21 @@
 #!/bin/zsh
 
+# Función para verificar si un paquete está instalado
+
+paquetes=("bsdmainutils" )
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+
+
 #primero creo el archivo actualizado de alias
 
 
