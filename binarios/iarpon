@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("arpon" )
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+# Mostrar interfaces de red disponibles
+echo "Interfaces de red disponibles:"
+ip link show | awk -F: '$0 !~ "lo|vir|^[^0-9]"{print $2;getline}'
+
+# Preguntar al usuario qué interfaz desea monitorear
+read -p "¿Qué interfaz quieres monitorear? " INTERFACE
+
+# Comentar todo el contenido existente en /etc/default/arpon y agregar la nueva configuración al final
+sudo cp /etc/default/arpon /etc/default/arpon.backup
+sudo sed -i 's/^/#/g' /etc/default/arpon
+echo "DAEMON_ARGS=\"--harpi\"" | sudo tee -a /etc/default/arpon
+echo "INTERFACES=\"$INTERFACE\"" | sudo tee -a /etc/default/arpon
+
+# Habilitar y arrancar el servicio arpon para la interfaz específica
+sudo systemctl enable arpon@$INTERFACE
+sudo systemctl start arpon@$INTERFACE
+
+echo "arpon habilitado y arrancado para la interfaz $INTERFACE"
+echo "sudo nano /etc/default/arpon"
