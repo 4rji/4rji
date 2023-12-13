@@ -8,7 +8,7 @@ ssa1 > "$tempfile"
 
 # Puedes realizar otras operaciones con el archivo si es necesario
 # Por ejemplo, mostrar su contenido con cat
-bat -l rb "$tempfile"
+batcat -l rb "$tempfile"
 
 
 # Verifica el estado del servicio SSH
@@ -33,7 +33,8 @@ else
     interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
   echo ""
     echo "El servicio SSH ha sido         **^^  ACTIVADO  ^^**."
-    echo -e "\n\n\n\nTu IP es:      **** $(/usr/sbin/ifconfig wlan0 | grep "inet " | awk '{print $2}')  ****"
+
+    echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlp0s20f3 | grep "inet " | awk '{print $2}')"
     echo "*** Tu usuario es: *** "
     whoami
   else
