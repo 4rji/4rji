@@ -108,7 +108,7 @@ nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts
 fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
-conexiones          Muestra nmcli conexiones nmcli -p device show y show --active
+conexiones          Muestra nmcli conexiones nmcli -p device show y show --active red ethernet speed 
 grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
 
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
@@ -127,3 +127,9 @@ portfake            Instala portspoof emula servicios para nmap, instala todo
 restartarti         Reinicia el servicio artilleria
 
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
+bateriamonitor      Muestra los watts y el estado de carga en kali
+wificonect          Usa el comando nmcli para conectar una red wifi en kali  
+
+#seguridad de sistemas
+iarpon              Arpon para protejer de arp poising. arp sniff 
+iicmp               para protejer de ataques icmp, solo cambia el 0 a 1 este script
