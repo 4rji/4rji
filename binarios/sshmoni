@@ -1,14 +1,20 @@
 #!/bin/bash
 
-# Verificar si net-tools está instalado
-if ! command -v netstat &> /dev/null
-then
-    echo "net-tools no está instalado. Instalando..."
-    sudo apt-get update
-    sudo apt-get install -y net-tools
-else
-    echo "net-tools ya está instalado."
-fi
+
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("net-tools" )
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
 
 
 # SSH Port
