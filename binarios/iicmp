@@ -1,0 +1,5 @@
+#!/bin/bash
+cat /proc/sys/net/ipv4/conf/all/accept_redirects
+echo ""
+echo "debe estar en 0, cambiarlo con el siguiente comando"
+echo "sudo echo 0 > /proc/sys/net/ipv4/conf/all/accept_redirects"

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Pregunta al usuario qué comando quiere ejecutar
+read -p "Ingrese el comando que desea ejecutar: " comando
+
+# Pregunta al usuario cuánto tiempo quiere esperar entre cada ejecución del comando (en segundos)
+read -p "Ingrese la duración en segundos para la espera entre cada ejecución del comando: " intervalo
+
+# Bucle infinito para ejecutar el comando
+while true; do
+    # Ejecuta el comando especificado
+    eval $comando
+
+    # Espera el tiempo especificado antes de la próxima ejecución
+    sleep $intervalo
+done
+
