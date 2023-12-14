@@ -8,7 +8,7 @@ ssa1 > "$tempfile"
 
 # Puedes realizar otras operaciones con el archivo si es necesario
 # Por ejemplo, mostrar su contenido con cat
-bat -l rb "$tempfile"
+batcat -l rb "$tempfile"
 
 
 ## Verifica el estado del servicio SSH
