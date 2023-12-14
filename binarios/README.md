@@ -32,6 +32,7 @@ sshcopiar           genera y copia al host la clave ssh
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 solobin             actualiza solo los binarios despues de descargarlso de nuevo                       
 binar               mueve un script a el directorio /usr/bin                                           
+
 cscp                copiar archivos en scp en lugar de sftp                       
 lid                 cambia el comportamiento de lid laptop                                             
 cxx                 chmod +x y luego ./ ejecuta el script                                              
