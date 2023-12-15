@@ -138,7 +138,7 @@ bucle               Ejecute un while true; do en bucle, pregunta tiempo y comand
 ataquehttp          Un ataque http de goldeneye, descomprime en tmp y de ahi dice como ejecutarlo
 
 #distrobox
-idistrodocker       Instala distrobox docker contenedores y muestra menu de los disponibles
+disinstall          Instala distrobox docker contenedores y muestra menu de los disponibles
 kaliefi             Crea un kali efimero en distrobox 
 disl                Varios alias para distrobox 
 disefimero          Crea un distrobox efimero
