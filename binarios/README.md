@@ -121,11 +121,14 @@ killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmo
 sshmoni             Este busca conexiones activas ssh, muestra procesos PID y luego ejecuta killsshmanual
 itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap -sV -sC
 
-#artilleria
+#Puertos            Para esconder puertos
 artilleria          Instala el honeypot artilleria
 unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP me pregunta
-portfake            Instala portspoof emula servicios para nmap, instala todo
 restartarti         Reinicia el servicio artilleria
+#portspoof
+portfake            Instala portspoof emula servicios para nmap, instala todo
+iniciafakep         alias para iniciar el portspoof, despues de instalarlo
+
 
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
 bateriamonitor      Muestra los watts y el estado de carga en kali
