@@ -21,6 +21,8 @@ cd artillery
 # Run the setup script
 sudo python3 setup.py
 
+cd ..
+sudo rm -rf artillery
 echo "      *************** INSTRUCCIONES **************"
 
 echo "modificar el archivo"
