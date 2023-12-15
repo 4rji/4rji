@@ -127,6 +127,7 @@ unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP 
 restartarti         Reinicia el servicio artilleria
 #portspoof
 portfake            Instala portspoof emula servicios para nmap, instala todo
+faketables          aplica las reglas para portspoof, IPTABLES, proteje puertos y redirecciona trafico
 iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 
 

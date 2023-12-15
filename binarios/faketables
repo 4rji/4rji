@@ -1,0 +1,28 @@
+#!/bin/bash
+
+echo "Ingresa el puerto que deseas proteger:"
+read puerto_protegido
+
+# Añadir la regla de excepción para el puerto especificado
+sudo iptables -t nat -A PREROUTING -p tcp --dport $puerto_protegido -j ACCEPT
+
+# Preguntar al usuario si desea redirigir todos los demás puertos
+echo "¿Quieres redirigir todos los demás puertos al puerto de spoofing? [s/n]"
+read respuesta_redireccion
+
+if [ "$respuesta_redireccion" = "s" ]; then
+    sudo iptables -t nat -A PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444
+elif [ "$respuesta_redireccion" = "n" ]; then
+    echo "¿Quieres eliminar la regla de redirección? [s/n]"
+    read respuesta_eliminar
+    if [ "$respuesta_eliminar" = "s" ]; then
+        sudo iptables -t nat -D PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444
+    fi
+fi
+
+sudo iptables-save
+
+echo ""
+echo "para ver las reglas actuales:"
+echo "sudo iptables-save "
+echo "sudo iptables -t nat -L -v -n "
