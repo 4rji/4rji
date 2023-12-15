@@ -78,5 +78,6 @@ case $choice in
 esac
 
 # Crear la distrobox
-distrobox create -i $image
+distrobox-ephemeral create -i $image
+
 

@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 
-
 # Copiar ~/.zshrc a /respaldos/zshrc
 sudo cp ~/.zshrc /respaldos/zshrc.alias_backup
 
@@ -38,6 +37,12 @@ echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlev
 echo "alias c3='sed -i \"s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/\" ~/.zshrc'" >> ~/.zshrc
 echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'" >> ~/.zshrc
 echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
+
+#Distrobox
+echo "alias kaliefi='distrobox-ephemeral create --name kali-efimero --image docker.io/kalilinux/kali-rolling:latest'" >> ~/.zshrc 
+echo "alias disl='distrobox list'"  >> ~/.zshrc
+echo "alias dise='distrobox enter '"  >> ~/.zshrc
+echo "alias disr='distrobox rm  '"  >> ~/.zshrc
 
 
 #f2ban
