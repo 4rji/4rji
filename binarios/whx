@@ -24,5 +24,5 @@ echo "$ruta_comando" | xclip -selection clipboard
 
 # Muestra el contenido del archivo binario
 #cat "$ruta_comando"
-bat -l rb --paging=never "$ruta_comando"
+batcat -l rb --paging=never "$ruta_comando"
 #y
