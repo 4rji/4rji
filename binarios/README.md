@@ -147,3 +147,5 @@ kaliefi             Crea un kali efimero en distrobox
 disl                Varios alias para distrobox 
 disefimero          Crea un distrobox efimero
 disapp              Ejecuta una aplicacion en un contenedor determinador despues del script 
+servicios           Encuentra servicios que no son del kernel linux corriendo.
+
