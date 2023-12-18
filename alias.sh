@@ -139,6 +139,7 @@ echo "alias bye='kill -9 -1 '" >> ~/.zshrc
 
 echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
 
+echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
 
 
