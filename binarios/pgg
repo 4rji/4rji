@@ -31,10 +31,10 @@ echo ""
 
 # Ejecutar hostnamectl y guardar la salida en un archivo temporal
 tmpfile=$(mktemp)
-hostnamectl > "$tmpfile"
+hostnamectl | grep -E 'Virtualization|Operating System|Hardware Vendor' > "$tmpfile"
 
 # Eliminar las líneas no deseadas del archivo temporal
-sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
+#sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
 
 # Mostrar el contenido del archivo modificado
 batcat -l rb "$tmpfile"
