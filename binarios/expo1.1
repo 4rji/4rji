@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Ingrese la dirección IP:"
+read ip_address
+
+command="nmap -p- --open -T5 -v -n -Pn $ip_address -oG allPorts"
+
+echo "Ejecutando el comando:"
+echo "$command"
+
+eval "$command"
+
