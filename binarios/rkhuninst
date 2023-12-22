@@ -9,8 +9,8 @@ echo "sudo nano /etc/rkhunter.conf"
 echo "sudo nano /etc/default/rkhunter"
 sleep 1
 
-rkhunconf
-rkhuncron
+sudo rkhunconf
+sudo rkhuncron
 
 echo ""
 echo "archivos modificados con scripts y se actualizara base de datos"
