@@ -38,4 +38,6 @@ fi
 echo ""
 echo "comandos utiles"
 echo "sudo rkhunter --versioncheck"
-
+echo ""
+echo "Para correr el scaner de nuevo"
+echo "sudo rkhunter --check -sk"
