@@ -151,3 +151,5 @@ disapp              Ejecuta una aplicacion en un contenedor determinador despues
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 
+#antivirus y malware
+rkhuninst           Instala rkhunter y modifica los archivos de configuracion

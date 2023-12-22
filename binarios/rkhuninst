@@ -1,0 +1,41 @@
+#!/bin/bash
+
+sudo apt install rkhunter -y
+
+sleep 1
+echo ""
+echo "Ahora se va a modificar los archivos"
+echo "sudo nano /etc/rkhunter.conf"
+echo "sudo nano /etc/default/rkhunter"
+sleep 1
+
+rkhunconf
+rkhuncron
+
+echo ""
+echo "archivos modificados con scripts y se actualizara base de datos"
+echo ""
+sleep 1
+sudo rkhunter --update
+echo "listado de binarios"
+sudo rkhunter --propupd
+
+
+# Preguntar al usuario si quiere ejecutar el escaneo
+echo "¿Quieres ejecutar el escaneo ahora? (s/n): "
+read respuesta
+
+if [[ $respuesta = "s" ]]; then
+    # Si el usuario responde 's', ejecutar rkhunter
+    echo "Ejecutando rkhunter..."
+    sudo rkhunter --check -sk
+else
+    # Si el usuario presiona enter o cualquier otra tecla, mostrar cómo ejecutarlo más tarde
+    echo "Para escanear ejecute: sudo rkhunter --check -sk"
+fi
+
+
+echo ""
+echo "comandos utiles"
+echo "sudo rkhunter --versioncheck"
+

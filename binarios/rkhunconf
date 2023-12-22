@@ -1,0 +1,24 @@
+#!/bin/bash
+
+FILE="/etc/rkhunter.conf"
+
+# Verificar si el script se ejecuta con privilegios de superusuario
+if [[ $EUID -ne 0 ]]; then
+   echo "Este script debe ser ejecutado con privilegios de superusuario."
+   exit 1
+fi
+
+# Comentar las líneas existentes
+sed -i '/^UPDATE_MIR/s/^/#/' $FILE
+sed -i '/^MIRRORS_M/s/^/#/' $FILE
+sed -i '/^WEB_C/s/^/#/' $FILE
+sed -i '/^ALLOW_S/s/^/#/' $FILE
+
+# Agregar nuevas líneas al principio del archivo
+sed -i '1iUPDATE_MIRRORS=1' $FILE
+sed -i '1iMIRRORS_MODE=0' $FILE
+sed -i '1iWEB_CMD=""' $FILE
+sed -i '1iALLOW_SSH_ROOT_USER=no' $FILE
+
+echo "Archivo $FILE actualizado correctamente."
+
