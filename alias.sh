@@ -40,7 +40,7 @@ echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.g
 
 #Distrobox
 echo "alias kaliefi='distrobox-ephemeral create --name kali-efimero --image docker.io/kalilinux/kali-rolling:latest'" >> ~/.zshrc 
-echo "alias disl='distrobox list'"  >> ~/.zshrc
+#echo "alias disl='distrobox list'"  >> ~/.zshrc
 echo "alias dise='distrobox enter '"  >> ~/.zshrc
 echo "alias disr='distrobox rm  '"  >> ~/.zshrc
 
