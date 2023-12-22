@@ -1,5 +1,20 @@
 #!/bin/bash
 
+# Función para verificar si un paquete está instalado
+
+paquetes=("rkhunter")
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+
 sudo apt install rkhunter -y
 
 sleep 1
