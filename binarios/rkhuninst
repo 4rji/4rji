@@ -14,9 +14,6 @@ fi
 done
 
 
-
-sudo apt install rkhunter -y
-
 sleep 1
 echo ""
 echo "Ahora se va a modificar los archivos"
