@@ -1,13 +1,19 @@
 #!/bin/bash
 
-
 # Función para verificar si un paquete está instalado
-paquete_instalado() {
-    dpkg -l "$1" | grep -q '^ii'
+
+paquetes=("unattended-upgrades" "apt-listchanges" "nyx" "gnupg" "curl" "git" "wget" "kitty" "nano" "sudo" "btop" "apt-transport-https" "tor" "deb.torproject.org-keyring")
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
 }
 
-# Lista de paquetes a instalar
-paquetes=("unattended-upgrades" "apt-listchanges" "nyx" "gnupg" "curl" "git" "wget" "kitty" "nano" "sudo" "btop" "apt-transport-https" "tor" "deb.torproject.org-keyring")
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
 
 
 
@@ -57,10 +63,12 @@ ControlPort 9051
 CookieAuthentication 1' | sudo tee -a /etc/tor/torrc
 
 # Enable ToR and restart
-service tor enable
-service tor start
+sudo systemctl enable --now tor
+sudo systemctl status tor
 
-echo "Abre el archivo /etc/tor/torrc para personalizar el relay"
+echo "Abre el archivo 
+sudo nano /etc/tor/torrc
+para personalizar el relay"
 
 
 #deb [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org bookworm main
