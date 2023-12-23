@@ -153,3 +153,5 @@ minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 
 #antivirus y malware
 rkhuninst           Instala rkhunter y modifica los archivos de configuracion
+apachenombre.       Instrucciones para remover el nombre del banner de apache y nginx
+clamavinst
