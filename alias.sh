@@ -92,6 +92,10 @@ echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; 
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
+echo "alias resta='sudo systemctl restart '"  >> ~/.zshrc
+echo "alias statt='sudo systemctl status '"  >> ~/.zshrc
+
+
 #echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
 echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1" ' >> ~/.zshrc
 
