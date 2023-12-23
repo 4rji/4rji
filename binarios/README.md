@@ -140,6 +140,7 @@ iarpon              Arpon para protejer de arp poising. arp sniff
 iicmp               para protejer de ataques icmp, solo cambia el 0 a 1 este script
 bucle               Ejecute un while true; do en bucle, pregunta tiempo y comando
 ataquehttp          Un ataque http de goldeneye, descomprime en tmp y de ahi dice como ejecutarlo
+inundacion          hping3 un ataque de inundacion flood para pruebas de carga, pregunta por dos ataques
 
 #distrobox
 
