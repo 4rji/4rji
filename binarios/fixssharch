@@ -1,0 +1,24 @@
+#!/bin/bash
+
+archivo_zshrc=~/.zshrc
+
+# Comentar las líneas que comiencen con los alias existentes
+sed -i '/^alias i=/ s/^/#/' $archivo_zshrc
+sed -i '/^alias apu=/ s/^/#/' $archivo_zshrc
+
+# Agregar los nuevos alias al final del archivo
+echo "alias i='sudo pacman -S '" >> $archivo_zshrc
+echo "alias apu='sudo pacman -Syu'" >> $archivo_zshrc
+
+#remplaza los binarios para arch
+sudo cp /usr/bin/ssa1_arch /usr/bin/ssa1
+sudo cp /usr/bin/ssa_arch /usr/bin/ssa
+sudo cp /usr/bin/sss_arch /usr/bin/sss
+
+#proteje de escritura
+
+sudo chattr +i /usr/bin/ssa
+sudo chattr +i /usr/bin/sss
+sudo chattr +i /usr/bin/ssa1
+
+sudo cp /usr/bin/bat /usr/bin/batcat
