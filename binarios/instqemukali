@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-sudo apt install qemu-system virt-manager -y
-
-#qemu arch
-#sudo pacman -S qemu virt-manager
-#sudo systemctl start libvirtd
