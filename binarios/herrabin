@@ -38,7 +38,7 @@ cd
 echo "binarios actualizados y 4rji borrado"
 
 #para borrar el script cuando se descarga
-rm herrabin
+#rm herrabin
 
 
 #esto sirve para descargar solo alias.sh pero no sirve para carpeta porque github no permite
