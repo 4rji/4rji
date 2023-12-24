@@ -82,6 +82,8 @@ distrobox create -i $image
 
 
 #fix permisions on docker
+#fixdockerper  es el otro script que lo arregla
+
 # newgrp docker
 # ls -l /var/run/docker.sock
 # sudo chown root:docker /var/run/docker.sock
