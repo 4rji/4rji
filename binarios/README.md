@@ -28,7 +28,7 @@ emailscraper        ejecuta una herramienta de un curso para buscar emails
 scanporty           python3 program que hace un escaneo y pregunta el numero de puertos.               
 bateria             new script con bateria en lugar de alias                                           
 tempe               or tempe -f temperatura de arch linux y -f crea un archivo con los datos de tempe  
-sshcopiar           genera y copia al host la clave ssh                                                
+sshcopy             genera y copia al host la clave ssh                                                
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 solobin             actualiza solo los binarios despues de descargarlso de nuevo                       
 binar               mueve un script a el directorio /usr/bin                                           
