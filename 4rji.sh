@@ -13,11 +13,11 @@ chmod +x install.sh
 # Ejecutar el script de instalación
 ./install.sh
 
+echo "Listo"
 
+#sleep 4
 
-sleep 4
-
-kill -9 -1
+#kill -9 -1
 
 
 #sudo rm -f 4rji.sh
