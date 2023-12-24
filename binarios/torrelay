@@ -62,9 +62,42 @@ SocksPort 0
 ControlPort 9051
 CookieAuthentication 1' | sudo tee -a /etc/tor/torrc
 
+#####
+
+
+while true; do
+    echo "Selecciona una opción:"
+    echo "1. Iniciar y habilitar Tor (service (docker))"
+    echo "2. Iniciar y habilitar Tor (systemctl (debian))"
+    read -p "Elije una opción (1 o 2): " opcion
+
+    case $opcion in
+        1)
+            # Opción 1: Iniciar y habilitar Tor usando 'service'
+            service tor start
+            service tor enable
+            break  # Salir del bucle después de ejecutar la opción válida
+            ;;
+        2)
+            # Opción 2: Iniciar y habilitar Tor usando 'systemctl'
+            sudo systemctl enable --now tor
+            sudo systemctl status tor
+            break  # Salir del bucle después de ejecutar la opción válida
+            ;;
+        *)
+            echo "Opción no válida. Por favor, elige 1 o 2."
+            ;;
+    esac
+done
+
+
+
+
+
+
 # Enable ToR and restart
-sudo systemctl enable --now tor
-sudo systemctl status tor
+#sudo systemctl enable --now tor
+#sudo systemctl status tor
 
 echo "Abre el archivo 
 sudo nano /etc/tor/torrc
