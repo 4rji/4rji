@@ -36,6 +36,7 @@ sudo pacman -Syu --noconfirm bc
 sudo pacman -Syu --noconfirm nodejs npm
 sudo pacman -Syu --noconfirm trash-cli
 sudo pacman -Syu --noconfirm ufw
+sudo pacman -Syu --noconfirm xclip
 
 #sudo npm install -g joplin
 
