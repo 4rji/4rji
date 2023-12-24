@@ -145,6 +145,7 @@ inundacion          hping3 un ataque de inundacion flood para pruebas de carga, 
 #distrobox
 
 disinst             Instala distrobox docker contenedores y muestra menu de los disponibles
+disarc              Para instalar en arch, pero se puede ejecutar el comando
 kaliefi             Crea un kali efimero en distrobox 
 disl                Distrobox list script que corre y muestra lista de distros 
 disefimero          Crea un distrobox efimero
