@@ -24,6 +24,29 @@ fi
 
 sudo usermod -aG docker $USER
 
+
+
+# Pregunta al usuario si quiere arreglar los permisos
+read -p "¿Quieres arreglar los permisos? (s/enter continuar): " respuesta
+
+# Si la respuesta es 's' o 'S', ejecuta los comandos
+if [[ $respuesta == "s" || $respuesta == "S" ]]; then
+    echo "Arreglando permisos..."
+
+    # Ejecuta los comandos para arreglar permisos
+    newgrp docker
+    ls -l /var/run/docker.sock
+    sudo chown root:docker /var/run/docker.sock
+    sudo systemctl restart docker
+
+    echo "Permisos arreglados."
+else
+    echo "No se han realizado cambios."
+fi
+
+
+
+
 # Opciones de distribuciones
 echo "Elige una distribución para instalar con DistroBox:"
 echo "1) CentOS Stream 8"

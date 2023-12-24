@@ -1,9 +1,0 @@
-#!/bin/bash
-
-
-#fix permisions on docker
-newgrp docker
-ls -l /var/run/docker.sock
-sudo chown root:docker /var/run/docker.sock
-sudo systemctl restart docker
-
