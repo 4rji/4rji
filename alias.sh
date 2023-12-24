@@ -82,7 +82,7 @@ echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
-echo "alias fixsc='cd $HOME/4rji/fixed'" >> ~/.zshrc
+echo "alias fixsc='cd $HOME/4rji/fixed/binarios'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
