@@ -76,6 +76,7 @@ sudo apt install bat -y
 sudo apt install wireguard-tools -y
 sudo apt install jq -y
 sudo apt install bc -y
+sudo apt install ufw -y
 
 
 
@@ -104,6 +105,6 @@ sudo rm -rf Public Videos Music Pictures Templates Public  ScreenShots surfeando
 
 cd 4rji
 
-
-
+sudo ufw allow ssh
+sudo ufw status
 
