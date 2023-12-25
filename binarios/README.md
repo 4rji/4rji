@@ -155,7 +155,7 @@ minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 grafanainst         Instala grafana y prometheus 
 
 #antivirus y malware
-rkhuninst           Instala rkhunter y modifica los archivos de configuracion
+rkhun               Instala, actualiza y ejecuta el scaneo rkhunter
 apachenombre.       Instrucciones para remover el nombre del banner de apache y nginx
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
 

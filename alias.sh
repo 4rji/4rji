@@ -147,7 +147,6 @@ echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
 
 
-
 #si funciono para la zsh
 #https://youtu.be/nkvW0-bVXPc?si=1rv9No2jaiT5I7Aa
 

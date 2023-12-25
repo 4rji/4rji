@@ -14,24 +14,33 @@ fi
 done
 
 
-sleep 1
-echo ""
-echo "Ahora se va a modificar los archivos"
+
+
+echo "modificar los archivos"
 echo "sudo nano /etc/rkhunter.conf"
 echo "sudo nano /etc/default/rkhunter"
+read -p "Quieres modificar los archivos? s/enter: " modificar
+
+
+
+if [[ $modificar == "s" ]]; then
+    sudo rkhunconf
+    sudo rkhuncron
+    echo "Archivos modificados con scripts"
+    sleep 1
+fi
+
+# Pregunta al usuario si quiere actualizar la base de datos
+read -p "Quieres actualizar la base de datos? s/enter: " actualizar
+
+if [[ $actualizar == "s" ]]; then
+    sudo rkhunter --update
+fi
+
+
 sleep 1
-
-sudo rkhunconf
-sudo rkhuncron
-
-echo ""
-echo "archivos modificados con scripts y se actualizara base de datos"
-echo ""
-sleep 1
-sudo rkhunter --update
-echo "listado de binarios"
-sudo rkhunter --propupd
-
+#listado de binarios abajo se ejecuta
+#sudo rkhunter --propupd
 
 # Preguntar al usuario si quiere ejecutar el escaneo
 echo "¿Quieres ejecutar el escaneo ahora? (s/n): "
@@ -40,6 +49,7 @@ read respuesta
 if [[ $respuesta = "s" ]]; then
     # Si el usuario responde 's', ejecutar rkhunter
     echo "Ejecutando rkhunter..."
+    sudo rkhunter --propupd
     sudo rkhunter --check -sk
 else
     # Si el usuario presiona enter o cualquier otra tecla, mostrar cómo ejecutarlo más tarde
