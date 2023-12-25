@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo apt install gdebi
 # Descarga y añade la clave GPG
 wget -qO - https://mirror.mwt.me/ghd/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
 
