@@ -158,3 +158,5 @@ grafanainst         Instala grafana y prometheus
 rkhuninst           Instala rkhunter y modifica los archivos de configuracion
 apachenombre.       Instrucciones para remover el nombre del banner de apache y nginx
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
+
+protoninst          Instala protonvpn en kali o debian 
