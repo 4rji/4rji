@@ -1,0 +1,78 @@
+#!/bin/zsh
+echo ""
+
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" )
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+
+
+echo "***************IP local ********"
+
+#hostname -I | awk '{print $1}'
+hostname -I | awk '{print $1 " | " $2}'
+#hostname -I | awk '{print $1 " | " $2 " | " $3}'
+echo ""
+echo "IP publica localmente encontrada"
+dig +short myip.opendns.com @resolver1.opendns.com
+echo ""
+
+
+# Ejecutar hostnamectl y guardar la salida en un archivo temporal
+tmpfile=$(mktemp)
+hostnamectl | grep -E 'Virtualization|Operating System|Hardware Vendor' > "$tmpfile"
+
+    ~/Documents/GitHub/4rji/binarios  ✔  echo "alias wm='whoami && hostnamectl | grep -E \"Virtualization|Operating System|Hardware Vendor|Hardware Model\"
+
+# Eliminar las líneas no deseadas del archivo temporal
+#sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
+
+# Mostrar el contenido del archivo modificado
+batcat -l rb "$tmpfile"
+# Eliminar el archivo temporal
+rm "$tmpfile"
+
+
+echo ""
+
+# Función para comprobar la conexión a Internet
+check_internet_connection() {
+    echo ""
+    curl ifconfig.me
+    local host="google.com"  # Cambia "google.com" por el host que desees
+
+    ping -c 1 "$host" > /dev/null 2>&1
+
+    if [[ $? -eq 0 ]]; then
+        echo " <== tu IP.  La conexión a Internet está ACTIVA."
+    else
+        echo "No se puede acceder a Internet."
+    fi
+}
+
+# Preguntar si se desea ejecutar el script
+echo "¿Deseas verificar la conexión? (s para sí, enter para continuar)"
+read response
+
+if [[ "$response" == "s" ]]; then
+    check_internet_connection
+    # Guardar la salida de ipinfo.io en un archivo temporal
+    tmpfile=$(mktemp)
+    curl -s ipinfo.io | jq 'del(.loc, .org, .readme)' > "$tmpfile"
+
+    # Mostrar el contenido del archivo temporal con batcat
+    batcat -l rb "$tmpfile"
+    # Eliminar el archivo temporal
+    #rm "$tmpfile"
+fi

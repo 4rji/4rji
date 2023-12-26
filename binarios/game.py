@@ -1,8 +1,9 @@
 import tkinter as tk
 from functools import partial
+import json
+import os
 
 def main():
-    # Entrada inicial en CLI
     num_players = int(input("Enter the number of players (1-8): "))
     if num_players < 1 or num_players > 8:
         print("Invalid number of players. It should be between 1 and 8.")
@@ -13,14 +14,9 @@ def main():
         name = input(f"Enter the name of Player {i + 1}: ")
         players.append({"name": name, "points": 0, "bet": 0})
 
-    # Configuración de la ventana principal
     window = tk.Tk()
     window.title("Betting Game")
-
-    # Tamaño de la fuente
-    font_size = 50
-
-    # Configuración del marco principal
+    font_size = 48
     main_frame = tk.Frame(window)
     main_frame.pack()
 
@@ -29,21 +25,38 @@ def main():
         status_label = tk.Label(main_frame, text=message, font=("Helvetica", font_size))
         status_label.pack()
 
-    def place_bets():
-        update_status_message("Players, place your bets (0-9):")
-        for i in range(num_players):
-            player_label = tk.Label(main_frame, text=f"{players[i]['name']}'s bet:", font=("Helvetica", font_size))
-            player_label.pack()
-            bet_buttons_frame = tk.Frame(main_frame)
-            bet_buttons_frame.pack()
-            for j in range(10):
-                btn = tk.Button(bet_buttons_frame, text=str(j), command=partial(set_bet, i, j), font=("Helvetica", font_size))
-                btn.pack(side="left")
-        confirm_button = tk.Button(main_frame, text="Confirm Bets", command=lambda: confirm_bets(0), font=("Helvetica", font_size))
-        confirm_button.pack()
+    def clear_frame():
+        for widget in main_frame.winfo_children():
+            widget.destroy()
 
     def set_bet(player_index, bet):
         players[player_index]['bet'] = bet
+
+    def show_bet_summary():
+        update_status_message("Betting Summary:")
+        for i, player in enumerate(players):
+            bet_label = tk.Label(main_frame, text=f"{player['name']} bet: {player['bet']}", font=("Helvetica", font_size))
+            bet_label.pack()
+        modify_button = tk.Button(main_frame, text="Modify Bet", command=modify_bets, font=("Helvetica", font_size))
+        modify_button.pack()
+        confirm_button = tk.Button(main_frame, text="Continue", command=lambda: confirm_bets(0), font=("Helvetica", font_size))
+        confirm_button.pack()
+
+    def modify_bets():
+        update_status_message("Select player to modify bet:")
+        for i in range(num_players):
+            player_button = tk.Button(main_frame, text=players[i]['name'], command=partial(replace_bet, i), font=("Helvetica", font_size))
+            player_button.pack()
+
+    def replace_bet(player_index):
+        update_status_message(f"{players[player_index]['name']}, place your new bet:")
+        bet_buttons_frame = tk.Frame(main_frame)
+        bet_buttons_frame.pack()
+        for j in range(10):
+            btn = tk.Button(bet_buttons_frame, text=str(j), command=partial(set_bet, player_index, j), font=("Helvetica", font_size))
+            btn.pack(side="left")
+        confirm_button = tk.Button(main_frame, text="Confirm New Bet", command=show_bet_summary, font=("Helvetica", font_size))
+        confirm_button.pack()
 
     def confirm_bets(player_index):
         if player_index < num_players:
@@ -77,16 +90,66 @@ def main():
         for player in players:
             score_label = tk.Label(main_frame, text=f"{player['name']}\t{player['points']} points", font=("Helvetica", font_size))
             score_label.pack()
-        continue_button = tk.Button(main_frame, text="Continue", command=place_bets, font=("Helvetica", font_size))
+        continue_button = tk.Button(main_frame, text="Continue", command=lambda: [save_scores(), place_bets()], font=("Helvetica", font_size))
         continue_button.pack()
-        end_game_button = tk.Button(main_frame, text="End Game", command=window.destroy, font=("Helvetica", font_size))
+        end_game_button = tk.Button(main_frame, text="End Game", command=lambda: [window.destroy(), delete_scores_file()], font=("Helvetica", font_size))
         end_game_button.pack()
+        fix_button = tk.Button(main_frame, text="Fix Score", command=fix_scores, font=("Helvetica", font_size))
+        fix_button.pack()
 
-    def clear_frame():
-        for widget in main_frame.winfo_children():
-            widget.destroy()
+    def fix_scores():
+        update_status_message("Select player to fix score:")
+        for i in range(num_players):
+            player_button = tk.Button(main_frame, text=players[i]['name'], command=partial(ask_new_score, i), font=("Helvetica", font_size))
+            player_button.pack()
 
-    place_bets_button = tk.Button(main_frame, text="Place Bets", command=place_bets, font=("Helvetica", font_size))
+    def ask_new_score(player_index):
+        def confirm_new_score(event):
+            try:
+                new_score = int(score_entry.get())
+                set_new_score(player_index, new_score)
+            except ValueError:
+                update_status_message("Invalid input. Please enter a number.")
+
+        clear_frame()
+        update_status_message(f"Enter new score for {players[player_index]['name']}:")
+        score_entry = tk.Entry(main_frame, font=("Helvetica", font_size))
+        score_entry.pack()
+        score_entry.bind("<Return>", confirm_new_score)
+        confirm_button = tk.Button(main_frame, text="Confirm", command=lambda: confirm_new_score(None), font=("Helvetica", font_size))
+        confirm_button.pack()
+
+    def set_new_score(player_index, new_score):
+        players[player_index]['points'] = new_score
+        show_scores()
+
+    def save_scores():
+        with open("scores_backup.json", "w") as file:
+            json.dump(players, file)
+
+    def delete_scores_file():
+        try:
+            os.remove("scores_backup.json")
+        except FileNotFoundError:
+            pass
+
+    def place_bets():
+        update_status_message("Players, place your bets (0-9):")
+        for i in range(num_players):
+            player_label = tk.Label(main_frame, text=f"{players[i]['name']}'s bet:", font=("Helvetica", font_size))
+            player_label.pack()
+            bet_buttons_frame = tk.Frame(main_frame)
+            bet_buttons_frame.pack()
+            for j in range(10):
+                btn = tk.Button(bet_buttons_frame, text=str(j), command=partial(set_bet, i, j), font=("Helvetica", font_size))
+                btn.pack(side="left")
+        confirm_button = tk.Button(main_frame, text="Confirm Bets", command=show_bet_summary, font=("Helvetica", font_size))
+        confirm_button.pack()
+
+    def start_betting():
+        place_bets()
+
+    place_bets_button = tk.Button(main_frame, text="Place Bets", command=start_betting, font=("Helvetica", font_size))
     place_bets_button.pack()
 
     window.mainloop()
