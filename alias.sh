@@ -126,7 +126,8 @@ echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 
 #echo "alias busme='4rjic | grep '" >> ~/.zshrc
 echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
-echo "alias wm='whoami && hostnamectl | grep -E \"Virtualization|Operating System|Hardware Vendor\"'" >> ~/.zshrc
+echo "alias wm='whoami && hostnamectl | grep -E \"Virtualization|Operating System|Hardware Vendor|Hardware Model\"'" >> ~/.zshrc
+# hostnamectl | grep -E "Virtualization|Operating System|Hardware Vendor|Hardware Model"
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
