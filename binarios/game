@@ -16,7 +16,15 @@ def main():
 
     window = tk.Tk()
     window.title("Betting Game")
-    font_size = 48
+    
+    # Adjust font size based on the number of players
+    if num_players > 7:
+        font_size = 35
+    elif num_players > 4:
+        font_size = 48
+    else:
+        font_size = 58
+
     main_frame = tk.Frame(window)
     main_frame.pack()
 
@@ -156,3 +164,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
