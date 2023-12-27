@@ -18,32 +18,47 @@ modify_file() {
     local continue_modifying="y"
 
     while [ "$continue_modifying" = "y" ]; do
-        echo ""
         echo "Archivo seleccionado: $file_path"
-        echo "Por favor, ingresa la cadena de texto para buscar la línea que deseas comentar (por ejemplo, 'colors'):"
+        echo "Por favor, ingresa la cadena de texto para buscar las líneas que deseas comentar (por ejemplo, 'colors'):"
         read search_term
 
-        # Encontrar el número de línea de la primera coincidencia
-        local line_number=$(grep -n "^$search_term" "$file_path" | cut -f1 -d: | head -n 1)
-
-        if [ -z "$line_number" ]; then
+        # Buscar todas las líneas que coincidan y almacenarlas en un array
+        mapfile -t lines < <(grep -n "^$search_term" "$file_path")
+        if [ ${#lines[@]} -eq 0 ]; then
             echo "No se encontró ninguna línea que comience con '$search_term'."
             continue
         fi
+
+        echo "Líneas encontradas:"
+        for i in "${!lines[@]}"; do
+            echo "$((i+1))) ${lines[i]}"
+        done
+
+        echo "Por favor, selecciona el número de la línea que deseas modificar:"
+        read selection
+
+        # Validar la selección
+        if [ "$selection" -le 0 ] || [ "$selection" -gt "${#lines[@]}" ]; then
+            echo "Selección inválida. Intenta de nuevo."
+            continue
+        fi
+
+        # Extraer solo el número de línea de la selección
+        local selected_line_number=$(echo "${lines[$((selection-1))]}" | cut -f1 -d:)
 
         # Mostrar la línea seleccionada
         echo ""
         echo "    *****   Línea encontrada para comentar ##    *****"
         echo ""
-  	sed -n "${line_number}p" "$file_path"
+        
+        sed -n "${selected_line_number}p" "$file_path"
 
         # Comentar la línea seleccionada y pedir contenido para agregar debajo
-        echo ""
-	echo "Por favor, ingresa el contenido que deseas agregar debajo de la línea comentada:"
+        echo "Por favor, ingresa el contenido que deseas agregar debajo de la línea comentada:"
         read new_content
 
         # Comentar la línea y agregar el nuevo contenido
-        sed -i "${line_number}s/^/# /; ${line_number}a $new_content" "$file_path"
+        sed -i "${selected_line_number}s/^/# /; ${selected_line_number}a $new_content" "$file_path"
 
         # Preguntar si se desea modificar otra línea
         echo "¿Quieres modificar otra línea? (y/n):"
