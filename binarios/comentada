@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# Función para expandir la tilde en la ruta del archivo
+expand_path() {
+    local path="$1"
+    if [[ "$path" == "~"* ]]; then
+        echo "${path/\~/$HOME}"
+    else
+        echo "$path"
+    fi
+}
+
+# Función para modificar el archivo
+modify_file() {
+    local file_path="$(expand_path "$1")"
+    local search_term
+    local new_content
+    local continue_modifying="y"
+
+    while [ "$continue_modifying" = "y" ]; do
+        echo ""
+        echo "Archivo seleccionado: $file_path"
+        echo "Por favor, ingresa la cadena de texto para buscar la línea que deseas comentar (por ejemplo, 'colors'):"
+        read search_term
+
+        # Encontrar el número de línea de la primera coincidencia
+        local line_number=$(grep -n "^$search_term" "$file_path" | cut -f1 -d: | head -n 1)
+
+        if [ -z "$line_number" ]; then
+            echo "No se encontró ninguna línea que comience con '$search_term'."
+            continue
+        fi
+
+        # Mostrar la línea seleccionada
+        echo ""
+        echo "    *****   Línea encontrada para comentar ##    *****"
+        echo ""
+  	sed -n "${line_number}p" "$file_path"
+
+        # Comentar la línea seleccionada y pedir contenido para agregar debajo
+        echo ""
+	echo "Por favor, ingresa el contenido que deseas agregar debajo de la línea comentada:"
+        read new_content
+
+        # Comentar la línea y agregar el nuevo contenido
+        sed -i "${line_number}s/^/# /; ${line_number}a $new_content" "$file_path"
+
+        # Preguntar si se desea modificar otra línea
+        echo "¿Quieres modificar otra línea? (y/n):"
+        read continue_modifying
+    done
+
+    echo "Modificaciones completadas."
+}
+
+# Script principal
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 <ruta-del-archivo>"
+    echo "Por ejemplo: $0 ~/.config/neofetch/config.conf"
+    exit 1
+fi
+
+file_path="$1"
+if [ -f "$(expand_path "$file_path")" ]; then
+    modify_file "$file_path"
+else
+    echo "El archivo no existe."
+    exit 1
+fi

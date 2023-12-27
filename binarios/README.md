@@ -120,6 +120,8 @@ killsshauto         Cierra automaticamente todos los PID de ssh que encuentro co
 killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
 sshmoni             Este busca conexiones activas ssh, muestra procesos PID y luego ejecuta killsshmanual
 itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap -sV -sC
+buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
+comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
 
 #Puertos            Para esconder puertos
 artilleria          Instala el honeypot artilleria
