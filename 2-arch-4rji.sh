@@ -8,35 +8,29 @@ cp kitty/* ~/.config/kitty/
 
 
 # Instalar paquetes necesarios
-sudo pacman -Syu --noconfirm neovim 
-sudo pacman -Syu --noconfirm  zip
-sudo pacman -Syu --noconfirm  fzf
-sudo pacman -Syu --noconfirm lsd 
-sudo pacman -Syu --noconfirm bat 
-sudo pacman -Syu --noconfirm tldr 
-sudo pacman -Syu --noconfirm btop 
-sudo pacman -Syu --noconfirm net-tools
-sudo pacman -Syu --noconfirm magic-wormhole
-sudo pacman -Syu --noconfirm ranger 
-sudo pacman -Syu --noconfirm scrub 
-sudo pacman -Syu --noconfirm shred 
-sudo pacman -Syu --noconfirm openvpn 
-sudo pacman -Syu --noconfirm firejail 
-sudo pacman -Syu --noconfirm lf 
-sudo pacman -Syu --noconfirm proxychains 
-sudo pacman -Syu --noconfirm ufw
-sudo pacman -Syu --noconfirm zsh
-sudo pacman -Syu --noconfirm btop
-sudo pacman -Syu --noconfirm trash-cli
-sudo pacman -Syu --noconfirm ncdu
-sudo pacman -Syu --noconfirm ruby-rouge
-sudo pacman -Syu --noconfirm wireguard-tools
-sudo pacman -Syu --noconfirm jq
-sudo pacman -Syu --noconfirm bc
-sudo pacman -Syu --noconfirm nodejs npm
-sudo pacman -Syu --noconfirm trash-cli
-sudo pacman -Syu --noconfirm ufw
-sudo pacman -Syu --noconfirm xclip
+# Lista de paquetes a instalar
+paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" "python-pip" "net-tools" 
+          "wormhole" "ranger" "scrub" "shred" "curl" "kitty" "tmux" "dialog" 
+          "iptables" "openvpn" "nmap" "mesa-utils" "lm_sensors" "firejail" 
+          "lf" "proxychains" "neofetch" "lsd" "btop" "tldr" "backintime-qt" 
+          "trash-cli" "ncdu" "ruby-rouge" "wireguard-tools" "bc" "ufw" "neovim"
+          "zip" "fzf" "magic-wormhole" "zsh" "nodejs" "npm" "xclip")
+
+# Función para verificar si un paquete está instalado
+paquete_instalado() {  
+    pacman -Q "$1" &> /dev/null
+}
+
+# Instalación de los paquetes
+for paquete in "${paquetes[@]}"; do
+    if paquete_instalado "$paquete"; then
+        echo "El paquete $paquete ya está instalado."
+    else
+        echo "Instalando el paquete $paquete..."
+        sudo pacman -Syu --noconfirm "$paquete"
+    fi
+done
+
 
 #sudo npm install -g joplin
 

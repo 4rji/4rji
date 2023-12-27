@@ -44,42 +44,31 @@ sudo cp ~/4rji/binarios/* /usr/bin/
 
 
 #paso 2 instalar herramientas, crear alias, y mover binarios
-sudo apt-get install python3-pip -y
-sudo apt install net-tools -y
-sudo apt install wormhole -y
-sudo apt install ranger -y
-sudo apt install scrub -y
-sudo apt install shred -y
-sudo apt install curl -y
-sudo apt install kitty -y
-sudo apt install tmux -y
-sudo apt install dialog -y
-sudo apt install iptables -y
-sudo apt install openvpn -y
-sudo apt install nmap -y
-sudo apt install mesa-utils -y
-sudo apt install lm-sensors -y
-sudo apt install firejail -y 
-sudo apt install lf -f
-sudo apt install proxychains -f
-sudo apt install bc -f
-sudo apt install neofetch -f
-sudo apt install ufw -f
-sudo apt install lsd -y
-sudo apt install bat -y
-sudo apt install btop -y
-sudo apt install tldr -y
-sudo apt install backintime-qt -y
-sudo apt install trash-cli -y
-sudo apt install ncdu -y
-sudo apt install ruby-rouge -y
-sudo apt install bat -y
-sudo apt install wireguard-tools -y
-sudo apt install jq -y
-sudo apt install bc -y
-sudo apt install ufw -y
+
+# Lista de paquetes a instalar
+paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" "python3-pip" "net-tools" 
+          "wormhole" "ranger" "scrub" "shred" "curl" "kitty" "tmux" "dialog" 
+          "iptables" "openvpn" "nmap" "mesa-utils" "lm-sensors" "firejail" 
+          "lf" "proxychains" "neofetch" "lsd" "btop" "tldr" "backintime-qt" 
+          "trash-cli" "ncdu" "ruby-rouge" "wireguard-tools" "bc" "ufw")
+
+# Función para verificar si un paquete está instalado
+paquete_instalado() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Instalación de los paquetes
+for paquete in "${paquetes[@]}"; do
+    if paquete_instalado "$paquete"; then
+        echo "El paquete $paquete ya está instalado."
+    else
+        echo "Instalando el paquete $paquete..."
+        sudo apt-get install -y "$paquete"
+    fi
+done
 
 
+cp neofetch_config.conf ~/.config/neofetch/config.conf
 
 ./fix-4rji.sh
 ./tmux_zsh.sh
