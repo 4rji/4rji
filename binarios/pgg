@@ -10,10 +10,16 @@ paquete_instalado() {
 dpkg -l "$1" | grep -q '^ii'  
 }
 
-for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
-sudo apt-get install -y "$paquete"  
-fi  
+for paquete in "${paquetes[@]}"; do
+    if paquete_instalado "$paquete"; then
+        echo "El paquete $paquete ya está instalado."
+    else
+        echo "Instalando el paquete $paquete..."
+        sudo apt-get install -y "$paquete"
+    fi
 done
+
+sleep 1
 
 
 
