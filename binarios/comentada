@@ -19,11 +19,11 @@ modify_file() {
 
     while [ "$continue_modifying" = "y" ]; do
         echo "Archivo seleccionado: $file_path"
-        echo "Por favor, ingresa la cadena de texto para buscar las líneas que deseas comentar (por ejemplo, 'colors'):"
+        echo "Por favor, ingresa la cadena de texto para buscar las líneas que deseas comentar (por ejemplo, 'colors'), la búsqueda será insensible a mayúsculas/minúsculas:"
         read search_term
 
-        # Buscar todas las líneas que coincidan y almacenarlas en un array
-        mapfile -t lines < <(grep -n "^$search_term" "$file_path")
+        # Buscar todas las líneas que coincidan (insensible a mayúsculas/minúsculas) y almacenarlas en un array
+        mapfile -t lines < <(grep -ni "^$search_term" "$file_path")
         if [ ${#lines[@]} -eq 0 ]; then
             echo "No se encontró ninguna línea que comience con '$search_term'."
             continue
@@ -47,10 +47,9 @@ modify_file() {
         local selected_line_number=$(echo "${lines[$((selection-1))]}" | cut -f1 -d:)
 
         # Mostrar la línea seleccionada
-        echo ""
+                echo ""
         echo "    *****   Línea encontrada para comentar ##    *****"
         echo ""
-        
         sed -n "${selected_line_number}p" "$file_path"
 
         # Comentar la línea seleccionada y pedir contenido para agregar debajo
@@ -82,3 +81,11 @@ else
     echo "El archivo no existe."
     exit 1
 fi
+
+
+
+
+ 
+
+
+
