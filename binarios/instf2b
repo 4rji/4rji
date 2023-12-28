@@ -20,10 +20,30 @@ done
 sleep 1
 
 
-
-
-sudo apt install fail2ban
 sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+
+# Ruta al archivo jail.local de Fail2Ban
+JAIL_FILE="/etc/fail2ban/jail.local"
+
+# Verificar si el archivo existe
+if [[ -f "$JAIL_FILE" ]]; then
+    # Crear una copia de seguridad del archivo original
+    sudo cp "$JAIL_FILE" "${JAIL_FILE}.bak"
+
+    # Comentar las líneas especificadas
+    sudo sed -i '/^\[sshd\]/,/^backend = %\(sshd_backend\)s/s/^/#/' "$JAIL_FILE"
+
+    # Añadir las nuevas líneas al principio del archivo
+    sudo sed -i '1 i\[sshd]\nenabled = true\nport = ssh\nfilter = sshd\nlogpath = /var/log/auth.log\nmaxretry = 2\n' "$JAIL_FILE"
+
+    echo "Modificaciones aplicadas con éxito."
+else
+    echo "El archivo $JAIL_FILE no existe."
+fi
+
+
+sleep 1
 
 
 #esto de arriba se cambio por el script binario f2u 
@@ -56,6 +76,7 @@ echo ""
 
 echo "no se te olvide cambiar los tiempos de jail con f2mod alias"
 echo "para tiempo ilimitado: bantime = -1"
+echo "para ver los comandos de nuevo f2bcomm"
 #Comandos de fail2ban f2b
 
 #f2b = banea una IP
