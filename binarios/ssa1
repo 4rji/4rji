@@ -22,3 +22,5 @@ echo "  *** user ***"
 whoami
 echo ""
 echo ""
+echo " *** Puerto de escucha: ***"
+grep -E '^#?Port ' /etc/ssh/sshd_config
