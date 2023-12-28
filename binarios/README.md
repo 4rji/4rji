@@ -52,7 +52,7 @@ sntp                instala chrony
 sshmod              modifica ssh y hace copia                                                          
 ufwinst             instala ufw y crea regla para puerto ssh                                           
 ddf                 hace un diff archivo vs archivo.backup                                             
-instf2b             instala ubuntu f2ban                                                               
+f2binst             instala ubuntu f2ban                                                               
 f2bcomm             fail2ban f2b comandos                                                              
 expo4               crea un archibo clip1 del portapapeles para expo5                                  
 expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen              
