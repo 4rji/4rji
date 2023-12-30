@@ -112,6 +112,7 @@ echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc
 echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
+echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
 
 echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
 

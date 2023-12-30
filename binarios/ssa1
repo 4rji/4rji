@@ -11,8 +11,9 @@ echo "$output" | grep 'Active:'
 # Agregar un renglón de separación
 echo ""
 
-ip addr | grep "inet "
-
+#ip addr | grep "inet "  #con inet
+#ip -4 addr show | awk '/inet/ && /brd/ {print $NF, $2}'    #con subned /24
+ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); print $NF, a[1]}'
 
 
 # Agregamos el mensaje con la IP local
