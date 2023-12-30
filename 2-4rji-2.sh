@@ -5,7 +5,8 @@ sudo mkdir -p /respaldos
 sudo cp zshrc.original /respaldos
 cp kitty/* ~/.config/kitty/ 
 
-
+#sudo mv kitty.png /usr/share/icons/hicolor/256x256/apps/kitty.png
+#gtk-update-icon-cache en caso de que no cambie el icono
 # adding wallpaper for me
 
 #login picture #Directorio de las imagenes del login in
