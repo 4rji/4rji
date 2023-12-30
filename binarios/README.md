@@ -162,3 +162,4 @@ apachenombre.       Instrucciones para remover el nombre del banner de apache y 
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
 
 protoninst          Instala protonvpn en kali o debian 
+sshkitty            kitty +kitten ssh 
