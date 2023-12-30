@@ -27,10 +27,20 @@ done
 
 
 
-echo "***************IP local ********"
+echo "*******IP local*******"
 
 #hostname -I | awk '{print $1}'
 hostname -I | awk '{print $1 " | " $2}'
+
+echo ""
+
+echo "----ip_addr_show----"
+#ip -4 addr show | awk '/inet/ && /brd/ {print $NF, $2}'
+
+tempfile=$(mktemp)
+ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); print $NF, a[1]}' > "$tempfile"
+batcat -l rb "$tempfile"
+
 #hostname -I | awk '{print $1 " | " $2 " | " $3}'
 echo ""
 echo "IP publica localmente encontrada"
