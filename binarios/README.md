@@ -32,6 +32,8 @@ sshcopy             genera y copia al host la clave ssh
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 solobin             actualiza solo los binarios despues de descargarlso de nuevo                       
 binar               mueve un script a el directorio /usr/bin                                           
+f2binst             instala debian fail2ban f2b                                                               
+f2bcomm             fail2ban f2b comandos  
 
 cscp                copiar archivos en scp en lugar de sftp                       
 lid                 cambia el comportamiento de lid laptop                                             
@@ -52,8 +54,7 @@ sntp                instala chrony
 sshmod              modifica ssh y hace copia                                                          
 ufwinst             instala ufw y crea regla para puerto ssh                                           
 ddf                 hace un diff archivo vs archivo.backup                                             
-f2binst             instala ubuntu f2ban                                                               
-f2bcomm             fail2ban f2b comandos                                                              
+                                                            
 expo4               crea un archibo clip1 del portapapeles para expo5                                  
 expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen              
 msmb                monta un smb o samba.                                                              
