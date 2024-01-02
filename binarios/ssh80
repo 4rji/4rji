@@ -1,23 +1,31 @@
 #!/bin/bash
 
-# Preguntar al usuario por el puerto al que desea redirigir el tráfico HTTP 80
-read -p "Ingrese el puerto al que desea redirigir el tráfico HTTP 80: " puerto_destino
+# Preguntar al usuario por el puerto de origen para la redirección
+read -p "Ingrese el puerto de origen para la redirección (por defecto es 80, presione Enter si desea mantenerlo): " puerto_origen
+
+# Asignar el puerto 80 como predeterminado si el usuario no ingresa un puerto
+if [ -z "$puerto_origen" ]; then
+    puerto_origen="80"
+fi
+
+# Preguntar al usuario por el puerto al que desea redirigir el tráfico
+read -p "Ingrese el puerto al que desea redirigir el tráfico del puerto $puerto_origen: " puerto_destino
 
 # Preguntar al usuario por la dirección IP de la máquina de destino
-read -p "Ingrese la dirección IP de la máquina a la que desea redirigir el tráfico: " ip_destino
+read -p "Ingrese la dirección IP de la máquina target: " ip_destino
 
 # Preguntar al usuario por el usuario@IP de la máquina anfitriona y su puerto SSH
 read -p "Ingrese el usuario@IP de la máquina anfitriona: " usuario_anfitrion
 read -p "Ingrese el puerto SSH de la máquina anfitriona: " puerto_ssh
 
 # Construir el comando SSH con los valores ingresados por el usuario
-comando_ssh="ssh -L ${puerto_destino}:${ip_destino}:80 ${usuario_anfitrion} -p ${puerto_ssh}"
+comando_ssh="ssh -L ${puerto_origen}:${ip_destino}:${puerto_destino} ${usuario_anfitrion} -p ${puerto_ssh}"
 
 # Mostrar un mensaje y esperar 1 segundo antes de continuar
 echo "Conectando con el siguiente comando:"
 
 echo "$comando_ssh"
 sleep 2
+
 # Ejecutar el comando SSH
 $comando_ssh
-
