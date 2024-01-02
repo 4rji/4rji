@@ -1,31 +1,39 @@
 #!/bin/bash
 
-# Preguntar al usuario por el puerto de origen para la redirección
-read -p "Ingrese el puerto de origen para la redirección (por defecto es 80, presione Enter si desea mantenerlo): " puerto_origen
-
-# Asignar el puerto 80 como predeterminado si el usuario no ingresa un puerto
-if [ -z "$puerto_origen" ]; then
-    puerto_origen="80"
-fi
-
-# Preguntar al usuario por el puerto al que desea redirigir el tráfico
-read -p "Ingrese el puerto al que desea redirigir el tráfico del puerto $puerto_origen: " puerto_destino
+# Preguntar al usuario por el puerto local a usar para la redirección
+read -p "Ingrese el puerto local a utilizar para la redirección (ejemplo: 9090): " puerto_local
 
 # Preguntar al usuario por la dirección IP de la máquina de destino
-read -p "Ingrese la dirección IP de la máquina target: " ip_destino
+read -p "Ingrese la dirección IP destino (ejemplo: 192.168.122.33): " ip_destino
+
+# Preguntar al usuario por el puerto de destino en la máquina remota (el puerto del servicio, ej. 8000)
+read -p "Ingrese el puerto de destino de la ip anterior (ejemplo: 80): " puerto_remoto
 
 # Preguntar al usuario por el usuario@IP de la máquina anfitriona y su puerto SSH
-read -p "Ingrese el usuario@IP de la máquina anfitriona: " usuario_anfitrion
-read -p "Ingrese el puerto SSH de la máquina anfitriona: " puerto_ssh
+read -p "Ingrese el usuario@IP de la máquina anfitriona (ejemplo: apa@10.0.4.120): " usuario_anfitrion
+read -p "Ingrese el puerto SSH de la máquina anfitriona (por defecto es 22, presione Enter si desea mantenerlo): " puerto_ssh
+
+# Asignar el puerto 22 como predeterminado si el usuario no ingresa un puerto
+if [ -z "$puerto_ssh" ]; then
+    puerto_ssh="22"
+fi
 
 # Construir el comando SSH con los valores ingresados por el usuario
-comando_ssh="ssh -L ${puerto_origen}:${ip_destino}:${puerto_destino} ${usuario_anfitrion} -p ${puerto_ssh}"
+comando_ssh="ssh -L ${puerto_local}:${ip_destino}:${puerto_remoto} ${usuario_anfitrion} -p ${puerto_ssh}"
 
-# Mostrar un mensaje y esperar 1 segundo antes de continuar
+
+# Mostrar un mensaje para usar el navegador
+echo ""
+echo "Usar firefox localhost:$puerto_local"
+sleep 1
+
+echo ""
 echo "Conectando con el siguiente comando:"
+echo ""
 
 echo "$comando_ssh"
 sleep 2
 
 # Ejecutar el comando SSH
 $comando_ssh
+
