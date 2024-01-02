@@ -164,3 +164,4 @@ clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta
 protoninst          Instala protonvpn en kali o debian 
 sshkitty            kitty +kitten ssh 
 ssh80               Conecta con ssh -L para redirijir trafico desde una maquina a otra, a browser 
+metas               Script que inicia metasploit con base de datos
