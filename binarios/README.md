@@ -163,3 +163,5 @@ clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta
 
 protoninst          Instala protonvpn en kali o debian 
 sshkitty            kitty +kitten ssh 
+ssh80-help          Para acceder a la web de otra maquina metasploitable se usa el comando 
+ssh80               ssh -L 9090:192.168.182.128:80 sha@10.0.4.120 -p 2244  y luego localhost:9090
