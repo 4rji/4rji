@@ -13,3 +13,10 @@ read host_ip
 # Copiar la clave SSH al host
 ssh-copy-id -i ~/.ssh/id_ed25519.pub "${host_user}@${host_ip}"
 
+#especificar el puerto - no lo he probado con el script
+#el comando es:
+# ssh-copy-id -i id_ed25519.pub -p 2244 casadassh@10.0.4.171
+
+#con el script:
+#ssh-copy-id -i id_ed25519.pub -p 2244 "${host_user}@${host_ip}"
+
