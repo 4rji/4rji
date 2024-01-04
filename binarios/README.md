@@ -163,12 +163,18 @@ servicios           Encuentra servicios que no son del kernel linux corriendo.
 minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 grafanainst         Instala grafana y prometheus 
 
+
+
 #antivirus y malware
 rkhun               Instala, actualiza y ejecuta el scaneo rkhunter
 apachenombre.       Instrucciones para remover el nombre del banner de apache y nginx
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
 splunkinst          instala Splunk y crea un alias para uniciar en zsh
 splunkforw          Splunk universal forwarder, instala .deb automaticamente. Win-Linux-Mac-freebsd 
+testnids            curl http://testmynids.org/uid/index.html 
+suricatainst        Instala suricata, largo proceso
+suricatalog         tail -f /var/log/suricata/fast.log
+
 
 protoninst          Instala protonvpn en kali o debian 
 sshkitty            kitty +kitten ssh 
