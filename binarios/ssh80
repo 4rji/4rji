@@ -24,7 +24,7 @@ comando_ssh="ssh -L ${puerto_local}:${ip_destino}:${puerto_remoto} ${usuario_anf
 
 # Mostrar un mensaje para usar el navegador
 echo ""
-echo "Usar firefox localhost:$puerto_local"
+echo "Usar firefox localhost:$puerto_local para acceder al recurso de $ip_destino"
 sleep 1
 
 echo ""
