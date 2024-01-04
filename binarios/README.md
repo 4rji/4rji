@@ -161,6 +161,8 @@ grafanainst         Instala grafana y prometheus
 rkhun               Instala, actualiza y ejecuta el scaneo rkhunter
 apachenombre.       Instrucciones para remover el nombre del banner de apache y nginx
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
+splunkinst          instala Splunk y crea un alias para uniciar en zsh
+splunkforw          Splunk universal forwarder, instala .deb automaticamente. Win-Linux-Mac-freebsd 
 
 protoninst          Instala protonvpn en kali o debian 
 sshkitty            kitty +kitten ssh 
