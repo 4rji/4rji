@@ -78,7 +78,7 @@ fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se 
 
 mackali	            Cambia la MAC de kali
 mackarch            Cambia la MAC de arch linux
-buscando            Busca comandos para usar grep awk
+buscando            Comandos para usar grep awk, # ls -l email* para buscar archivos empiezan email
 todo_{algo}         Busca en alias y readme info
 mirar	            Hace un watch -n 1 comando, como netstat, o reglas.
 sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
