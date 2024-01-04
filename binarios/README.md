@@ -78,7 +78,6 @@ fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se 
 
 mackali	            Cambia la MAC de kali
 mackarch            Cambia la MAC de arch linux
-buscando            Comandos para usar grep awk, # ls -l email* para buscar archivos empiezan email
 todo_{algo}         Busca en alias y readme info
 mirar	            Hace un watch -n 1 comando, como netstat, o reglas.
 sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
@@ -111,9 +110,16 @@ fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descar
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 conexiones          Muestra nmcli conexiones nmcli -p device show y show --active red ethernet speed 
+sys                 Systemctl ss= stop / sa= start / st= status / enn =enable --now 
+
+#buscar cosas en linux
+buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
+comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
+limpiar	            Limpiar un archivo buscando, awk grep palabra.
+buscando            Comandos para usar grep awk, # ls -l email* para buscar archivos empiezan email
 grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
 
-limpiar	            Limpiar un archivo buscando, awk grep palabra.
+
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
 sshmonitor          sshmoni loop para correr el sshmoni while loop
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
@@ -121,8 +127,8 @@ killsshauto         Cierra automaticamente todos los PID de ssh que encuentro co
 killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
 sshmoni             Este busca conexiones activas ssh, muestra procesos PID y luego ejecuta killsshmanual
 itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap -sV -sC
-buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
-comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
+
+
 
 #Puertos            Para esconder puertos
 artilleria          Instala el honeypot artilleria
@@ -169,3 +175,4 @@ sshkitty            kitty +kitten ssh
 ssh80               Conecta con ssh -L para redirijir trafico desde una maquina a otra, a browser 
 metas               Script que inicia metasploit con base de datos
 findme              Usa el comando find para buscar archivos
+depurar             para depurar un script y ver su ejecusion: ❯  bash -x ./script
