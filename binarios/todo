@@ -50,13 +50,12 @@ if [ ! -f "$file" ]; then
 fi
 
 
-
-#!/bin/bash
+#en caso de error en arch, remover batcat del comando de abajo
 
 file="$HOME/.todo.txt"
 
 if [ -f "$file" ]; then
-    cat "$file" | grep "$1"
+    cat "$file" | grep "$1" | batcat -l rb 
 else
     echo "El archivo $file no existe."
 fi
