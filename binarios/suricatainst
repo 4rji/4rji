@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Instalar Suricata
+sudo apt install suricata
+
+# Habilitar y arrancar Suricata
+sudo systemctl enable --now suricata
+
+# Configurar la interfaz en modo promiscuo
+sudo ip link set eth0 promisc on
+
+# Mostrar instrucciones de configuración
+echo "-----------------------------------------"
+echo "Sigue las siguientes instrucciones:"
+echo "1. Edita el archivo de configuración de Suricata:"
+echo "   sudo nano /etc/suricata/suricata.yaml"
+echo "   - Cambia la dirección de HOME_NET a \"[10.0.4.0/24]\""
+echo "2. Verifica la interfaz en el archivo suricata.yaml:"
+echo "   af-packet:"
+echo "   - interface: eth0"
+echo "3. Checa la ruta por defecto de las reglas:"
+echo "   default-rule-path: /etc/suricata/rules"
+echo "4. Ejecuta los siguientes comandos:"
+echo "   sudo suricata-update -o /etc/suricata/rules"
+echo "   sudo systemctl restart suricata"
+echo "   sudo suricata -T -c /etc/suricata/suricata.yaml -v"
+echo "-----------------------------------------"
+
+# Mensaje final
+echo "Para ver los logs, ejecuta: "
+echo ""
+echo "tail -f /var/log/suricata/fast.log"
+
