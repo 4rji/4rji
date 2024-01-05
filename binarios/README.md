@@ -121,6 +121,16 @@ grephn              Hace una busqueda de una palabra especifica en un directorio
 
 
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
+grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
+
+
+#Manipulacion archivos
+limpiar             Limpiar un archivo buscando, awk grep palabra.
+buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
+comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
+
+
+#ssh
 sshmonitor          sshmoni loop para correr el sshmoni while loop
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
@@ -128,6 +138,12 @@ killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmo
 sshmoni             Este busca conexiones activas ssh, muestra procesos PID y luego ejecuta killsshmanual
 itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap -sV -sC
 
+
+#Network
+fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea
+wificonect          Usa el comando nmcli para conectar una red wifi en kali
+minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
+conexiones          Muestra nmcli conexiones nmcli -p device show y show --active red ethernet speed
 
 
 #Puertos            Para esconder puertos
@@ -142,7 +158,6 @@ iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
 bateriamonitor      Muestra los watts y el estado de carga en kali
-wificonect          Usa el comando nmcli para conectar una red wifi en kali  
 
 #seguridad de sistemas
 iarpon              Arpon para protejer de arp poising. arp sniff 
@@ -160,7 +175,6 @@ disl                Distrobox list script que corre y muestra lista de distros
 disefimero          Crea un distrobox efimero
 disapp              Ejecuta una aplicacion en un contenedor determinador despues del script 
 servicios           Encuentra servicios que no son del kernel linux corriendo.
-minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 grafanainst         Instala grafana y prometheus 
 
 
