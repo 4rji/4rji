@@ -125,7 +125,7 @@ echo "alias 4rj='cd $HOME/Documents/GitHub/4rji/binarios'"  >> ~/.zshrc
 
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
-echo 'alias clipo='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
+echo 'alias clipc='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 echo "alias nodormir='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'" >> ~/.zshrc
 

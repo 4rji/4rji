@@ -10,7 +10,7 @@ lines_to_insert=(
     "KerberosAuthentication no"
     "GSSAPIAuthentication no"
     "X11Forwarding no"
-    "MaxAuthTries 3"
+    "MaxAuthTries 2"
     "LoginGraceTime 20"
     "PermitUserEnvironment no"
     "AllowAgentForwarding no"
@@ -24,9 +24,11 @@ lines_to_insert=(
     "MaxAuthTries 2"
     "MaxSessions 1"
     "PubkeyAuthentication yes"
-    "ClientMaxAliveCount 2"
+    "#ClientMaxAliveCount 2"
     "Banner /etc/mctcbanner"
 )
+
+
 
 # Reemplazar o agregar las líneas especificadas en el archivo sshd_config
 for line in "${lines_to_insert[@]}"; do

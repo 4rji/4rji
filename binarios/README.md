@@ -1,19 +1,29 @@
 Github              binarios       
 
-#Arch linux
+###------Arch linux
 instpkg             Instala un paquete en arch makepkg -si PKGBUILD
 instermius          Instala termius en arch con yay   
 instparu            instala para y scrub para arch (debian no necesita)                                
+ssa_arch            ssa para arch linux                                                                
+mackarch            Cambia la MAC de arch linux
+aliasarch           Arregla los alias en arch
+aliasarch           Arregla los alias en arch
 
+###------hardware stuff
+bateriamonitor      Muestra los watts y el estado de carga en kali
+bateria             new script con bateria en lugar de alias                                           
+tempe               or tempe -f temperatura de arch linux y -f crea un archivo con los datos de tempe  
 
-
-#utilidades sistema
+###------utilidades sistema
+todo_{algo}         Busca en alias y readme info
 4rji                el programa y busqueda de scripts                                                  
 4rjic	            Muestra una lista simple de 4rji
 4rjia	            Muestra los alias
 whx_{binario}       hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired     
 whr_{binario}       hace un nano a un binario    
-cxx                 chmod +x y luego ./ ejecuta el script                                              
+cxx                 chmod +x y luego ./ ejecuta el script
+cx                  chmod +x sin ejecutarlo
+timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
 binar               mueve un script a el directorio /usr/bin                                           
 ruta_{archivo}      copia la ruta del archivo en el portapapeles                                       
 sys                 Systemctl ss= stop / sa= start / st= status / enn =enable --now 
@@ -32,131 +42,86 @@ cscp                copiar archivos en scp en lugar de sftp
 csftp               copia un archivo por sftp hubicado en home, pregunta la IP y usuario y archivo     
 reset               limpia la terminal
 weather             Muestra el clima geolocalizacion usar
+depurar             para depurar un script y ver su ejecusion: ❯  bash -x ./script
+sshkitty            kitty +kitten ssh 
+lfcd                para moverme con cd  #copiar el plugin a zsh                                       
+genarc              genera archivos conjuntos de 100 MB
+ddf                 hace un diff archivo vs archivo.backup                                             
+copdir	            Copia un directorio por medio de ssh scp
+mackali	            Cambia la MAC de kali
+ncdu                para ver los archivos grandes, muestra el directorio como tree cool
+netevils            aun no se                                                                          
+fzf                 buscador bueno, solo tipiar fzf 
+btop                Bueno, mejor que htop top #m to see the menu
+tldr                Te dice como usar otras herramientas #ejemplo tldr ffmpeg
 
-#Repositorios
+###------Repositorios
 fixme               corre fix-4rji para solucionar repositorios despuies de la instalacion             
 repos               vuelve a instalar por defaul los repos de kali cuando no funcionan.                
+fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp
 
-#nmap scaners
+###------nmap scaners
 nombre_{IP}         Da el nombre de la maquina si es linux o windows                                   
 scanporty           python3 program que hace un escaneo y pregunta el numero de puertos.               
 nsweep_{192.168.1}  hace un nmap -sn en la red para buscar maquinas activas.                           
 puertos2            nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl (probar varios firefox)
 expo4               crea un archibo clip1 del portapapeles para expo5                                  
 expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen   
+sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
 
-#Nessus
+###------Nessus
 nessus              activa nesus y muestra el puerto donde abrirlo en firefox                          
 nessus_-s           para nessus                                                                        
 nessusinst          instalar nessus   
 
-#fail2ban
+###------fail2ban
 f2binst             instala debian fail2ban f2b                                                               
 f2bcomm             fail2ban f2b comandos 
 
-#para bspwx
+###------para bspwx
 target1             cambia el estatus de la bateria por cualquier otra cosa que se quiera poner ahi    
 asd                 copia el contenido de target1 a el portapapeles                                    
 fixethernet         Arregla la red del script ethernet_status para bspwx escritorio
 
-#hardware stuff
-bateriamonitor      Muestra los watts y el estado de carga en kali
-bateria             new script con bateria en lugar de alias                                           
-tempe               or tempe -f temperatura de arch linux y -f crea un archivo con los datos de tempe  
+###------artilleria
+artilleria          Instala el honeypot artilleria
+unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP me pregunta
+restartarti         Reinicia el servicio artilleria
 
+###------portspoof
+portfake            Instala portspoof emula servicios para nmap, instala todo
+faketables          aplica las reglas para portspoof, IPTABLES, proteje puertos y redirecciona trafico
+iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 
-                                                    
-                                                     
-lfcd                para moverme con cd  #copiar el plugin a zsh                                       
-surfeando2          crea una conexion ssh para proxychains por 1080                                    
-                                                                 
-ebanner             cambia el banner de ssh y crea un alias                                            
-bannere             abre el editor de ssh                                                              
-
-
-
-fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
-ssa_arch            ssa para arch linux                                                                
-archivotemporal	    Un binario que muestra como hacer un archivo en la carpeta tmp temporal
-bannerm             Hace un banner para ssh                                                            
-hardnet             modifica ipv4 y tambien ipv6  hardnetu p/ubuntu                                    
-nameser             cambia name server y hace copia #nameseru p/ubuntu                                 
-netevils            aun no se                                                                          
-sntp                instala chrony                                                                     
-sshmod              modifica ssh y hace copia                                                          
-ufwinst             instala ufw y crea regla para puerto ssh                                           
-ddf                 hace un diff archivo vs archivo.backup                                             
-                                                            
-           
-fzf                 buscador bueno, solo tipiar fzf                                                    
-
-
-
-genarc              genera archivos conjuntos de 100 MB
-dockercp            Alias que muestra el formato para copiar archivos en docker
-instsurf            instala surfeando                                                                  
-rempal              Reemplaza una palabra dentro de un archivo
-surempal            Reemplaza una palabra con sudo dentro de un archivo
-aliasarch           Arregla los alias en arch
-copdir	            Copia un directorio por medio de ssh scp
-
-
-mackali	            Cambia la MAC de kali
-mackarch            Cambia la MAC de arch linux
-todo_{algo}         Busca en alias y readme info
-sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
-catr                Es un alias para aplicar un cat con colores para codigo, ruby
-btop                Bueno, mejor que htop top #m to see the menu
-tldr                Te dice como usar otras herramientas #ejemplo tldr ffmpeg
-instdebian          basic debian apps for clean debian12
-maskapps            hace un mask a telnet ftp para ccdc
-chdns	            Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
-ncdu                para ver los archivos grandes, muestra el directorio como tree cool
-
-
-rempal              Reemplaza una palabra dentro de un archivo
-surempal            Reemplaza una palabra con sudo dentro de un archivo
-aliasarch           Arregla los alias en arch
-qemuins             Instala qemu y virtual en debian o arch
-
-
-
-nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
-fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp
-instsublime         Instala sublime en kali
-instgithub          Instala github desktop en kali
-timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
-depurar             para depurar un script y ver su ejecusion: ❯  bash -x ./script
-sshkitty            kitty +kitten ssh 
-
-#ccdc
+###------ccdc
 rootcheck           checa varios archivos .bash ...                                                    
 crontt	            Muestra crontabs de usuario actual y root
 crontodo            Muestra crontab de todos
+ebanner             cambia el banner de ssh y crea un alias                                            
+bannere             abre el editor de ssh    
+bannerm             Hace un banner para ssh                                                            
+hardnet             modifica ipv4 y tambien ipv6  hardnetu p/ubuntu                                    
+maskapps            hace un mask a telnet ftp para ccdc
+sshmod              modifica ssh y hace copia                                                          
+sntp                instala chrony                                                                     
 
 
-#buscar cosas en linux
+###------buscar cosas en linux
 buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
 comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
 buscando            Comandos para usar grep awk, # ls -l email* para buscar archivos empiezan email
 grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
 mirar	            Hace un watch -n 1 comando, como netstat, o reglas.
+rempal              Reemplaza una palabra dentro de un archivo
+surempal            Reemplaza una palabra con sudo dentro de un archivo
+limpiar             Limpiar un archivo buscando, awk grep palabra.
+buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
+comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
+findme              Usa el comando find para buscar archivos
 
 
-
-#Puertos            Para esconder puertos
-artilleria          Instala el honeypot artilleria
-unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP me pregunta
-restartarti         Reinicia el servicio artilleria
-#portspoof
-portfake            Instala portspoof emula servicios para nmap, instala todo
-faketables          aplica las reglas para portspoof, IPTABLES, proteje puertos y redirecciona trafico
-iniciafakep         alias para iniciar el portspoof, despues de instalarlo
-
-
-
-#ssh
+###------ssh
 sshmonitor          sshmoni loop para correr el sshmoni while loop
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
@@ -166,12 +131,10 @@ itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap 
 ssh80               Conecta con ssh -L para redirijir trafico desde una maquina a otra, a browser 
 fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se duplica	
 copyssh             copia mui clave a una maquina remota                                               
+fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 
 
-
-
-
-#Network
+###------Network
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
 wificonect          Usa el comando nmcli para conectar una red wifi en kali
 minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
@@ -181,19 +144,10 @@ mired               copia eth0 al portapapeles y muestra todas las ips del equip
 miwl                copia wlan0 al portapapeles  
 procesos            Muestra los procesos de los usuarios 
 servicios           Encuentra servicios que no son del kernel linux corriendo.
+chdns	            Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
 
 
-
-#Manipulacion archivos
-limpiar             Limpiar un archivo buscando, awk grep palabra.
-buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
-comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
-findme              Usa el comando find para buscar archivos
-
-
-
-
-#seguridad de sistemas
+###------seguridad de sistemas
 iarpon              Arpon para protejer de arp poising. arp sniff 
 iicmp               para protejer de ataques icmp, solo cambia el 0 a 1 este script
 bucle               Ejecute un while true; do en bucle, pregunta tiempo y comando
@@ -203,7 +157,8 @@ metas               Script que inicia metasploit con base de datos
 
 
 
-#distrobox
+###------distrobox
+dockercp            Alias que muestra el formato para copiar archivos en docker
 fixdockerper        Arregla los permisos de docker para distrobox porque pedia contrasena
 disinst             Instala distrobox docker contenedores y muestra menu de los disponibles
 disarc              Para instalar en arch, pero se puede ejecutar el comando
@@ -213,8 +168,7 @@ disefimero          Crea un distrobox efimero
 disapp              Ejecuta una aplicacion en un contenedor determinador despues del script 
 
 
-
-#antivirus y malware
+###------antivirus y malware
 rkhun               Instala, actualiza y ejecuta el scaneo rkhunter
 apachenombre        Instrucciones para remover el nombre del banner de apache y nginx
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
@@ -225,12 +179,18 @@ suricatainst        Instala suricata, largo proceso
 suricatalog         tail -f /var/log/suricata/fast.log
 
 
-
-#utilidades instalaciones
+###------utilidades instalaciones
 torrelay            Instala tor relay, probado en debian
 protoninst          Instala protonvpn en kali o debian 
 grafanainst         Instala grafana y prometheus 
 instpalabras        El diccionario para crear palabras o al revez nwiz se llama
 instzero            Zerotier scrip like tailscale
 emailscraper        ejecuta una herramienta de un curso para buscar emails                             
-crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory                                                      
+crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory
+nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
+ufwinst             instala ufw y crea regla para puerto ssh                                           
+instdebian          basic debian apps for clean debian12
+instsurf            instala surfeando                                                                  
+qemuins             Instala qemu y virtual en debian o arch
+instsublime         Instala sublime en kali
+instgithub          Instala github desktop en kali
