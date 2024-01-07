@@ -1,0 +1,36 @@
+#!/bin/bash
+echo ""
+echo "Se ejecutara un escaneo de puertos y se generara un archivo"
+echo "xml para abrir con firefox, usa sweep, ips  y puertos"
+echo ""
+# Pide al usuario que ingrese la subred
+echo "Ingresa la subred que deseas escanear (ejemplo: 10.0.0):"
+read subnet
+
+# Ejecuta el comando sweep y guarda las IPs en un archivo
+sudo sweep $subnet > ips.txt
+
+# Muestra las IPs
+cat ips.txt
+
+# Pregunta al usuario qué tipo de escaneo desea realizar
+echo "¿Qué escaneo deseas realizar?"
+echo "1.- Puertos: nmap -v --reason -sS -oX puertos.xml"
+echo "2.- Puertos2: nmap -A -O -sV -oX puerto.xml"
+read opcion
+
+# Ejecuta el comando nmap basado en la elección del usuario
+case $opcion in
+    1)
+        sudo nmap -v --reason -sS -iL ips.txt -oX puertos.xml
+        echo "Escaneo de puertos realizado."
+        ;;
+    2)
+        sudo nmap -A -O -sV -iL ips.txt -oX puerto.xml
+        echo "Escaneo de puertos avanzado realizado."
+        ;;
+    *)
+        echo "Opción no válida."
+        ;;
+esac
+

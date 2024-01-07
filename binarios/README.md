@@ -68,6 +68,8 @@ puertos2            nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=ht
 expo4               crea un archibo clip1 del portapapeles para expo5                                  
 expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen   
 sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
+sweeping            nmap xml para abrir con firefox, usa sweep, ips y puertos o puertos2
+
 
 ###------Nessus
 nessus              activa nesus y muestra el puerto donde abrirlo en firefox                          
