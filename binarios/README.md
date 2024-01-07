@@ -93,17 +93,18 @@ portfake            Instala portspoof emula servicios para nmap, instala todo
 faketables          aplica las reglas para portspoof, IPTABLES, proteje puertos y redirecciona trafico
 iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 
+
 ###------ccdc
-rootcheck           checa varios archivos .bash ...                                                    
-crontt	            Muestra crontabs de usuario actual y root
-crontodo            Muestra crontab de todos
+rootcheck           checks various shell configuration files .bash zsh ...
+crontt              Shows crontabs of the current user and root
+crontall            Shows crontab of everyone
+hardnet             modifies ipv4 and also ipv6 hardnetu for Ubuntu
+maskapps            masks telnet ftp for ccdc
+sshmod              modifies ssh and makes a backup
+sntp                installs chrony                                                                    
 ebanner             cambia el banner de ssh y crea un alias                                            
 bannere             abre el editor de ssh    
-bannerm             Hace un banner para ssh                                                            
-hardnet             modifica ipv4 y tambien ipv6  hardnetu p/ubuntu                                    
-maskapps            hace un mask a telnet ftp para ccdc
-sshmod              modifica ssh y hace copia                                                          
-sntp                instala chrony                                                                     
+bannerm             Hace un banner para ssh   
 
 
 ###------buscar cosas en linux

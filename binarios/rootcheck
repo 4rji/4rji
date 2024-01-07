@@ -1,27 +1,26 @@
+#!/bin/bash
 
-#!/bin/zsh
-
-read -p "¿Desea ejecutar los comandos? (y/n): " yn
+read -p "Do you want to execute the commands? (y/n): " yn
 
 case $yn in
     [Yy]* )
-        read -p "Presiona Enter para ejecutar 'sudo cat /root/.bashrc': " 
+        read -p "Press Enter to execute 'sudo cat /root/.bashrc': " 
         sudo cat /root/.bashrc
-        read -p "Presiona Enter para ejecutar 'sudo cat /root/.shrc': " 
+        read -p "Press Enter to execute 'sudo cat /root/.shrc': " 
         sudo cat /root/.shrc
-        read -p "Presiona Enter para ejecutar 'sudo cat /root/.cshrc': " 
+        read -p "Press Enter to execute 'sudo cat /root/.cshrc': " 
         sudo cat /root/.cshrc
-        read -p "Presiona Enter para ejecutar 'sudo cat /root/.tcshrc': " 
+        read -p "Press Enter to execute 'sudo cat /root/.tcshrc': " 
         sudo cat /root/.tcshrc
-        read -p "Presiona Enter para ejecutar 'sudo cat /root/.profile': " 
+        read -p "Press Enter to execute 'sudo cat /root/.profile': " 
         sudo cat /root/.profile
-        read -p "Presiona Enter para ejecutar 'sudo cat /root/.bash_profile': " 
+        read -p "Press Enter to execute 'sudo cat /root/.bash_profile': " 
         sudo cat /root/.bash_profile
         ;;
     [Nn]* ) 
-        echo "No se ejecutaron los comandos."
+        echo "Commands were not executed."
         ;;
     * ) 
-        echo "Por favor responda y o n."
+        echo "Please answer y or n."
         ;;
 esac

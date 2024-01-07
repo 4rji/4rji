@@ -1,9 +1,9 @@
-#!/bin/zsh
+#!/bin/bash
 
-# Hacer una copia de seguridad del archivo sshd_config
+# Backup the sshd_config file
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
 
-# Definir las líneas a buscar e insertar en el archivo
+# Define the lines to search for and insert in the file
 lines_to_insert=(
     "PermitRootLogin no"
     "PermitEmptyPasswords no"
@@ -28,9 +28,7 @@ lines_to_insert=(
     "Banner /etc/mctcbanner"
 )
 
-
-
-# Reemplazar o agregar las líneas especificadas en el archivo sshd_config
+# Replace or add the specified lines in the sshd_config file
 for line in "${lines_to_insert[@]}"; do
     if ! sudo grep -q "^$line" /etc/ssh/sshd_config; then
         echo "$line" | sudo tee -a /etc/ssh/sshd_config
@@ -39,17 +37,17 @@ for line in "${lines_to_insert[@]}"; do
     fi
 done
 
-# Preguntar si se desea reiniciar el servicio sshd
-read -p "¿Desea reiniciar el servicio SSH? (s/n): " response
+# Ask if the user wants to restart the SSH service
+read -p "Do you want to restart the SSH service? (y/n): " response
 
-# Verificar la respuesta
-if [[ $response == "s" ]]; then
-    # Reiniciar el servicio sshd
+# Verify the response
+if [[ $response == "y" ]]; then
+    # Restart the sshd service
     sudo service ssh restart
 else
-    echo "Operación cancelada."
+    echo "Operation cancelled."
 fi
 
-# Mostrar la configuración actual de sshd
+# Show the current configuration of sshd
 echo "sudo sshd -T"
 sudo sshd -T

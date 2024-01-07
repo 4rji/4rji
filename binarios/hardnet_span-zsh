@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Preguntar si se desea modificar /etc/sysctl.conf para Network Hardening
-read -p "¿Desea ejecutar Network Hardening en /etc/sysctl.conf? (s/n): " response
+read -p "¿Desea ejecutar Network Hardening a /etc/sysctl.conf? (s/no-enter-): " response
 
 # Verificar la respuesta
 if [[ $response == "s" ]]; then
@@ -11,7 +11,7 @@ if [[ $response == "s" ]]; then
     # Ajustes en /etc/sysctl.conf
     echo "
 net.ipv4.conf.all.accept_source_route=0
-net.ipv4.ip_forward=0
+ipv4.conf.all.forwarding=0
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 net.ipv6.conf.lo.disable_ipv6 = 1
@@ -27,7 +27,7 @@ net.ipv4.icmp_echo_ignore_all = 0
 
     # Verificar la respuesta sobre reinicio
     if [[ $restart_response == "s" ]]; then
-        sudo sysctl --system
+        sudo sysctl --system  
     else
         echo "Operación cancelada. Los cambios requerirán un reinicio para surtir efecto."
     fi
@@ -35,4 +35,3 @@ net.ipv4.icmp_echo_ignore_all = 0
 else
     echo "Operación cancelada. No se realizaron cambios en /etc/sysctl.conf."
 fi
-
