@@ -34,7 +34,7 @@ else
   echo ""
     echo "El servicio SSH ha sido         **^^  ACTIVADO  ^^**."
 
-    echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlp0s20f3 | grep "inet " | awk '{print $2}')"
+    echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlan0 | grep "inet " | awk '{print $2}')"
     echo "*** Tu usuario es: *** "
     whoami
   else
