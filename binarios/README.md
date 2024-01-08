@@ -54,6 +54,9 @@ netevils            aun no se
 fzf                 buscador bueno, solo tipiar fzf 
 btop                Bueno, mejor que htop top #m to see the menu
 tldr                Te dice como usar otras herramientas #ejemplo tldr ffmpeg
+procesos            Muestra los procesos de los usuarios
+servicios           Encuentra servicios que no son del kernel linux corriendo.
+findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 
 ###------Repositorios
 fixme               corre fix-4rji para solucionar repositorios despuies de la instalacion             
@@ -145,8 +148,6 @@ conexiones          Muestra nmcli conexiones nmcli -p device show y show --activ
 minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 mired               copia eth0 al portapapeles y muestra todas las ips del equipo                      
 miwl                copia wlan0 al portapapeles  
-procesos            Muestra los procesos de los usuarios 
-servicios           Encuentra servicios que no son del kernel linux corriendo.
 chdns	            Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
 
 
