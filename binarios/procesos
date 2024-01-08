@@ -20,20 +20,30 @@ mostrar_procesos() {
         printf "%-15s %-20s %-10s\n" "$user" "$process" "$pid"
     done
 
-    echo "Fin del script."
-    echo "Ejecuta este comando para que no muestre los procesos de root:"
-    echo ""
-    echo "Comando copiado al portapapeles: usar procesos > procesos"
-    echo "procesos | grep -v root"
-    echo "ejemplos: cat procesos | sort | uniq | grep -v palabra1 | grep -v palabra2"
 }
 
-mostrar_procesos
+mostrar_procesos | sort
+
+
 
 echo ""
 
-echo " procesos | grep -v root" | xclip -selection clipboard | exit
+echo " procesos | grep -v root" | sort | xclip -selection clipboard 
 
 echo ""
 
-exit
+  echo "Fin del script."
+    echo ""
+    echo "Ejecuta este comando para que no muestre los procesos de root:"
+    echo "procesos | grep -v root | sort "
+    echo ""
+    echo "Tambien ese comando ya fue copiado al portapapeles"
+    echo ""
+    echo "Puedes usar:\nprocesos > procesos\n"
+    echo "Esto para crear un archivo y buscar algun proceso en especifico"
+    echo ""
+    echo "ejemplos:\ncat procesos | sort | uniq | grep -v palabra1"
+    echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
+    echo "grep -i para incluir, grep -v para excluir root por ejemplo"
+
+
