@@ -68,6 +68,7 @@ nombre_{IP}         Da el nombre de la maquina si es linux o windows
 scanporty           python3 program que hace un escaneo y pregunta el numero de puertos.               
 nsweep_{192.168.1}  hace un nmap -sn en la red para buscar maquinas activas.                           
 puertos2            nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl (probar varios firefox)
+expo                Hace un scaneo con o sin Pn, y lo genera en carpeta tmp, hace expo1, expo2, expo3
 expo4               crea un archibo clip1 del portapapeles para expo5                                  
 expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen   
 sweepall_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168

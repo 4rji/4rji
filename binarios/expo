@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "Selecciona el tipo que deseas usar:"
+echo "1. Ejecutar escaneo sin Pn "
+echo "2. Ejecutar escaneo con Pn "
+read -p "Introduce tu elección (1 o 2): " choice
+
+case $choice in
+    1)
+        echo "Ejecutando source_expo1..."
+        source_expo1
+        ;;
+    2)
+        echo "Ejecutando source_expo1.1..."
+        source_expo1.1
+        ;;
+    *)
+        echo "Opción no válida. Por favor, elige 1 o 2."
+        ;;
+esac

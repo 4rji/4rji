@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+function mktem() {
+    new_dir=$(mktemp -d)
+    echo "Directorio creado en: $new_dir"
+    cd "$new_dir" || return
+    echo "Cambiado al directorio: $PWD"
+}
+
+
+
+
+# Aquí puedes llamar a la función mktem
+mktem
+
+
+echo "Ingrese la dirección IP:"
+read ip_address
+
+#command="nmap -p- --open -T5 -v -n $ip_address -oG allPorts"
+command="nmap -p- --open -T5 -v -n -Pn $ip_address -oG allPorts"
+
+echo "Ejecutando el comando:"
+echo "$command"
+
+eval "$command"
+expo2
+expo3
+
+
+echo ""
+echo "cd /tmp/tmp.qWx9rNhYpk" | xclip -selection clipboard
+
+echo ""
+echo "Directorio copiado al portapapeles"
