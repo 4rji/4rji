@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo "Selecciona el tipo que deseas usar:"
+echo "Selecciona el tipo de escaner que deseas usar:"
 echo "1. Ejecutar escaneo sin Pn "
 echo "2. Ejecutar escaneo con Pn "
-read -p "Introduce tu elección (1 o 2): " choice
+read -p "Elije el nmap que deseas (1 o 2): " choice
 
 case $choice in
     1)

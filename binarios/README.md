@@ -43,7 +43,7 @@ csftp               copia un archivo por sftp hubicado en home, pregunta la IP y
 reset               limpia la terminal
 weather             Muestra el clima geolocalizacion usar
 depurar             para depurar un script y ver su ejecusion: ❯  bash -x ./script
-sshkitty            kitty +kitten ssh 
+ssk                 kitty +kitten ssh 
 lfcd                para moverme con cd  #copiar el plugin a zsh                                       
 genarc              genera archivos conjuntos de 100 MB
 ddf                 hace un diff archivo vs archivo.backup                                             
@@ -143,7 +143,7 @@ ssh80               Conecta con ssh -L para redirijir trafico desde una maquina 
 fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se duplica	
 copyssh             copia mui clave a una maquina remota                                               
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
-
+sshjump             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
 
 ###------Network
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 

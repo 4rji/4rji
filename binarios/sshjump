@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Función para agregar una nueva configuración de host SSH
+agregar_config_ssh() {
+    local host_alias=$1
+    local final_host=$2
+    local jump_host=$3
+    local ssh_config="$HOME/.ssh/config"
+
+    # Crear el archivo config si no existe
+    if [ ! -f "$ssh_config" ]; then
+        touch "$ssh_config"
+        chmod 600 "$ssh_config"
+    fi
+
+    # Descomponer la máquina final en usuario y host
+    local final_user=$(echo $final_host | cut -d'@' -f1)
+    local final_ip=$(echo $final_host | cut -d'@' -f2)
+
+    # Añadir la nueva configuración al final del archivo config
+    echo -e "\nHost $host_alias\n    HostName $final_ip\n    User $final_user\n    ProxyJump $jump_host" >> "$ssh_config"
+}
+
+# Solicitar información al usuario
+read -p "Cual es el alias para la maquina FINAL: " final_alias
+read -p "Usuario de la maquina FINAL usuario@ip : " final_host
+read -p "Ingresa el JUMP host usuario@ip : " jump_host
+
+# Llamar a la función con la información proporcionada
+agregar_config_ssh "$final_alias" "$final_host" "$jump_host"
+echo ""
+echo "La configuración ha sido añadida a ~/.ssh/config"
+echo ""
+cat "$HOME/.ssh/config"
