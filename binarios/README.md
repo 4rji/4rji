@@ -110,6 +110,10 @@ sntp                installs chrony
 ebanner             cambia el banner de ssh y crea un alias                                            
 bannere             abre el editor de ssh    
 bannerm             Hace un banner para ssh   
+chdns               Resolv.conf change
+procesos            Muestra los procesos de los usuarios
+servicios           Encuentra servicios que no son del kernel linux corriendo.
+findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 
 
 ###------buscar cosas en linux
