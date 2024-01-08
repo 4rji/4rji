@@ -198,3 +198,4 @@ instsurf            instala surfeando
 qemuins             Instala qemu y virtual en debian o arch
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
+pythonscritps       instala requerimientos y baje scritps del curso de python
