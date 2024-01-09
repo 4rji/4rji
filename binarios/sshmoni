@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Función para verificar si un paquete está instalado
 paquete_instalado() {  
     dpkg -l "$1" | grep -q '^ii'  
@@ -13,7 +12,6 @@ for paquete in "${paquetes[@]}"; do
         sudo apt-get install -y "$paquete"  
     fi  
 done
-
 
 
 # SSH Port y PID File
@@ -50,10 +48,12 @@ check_ssh_connections() {
 ask_to_kill_connection() {
     echo ""
     echo "Enter the number of the connection you want to kill, or press Enter to exit:"
+    echo ""
     read -t 3 -r selection
 
     if [ -z "$selection" ]; then
         echo "No selection made or time out. Exiting..."
+        echo ""
         exit 0
     elif [[ "$selection" =~ ^[0-9]+$ ]]; then
         handle_connection_selection "$selection"
