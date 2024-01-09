@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Función para agregar una nueva configuración de host SSH
+# Función para agregar configuración al archivo SSH
 agregar_config_ssh() {
     local host_alias=$1
     local final_host=$2
@@ -18,17 +18,39 @@ agregar_config_ssh() {
     local final_ip=$(echo $final_host | cut -d'@' -f2)
 
     # Añadir la nueva configuración al final del archivo config
-    echo -e "\nHost $host_alias\n    HostName $final_ip\n    User $final_user\n    ProxyJump $jump_host" >> "$ssh_config"
+    if [ -z "$jump_host" ]; then
+        echo -e "\nHost $host_alias\n    HostName $final_ip\n    User $final_user" >> "$ssh_config"
+    else
+        echo -e "\nHost $host_alias\n    HostName $final_ip\n    User $final_user\n    ProxyJump $jump_host" >> "$ssh_config"
+    fi
+
+    cat "$HOME/.ssh/config"
+    echo ""
+    echo "La configuración ha sido añadida a ~/.ssh/config"
+    echo ""
+    echo "Para conectar solo ssh hostname"
+    echo ""
 }
 
-# Solicitar información al usuario
-read -p "Cual es el alias para la maquina FINAL: " final_alias
-read -p "Usuario de la maquina FINAL usuario@ip : " final_host
-read -p "Ingresa el JUMP host usuario@ip : " jump_host
+# Menú principal
+echo "Elige una opción:"
+echo "1. Configurar conexión vía jump server"
+echo "2. Configurar conexión directa a un servidor"
+read -p "Selección: " opcion
 
-# Llamar a la función con la información proporcionada
-agregar_config_ssh "$final_alias" "$final_host" "$jump_host"
-echo ""
-echo "La configuración ha sido añadida a ~/.ssh/config"
-echo ""
-cat "$HOME/.ssh/config"
+case $opcion in
+    1)
+        read -p "Ingresa el alias para la máquina final: " final_alias
+        read -p "Ingresa la máquina final en formato usuario@ip: " final_host
+        read -p "Ingresa el jump host en formato usuario@ip: " jump_host
+        agregar_config_ssh "$final_alias" "$final_host" "$jump_host"
+        ;;
+    2)
+        read -p "Ingresa el alias para la máquina: " final_alias
+        read -p "Ingresa la máquina final en formato usuario@ip: " final_host
+        agregar_config_ssh "$final_alias" "$final_host"
+        ;;
+    *)
+        echo "Opción no válida."
+        ;;
+esac
