@@ -1,3 +1,8 @@
-#!/bin/zsh
+#!/bin/bash
 
-curl -s https://install.zerotier.com | sudo bash
+sudo systemctl set-default multi-user.target
+sudo apt install kitty neofetch lsd wget git curl nmap        
+
+rm -rf Music Pictures Public Templates Videos
+
+curl -fsSL https://tailscale.com/install.sh | sh

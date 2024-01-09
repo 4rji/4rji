@@ -194,7 +194,7 @@ torrelay            Instala tor relay, probado en debian
 protoninst          Instala protonvpn en kali o debian 
 grafanainst         Instala grafana y prometheus 
 instpalabras        El diccionario para crear palabras o al revez nwiz se llama
-instzero            Zerotier scrip like tailscale
+zerotierinst        Zerotier scrip like tailscale
 emailscraper        ejecuta una herramienta de un curso para buscar emails                             
 crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory
 nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
@@ -206,3 +206,4 @@ instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 pythonscritps       instala requerimientos y baje scritps del curso de python
 obsidianinst        Instala obsidian en deb, baja paquete e instala notas 
+zeroinst            Script para zero raspberry
