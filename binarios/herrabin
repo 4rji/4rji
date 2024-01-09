@@ -40,3 +40,6 @@ sudo cp -f binarios/* /usr/bin/
 
 echo "binarios actualizados"
 cd
+echo ""
+echo "Si hay: Error opening terminal: xterm-kitty, ejecutar:"
+echo "export TERM=xterm"
