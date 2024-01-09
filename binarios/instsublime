@@ -17,3 +17,16 @@ sudo rm /etc/apt/sources.list.d/sublime-text.list
 echo "Sublime Text ha sido instalado exitosamente."
 
 exit 0
+
+
+#// Settings in here override those in "Default/Preferences.sublime-settings",
+$// and are overridden in turn by syntax-specific settings.
+#{
+#	
+#	"font_size": 17,
+#	"ignored_packages":
+#	[
+#		"Vintage",
+#	],
+#	"index_files": true,
+#}
