@@ -13,7 +13,6 @@ for paquete in "${paquetes[@]}"; do
     fi  
 done
 
-
 # SSH Port y PID File
 SSH_PORT=22
 PID_FILE="/tmp/pidssh"
@@ -28,10 +27,10 @@ check_ssh_connections() {
         echo ""
         local count=1
         echo "$connections" | while IFS= read -r line; do
-            local ip=$(echo "$line" | awk '{print $5}')
+            local ip=$(echo "$line" | awk '{print $5}' | cut -d':' -f1)
             local pid=$(echo "$line" | awk '{print $7}' | grep -o '[0-9]*')
             local user=$(sudo ps -o user= -p "$pid" 2>/dev/null)
-            echo "$count) IP: $ip, User: $user, PID: $pid"
+            echo "$count) SSH User: $user, IP: $ip, PID: $pid, Connection: $user@$ip"
             echo "$pid" >> "$PID_FILE"
             ((count++))
         done
@@ -47,14 +46,16 @@ check_ssh_connections() {
 # Function to ask the user if they want to kill a connection
 ask_to_kill_connection() {
     echo ""
-    echo "Enter the number of the connection you want to kill, or press Enter to exit:"
+    echo "Enter the number of the connection you want to kill, A to kill ALL or press Enter to exit:"
     echo ""
-    read -t 3 -r selection
+    read -t 10 -r selection
 
     if [ -z "$selection" ]; then
         echo "No selection made or time out. Exiting..."
         echo ""
         exit 0
+    elif [ "$selection" = "A" ] || [ "$selection" = "a" ]; then
+        kill_all_connections
     elif [[ "$selection" =~ ^[0-9]+$ ]]; then
         handle_connection_selection "$selection"
     else
@@ -77,10 +78,19 @@ handle_connection_selection() {
     fi
 }
 
+# Función para matar todas las conexiones SSH
+kill_all_connections() {
+    echo "Terminando todas las conexiones SSH..."
+    while read -r pid; do
+        sudo kill "$pid"
+        echo "Conexión terminada para PID $pid."
+    done < "$PID_FILE"
+}
+
 # Function to exit script after a delay
 exit_after_delay() {
     echo "Checking again in 4 seconds..."
-    read -t 3
+    sleep 4
     exit 0
 }
 
