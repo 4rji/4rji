@@ -1,4 +1,11 @@
 while true; do
-  sudo /usr/bin/sshmoni
-  sleep 2
+  sshmoni
+
 done
+
+
+
+#while true; do
+ # sudo /usr/bin/sshmoni
+  #sleep 2
+#done
