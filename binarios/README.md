@@ -107,7 +107,7 @@ crontt              Shows crontabs of the current user and root
 crontall            Shows crontab of everyone
 hardnet             modifies ipv4 and also ipv6 hardnetu for Ubuntu
 maskapps            masks telnet ftp for ccdc
-sshmod              modifies ssh and makes a backup
+sshhard             Modifies ssh and makes a backup
 sntp                installs chrony                                                                    
 ebanner             cambia el banner de ssh y crea un alias                                            
 bannere             abre el editor de ssh    
@@ -144,7 +144,7 @@ ssh80               Conecta con ssh -L para redirijir trafico desde una maquina 
 fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se duplica	
 copyssh             copia mui clave a una maquina remota                                               
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
-sshjump             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
+sshconf             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
 
 ###------Network
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 

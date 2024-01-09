@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# Función para agregar configuración al archivo SSH
+agregar_config_ssh() {
+    local host_alias=$1
+    local final_host=$2
+    local jump_host=$3
+    local final_ssh_port=$4
+    local jump_ssh_port=$5
+    local ssh_config="$HOME/.ssh/config"
+
+    # Crear el archivo config si no existe
+    if [ ! -f "$ssh_config" ]; then
+        touch "$ssh_config"
+        chmod 600 "$ssh_config"
+    fi
+
+    # Descomponer la máquina final y el jump host en usuario, host y, opcionalmente, puerto
+    IFS='@' read -ra ADDR <<< "$final_host"
+    local final_user="${ADDR[0]}"
+    IFS=':' read -ra HOST_PARTS <<< "${ADDR[1]}"
+    local final_ip="${HOST_PARTS[0]}"
+    local final_port="${HOST_PARTS[1]}"
+
+    if [ ! -z "$jump_host" ]; then
+        IFS='@' read -ra JUMP_ADDR <<< "$jump_host"
+        local jump_user="${JUMP_ADDR[0]}"
+        IFS=':' read -ra JUMP_HOST_PARTS <<< "${JUMP_ADDR[1]}"
+        local jump_ip="${JUMP_HOST_PARTS[0]}"
+        local jump_port="${JUMP_HOST_PARTS[1]}"
+
+        # Crear una entrada para el jump host con un alias
+        local jump_host_alias="jump-${jump_ip}"
+        echo -e "\nHost $jump_host_alias\n    HostName $jump_ip\n    User $jump_user" >> "$ssh_config"
+        if [ ! -z "$jump_ssh_port" ]; then
+            echo "    Port $jump_ssh_port" >> "$ssh_config"
+        fi
+    fi
+
+    # Añadir la nueva configuración al final del archivo config
+    echo -e "\nHost $host_alias\n    HostName $final_ip\n    User $final_user" >> "$ssh_config"
+    if [ ! -z "$final_port" ]; then
+        echo "    Port $final_port" >> "$ssh_config"
+    elif [ ! -z "$final_ssh_port" ]; then
+        echo "    Port $final_ssh_port" >> "$ssh_config"
+    fi
+    if [ ! -z "$jump_host" ]; then
+        echo "    ProxyJump $jump_host_alias" >> "$ssh_config"
+    fi
+
+    cat "$HOME/.ssh/config"
+    echo ""
+    echo "La configuración ha sido añadida a ~/.ssh/config"
+    echo ""
+    echo "Para conectar solo ssh $host_alias"
+    echo ""
+}
+
+# Menú principal
+echo ""
+echo "Elige una opción:"
+echo ""
+echo "1. Configurar Host via jump server"
+echo "2. Configurar Host simple"
+echo ""
+read -p "Selección: " opcion
+
+case $opcion in
+    1)
+        read -p "Nombre del Host: " final_alias
+        read -p "Direccion DESTINO usuario@ip:   > " final_host
+        read -p "Puerto de conexion o Enter para puerto 22: " final_ssh_port
+        echo ""
+        read -p "Direccion del Host JUMP usuario@ip : " jump_host
+        read -p "Puerto de conexion o Enter para puerto 22: " jump_ssh_port
+
+        agregar_config_ssh "$final_alias" "$final_host" "$jump_host" "$final_ssh_port" "$jump_ssh_port"
+        ;;
+    2)
+        read -p "Nombre del Host para la maquina: " final_alias
+        read -p "Direccion usuario@ip: " final_host
+        read -p "Puerto de conexion o Enter para puerto 22: " final_ssh_port
+        agregar_config_ssh "$final_alias" "$final_host" "" "$final_ssh_port" ""
+        ;;
+    *)
+        echo "Opción no válida."
+        ;;
+esac
