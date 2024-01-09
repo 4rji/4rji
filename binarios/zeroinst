@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo systemctl set-default multi-user.target
-sudo apt install kitty neofetch lsd wget git curl nmap        
+sudo apt install kitty neofetch lsd wget git bat curl nmap        
 
 rm -rf Music Pictures Public Templates Videos
 echo ""
