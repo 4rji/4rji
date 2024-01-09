@@ -1,0 +1,63 @@
+#!/bin/bash
+
+echo ""
+# Check if an argument was provided
+if [ $# -eq 0 ]; then
+    echo "Usage: ctl <service>"
+    exit 1
+fi
+
+service=$1
+
+echo "What would you like to do with $service?"
+echo ""
+
+echo " st - start"
+echo " r - restart"
+echo " t - stop"
+echo " s - status"
+echo " e - enable"
+echo " d - disable"
+
+
+
+echo ""
+read -p "Select an option: " action
+
+case $action in
+    r)
+        sudo systemctl restart $service
+        echo ""
+        echo "Checking status after starting..."
+        sleep 1
+        echo ""
+        sudo systemctl status $service
+        ;;
+    e)
+        sudo systemctl enable $service
+        ;;
+    d)
+        sudo systemctl disable $service
+        ;;
+    s)
+        sudo systemctl status $service
+        ;;
+    t)
+        sudo systemctl stop $service
+        echo ""
+        echo "Checking status after stopping..."
+        sleep 1
+        echo ""
+        sudo systemctl status $service
+        ;;
+    st)
+        sudo systemctl start $service
+        echo ""
+        echo "Checking status after starting..."
+        echo ""
+        sudo systemctl status $service
+        ;;
+    *)
+        echo "Invalid option."
+        ;;
+esac

@@ -57,6 +57,7 @@ tldr                Te dice como usar otras herramientas #ejemplo tldr ffmpeg
 procesos            Muestra los procesos de los usuarios
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
+ctl {servicio}      Aplica un sudo systemctl a un servicio
 
 ###------Repositorios
 fixme               corre fix-4rji para solucionar repositorios despuies de la instalacion             
