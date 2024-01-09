@@ -20,7 +20,7 @@ echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
 echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
-echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc00
+echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
 echo 'alias catnl="batcat"' >> ~/.zshrc
 echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
 
@@ -151,7 +151,7 @@ echo "alias bye='kill -9 -1 '" >> ~/.zshrc
 
 echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
 
-echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
+#echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
 
 
