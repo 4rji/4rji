@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Define las funciones
+functions_to_add='
+# Functions
+function mkt(){
+    mkdir "$1" && cd "$1" && mkdir nmap && mkdir content && mkdir exploits && mkdir scripts && echo "nuevo directorio" && pwd && ls
+}
+
+function mktem() {
+    new_dir=$(mktemp -d)
+    echo "Directorio creado en: $new_dir"
+    cd "$new_dir" || return
+    echo "Cambiado al directorio: $PWD"
+}
+
+function extractPorts(){
+    # ... (el resto de tus funciones)
+}
+
+function rmk(){
+    scrub -p dod $1
+    shred -zun 10 -v $1
+}'
+
+# Rutas a los archivos .bashrc y .zshrc
+bashrc="$HOME/.bashrc"
+zshrc="$HOME/.zshrc"
+
+# Agregar las funciones al final de .bashrc y .zshrc
+echo "$functions_to_add" >> "$bashrc"
+echo "$functions_to_add" >> "$zshrc"
+
+echo "Funciones agregadas a .bashrc y .zshrc"
+
