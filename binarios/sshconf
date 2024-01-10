@@ -89,6 +89,7 @@ echo "Elige una opción:"
 echo ""
 echo "1. Configurar Host via jump server"
 echo "2. Configurar Host simple"
+echo "3. Ver el archivo ~/.ssh_config y editarlo despues"
 echo ""
 read -p "Selección: " opcion
 
@@ -112,6 +113,17 @@ case $opcion in
         read -p "Puerto de conexion o Enter para puerto 22: " final_ssh_port
         agregar_config_ssh "$final_alias" "$final_host" "" "$final_ssh_port" ""
         ;;
+    3)
+        cat ~/.ssh/config
+        echo ""
+        echo ""
+        read -p "¿Quieres editarlo? [s/N]: " -n 1 -r
+        if [[ $REPLY =~ ^[Ss]$ ]]
+        then
+            nano ~/.ssh/config  # o cualquier editor que prefieras
+        fi
+        ;;
+
     *)
         echo "Opción no válida."
         ;;
