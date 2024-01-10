@@ -43,3 +43,28 @@ cd
 echo ""
 echo "Si hay: Error opening terminal: xterm-kitty, ejecutar:"
 echo "export TERM=xterm"
+
+
+
+
+
+#para instalar functions en las bash
+
+# Pregunta al usuario
+read -p "¿Quieres instalar las funciones en la bash? (s/N): " respuesta
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-N}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    echo "Ejecutando bashfun..."
+    bashfun
+    # Aquí colocas el código para ejecutar bashfun
+else
+    echo ""
+fi
+
