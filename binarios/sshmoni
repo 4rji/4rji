@@ -36,9 +36,11 @@ check_ssh_connections() {
         done
         ask_to_kill_connection
     else
-        echo ""
-        echo "No active SSH connections at this time."
-        echo ""
+ #       echo ""
+#   echo ""        
+    echo "No active SSH connections at this time."
+    echo ""
+#        echo ""
         exit_after_delay
     fi
 }
@@ -89,8 +91,12 @@ kill_all_connections() {
 
 # Function to exit script after a delay
 exit_after_delay() {
-    echo "Checking again in 4 seconds..."
-    sleep 4
+    echo "    **** Checking again in 4 seconds...    ****"
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    sleep 3
     exit 0
 }
 
