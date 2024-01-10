@@ -191,7 +191,7 @@ suricatalog         tail -f /var/log/suricata/fast.log
 
 
 ###------utilidades instalaciones
-aliastiny           Muestra los alias creados en tinyurl
+tinyurl             Muestra los alias creados en tinyurl, se descarga como tinyurl.com/herratodo
 torrelay            Instala tor relay, probado en debian
 protoninst          Instala protonvpn en kali o debian 
 grafanainst         Instala grafana y prometheus 

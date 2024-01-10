@@ -30,6 +30,10 @@ select opt in "${!options[@]}" "Salir"; do
 done
 
 echo "
+
+tinyurl.com/herratodo
+https://raw.githubusercontent.com/4rji/4rji/main/binarios/tinyurl
+
 tinyurl.com/zeroinst
 https://raw.githubusercontent.com/4rji/4rji/main/binarios/zeroinst
 
