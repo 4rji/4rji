@@ -1,44 +1,60 @@
 #!/bin/zsh
 
 mostrar_procesos() {
-    ps_output=$(ps -eo user,comm)
+    echo "Usuarios, Procesos y PIDs:"
+    echo "----------------------------"
+
+    # Obtener la lista de usuarios, procesos y PIDs
+    ps_output=$(ps -eo user,comm,pid)
     lines=("${(@f)ps_output}")
 
+    # Imprimir el encabezado
+    printf "%-15s %-20s %-10s\n" "Usuario" "Proceso" "PID"
+    echo "----------------------------"
+
+    # Imprimir la lista de usuarios, procesos y PIDs en un formato más legible
     for line in "${lines[@]:2}"; do
         user=$(echo $line | awk '{print $1}')
         process=$(echo $line | awk '{print $2}')
-        printf "%-15s %-20s\n" "$user" "$process"
+        pid=$(echo $line | awk '{print $3}')
+        printf "%-15s %-20s %-10s\n" "$user" "$process" "$pid"
     done
+
 }
 
-mostrar_procesos | sort | uniq
+mostrar_procesos | sort
+
+
 
 echo ""
-echo "procesos | grep -v root" | xclip -selection clipboard
+
+echo " procesos | grep -v root" | sort | xclip -selection clipboard 
+
 echo ""
-echo "Fin del script."
-echo ""
-echo "Ejecuta este comando para que no muestre los procesos de root:"
-echo "procesos | grep -v root | sort | uniq "
-echo ""
-echo "También ese comando ya fue copiado al portapapeles."
-echo ""
-echo "Puedes usar:\nprocesos > procesos\n"
-echo "Esto para crear un archivo y buscar algún proceso en específico."
-echo ""
-echo "Ejemplos:\ncat procesos | sort | uniq | grep -v palabra1\n"
-#echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
-echo "grep -i para incluir, grep -v para excluir root por ejemplo\n"
-echo ""
+
+  echo "Fin del script."
+    echo ""
+    echo "Ejecuta este comando para que no muestre los procesos de root:"
+    echo "procesos | grep -v root | sort "
+    echo ""
+    echo "Tambien ese comando ya fue copiado al portapapeles"
+    echo ""
+    echo "Puedes usar:\nprocesos > procesos\n"
+    echo "Esto para crear un archivo y buscar algun proceso en especifico"
+    echo ""
+    echo "ejemplos:\ncat procesos | sort | uniq | grep -v palabra1"
+    echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
+    echo "grep -i para incluir, grep -v para excluir root por ejemplo"
+
 
 # Nuevas funcionalidades agregadas aquí
-echo "¿Deseas crear un archivo llamado 'procesos'? (s/n):"
+echo "¿Deseas crear un archivo llamado 'procesos'? (s/N):"
 read crearArchivo
 
 if [[ $crearArchivo == 's' ]]; then
     mostrar_procesos > procesos
     echo "Archivo 'procesos' creado."
-    echo "¿Deseas buscar algo en el archivo 'procesos'? (s/n):"
+    echo "¿Deseas buscar algo en el archivo 'procesos'? (s/N):"
     read buscarEnArchivo
 
     if [[ $buscarEnArchivo == 's' ]]; then
