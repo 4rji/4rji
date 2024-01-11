@@ -2,12 +2,17 @@
 
 import sys
 
-if len(sys.argv) != 3:
-    print("Uso: {} <nombre_del_archivo_a_modificar> <mensaje_personalizado>".format(sys.argv[0]))
+if len(sys.argv) != 2:
+    print("Uso: {} <nombre_del_archivo_a_modificar>".format(sys.argv[0]))
     sys.exit(1)
 
 archivo_a_modificar = sys.argv[1]
-mensaje_personalizado = sys.argv[2]
+
+# Función para solicitar el mensaje personalizado
+def solicitar_mensaje():
+    return input("Por favor, ingrese el mensaje personalizado: ")
+
+mensaje_personalizado = solicitar_mensaje()
 
 try:
     with open(archivo_a_modificar, 'r') as archivo:
@@ -20,27 +25,28 @@ try:
             lineas.insert(i + 2, '# Función para mostrar el mensaje de ayuda y preguntar si desea continuar\n')
             lineas.insert(i + 3, 'show_help_and_confirm() {\n')
             lineas.insert(i + 4, '    echo\n')
-            lineas.insert(i + 5, '    echo "{}"\n'.format(mensaje_personalizado))
-            lineas.insert(i + 6, '    echo\n')
-            lineas.insert(i + 7, '    echo "Presione Enter para continuar o \'c\' para salir."\n')
-            lineas.insert(i + 8, '\n')
-            lineas.insert(i + 9, '    # Preguntar al usuario si desea continuar\n')
-            lineas.insert(i + 10, '    read -p "Deseas continuar [c/S] " response\n')
-            lineas.insert(i + 11, '\n')
-            lineas.insert(i + 12, '    # Convertir la respuesta a minúsculas\n')
-            lineas.insert(i + 13, '    response=$(echo "$response" | tr \'[:upper:]\' \'[:lower:]\')\n')
-            lineas.insert(i + 14, '\n')
-            lineas.insert(i + 15, '    # Si la respuesta es \'c\', salir del script\n')
-            lineas.insert(i + 16, '    if [ "$response" == "c" ]; then\n')
-            lineas.insert(i + 17, '        echo "Saliendo del script."\n')
-            lineas.insert(i + 18, '        exit 0\n')
-            lineas.insert(i + 19, '    fi\n')
-            lineas.insert(i + 20, '}\n')
-            lineas.insert(i + 21, '\n')
-            lineas.insert(i + 22, '# Verificar si se pasó el argumento -h\n')
-            lineas.insert(i + 23, 'if [ "$1" == "-h" ]; then\n')
-            lineas.insert(i + 24, '    show_help_and_confirm\n')
-            lineas.insert(i + 25, 'fi\n')
+            lineas.insert(i + 5, '    echo "El comando que este script ejecuta es:"\n')
+            lineas.insert(i + 6, '    echo "{}"\n'.format(mensaje_personalizado))
+            lineas.insert(i + 7, '    echo\n')
+            lineas.insert(i + 8, '    echo "Presione Enter para continuar o \'c\' para salir."\n')
+            lineas.insert(i + 9, '\n')
+            lineas.insert(i + 10, '    # Preguntar al usuario si desea continuar\n')
+            lineas.insert(i + 11, '    read -p "Deseas continuar [c/S] " response\n')
+            lineas.insert(i + 12, '\n')
+            lineas.insert(i + 13, '    # Convertir la respuesta a minúsculas\n')
+            lineas.insert(i + 14, '    response=$(echo "$response" | tr \'[:upper:]\' \'[:lower:]\')\n')
+            lineas.insert(i + 15, '\n')
+            lineas.insert(i + 16, '    # Si la respuesta es \'c\', salir del script\n')
+            lineas.insert(i + 17, '    if [ "$response" == "c" ]; then\n')
+            lineas.insert(i + 18, '        echo "Saliendo del script."\n')
+            lineas.insert(i + 19, '        exit 0\n')
+            lineas.insert(i + 20, '    fi\n')
+            lineas.insert(i + 21, '}\n')
+            lineas.insert(i + 22, '\n')
+            lineas.insert(i + 23, '# Verificar si se pasó el argumento -h\n')
+            lineas.insert(i + 24, 'if [ "$1" == "-h" ]; then\n')
+            lineas.insert(i + 25, '    show_help_and_confirm\n')
+            lineas.insert(i + 26, 'fi\n')
             break
 
     with open(archivo_a_modificar, 'w') as archivo:

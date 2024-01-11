@@ -138,6 +138,7 @@ findme              Usa el comando find para buscar archivos
 
 
 ###------ssh
+sshcom              Copia y ejecuta un script en una maquina ssh remota
 sshmonitor          sshmoni loop para correr el sshmoni while loop
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
