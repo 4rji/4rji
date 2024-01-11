@@ -1,28 +1,84 @@
 #!/bin/zsh
 echo ""
 
+# Lista de paquetes a instalar
+paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" )
+#paquetes=("aqui los paquetes" "otro")
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" &> /dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar paquetes basados en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    case $OS in
+        "debian"|"ubuntu")
+            if paquete_instalado_apt "$paquete"; then
+                echo "El paquete $paquete ya está instalado."
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete"
+            fi
+            ;;
+        "centos"|"rhel")
+            if paquete_instalado_yum "$paquete"; then
+                echo "El paquete $paquete ya está instalado."
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete"
+            fi
+            ;;
+        "fedora")
+            if paquete_instalado_dnf "$paquete"; then
+                echo "El paquete $paquete ya está instalado."
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete"
+            fi
+            ;;
+        "arch")
+            if paquete_instalado_pacman "$paquete"; then
+                echo "El paquete $paquete ya está instalado."
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete"
+            fi
+            ;;
+        *)
+            ;;
+    esac
+done
+
+
+
 
 # Función para verificar si un paquete está instalado
 ###############
  # ****  ****  se comento el mensaje y el sleep time para rapides de iniciacion del sistema *** **** #############
 ######################
 
-paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" )
-
-paquete_instalado() {  
-dpkg -l "$1" | grep -q '^ii'  
-}
-
-for paquete in "${paquetes[@]}"; do
-    if paquete_instalado "$paquete"; then
-#        echo "El paquete $paquete ya está instalado."
-    else
-        echo "Instalando el paquete $paquete..."
-        sudo apt-get install -y "$paquete"
-    fi
-done
-
-#sleep 1
 
 
 
