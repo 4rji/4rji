@@ -16,6 +16,7 @@ tempe               or tempe -f temperatura de arch linux y -f crea un archivo c
 
 ###------utilidades sistema
 todo_{algo}         Busca en alias y readme info
+comando             aplica -h mensaje para mostrar al inicio de un script
 4rji                el programa y busqueda de scripts                                                  
 4rjic	            Muestra una lista simple de 4rji
 4rjia	            Muestra los alias
@@ -60,6 +61,7 @@ proceso             Muestro los Procesos sin PID, no PID
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ctl {servicio}      Aplica un sudo systemctl a un servicio
+
 
 ###------Repositorios
 fixme               corre fix-4rji para solucionar repositorios despuies de la instalacion             
