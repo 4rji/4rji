@@ -36,7 +36,6 @@ for paquete in "${paquetes[@]}"; do
     case $OS in
         "debian"|"ubuntu")
             if paquete_instalado_apt "$paquete"; then
-                echo "El paquete $paquete ya está instalado."
             else
                 echo "Instalando el paquete $paquete..."
                 sudo apt-get install -y "$paquete"
@@ -44,7 +43,6 @@ for paquete in "${paquetes[@]}"; do
             ;;
         "centos"|"rhel")
             if paquete_instalado_yum "$paquete"; then
-                echo "El paquete $paquete ya está instalado."
             else
                 echo "Instalando el paquete $paquete..."
                 sudo yum install -y "$paquete"
@@ -52,7 +50,6 @@ for paquete in "${paquetes[@]}"; do
             ;;
         "fedora")
             if paquete_instalado_dnf "$paquete"; then
-                echo "El paquete $paquete ya está instalado."
             else
                 echo "Instalando el paquete $paquete..."
                 sudo dnf install -y "$paquete"
@@ -60,7 +57,6 @@ for paquete in "${paquetes[@]}"; do
             ;;
         "arch")
             if paquete_instalado_pacman "$paquete"; then
-                echo "El paquete $paquete ya está instalado."
             else
                 echo "Instalando el paquete $paquete..."
                 sudo pacman -S --noconfirm "$paquete"
