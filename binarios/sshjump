@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# Ruta al archivo de configuración SSH
+CONFIG_FILE=~/.ssh/config
+
+# Función para listar hosts disponibles en el archivo de configuración
+list_hosts() {
+    echo "Hosts disponibles:"
+    local i=1
+    while read line; do
+        echo "$i) $line"
+        i=$((i+1))
+    done < <(grep '^Host ' "$CONFIG_FILE" | awk '{print $2}')
+}
+
+# Función para agregar una nueva configuración de host
+add_host() {
+    read -p "Introduce el nombre del nuevo Host: " new_host
+    read -p "Introduce el HostName (IP): " new_hostname
+    read -p "Introduce el Usuario: " new_user
+
+    echo -n "Introduce el Puerto [22]: "
+    read new_port
+    new_port=${new_port:-22}
+
+    echo -n "¿Quieres agregar la línea 'IdentityFile ~/.ssh/id_ed25519'? (s/n): "
+    read add_identityfile
+
+    echo "Host $new_host" >> "$CONFIG_FILE"
+    echo "    HostName $new_hostname" >> "$CONFIG_FILE"
+    echo "    User $new_user" >> "$CONFIG_FILE"
+    echo "    Port $new_port" >> "$CONFIG_FILE"
+    [ "$add_identityfile" = "s" ] && echo "    IdentityFile ~/.ssh/id_ed25519" >> "$CONFIG_FILE"
+    echo "    ProxyJump $selected_jump_hosts" >> "$CONFIG_FILE"
+}
+
+# Función para seleccionar uno o más hosts para ProxyJump
+select_jumps() {
+    selected_jump_hosts=""
+    while true; do
+        echo ""    
+        read -p "Elige el # del host para ProxyJump [Enter continuar jump host]: " jump_host_number
+        echo ""
+        if [[ "$jump_host_number" -eq 0 ]]; then
+            break
+        fi
+        jump_host=$(grep '^Host ' "$CONFIG_FILE" | awk 'NR=='$jump_host_number'{print $2}')
+        selected_jump_hosts+="${jump_host},"
+    done
+    # Remueve la última coma
+    selected_jump_hosts=${selected_jump_hosts%,}
+}
+
+# Verifica si el archivo de configuración existe
+if [ -f "$CONFIG_FILE" ]; then
+    list_hosts
+    select_jumps
+
+    if [ -z "$selected_jump_hosts" ]; then
+        echo "No se seleccionó ningún host para ProxyJump."
+        exit 1
+    fi
+
+    add_host
+    echo "Configuración añadida exitosamente."
+else
+    echo "El archivo de configuración SSH no existe."
+fi
+
+# Muestra el archivo de configuración actual
+cat "$CONFIG_FILE"

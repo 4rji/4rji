@@ -146,6 +146,7 @@ fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se 
 copyssh             copia mui clave a una maquina remota                                               
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 sshconf             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
+sshjump             Configura los jumps infinitamente.
 
 ###------Network
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
@@ -196,7 +197,7 @@ torrelay            Instala tor relay, probado en debian
 protoninst          Instala protonvpn en kali o debian 
 grafanainst         Instala grafana y prometheus 
 instpalabras        El diccionario para crear palabras o al revez nwiz se llama
-zerotierinst        Zerotier scrip like tailscale
+zerotierinst        Zerotier scrip like tailscale yo uso tailscale 
 emailscraper        ejecuta una herramienta de un curso para buscar emails                             
 crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory
 nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
