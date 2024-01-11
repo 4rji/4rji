@@ -28,8 +28,10 @@ agregar_config_ssh() {
     if [[ $agregar_identity == "s" ]]; then
         echo "    IdentityFile ~/.ssh/id_ed25519" >> "$ssh_config"
     fi
-
-    echo "La configuración ha sido añadida a $ssh_config"
+    echo ""
+    echo ""
+    echo " *** La configuración ha sido añadida a $ssh_config   ***"
+    echo ""
 }
 
 # Función para el menú de configuración de host simple
@@ -52,6 +54,7 @@ while [ "$continuar" == "s" ]; do
     echo "2. Ver el archivo ~/.ssh_config y editarlo después"
     echo ""
     read -p "Selección: " opcion
+    echo ""
 
     case $opcion in
         1)
