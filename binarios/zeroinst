@@ -8,3 +8,7 @@ echo ""
 echo "Instalar manualmente tailscale con el siguiente comando"
 echo ""
 echo "curl -fsSL https://tailscale.com/install.sh | sh"
+
+echo "curl -fsSL https://tailscale.com/install.sh | sh" | xclip -selection clipboard
+echo ""
+echo "Copiado al portapapeles"

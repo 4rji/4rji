@@ -43,7 +43,8 @@ echo ""
     echo "Esto para crear un archivo y buscar algun proceso en especifico"
     echo ""
     echo "ejemplos:\ncat procesos | sort | uniq | grep -v palabra1"
-    echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
+    echo "awk '{print \$1 \"\\t\" \$2}' procesos | uniq | sort | grep -v root\n"
+    #echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
     echo "grep -i para incluir, grep -v para excluir root por ejemplo"
 
 

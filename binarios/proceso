@@ -27,7 +27,7 @@ echo "Puedes usar:\nprocesos > procesos\n"
 echo "Esto para crear un archivo y buscar algún proceso en específico."
 echo ""
 echo "Ejemplos:\ncat procesos | sort | uniq | grep -v palabra1\n"
-#echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
+#awk '{print $1 "	" $2}' procesos | uniq | sort | grep -v root
 echo "grep -i para incluir, grep -v para excluir root por ejemplo\n"
 echo ""
 
