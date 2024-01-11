@@ -23,6 +23,9 @@ check_ssh_connections() {
     local connections=$(sudo netstat -tnp | grep ':'"$SSH_PORT" | grep 'ESTABLISHED')
     if [ ! -z "$connections" ]; then
         echo ""
+	echo ""
+	echo ""
+	echo ""
         echo "**********   ALERT : Active SSH connection detected.   ***********"
         echo ""
         local count=1
@@ -48,7 +51,9 @@ check_ssh_connections() {
 # Function to ask the user if they want to kill a connection
 ask_to_kill_connection() {
     echo ""
-    echo "Enter the number of the connection you want to kill, A to kill ALL or press Enter to exit:"
+    echo ""
+    echo ""
+    echo "*** Enter the number of the connection you want to kill  or  A  to kill ALL ***"
     echo ""
     read -t 10 -r selection
 
