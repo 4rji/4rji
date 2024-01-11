@@ -1,5 +1,31 @@
 #!/bin/bash
 
+# Función para mostrar el mensaje de ayuda y preguntar si desea continuar
+show_help_and_confirm() {
+    echo
+    echo "El comando que este script ejecuta es:"
+    echo "1)-Enmap -p- --open -T5 -v -n 165.22.232.151 -oG allPortsEE2).-Enmap -p- --open -T5 -v -n -Pn 165.22.232.151 -oG allPorts"
+    echo
+    echo "Presione Enter para continuar o 'c' para salir."
+
+    # Preguntar al usuario si desea continuar
+    read -p "Deseas continuar [c/S] " response
+
+    # Convertir la respuesta a minúsculas
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    # Si la respuesta es 'c', salir del script
+    if [ "$response" == "c" ]; then
+        echo "Saliendo del script."
+        exit 0
+    fi
+}
+
+# Verificar si se pasó el argumento -h
+if [ "$1" == "-h" ]; then
+    show_help_and_confirm
+fi
+
 echo "Selecciona el tipo de escaner que deseas usar:"
 echo "1. Ejecutar escaneo sin Pn "
 echo "2. Ejecutar escaneo con Pn "
