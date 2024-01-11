@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# Función para verificar si un paquete está instalado
-
-paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip")
+# Lista de paquetes a instalar
+paquetes=("nano" "zsh")
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu)
 paquete_instalado_apt() {  
@@ -69,47 +68,3 @@ for paquete in "${paquetes[@]}"; do
             ;;
     esac
 done
-
-
-
-
-# Aquí puedes llamar a la función mktem
-mktem
-
-git clone https://github.com/4rji/4rji.git
-cd 4rji/
-
-./alias.sh
-
-sudo cp -f binarios/* /usr/bin/
-
-echo "binarios actualizados"
-cd
-echo ""
-echo "Si hay: Error opening terminal: xterm-kitty, ejecutar:"
-echo "export TERM=xterm"
-
-
-
-
-
-#para instalar functions en las bash
-
-# Pregunta al usuario
-read -p "¿Quieres instalar las funciones en la bash? (s/N): " respuesta
-
-# Define un valor predeterminado si el usuario presiona Enter
-respuesta=${respuesta:-N}
-
-# Convierte la respuesta a minúsculas para facilitar la comparación
-respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
-
-# Verifica la respuesta
-if [ "$respuesta" == "s" ]; then
-    echo "Ejecutando bashfun..."
-    bashfun
-    # Aquí colocas el código para ejecutar bashfun
-else
-    echo ""
-fi
-
