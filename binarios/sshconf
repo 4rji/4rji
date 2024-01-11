@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Función para agregar configuración al archivo SSH
+agregar_config_ssh() {
+    local host_alias=$1
+    local host_info=$2
+    local ssh_port=$3
+    local agregar_identity=$4
+    local ssh_config="$HOME/.ssh/config"
+
+    # Descomponer la información del host en usuario y host
+    IFS='@' read -ra ADDR <<< "$host_info"
+    local user="${ADDR[0]}"
+    local host="${ADDR[1]}"
+
+    # Crear el archivo config si no existe
+    if [ ! -f "$ssh_config" ]; then
+        touch "$ssh_config"
+        chmod 600 "$ssh_config"
+    fi
+
+    # Añadir la nueva configuración al final del archivo config
+    echo -e "\nHost $host_alias\n    HostName $host\n    User $user" >> "$ssh_config"
+    if [ ! -z "$ssh_port" ]; then
+        echo "    Port $ssh_port" >> "$ssh_config"
+    fi
+
+    if [[ $agregar_identity == "s" ]]; then
+        echo "    IdentityFile ~/.ssh/id_ed25519" >> "$ssh_config"
+    fi
+
+    echo "La configuración ha sido añadida a $ssh_config"
+}
+
+# Función para el menú de configuración de host simple
+configurar_host_simple() {
+    read -p "Nombre del Host para la maquina: " final_alias
+    read -p "Direccion usuario@host: " final_host
+    read -p "Puerto de conexion o Enter para puerto 22: " final_ssh_port
+    read -p "¿Deseas agregar 'IdentityFile ~/.ssh/id_ed25519' para el host? [s/N]: " agregar_identity
+
+    agregar_config_ssh "$final_alias" "$final_host" "$final_ssh_port" "$agregar_identity"
+}
+
+# Menú principal y bucle de configuración
+continuar="s"
+while [ "$continuar" == "s" ]; do
+    echo ""
+    echo "Elige una opción:"
+    echo ""
+    echo "1. Configurar Host simple"
+    echo "2. Ver el archivo ~/.ssh_config y editarlo después"
+    echo ""
+    read -p "Selección: " opcion
+
+    case $opcion in
+        1)
+            configurar_host_simple
+            ;;
+        2)
+            cat ~/.ssh/config
+            echo ""
+            read -p "¿Quieres editarlo? [s/N]: " -n 1 -r
+            echo ""
+            if [[ $REPLY =~ ^[Ss]$ ]]
+            then
+                nano ~/.ssh/config  # o cualquier editor que prefieras
+            fi
+            ;;
+        *)
+            echo "Opción no válida."
+            ;;
+    esac
+
+    echo ""
+    read -p "¿Deseas realizar otra configuración? [s/N]: " continuar
+done
+
