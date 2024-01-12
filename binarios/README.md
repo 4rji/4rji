@@ -21,7 +21,7 @@ paquetes            Verifica que los paquetes esten instalados en varias distros
 4rji                el programa y busqueda de scripts                                                  
 4rjic	            Muestra una lista simple de 4rji
 4rjia	            Muestra los alias
-bashfun             Agrega las funciones function a las bash zsh, en zshrc bashrc
+bashfun             Agrega las funciones function a las bash zsh, en zshrc bashrc mktem
 whx_{binario}       hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired     
 whr_{binario}       hace un nano a un binario    
 cxx                 chmod +x y luego ./ ejecuta el script

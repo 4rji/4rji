@@ -69,7 +69,12 @@ done
 
 
 
-
+function mktem() {
+    new_dir=$(mktemp -d)
+    echo "Directorio creado en: $new_dir"
+    cd "$new_dir" || return
+    echo "Cambiado al directorio: $PWD"
+}
 
 
 
