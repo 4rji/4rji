@@ -3,7 +3,13 @@
 
 # Función para verificar si un paquete está instalado
 
-paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" )
+paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" "bat" "batcat" "lsd" "tldr" )
+
+paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" "python3-pip" "net-tools" 
+          "wormhole" "ranger" "scrub" "shred" "curl" "kitty" "tmux" "dialog" 
+          "iptables" "openvpn" "nmap" "mesa-utils" "lm-sensors" "firejail" 
+          "lf" "proxychains" "neofetch" "lsd" "btop" "tldr" "backintime-qt" 
+          "trash-cli" "ncdu" "ruby-rouge" "wireguard-tools" "bc" "ufw" "python3")
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
@@ -100,9 +106,11 @@ echo "export TERM=xterm"
 
 
 #para instalar functions en las bash
+echo ""
+echo ""
 
 # Pregunta al usuario
-read -p "¿Quieres instalar las funciones en la bash? (s/N): " respuesta
+read -p "¿Quieres instalar las FUNCTION en la bash? (s/N): " respuesta
 
 # Define un valor predeterminado si el usuario presiona Enter
 respuesta=${respuesta:-N}
@@ -119,10 +127,10 @@ else
     echo ""
 fi
 
-#para instalar functions en las bash
+echo ""
 
 # Pregunta al usuario
-read -p "¿Quieres instalar 2-4rji (s/N): " respuesta
+read -p "¿Quieres instalar todos los paquetes de 2-arji (s/N): " respuesta
 
 # Define un valor predeterminado si el usuario presiona Enter
 respuesta=${respuesta:-N}
@@ -132,7 +140,7 @@ respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
 
 # Verifica la respuesta
 if [ "$respuesta" == "s" ]; then
-    echo "instalando todos los paquetes..."
+    echo "instalando todos los paquetes... 2-4rji"
     2-4rji
     # Aquí colocas el código para ejecutar bashfun
 else
@@ -141,6 +149,23 @@ fi
 
 
 
+# Pregunta al usuario
+read -p "¿Quieres instalar todos ALIAS (s/N): " respuesta
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-N}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    echo "instalando todos los alias... herralias"
+    herralias
+    # Aquí colocas el código para ejecutar bashfun
+else
+    echo ""
+fi
 
 
 

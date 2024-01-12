@@ -4,7 +4,6 @@ curl -O https://raw.githubusercontent.com/4rji/4rji/main/alias.sh
 source alias.sh  # Ejecuta el script descargado
 
 #borrar archivos
-adio alias.sh
 rm alias.sh
 
 echo ""
