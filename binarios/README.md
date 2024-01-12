@@ -124,7 +124,8 @@ procesos            Muestra los procesos de los usuarios
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ppt                 Checa lsof netstat nmap y puertos que estan escuchando en el sistema
-
+rkhun               Instala, actualiza y ejecuta el scaneo rkhunter, tambien instala chkrootkit
+ 
 
 ###------buscar cosas en linux
 buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
@@ -189,7 +190,7 @@ disapp              Ejecuta una aplicacion en un contenedor determinador despues
 
 
 ###------antivirus y malware
-rkhun               Instala, actualiza y ejecuta el scaneo rkhunter
+rkhun               Instala, actualiza y ejecuta el scaneo rkhunter, tambien instala chkrootkit
 apachenombre        Instrucciones para remover el nombre del banner de apache y nginx
 clamavinst          instala antivirus e inicia un scaneo solo ingresando la ruta, y se actualiza tambien 
 splunkinst          instala Splunk y crea un alias para uniciar en zsh
