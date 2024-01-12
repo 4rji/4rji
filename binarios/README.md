@@ -17,9 +17,10 @@ tempe               or tempe -f temperatura de arch linux y -f crea un archivo c
 ###------utilidades sistema
 todo_{algo}         Busca en alias y readme info
 comando             aplica -h mensaje para mostrar al inicio de un script
-paquetes            Verifica que los paquetes esten instalados en varias distros template
+template_paquetes   Template para instalar paquetes automaticamente en todas las distro
 4rji                el programa y busqueda de scripts                                                  
 4rjic	            Muestra una lista simple de 4rji
+meslo               Instala las fuentes meslo
 4rjia	            Muestra los alias
 bashfun             Agrega las funciones function a las bash zsh, en zshrc bashrc mktem
 whx_{binario}       hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired     
@@ -62,6 +63,7 @@ proceso             Muestro los Procesos sin PID, no PID
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ctl {servicio}      Aplica un sudo systemctl a un servicio
+buspak              busca paquetes y servicios que esten instalados en varias distros
 
 
 ###------Repositorios
