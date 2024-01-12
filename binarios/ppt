@@ -77,32 +77,40 @@ done
 
 # Función para preguntar y ejecutar lsof
 preguntar_y_ejecutar_lsof() {
-    read -p "¿Ejecutar lsof? [Enter/n]: " respuesta
-    if [[ $respuesta != "n" ]]; then
+    read -p "¿Ejecutar lsof? [Enter/c]: " respuesta
+    if [[ $respuesta != "c" ]]; then
         sudo lsof -i -P -n
     fi
 }
 
 # Función para preguntar y ejecutar netstat
 preguntar_y_ejecutar_netstat() {
-    read -p "¿Ejecutar netstat? [Enter/n]: " respuesta
-    if [[ $respuesta != "n" ]]; then
+    echo ""
+    echo ""
+    read -p "¿Ejecutar netstat? [Enter/c]: " respuesta
+    if [[ $respuesta != "c" ]]; then
         netstat -tulpn
     fi
 }
 
+
 # Función para preguntar y ejecutar nmap en localhost
 preguntar_y_ejecutar_nmap() {
-    read -p "¿Ejecutar nmap localhost? [Enter/n]: " respuesta
-    if [[ $respuesta != "n" ]]; then
+    echo ""
+    echo ""
+    read -p "¿Ejecutar nmap localhost? [Enter/c]: " respuesta
+    if [[ $respuesta != "c" ]]; then
         sudo nmap -T4 -p- --min-rate 1000 localhost
     fi
 }
 
+
 # Función para preguntar y ejecutar ps
 preguntar_y_ejecutar_ps() {
-    read -p "¿Ejecutar procesos? [Enter/n]: " respuesta
-    if [[ $respuesta != "n" ]]; then
+    echo ""
+    echo ""
+    read -p "¿Ejecutar procesos? [Enter/c]: " respuesta
+    if [[ $respuesta != "c" ]]; then
         ps -eo user,comm,pid
     fi
 }

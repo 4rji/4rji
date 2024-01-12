@@ -25,7 +25,7 @@ bashfun             Agrega las funciones function a las bash zsh, en zshrc bashr
 whx_{binario}       hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired     
 whr_{binario}       hace un nano a un binario    
 cxx                 chmod +x y luego ./ ejecuta el script
-cx                  chmod +x sin ejecutarlo
+cx                  chmod +x sin ejecutarlonetw
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
 binar               mueve un script a el directorio /usr/bin                                           
 ruta_{archivo}      copia la ruta del archivo en el portapapeles                                       
@@ -121,6 +121,7 @@ chdns               Resolv.conf change
 procesos            Muestra los procesos de los usuarios
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
+ppt                 Checa lsof netstat nmap y puertos que estan escuchando en el sistema
 
 
 ###------buscar cosas en linux
@@ -162,7 +163,7 @@ minet               Alias de ifconfig | grep "inet " | grep -v 127.0.0.1
 mired               copia eth0 al portapapeles y muestra todas las ips del equipo                      
 miwl                copia wlan0 al portapapeles  
 chdns	            Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
-
+ppt                 Checa lsof netstat nmap y puertos que estan escuchando en el sistema
 
 ###------seguridad de sistemas
 iarpon              Arpon para protejer de arp poising. arp sniff 
