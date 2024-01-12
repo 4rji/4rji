@@ -3,7 +3,7 @@
 
 # Función para verificar si un paquete está instalado
 
-paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip")
+paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" )
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
@@ -113,4 +113,30 @@ if [ "$respuesta" == "s" ]; then
 else
     echo ""
 fi
+
+#para instalar functions en las bash
+
+# Pregunta al usuario
+read -p "¿Quieres instalar 2-4rji (s/N): " respuesta
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-N}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    echo "instalando todos los paquetes..."
+    2-4rji
+    # Aquí colocas el código para ejecutar bashfun
+else
+    echo ""
+fi
+
+
+
+
+
+
 
