@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 
 # Copiar ~/.zshrc a /respaldos/zshrc

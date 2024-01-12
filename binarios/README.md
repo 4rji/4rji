@@ -215,3 +215,4 @@ instgithub          Instala github desktop en kali
 pythonscritps       instala requerimientos y baje scritps del curso de python
 obsidianinst        Instala obsidian en deb, baja paquete e instala notas 
 zeroinst            Script para zero raspberry
+zshinst             Instala la zsh h-my-zsh powerlevel10k
