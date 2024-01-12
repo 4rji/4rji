@@ -3,7 +3,7 @@
 import sys
 
 if len(sys.argv) != 2:
-    print("Uso: {} <nombre_del_archivo_a_modificar>".format(sys.argv[0]))
+    print(f"Uso: {sys.argv[0]} <nombre_del_archivo_a_modificar>")
     sys.exit(1)
 
 archivo_a_modificar = sys.argv[1]
@@ -18,42 +18,56 @@ try:
     with open(archivo_a_modificar, 'r') as archivo:
         lineas = archivo.readlines()
 
-    # Buscar la primera línea que comienza con "#!/bin/zsh" o "#!/bin/bash"
+    linea_modificada = False
     for i, linea in enumerate(lineas):
-        if linea.startswith("#!/bin/zsh") or linea.startswith("#!/bin/bash"):
-            lineas.insert(i + 1, '\n')
-            lineas.insert(i + 2, '# Función para mostrar el mensaje de ayuda y preguntar si desea continuar\n')
-            lineas.insert(i + 3, 'show_help_and_confirm() {\n')
-            lineas.insert(i + 4, '    echo\n')
-            lineas.insert(i + 5, '    echo "El comando que este script ejecuta es:"\n')
-            lineas.insert(i + 6, '    echo "{}"\n'.format(mensaje_personalizado))
-            lineas.insert(i + 7, '    echo\n')
-            lineas.insert(i + 8, '    echo "Presione Enter para continuar o \'c\' para salir."\n')
-            lineas.insert(i + 9, '\n')
-            lineas.insert(i + 10, '    # Preguntar al usuario si desea continuar\n')
-            lineas.insert(i + 11, '    read -p "Deseas continuar [c/S] " response\n')
-            lineas.insert(i + 12, '\n')
-            lineas.insert(i + 13, '    # Convertir la respuesta a minúsculas\n')
-            lineas.insert(i + 14, '    response=$(echo "$response" | tr \'[:upper:]\' \'[:lower:]\')\n')
-            lineas.insert(i + 15, '\n')
-            lineas.insert(i + 16, '    # Si la respuesta es \'c\', salir del script\n')
-            lineas.insert(i + 17, '    if [ "$response" == "c" ]; then\n')
-            lineas.insert(i + 18, '        echo "Saliendo del script."\n')
-            lineas.insert(i + 19, '        exit 0\n')
-            lineas.insert(i + 20, '    fi\n')
-            lineas.insert(i + 21, '}\n')
-            lineas.insert(i + 22, '\n')
-            lineas.insert(i + 23, '# Verificar si se pasó el argumento -h\n')
-            lineas.insert(i + 24, 'if [ "$1" == "-h" ]; then\n')
-            lineas.insert(i + 25, '    show_help_and_confirm\n')
-            lineas.insert(i + 26, 'fi\n')
-            break
+        if linea.startswith("#!/bin/zsh"):
+            lineas[i] = "#!/bin/bash\n"
+            linea_modificada = True
+        elif linea.startswith("#!/bin/bash"):
+            # La línea ya es bash, no es necesario cambiarla.
+            linea_modificada = True
+        elif not linea_modificada and not linea.startswith("#"):
+            # Comentar la primera línea no bash/zsh
+            lineas[i] = "# " + lineas[i]
+            linea_modificada = True
+
+        if linea_modificada:
+            # Insertar el bloque de código después de la línea modificada o comentada
+            lineas[i + 1:i + 1] = [
+                '\n',
+                '# Función para mostrar el mensaje de ayuda y preguntar si desea continuar\n',
+                'show_help_and_confirm() {\n',
+                '    echo\n',
+                '    echo "El comando que este script ejecuta es:"\n',
+                f'    echo "{mensaje_personalizado}"\n',
+                '    echo\n',
+                '    echo "Presione Enter para continuar o \'c\' para salir."\n',
+                '\n',
+                '    # Preguntar al usuario si desea continuar\n',
+                '    read -p "Deseas continuar [c/S] " response\n',
+                '\n',
+                '    # Convertir la respuesta a minúsculas\n',
+                '    response=$(echo "$response" | tr \'[:upper:]\' \'[:lower:]\')\n',
+                '\n',
+                '    # Si la respuesta es \'c\', salir del script\n',
+                '    if [ "$response" == "c" ]; then\n',
+                '        echo "Saliendo del script."\n',
+                '        exit 0\n',
+                '    fi\n',
+                '}\n',
+                '\n',
+                '# Verificar si se pasó el argumento -h\n',
+                'if [ "$1" == "-h" ]; then\n',
+                '    show_help_and_confirm\n',
+                'fi\n'
+            ]
+            break  # Salir del bucle después de modificar
 
     with open(archivo_a_modificar, 'w') as archivo:
         archivo.writelines(lineas)
 
-    print("El archivo '{}' ha sido modificado con éxito.".format(archivo_a_modificar))
+    print(f"El archivo '{archivo_a_modificar}' ha sido modificado con éxito.")
 
 except FileNotFoundError:
-    print("El archivo '{}' no existe.".format(archivo_a_modificar))
+    print(f"El archivo '{archivo_a_modificar}' no existe.")
     sys.exit(1)
