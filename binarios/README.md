@@ -63,7 +63,7 @@ proceso             Muestro los Procesos sin PID, no PID
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ctl {servicio}      Aplica un sudo systemctl a un servicio
-buspak              busca paquetes y servicios que esten instalados en varias distros
+findpak              busca paquetes y servicios que esten instalados en varias distros
 
 
 ###------Repositorios
