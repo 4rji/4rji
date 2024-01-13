@@ -2,7 +2,7 @@
 
 # Lista de paquetes a instalar
 #paquetes=("nano" "zsh")
-paquetes=("php7.4-cli" "php7.4-common" "php7.4-curl" "php7.4-zip" "php7.4-gd" "php7.4-mysql" "php7.4-xml" "php7.4-mbstring" "php7.4-json" "php7.4-intl" "unzip" "composer" "git" "nano" "zsh" "php-xml" "php-zip" "php" "apache2" "mysqp-server")
+paquetes=("php7.4-cli" "php7.4-common" "php7.4-curl" "php7.4-zip" "wget" "php7.4-gd" "php7.4-mysql" "php7.4-xml" "php7.4-mbstring" "php7.4-json" "php7.4-intl" "unzip" "composer" "git" "nano" "zsh" "php-xml" "php-zip" "php" "apache2" "mysqp-server")
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
