@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Conectar a MySQL como root y ejecutar comandos SQL
+mysql -uroot <<EOF
+CREATE DATABASE prestashop;
+CREATE USER 'prestashopuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Secure123@';
+GRANT ALL PRIVILEGES ON prestashop.* TO 'prestashopuser'@'localhost';
+FLUSH PRIVILEGES;
+EOF
+
+
+
