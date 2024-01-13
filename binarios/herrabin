@@ -5,12 +5,6 @@
 
 paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" "bat" "batcat" "lsd" "tldr" )
 
-#paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" "python3-pip" "net-tools" 
- #         "wormhole" "ranger" "scrub" "shred" "curl" "kitty" "tmux" "dialog" 
-  #        "iptables" "openvpn" "nmap" "mesa-utils" "lm-sensors" "firejail" 
-   #       "lf" "proxychains" "neofetch" "lsd" "btop" "tldr" "backintime-qt" 
-    #      "trash-cli" "ncdu" "ruby-rouge" "wireguard-tools" "bc" "ufw" "python3")
-#
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
 paquete_instalado_apt() {  
@@ -129,25 +123,6 @@ fi
 
 echo ""
 
-# Pregunta al usuario
-read -p "¿Quieres instalar todos los paquetes de 2-arji (s/N): " respuesta
-
-# Define un valor predeterminado si el usuario presiona Enter
-respuesta=${respuesta:-N}
-
-# Convierte la respuesta a minúsculas para facilitar la comparación
-respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
-
-# Verifica la respuesta
-if [ "$respuesta" == "s" ]; then
-    echo "instalando todos los paquetes... 2-4rji"
-    2-4rji
-    # Aquí colocas el código para ejecutar bashfun
-else
-    echo ""
-fi
-
-
 
 # Pregunta al usuario
 read -p "¿Quieres instalar todos ALIAS (s/N): " respuesta
@@ -166,6 +141,34 @@ if [ "$respuesta" == "s" ]; then
 else
     echo ""
 fi
+
+
+echo ""
+
+echo " ########### ALERTA.  #################"
+echo ""
+echo "Tarda mucho
+
+echo ""
+
+# Pregunta al usuario
+read -p "¿Quieres instalar todos los paquetes de 2-arji (s/N): " respuesta
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-N}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    echo "instalando todos los paquetes... 2-4rji"
+    2-4rji
+    # Aquí colocas el código para ejecutar bashfun
+else
+    echo ""
+fi
+
 
 
 
