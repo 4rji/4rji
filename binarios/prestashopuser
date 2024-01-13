@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#para instalar prestashop, se ejecuta este script para hacer el usuario en la base de datos Mysql
+
+
 # Conectar a MySQL como root y ejecutar comandos SQL
 mysql -uroot <<EOF
 CREATE DATABASE prestashop;
