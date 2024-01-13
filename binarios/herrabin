@@ -5,11 +5,6 @@
 
 paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" "bat" "batcat" "lsd" "tldr" )
 
-paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" "python3-pip" "net-tools" 
-          "wormhole" "ranger" "scrub" "shred" "curl" "kitty" "tmux" "dialog" 
-          "iptables" "openvpn" "nmap" "mesa-utils" "lm-sensors" "firejail" 
-          "lf" "proxychains" "neofetch" "lsd" "btop" "tldr" "backintime-qt" 
-          "trash-cli" "ncdu" "ruby-rouge" "wireguard-tools" "bc" "ufw" "python3")
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
