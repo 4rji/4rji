@@ -3,7 +3,7 @@
 
 # Función para verificar si un paquete está instalado
 
-paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" "bat" "batcat" "lsd" "tldr" )
+paquetes=("curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" "bat" "batcat" "lsd" "tldr" "iproute2" )
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)

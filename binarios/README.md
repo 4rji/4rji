@@ -180,6 +180,7 @@ metas               Script que inicia metasploit con base de datos
 
 ###------distrobox
 dockercp            Alias que muestra el formato para copiar archivos en docker
+dockerips           Crea una red para rotar ips en docker y muestra comando para ejecutar
 fixdockerper        Arregla los permisos de docker para distrobox porque pedia contrasena
 disinst             Instala distrobox docker contenedores y muestra menu de los disponibles
 disarc              Para instalar en arch, pero se puede ejecutar el comando
@@ -220,3 +221,7 @@ pythonscritps       instala requerimientos y baje scritps del curso de python
 obsidianinst        Instala obsidian en deb, baja paquete e instala notas 
 zeroinst            Script para zero raspberry
 zshinst             Instala la zsh h-my-zsh powerlevel10k
+
+
+#python herramientas
+proxyvery           Verifica si funcionan los proxies de una lista
