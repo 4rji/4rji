@@ -180,7 +180,8 @@ metas               Script que inicia metasploit con base de datos
 
 ###------distrobox
 dockercp            Alias que muestra el formato para copiar archivos en docker
-dockerips           Crea una red para rotar ips en docker y muestra comando para ejecutar
+dockernet           Crea una red para rotar ips en docker y muestra comando para ejecutar
+dcc                 Crea un archivo, muestra y ejecuta random ips docker, dockernet
 fixdockerper        Arregla los permisos de docker para distrobox porque pedia contrasena
 disinst             Instala distrobox docker contenedores y muestra menu de los disponibles
 disarc              Para instalar en arch, pero se puede ejecutar el comando
