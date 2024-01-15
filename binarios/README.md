@@ -70,6 +70,7 @@ findpak              busca paquetes y servicios que esten instalados en varias d
 fixme               corre fix-4rji para solucionar repositorios despuies de la instalacion             
 repos               vuelve a instalar por defaul los repos de kali cuando no funcionan.                
 fixkalirepos	    Borra todo los archivos en /etc/apt/ y luego reinstala y descarga pgp
+contenedor          Instala paquetes basicos, util en contenedores docker
 
 ###------nmap scaners
 nombre_{IP}         Da el nombre de la maquina si es linux o windows                                   
