@@ -1,84 +1,5 @@
 #!/bin/zsh
 
-#!/bin/bash
-
-# Lista de paquetes a instalar
-paquetes=("docker.io")
-
-# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
-paquete_instalado_apt() {  
-    dpkg -l "$1" | grep -q '^ii'  
-}
-
-# Función para verificar si un paquete está instalado (CentOS/RHEL)
-paquete_instalado_yum() {
-    yum list installed "$1" &> /dev/null
-}
-
-# Función para verificar si un paquete está instalado (Fedora)
-paquete_instalado_dnf() {
-    dnf list installed "$1" &> /dev/null
-}
-
-# Función para verificar si un paquete está instalado (Arch Linux)
-paquete_instalado_pacman() {
-    pacman -Qi "$1" &> /dev/null
-}
-
-# Detectar el sistema operativo
-if [ -f /etc/os-release ]; then
-    . /etc/os-release
-    OS=$ID
-fi
-
-# Instalar paquetes basados en el sistema operativo
-for paquete in "${paquetes[@]}"; do
-    case $OS in
-        "debian"|"ubuntu"|"kali")
-            if ! paquete_instalado_apt "$paquete"; then
-                echo "Instalando el paquete $paquete..."
-                sudo apt-get install -y "$paquete"
-            fi
-            ;;
-        "centos"|"rhel")
-            if ! paquete_instalado_yum "$paquete"; then
-                echo "Instalando el paquete $paquete..."
-                sudo yum install -y "$paquete"
-            fi
-            ;;
-        "fedora")
-            if ! paquete_instalado_dnf "$paquete"; then
-                echo "Instalando el paquete $paquete..."
-                sudo dnf install -y "$paquete"
-            fi
-            ;;
-        "arch")
-            if ! paquete_instalado_pacman "$paquete"; then
-                echo "Instalando el paquete $paquete..."
-                sudo pacman -S --noconfirm "$paquete"
-            fi
-            ;;
-        *)
-            ;;
-    esac
-done
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Verificar si el servicio de Docker está activo o inactivo
 docker_service_status=$(systemctl is-active docker)
 
@@ -123,11 +44,23 @@ elif [[ $choice == 2 ]]; then
 elif [[ $choice == 3 ]]; then
     # Si elige borrar, mostrar la lista de imágenes
     sudo docker images
-   # Preguntar por el ImageID a borrar
+    # Preguntar por el ImageID a borrar
     echo "Ingresa el ImageID a borrar:"
     read image_id_to_delete
     # Intentar eliminar la imagen forzadamente
     sudo docker rmi -f $image_id_to_delete
+
+    # Preguntar al usuario si quiere ejecutar docker system prune -a
+    echo "¿Quieres eliminar todos los contenedores, redes y imágenes no utilizadas? [y/N]"
+    read prune_choice
+
+    if [[ $prune_choice == [yY] || $prune_choice == [yY][eE][sS] ]]; then
+        sudo docker system prune -a
+    fi
+
+    # Mostrar el mensaje independientemente del resultado
+    echo "Operación completada."
+
 
     # Mostrar el mensaje independientemente del resultado
     echo " "
