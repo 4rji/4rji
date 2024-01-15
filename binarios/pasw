@@ -1,0 +1,104 @@
+#!/bin/bash
+
+while true; do
+    echo ""
+    
+    echo "Elige un comando para ejecutar:"
+    echo ""
+    echo "1. Usuarios con shell interactiva grep -v '/usr/sbin/nologin"
+    echo ""
+    echo "2. Usuarios con shell interactiva cat /etc/passwd "
+    echo ""
+    echo "3. Mostrar contenido de /etc/passwd con 'bash' "
+    echo ""
+    echo "4. Cambiar la shell de un usuario a /usr/sbin/nologin"
+    echo ""
+    echo "5. Salir y mostrar comandos"
+                echo ""
+
+
+    # Espera la entrada del usuario (solo un carácter)
+    read -n1 -s input
+    echo ""
+    echo ""
+
+    case $input in
+        1)
+            echo ""
+            echo "***********************************************"
+            echo "mas lineas: awk /etc/pass/ /usr/sbin/nologin"
+            echo "***********************************************"
+            echo ""
+            awk -F':' '
+            {
+                if ($7 != "/usr/sbin/nologin")
+                    print $1 " : [32m" $7 "[0m"
+            }' /etc/passwd
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            echo ""
+            ;;
+        2)
+            echo ""
+            echo "***********************************************"
+            echo "grep -v '/usr/sbin/nologin' /etc/passwd"
+            echo "***********************************************"
+            echo ""
+            grep -v '/usr/sbin/nologin' /etc/passwd
+            echo ""
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            
+            echo ""
+            echo ""
+            ;;
+        3)
+            echo ""
+            echo ""
+            echo ""
+             echo "***********************************************"
+            echo "grep -v '/usr/sbin/nologin' /etc/passwd"
+            echo "***********************************************"
+            echo "" 
+            cat /etc/passwd | grep bash --color
+            echo ""
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            echo ""
+            echo ""
+            ;;
+        4)
+            echo ""
+            echo "Introduce el nombre de usuario para cambiar a nologin:"
+            read username
+            sudo usermod -s /usr/sbin/nologin $username
+            echo ""
+            
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            echo ""
+            ;;
+        5)
+            echo ""
+            echo "Saliendo..."
+	        echo ""
+            echo "cat /etc/passwd"
+            echo ""
+	        echo "Comando para cambiar la shell de un usuario a nologin: "
+	        echo "sudo usermod -s /usr/sbin/nologin nombre_de_usuario"
+            echo ""
+            break
+            ;;
+        *)
+            echo "Opción no válida."
+            ;;
+    esac
+done
