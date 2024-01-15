@@ -3,21 +3,21 @@
 while true; do
     echo ""
     
-    echo "Elige un comando para ejecutar:"
+    echo "Choose a command to execute:"
     echo ""
-    echo "1. Usuarios con shell interactiva grep -v '/usr/sbin/nologin"
+    echo "1. Users with interactive shell grep -v '/usr/sbin/nologin"
     echo ""
-    echo "2. Usuarios con shell interactiva cat /etc/passwd "
+    echo "2. Users with interactive shell cat /etc/passwd "
     echo ""
-    echo "3. Mostrar contenido de /etc/passwd con 'bash' "
+    echo "3. Show content of /etc/passwd with 'bash' "
     echo ""
-    echo "4. Cambiar la shell de un usuario a /usr/sbin/nologin"
+    echo "4. Change a user's shell to /usr/sbin/nologin"
     echo ""
-    echo "5. Salir y mostrar comandos"
+    echo "5. Exit and display commands"
                 echo ""
 
 
-    # Espera la entrada del usuario (solo un carácter)
+    # Wait for user input (just one character)
     read -n1 -s input
     echo ""
     echo ""
@@ -26,13 +26,13 @@ while true; do
         1)
             echo ""
             echo "***********************************************"
-            echo "mas lineas: awk /etc/pass/ /usr/sbin/nologin"
+            echo "more lines: awk /etc/pass/ /usr/sbin/nologin"
             echo "***********************************************"
             echo ""
             awk -F':' '
             {
                 if ($7 != "/usr/sbin/nologin")
-                    print $1 " : [32m" $7 "[0m"
+                    print $1 " : m" $7 ""
             }' /etc/passwd
             echo ""
             echo "***********************************************"
@@ -75,8 +75,9 @@ while true; do
             ;;
         4)
             echo ""
-            echo "Introduce el nombre de usuario para cambiar a nologin:"
+            echo "Enter the username to change to nologin:"
             read username
+	    echo ""
             sudo usermod -s /usr/sbin/nologin $username
             echo ""
             
@@ -88,17 +89,17 @@ while true; do
             ;;
         5)
             echo ""
-            echo "Saliendo..."
-	        echo ""
+            echo "Exiting..."
+            echo ""
             echo "cat /etc/passwd"
             echo ""
-	        echo "Comando para cambiar la shell de un usuario a nologin: "
-	        echo "sudo usermod -s /usr/sbin/nologin nombre_de_usuario"
+            echo "Command to change a user's shell to nologin: "
+            echo "sudo usermod -s /usr/sbin/nologin user_name"
             echo ""
             break
             ;;
         *)
-            echo "Opción no válida."
+            echo "Invalid option."
             ;;
     esac
 done
