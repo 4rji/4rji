@@ -2,6 +2,7 @@
 
 # Lista de paquetes a instalar
 paquetes=("nano" "zsh" "git" "curl" "net-tools" "iproute2" "dnsutils" "tcpdump" "wget")
+paquetes=("sudo" "curl" "git" "kitty" "nano"  "sudo" "zsh" "xclip" "python3" "bat" "batcat" "lsd" "tldr" "iproute2" "net-tools" "iputils-ping" )
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
