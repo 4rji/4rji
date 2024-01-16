@@ -1,0 +1,70 @@
+#!/bin/bash
+
+tempfile=$(mktemp)
+
+cleanup() {
+    # Esta función se ejecutará al finalizar el script para eliminar el archivo temporal.
+    rm -f "$tempfile"
+    echo ""
+    echo ""
+     echo "cat /etc/passwd"
+            echo ""
+            echo "Command to change a user's shell to nologin: "
+            echo "sudo usermod -s /usr/sbin/nologin user_name"
+            echo "" 
+}
+
+trap cleanup EXIT
+
+while true; do
+    echo ""
+    
+    echo "Choose a command to execute:"
+    echo ""
+    echo "1. Users with interactive shell grep -v '/usr/sbin/nologin"
+    echo ""
+    echo "2. Users with interactive shell cat /etc/passwd "
+    echo ""
+    echo "3. Show content of /etc/passwd with 'bash' "
+    echo ""
+    echo "4. Change a user's shell to /usr/sbin/nologin"
+    echo ""
+    echo "5. Exit and display commands"
+    echo ""
+
+
+    read -n1 -s input
+    echo ""
+    echo ""
+
+    case $input in
+        1)
+            awk -F':' '
+            {
+                if ($7 != "/usr/sbin/nologin")
+                    print $1 " : " $7 ""
+            }' /etc/passwd > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        2)
+            grep -v '/usr/sbin/nologin' /etc/passwd > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        3)
+            cat /etc/passwd | grep bash --color > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        4)
+            echo "Enter the username to change to nologin:"
+            read username
+            sudo usermod -s /usr/sbin/nologin $username
+            ;;
+        5)
+            echo "Exiting..."
+            break
+            ;;
+        *)
+            echo "Invalid option."
+            ;;
+    esac
+done
