@@ -111,6 +111,7 @@ iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 
 ###------ccdc
 pasw                Checa los usuarios con bash y los cambia a nologin
+passl               Igual que pasw pero sin batcat
 rootcheck           checks various shell configuration files .bash zsh ...
 crontt              Shows crontabs of the current user and root
 crontall            Shows crontab of everyone
