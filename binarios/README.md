@@ -17,6 +17,7 @@ tempe               or tempe -f temperatura de arch linux y -f crea un archivo c
 ###------utilidades sistema
 todo_{algo}         Busca en alias y readme info
 comando             aplica -h mensaje para mostrar al inicio de un script
+comandos            Muestra varios comandos aprendidos s4vi
 template_paquetes   Template para instalar paquetes automaticamente en todas las distro
 4rji                el programa y busqueda de scripts                                                  
 4rjic	            Muestra una lista simple de 4rji
