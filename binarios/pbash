@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Lista de 50 puertos comunes para escanear
+common_ports=(
+    20 21 22 23 25 53 80 110 111 135 139 143 443 445 993 995 1723 3306 3389 5900
+    8080 21 22 23 25 53 80 110 139 143 443 465 587 993 995 1433 1521 3306 3389 5432
+    5900 5985 6379 8080 8443 9200 11211 27017 25 53 110 123 137 161 194 443 445
+)
+
+function ctrl_c(){
+    echo -e "\n\n[!] Saliendo...\n"
+    tput cnorm; exit 1
+}
+
+tput civis
+trap ctrl_c SIGINT
+
+# Solicitar al usuario que ingrese la red a escanear
+read -p "Ingrese la red a escanear (ejemplo: 192.168.1): " network_prefix
+
+for i in $(seq 1 254); do
+    for port in "${common_ports[@]}"; do
+        timeout 1 bash -c "echo '' > /dev/tcp/${network_prefix}.$i/$port" 2>/dev/null &&
+        echo "[+] Host ${network_prefix}.$i - Port $port (OPEN)" &
+    done
+done
+
+wait
+tput cnorm
+
+
+echo ""
+
+
+echo "
+Este método es bastante primitivo y no ofrece detalles adicionales como
+ un escaneo de puertos realizado por herramientas más avanzadas como
+  nmap. Además, el uso de /dev/tcp para verificar puertos puede no funcionar en
+   todos los sistemas y podría ser bloqueado por configuraciones de seguridad. "
