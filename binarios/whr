@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Verifica si se proporciona un argumento
 if [ -z "$1" ]
