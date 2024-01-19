@@ -227,7 +227,7 @@ pythonscritps       instala requerimientos y baje scritps del curso de python
 obsidianinst        Instala obsidian en deb, baja paquete e instala notas 
 zeroinst            Script para zero raspberry
 zshinst             Instala la zsh h-my-zsh powerlevel10k
-
+tmuxconf            Archivos para la configuracion de tmux, lo instala.
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
