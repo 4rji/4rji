@@ -1,7 +1,7 @@
 
-I had the images created since last weekend, but yesterday I realized that they charge for creating them even when they're not running, and my bill went up a lot, so now I create them on demand.
+I had the images created since last weekend, but yesterday I realized that they charge for creating them even when they're not running, and my bill went up a lot. All new ones and on demand.
 
-Game Rules
+### Game Rules
 
 Leave the ports of the Presto web page open, 80 and 445. If you block the SSH port, you will lose connection to the server.
 
@@ -15,12 +15,11 @@ You won't find processes of connections because I don't maintain an open session
 
 The whole solution is in the Kill Chain. If you follow the steps, you will surely find all the problems with the machine.
 
-Changing the SSH port can complicate things in many ways, obfuscating the other ports or making nmap scans very slow will definitely make my job harder.
-
-The keys are a fundamental piece in accessing any place.
+Changing the SSH port can complicate things in many ways, such as obfuscating other ports or significantly slowing down nmap scans.
 
 # Tasks
 
 Point the  DNS servers to those of Google or Cloudflare. (In the competition will be windows DNS)
 
 Update the packages and install rkhunter to look for the rootkit (I'm still working on install it).
+

@@ -24,7 +24,7 @@ Thanks to the ease of deploying 'Droplets' (VM), it was easy for me to create a 
 The goal is for my teammates to find and eliminate any tricks they encounter during the competition. In the previous practice we had in November, I found some of these issues on the Linux machines. It's also for them to learn how to use the scripts I made, specifically to find those processes.
 
 
-### <span style="color:red">Red Team</span>
+# Tips
 
 To avoid getting blocked, I created a /16 subnet to have an infinite number of available IPs. I also installed a Gateway on a Docker VM. This allows me to install Docker on my Kali machine and deploy ephemeral containers for each scan or command to the practice machines.
 

