@@ -1,3 +1,29 @@
+tags: #docker #redteam
+
+
+This script simplifies the deployment of Docker containers with user-defined configurations. It prompts for subnet, Docker image, and network details, saving them for future use. It then generates a random IP address within a specified range and provides the command to run the Docker container with the specified parameters.
+
+```zsh
+dcc
+```
+
+The script will ask if you want to start the container and will display the command to use with the new IP.
+
+Command to execute:
+``` zsh 
+docker run -it --network ccdc --ip 10.0.4.162 kali
+```
+
+
+
+
+
+
+This is the script
+
+______ 
+```bash
+
 #!/bin/bash
 
 # Path to the configuration file
@@ -48,3 +74,5 @@ case $response in
         echo "Command canceled."
         ;;
 esac
+
+```
