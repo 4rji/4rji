@@ -43,12 +43,11 @@ echo ""
 
 
 
-
 if [[ $guardar == "s" ]]; then
     # Copia el archivo temporal a la ruta actual como ips.txt
-    cp $tempfile ./ips1.txt
-    sed 's/ is up//' ips1.txt > ips.txt
-
+    cp $tempfile .ips1.txt
+    sed 's/ is up//' .ips1.txt > ips.txt
+#    rm ips1.txt
     echo "Archivo guardado como ips.txt"
 fi
 
@@ -57,3 +56,5 @@ rm $tempfile
 echo ""
 echo "*** Precausion*** Solo esta echo para /24"
 echo ""
+
+

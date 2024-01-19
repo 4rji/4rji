@@ -1,0 +1,175 @@
+{
+  "main": {
+    "id": "98966092644cd909",
+    "type": "split",
+    "children": [
+      {
+        "id": "87261aa29e1317ae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "56c0a51ae909271e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "RedTeam/Droplets.md",
+                "mode": "preview",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "eb860165fb4407a4",
+    "type": "split",
+    "children": [
+      {
+        "id": "2d7b75676fb68774",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "744ea76f87d6236c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "928baf8fadf07ed4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": true,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "728c3a9a9230b804",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ae39b9e3c89845ed",
+    "type": "split",
+    "children": [
+      {
+        "id": "91186741e3bf1f04",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "37416853372eb387",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "RedTeam/Droplets.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b0f8b052b244cc61",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "RedTeam/Droplets.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2a4f925b6458bf6b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "52114131c50d6eb7",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "RedTeam/Droplets.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "obsidian-excalidraw-plugin:Create new drawing": false
+    }
+  },
+  "active": "56c0a51ae909271e",
+  "lastOpenFiles": [
+    "Untitled.md",
+    "RedTeam",
+    "RedTeam/Droplets.md",
+    "Scripts/redhavi.md",
+    "Scripts/dcc.md",
+    "Machines/Untitled.md",
+    "CCDC_droplets.png",
+    "herraminetas.md",
+    "scripts para XMLRPC.md",
+    "Indice (icono nota).md",
+    "Commands.md",
+    "Machines/Windows 🖥️/dows Docker,kkmk.md",
+    "Scripts",
+    "Screenshot 2024-01-19 at 12.03.44 AM.png",
+    "Screenshot 2024-01-18 at 11.10.55 PM.png",
+    "Digital Ocean/Untitled.canvas",
+    "Task ✅.md",
+    "Digital Ocean",
+    "Welcome.md",
+    "Machines/Linux 💻",
+    "Machines/Windows 🖥️",
+    "Machines"
+  ]
+}

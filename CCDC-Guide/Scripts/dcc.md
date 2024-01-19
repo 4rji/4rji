@@ -1,0 +1,78 @@
+tags: #docker #redteam
+
+
+This script simplifies the deployment of Docker containers with user-defined configurations. It prompts for subnet, Docker image, and network details, saving them for future use. It then generates a random IP address within a specified range and provides the command to run the Docker container with the specified parameters.
+
+```zsh
+dcc
+```
+
+The script will ask if you want to start the container and will display the command to use with the new IP.
+
+Command to execute:
+``` zsh 
+docker run -it --network ccdc --ip 10.0.4.162 kali
+```
+
+
+
+
+
+
+This is the script
+
+______ 
+```bash
+
+#!/bin/bash
+
+# Path to the configuration file
+config_file="docker-connection"
+
+# Check if the file exists
+if [ ! -f "$config_file" ]; then
+    # Prompt for data and save it to the file
+    read -p "Enter the subnet you want to copy, e.g., 192.168.122: " variable1
+    read -p "What is the image you want to run, e.g., kali?: " variable2
+    read -p "What is the created network?: " variable3
+    echo "variable1=$variable1" > $config_file
+    echo "variable2=$variable2" >> $config_file
+    echo "variable3=$variable3" >> $config_file
+else
+    # Load data from the file
+    source $config_file
+fi
+
+# Function to generate a random IP address
+# Here, 150 is added to limit the addresses to the range 100 to 254 and avoid conflicts with the first 150 IPs; adjust the number if you want more IPs
+generate_random_ip() {
+    local ip="${variable1}.$((RANDOM % 105 + 150))"
+    echo $ip
+}
+
+# Generate a random IP
+random_ip=$(generate_random_ip)
+
+# Display the command to run the Docker container with the random IP
+
+docker_command="docker run -it --network $variable3 --ip $random_ip $variable2"
+echo ""
+echo "Command to execute:"
+echo "$docker_command"
+
+# Ask if you want to run the command
+echo ""
+read -p "Do you want to execute this command? (s/enter): " response
+
+case $response in
+    [Ss]* )
+        echo ""
+        echo "Running the command..."
+        $docker_command
+        ;;
+    * )
+        echo "Command canceled."
+        ;;
+esac
+
+```

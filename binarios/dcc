@@ -1,51 +1,50 @@
 #!/bin/bash
 
-# Ruta del archivo de configuración
-archivo_config="docker-conexion"
+# Path to the configuration file
+config_file="docker-connection"
 
-# Verificar si el archivo existe
-if [ ! -f "$archivo_config" ]; then
-    # Solicitar los datos y guardarlos en el archivo
-    read -p "Ingresa la subnet que quieres copiar, ejemplo 192.168.122: " variable1
-    read -p "¿Cuál es la imagen que quieres correr, ejemplo kali?: " variable2
-    read -p "¿Cuál es la red creada?: " variable3
-    echo "variable1=$variable1" > $archivo_config
-    echo "variable2=$variable2" >> $archivo_config
-    echo "variable3=$variable3" >> $archivo_config
+# Check if the file exists
+if [ ! -f "$config_file" ]; then
+    # Prompt for data and save it to the file
+    read -p "Enter the subnet you want to copy, e.g., 192.168.122: " variable1
+    read -p "What is the image you want to run, e.g., kali?: " variable2
+    read -p "What is the created network?: " variable3
+    echo "variable1=$variable1" > $config_file
+    echo "variable2=$variable2" >> $config_file
+    echo "variable3=$variable3" >> $config_file
 else
-    # Cargar los datos del archivo
-    source $archivo_config
+    # Load data from the file
+    source $config_file
 fi
 
-# Función para generar una dirección IP aleatoria
-#aqui se sumo 150 para limitar las direcciones al rango de 100 al 254 y no 
-#tener conflicto con las primeras 150 ips, bajar numero si quiero mas ips
+# Function to generate a random IP address
+# Here, 150 is added to limit the addresses to the range 100 to 254 and avoid conflicts with the first 150 IPs; adjust the number if you want more IPs
 generate_random_ip() {
     local ip="${variable1}.$((RANDOM % 105 + 150))"
     echo $ip
 }
 
-# Generar IP aleatoria
+# Generate a random IP
 random_ip=$(generate_random_ip)
 
-# Mostrar el comando para ejecutar el contenedor Docker con la IP aleatoria
+# Display the command to run the Docker container with the random IP
 
-comando_docker="docker run -it --network $variable3 --ip $random_ip $variable2"
+docker_command="docker run -it --network $variable3 --ip $random_ip $variable2"
 echo ""
-echo "Comando a ejecutar:"
-echo "$comando_docker"
+echo "Command to execute:"
+echo "$docker_command"
 
-# Preguntar si desea ejecutar el comando
+# Ask if you want to run the command
 echo ""
-read -p "¿Quieres ejecutar este comando? (s/enter): " respuesta
+read -p "Do you want to execute this command? (s/enter): " response
 
-case $respuesta in
+case $response in
     [Ss]* )
         echo ""
-	echo "Ejecutando el comando..."
-        $comando_docker
+        echo "Running the command..."
+        $docker_command
         ;;
     * )
-        echo "Comando cancelado."
+        echo "Command canceled."
         ;;
 esac
