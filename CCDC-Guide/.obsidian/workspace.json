@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "88f77fe3ce42a947",
+        "id": "7f12ee9896d71e98",
         "type": "tabs",
         "children": [
           {
-            "id": "af2af2b5e368e60a",
+            "id": "bb9e6fba1922e8e4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Reglas de juego.md",
-                "mode": "source",
+                "file": "CCDC/RedTeam/Droplets.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Reglas de juego.md",
+                "file": "CCDC/RedTeam/Droplets.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Reglas de juego.md",
+                "file": "CCDC/RedTeam/Droplets.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Reglas de juego.md"
+                "file": "CCDC/RedTeam/Droplets.md"
               }
             }
           }
@@ -147,25 +147,27 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "af2af2b5e368e60a",
+  "active": "bb9e6fba1922e8e4",
   "lastOpenFiles": [
-    "herraminetas.md",
-    "RedTeam/Droplets.md",
-    "Reglas de juego.md",
-    "RedTeam",
-    "Scripts/redhavi.md",
-    "Scripts/dcc.md",
+    "Permisos de linux.md",
+    "CCDC/RedTeam/Droplets.md",
+    "CCDC",
+    "CCDC/CCDC_droplets.png",
+    "CCDC/Reglas de juego.md",
+    "CCDC/herraminetas.md",
+    "CCDC/RedTeam",
+    "CCDC/Scripts/redhavi.md",
+    "CCDC/Scripts/dcc.md",
     "Machines/Untitled.md",
-    "CCDC_droplets.png",
-    "scripts para XMLRPC.md",
-    "Indice (icono nota).md",
+    "CCDC/scripts para XMLRPC.md",
+    "CCDC/Indice (icono nota).md",
     "Commands.md",
     "Machines/Windows 🖥️/dows Docker,kkmk.md",
-    "Scripts",
+    "CCDC/Scripts",
     "Screenshot 2024-01-19 at 12.03.44 AM.png",
     "Screenshot 2024-01-18 at 11.10.55 PM.png",
     "Digital Ocean/Untitled.canvas",
-    "Task ✅.md",
+    "CCDC/Task ✅.md",
     "Digital Ocean",
     "Welcome.md",
     "Machines/Linux 💻",
