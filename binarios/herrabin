@@ -8,22 +8,22 @@ paquetes=("sudo" "curl" "git" "kitty" "nano" "sudo" "zsh" "xclip" "python3" "bat
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
 paquete_instalado_apt() {  
-    dpkg -l "$1" | grep -q '^ii'  
+    dpkg -l "$1" | grep -q '^ii'  >/dev/null
 }
 
 # Función para verificar si un paquete está instalado (CentOS/RHEL)
 paquete_instalado_yum() {
-    yum list installed "$1" &> /dev/null
+    yum list installed "$1"  >/dev/null
 }
 
 # Función para verificar si un paquete está instalado (Fedora)
 paquete_instalado_dnf() {
-    dnf list installed "$1" &> /dev/null
+    dnf list installed "$1" >/dev/null
 }
 
 # Función para verificar si un paquete está instalado (Arch Linux)
 paquete_instalado_pacman() {
-    pacman -Qi "$1" &> /dev/null
+    pacman -Qi "$1" >/dev/null
 }
 
 # Detectar el sistema operativo
@@ -38,25 +38,25 @@ for paquete in "${paquetes[@]}"; do
         "debian"|"ubuntu"|"kali")
             if ! paquete_instalado_apt "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo apt-get install -y "$paquete"
+                sudo apt-get install -y "$paquete" >/dev/null
             fi
             ;;
         "centos"|"rhel")
             if ! paquete_instalado_yum "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo yum install -y "$paquete"
+                sudo yum install -y "$paquete" >/dev/null
             fi
             ;;
         "fedora")
             if ! paquete_instalado_dnf "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo dnf install -y "$paquete"
+                sudo dnf install -y "$paquete" >/dev/null
             fi
             ;;
         "arch")
             if ! paquete_instalado_pacman "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo pacman -S --noconfirm "$paquete"
+                sudo pacman -S --noconfirm "$paquete" >/dev/null
             fi
             ;;
         *)
@@ -163,7 +163,7 @@ respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
 # Verifica la respuesta
 if [ "$respuesta" == "s" ]; then
     echo "instalando todos los paquetes... 2-4rji"
-    2-4rji
+    2-4rji >/dev/null
     # Aquí colocas el código para ejecutar bashfun
 else
     echo ""
