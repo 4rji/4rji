@@ -1,13 +1,16 @@
 #!/bin/bash
 
+# Backup /etc/sysctl.conf
+    sudo cp /etc/sysctl.conf /etc/sysctl.conf.backup
+echo ""
+
+
 # Ask if the user wants to modify /etc/sysctl.conf for Network Hardening
 read -p "Do you want to perform Network Hardening in /etc/sysctl.conf? (y/n): " response
 
 # Verify the response
 if [[ $response == "y" ]]; then
-    # Backup /etc/sysctl.conf
-    sudo cp /etc/sysctl.conf /etc/sysctl.conf.backup
-
+    
     # Adjustments in /etc/sysctl.conf
     echo "
 net.ipv4.conf.all.accept_source_route=0
@@ -35,3 +38,14 @@ net.ipv4.icmp_echo_ignore_all = 0
 else
     echo "Operation cancelled. No changes were made to /etc/sysctl.conf."
 fi
+echo ""
+echo ""
+echo "check changes on:"
+echo "cat /etc/sysctl.conf"
+echo ""
+echo "backup on:"
+echo "/etc/sysctl.conf.backup"
+echo ""
+echo ""
+echo ""
+echo "**************** END ****************"

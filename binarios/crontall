@@ -20,3 +20,19 @@ for username in $(cut -d: -f1 /etc/passwd); do
     sudo crontab -u $username -l
     echo ""
 done
+
+# Ask if the user wants to delete all crontabs
+read -p "Do you want to delete crontabs for all users? (y/[enter]) " answer
+case $answer in
+    [Yy]* )
+        for username in $(cut -d: -f1 /etc/passwd); do
+            echo "Deleting crontab for user: $username"
+            sudo crontab -u $username -r
+        done
+        echo "All crontabs have been deleted."
+        ;;
+    * )
+        echo "Crontabs not deleted."
+        ;;
+esac
+
