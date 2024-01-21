@@ -85,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Permisos de linux.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Permisos de linux.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled.md"
+                "file": "Permisos de linux.md"
               }
             }
           }
@@ -145,10 +147,10 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "744ea76f87d6236c",
+  "active": "bb9e6fba1922e8e4",
   "lastOpenFiles": [
-    "Permisos de linux.md",
     "Untitled.md",
+    "Permisos de linux.md",
     "CCDC/RedTeam/Droplets.md",
     "Otro/anda.md",
     "Otro",
