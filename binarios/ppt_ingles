@@ -1,7 +1,9 @@
 #!/bin/bash
 
+
 # Lista de paquetes a instalar
-paquetes=("rkhunter" "chkrootkit" )
+
+paquetes=("lsof" "net-tools" "nmap")
 
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
@@ -64,78 +66,54 @@ done
 
 
 
+# Function to ask and execute lsof
+ask_and_execute_lsof() {
+    read -p "Execute lsof? [Enter/c]: " response
+    if [[ $response != "c" ]]; then
+        sudo lsof -i -P -n
+    fi
+}
 
-
-
-
-
-echo "modify the files"
-echo "sudo nano /etc/rkhunter.conf"
-echo "sudo nano /etc/default/rkhunter"
-echo ""
-read -p "Do you want to modify the files automatic? y/[enter]: " modify
-
-if [[ $modify == "y" ]]; then
-    sudo rkhunconf
-    sudo rkhuncron
-    echo "Files modified with scripts"
-    sleep 1
-fi
-
-# Ask the user if they want to update the database
-read -p "Do you want to update the database? y/[enter]: " update
-
-if [[ $update == "y" ]]; then
-    sudo rkhunter --update
-fi
-
-sleep 1
-# list of binaries below is executed
-# sudo rkhunter --propupd
-
-# Ask the user if they want to run the scan
-echo "Do you want to execute the scan now? (y/[enter]): "
-read response
-
-if [[ $response = "y" ]]; then
-    # If the user responds 's', execute rkhunter
-    echo "Running rkhunter..."
-    sudo rkhunter --propupd
-    sudo rkhunter --check -sk
-else
-    # If the user presses enter or any other key, show how to execute it later
+# Function to ask and execute netstat
+ask_and_execute_netstat() {
     echo ""
-fi
+    echo ""
+    read -p "Execute netstat? [Enter/c]: " response
+    if [[ $response != "c" ]]; then
+        netstat -tulpn
+    fi
+}
+
+# Function to ask and execute nmap on localhost
+ask_and_execute_nmap() {
+    echo ""
+    echo ""
+    read -p "Execute nmap localhost? [Enter/c]: " response
+    if [[ $response != "c" ]]; then
+        sudo nmap -T4 -p- --min-rate 1000 localhost
+    fi
+}
+
+# Function to ask and execute ps
+ask_and_execute_ps() {
+    echo ""
+    echo ""
+    read -p "Execute processes? [Enter/c]: " response
+    if [[ $response != "c" ]]; then
+        ps -eo user,comm,pid
+    fi
+}
+
+# Calls to the functions
+ask_and_execute_lsof
+ask_and_execute_netstat
+ask_and_execute_nmap
+ask_and_execute_ps
 
 
-# Ask the user if they want to run chkrootkit
-read -p "Do you want to execute chkrootkit? (y/[enter]): " run_chkrootkit
-
-if [[ $run_chkrootkit == "y" ]]; then
-    echo "Running chkrootkit..."
-    sudo chkrootkit
-else
-    echo "chkrootkit execution skipped."
-fi
 
 
-echo ""
-echo ""
-echo ""
-echo "**************** END ****************"
-echo ""
-echo ""
-echo ""
-echo ""
 
 
-echo "useful commands"
-echo ""
-echo "version"
-echo "sudo rkhunter --versioncheck"
-echo ""
-echo "To run the scanner again"
-echo "sudo rkhunter --check -sk"
-echo ""
-echo "To run chkrootkit scanner"
-echo "sudo chkrootkit"
+
+
