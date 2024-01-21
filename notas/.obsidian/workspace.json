@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Permisos de linux.md",
+                "file": "CCDC/README.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Permisos de linux.md",
+                "file": "CCDC/README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Permisos de linux.md",
+                "file": "CCDC/README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Permisos de linux.md"
+                "file": "CCDC/README.md"
               }
             }
           }
@@ -149,8 +149,9 @@
   },
   "active": "bb9e6fba1922e8e4",
   "lastOpenFiles": [
-    "Untitled.md",
     "Permisos de linux.md",
+    "CCDC/README.md",
+    "Untitled.md",
     "CCDC/RedTeam/Droplets.md",
     "Otro/anda.md",
     "Otro",
