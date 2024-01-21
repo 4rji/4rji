@@ -103,7 +103,7 @@ fixethernet         Arregla la red del script ethernet_status para bspwx escrito
 ###------artilleria
 artilleria          Instala el honeypot artilleria
 unbanar {IP}        Comenta la ip de banlist de artilleria, si no especifico IP me pregunta
-restartarti         Reinicia el servicio artilleria
+artires.            Reinicia el servicio artilleria
 
 ###------portspoof
 portfake            Instala portspoof emula servicios para nmap, instala todo
