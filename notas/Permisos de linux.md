@@ -21,3 +21,6 @@ Y para quitarle los permisos de  =ep
 setcap -r /usr/bin/python3.11
 ```
 
+- 👨‍💻 All of my projects are available at [4rji](https://github.com/4rji)
+
+
