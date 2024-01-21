@@ -64,7 +64,7 @@ proceso             Muestro los Procesos sin PID, no PID
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ctl {servicio}      Aplica un sudo systemctl a un servicio
-findpak              busca paquetes y servicios que esten instalados en varias distros
+findpak             Busca paquetes y servicios que esten instalados en varias distros
 
 
 ###------Repositorios
@@ -129,6 +129,7 @@ servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ppt                 Checa lsof netstat nmap y puertos que estan escuchando en el sistema
 rkhun               Instala, actualiza y ejecuta el scaneo rkhunter, tambien instala chkrootkit
+ufwinst             instala ufw y crea regla para puerto ssh                                           
  
 
 ###------buscar cosas en linux
@@ -212,6 +213,7 @@ torrelay            Instala tor relay, probado en debian
 protoninst          Instala protonvpn en kali o debian 
 grafanainst         Instala grafana y prometheus 
 instpalabras        El diccionario para crear palabras o al revez nwiz se llama
+tailscaleinst       El que mas he usado
 zerotierinst        Zerotier scrip like tailscale yo uso tailscale 
 emailscraper        ejecuta una herramienta de un curso para buscar emails                             
 crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory
@@ -226,7 +228,7 @@ pythonscritps       instala requerimientos y baje scritps del curso de python
 obsidianinst        Instala obsidian en deb, baja paquete e instala notas 
 zeroinst            Script para zero raspberry
 zshinst             Instala la zsh h-my-zsh powerlevel10k
-tmuxconf            Archivos para la configuracion de tmux, lo instala.
+tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
