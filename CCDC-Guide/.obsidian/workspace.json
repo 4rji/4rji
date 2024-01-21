@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CCDC/RedTeam/Droplets.md",
-                "mode": "preview",
+                "file": "Otro/anda.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CCDC/RedTeam/Droplets.md",
+                "file": "Otro/anda.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CCDC/RedTeam/Droplets.md",
+                "file": "Otro/anda.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CCDC/RedTeam/Droplets.md"
+                "file": "Otro/anda.md"
               }
             }
           }
@@ -147,12 +147,13 @@
       "obsidian-excalidraw-plugin:Create new drawing": false
     }
   },
-  "active": "744ea76f87d6236c",
+  "active": "bb9e6fba1922e8e4",
   "lastOpenFiles": [
+    "CCDC/RedTeam/Droplets.md",
+    "Otro/anda.md",
     "Otro",
     "untitled folder",
     "Permisos de linux.md",
-    "CCDC/RedTeam/Droplets.md",
     "CCDC",
     "CCDC/CCDC_droplets.png",
     "CCDC/Reglas de juego.md",
