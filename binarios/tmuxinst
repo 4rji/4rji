@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 conf_file="$HOME/.tmux.conf"
 
@@ -10,9 +10,9 @@ fi
 # Agrega el contenido al archivo
 cat << EOF > "$conf_file"
 # Send prefix
-set-option -g prefix C-w
-unbind-key C-w
-bind-key C-w send-prefix
+set-option -g prefix C-b
+unbind-key C-b
+bind-key C-b send-prefix
 
 # Use Alt-arrow keys to switch panes
 bind -n M-Left select-pane -L
