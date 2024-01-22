@@ -60,8 +60,8 @@ netevils            aun no se
 fzf                 buscador bueno, solo tipiar fzf 
 btop                Bueno, mejor que htop top #m to see the menu
 tldr                Te dice como usar otras herramientas #ejemplo tldr ffmpeg
-procesos            Muestra los procesos de los usuarios con PID
-proceso             Muestro los Procesos sin PID, no PID
+procesos            Muestra los procesos de los usuarios sin PID, no PID
+proceso             Muestro los Procesos con PID 
 servicios           Encuentra servicios que no son del kernel linux corriendo.
 findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ctl {servicio}      Aplica un sudo systemctl a un servicio
