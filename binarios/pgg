@@ -6,22 +6,22 @@ paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" )
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
 paquete_instalado_apt() {  
-    dpkg -l "$1" | grep -q '^ii'  
+    dpkg -l "$1" | grep -q '^ii'   2>/dev/null
 }
 
 # Función para verificar si un paquete está instalado (CentOS/RHEL)
 paquete_instalado_yum() {
-    yum list installed "$1" &> /dev/null
+    yum list installed "$1" 2> /dev/null
 }
 
 # Función para verificar si un paquete está instalado (Fedora)
 paquete_instalado_dnf() {
-    dnf list installed "$1" &> /dev/null
+    dnf list installed "$1" 2> /dev/null
 }
 
 # Función para verificar si un paquete está instalado (Arch Linux)
 paquete_instalado_pacman() {
-    pacman -Qi "$1" &> /dev/null
+    pacman -Qi "$1" 2> /dev/null
 }
 
 # Detectar el sistema operativo
@@ -36,25 +36,25 @@ for paquete in "${paquetes[@]}"; do
         "debian"|"ubuntu"|"kali")
             if ! paquete_instalado_apt "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo apt-get install -y "$paquete"
+                sudo apt-get install -y "$paquete"  2>/dev/null
             fi
             ;;
         "centos"|"rhel")
             if ! paquete_instalado_yum "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo yum install -y "$paquete"
+                sudo yum install -y "$paquete" 2>/dev/null
             fi
             ;;
         "fedora")
             if ! paquete_instalado_dnf "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo dnf install -y "$paquete"
+                sudo dnf install -y "$paquete" 2>/dev/null
             fi
             ;;
         "arch")
             if ! paquete_instalado_pacman "$paquete"; then
                 echo "Instalando el paquete $paquete..."
-                sudo pacman -S --noconfirm "$paquete"
+                sudo pacman -S --noconfirm "$paquete" 2>/dev/null
             fi
             ;;
         *)
@@ -94,9 +94,8 @@ batcat -l rb "$tempfile"
 #hostname -I | awk '{print $1 " | " $2 " | " $3}'
 echo ""
 echo "IP publica localmente encontrada"
-dig +short myip.opendns.com @resolver1.opendns.com
+timeout 2 dig +short myip.opendns.com @resolver1.opendns.com
 echo ""
-
 
 # Ejecutar hostnamectl y guardar la salida en un archivo temporal
 tmpfile=$(mktemp)
@@ -116,7 +115,7 @@ echo ""
 # Función para comprobar la conexión a Internet
 check_internet_connection() {
     echo ""
-    curl ifconfig.me
+    timeout 2s curl ifconfig.me
     local host="google.com"  # Cambia "google.com" por el host que desees
 
     ping -c 1 "$host" > /dev/null 2>&1
@@ -128,10 +127,13 @@ check_internet_connection() {
     fi
 }
 
+
+
 # Preguntar si se desea ejecutar el script
 echo "¿Deseas verificar la conexión? (s para sí, enter para continuar)"
-read response
+read -t 2 -p "s o enter: " response
 
+# Si la respuesta es 's', ejecuta la verificación
 if [[ "$response" == "s" ]]; then
     check_internet_connection
     # Guardar la salida de ipinfo.io en un archivo temporal
@@ -140,6 +142,8 @@ if [[ "$response" == "s" ]]; then
 
     # Mostrar el contenido del archivo temporal con batcat
     batcat -l rb "$tmpfile"
-    # Eliminar el archivo temporal
+    # Aquí puedes descomentar la siguiente línea para eliminar el archivo temporal
     #rm "$tmpfile"
+else
+    echo "No se seleccionó verificar la conexión."
 fi
