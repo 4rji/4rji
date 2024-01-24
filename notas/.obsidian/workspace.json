@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CCDC/README.md",
+                "file": "Herramientas por probar/NumNum video.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CCDC/README.md",
+                "file": "Herramientas por probar/NumNum video.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CCDC/README.md",
+                "file": "Herramientas por probar/NumNum video.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CCDC/README.md"
+                "file": "Herramientas por probar/NumNum video.md"
               }
             }
           }
@@ -149,8 +149,10 @@
   },
   "active": "bb9e6fba1922e8e4",
   "lastOpenFiles": [
-    "Permisos de linux.md",
     "CCDC/README.md",
+    "Herramientas por probar/NumNum video.md",
+    "Herramientas por probar",
+    "Permisos de linux.md",
     "Untitled.md",
     "CCDC/RedTeam/Droplets.md",
     "Otro/anda.md",
