@@ -13,6 +13,7 @@ control_service() {
         echo " e - enable"
         echo " d - disable"
         echo " c - cancel"
+	echo " m - mask "
         echo ""
         read -p "Select an option: " action
 
@@ -42,11 +43,19 @@ control_service() {
                 echo ""
                 sudo systemctl status $service
                 ;;
-            st)
+	     m)
+		sudo systemctl --now mask $service
+		echo ""
+            	echo "Checking status after masking..."
+                sleep 1
+                echo ""
+                sudo systemctl status $service
+		;;
+	     st)
                 sudo systemctl start $service
                 echo ""
                 echo "Checking status after starting..."
-                sleep 1
+                sleep .5
                 echo ""
                 sudo systemctl status $service
                 ;;
