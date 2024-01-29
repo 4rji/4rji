@@ -1,14 +1,18 @@
 #!/bin/bash
 
+
+
+cd
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+
+
+
 conf_file="$HOME/.tmux.conf"
 
-# Crea el archivo si no existe
-if [ ! -f "$conf_file" ]; then
-    touch "$conf_file"
-fi
-
-# Agrega el contenido al archivo
-cat << EOF > "$conf_file"
+# Agrega el contenido al archivo sin borrar nada
+cat << EOF >> "$conf_file"
 # Send prefix
 set-option -g prefix C-b
 unbind-key C-b
@@ -35,4 +39,4 @@ bind-key h split-window -v
 bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded."
 EOF
 
-echo "El archivo $conf_file se ha creado o actualizado."
+echo "Las líneas se han agregado al final del archivo $conf_file."
