@@ -55,7 +55,7 @@ genarc              genera archivos conjuntos de 100 MB
 ddf                 hace un diff archivo vs archivo.backup                                             
 copdir	            Copia un directorio por medio de ssh scp
 mackali	            Cambia la MAC de kali
-ncdu                para ver los archivos grandes, muestra el directorio como tree cool
+ncdu                para ver los archivos grandes, liberar espacio disco
 netevils            aun no se                                                                          
 fzf                 buscador bueno, solo tipiar fzf 
 btop                Bueno, mejor que htop top #m to see the menu
