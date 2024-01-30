@@ -221,7 +221,10 @@ crackmapexec	    Ejecutaria crackmapexec smb {ip} para active directory
 nerdfonts           Instala nerdfonts comando fuentes sudo pacman -S nerd-fonts  
 ufwinst             instala ufw y crea regla para puerto ssh                                           
 instdebian          basic debian apps for clean debian12
-instsurf            instala surfeando                                                                  
+instsurf            instala surfeando
+
+#Instalaciones                                                                  
+lockfancyinst       Bloquear fancy para pantalla, alias lfan
 qemuins             Instala qemu y virtual en debian o arch
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
