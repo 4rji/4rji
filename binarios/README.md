@@ -224,7 +224,7 @@ instdebian          basic debian apps for clean debian12
 instsurf            instala surfeando
 
 #Instalaciones                                                                  
-lockfancyinst       Bloquear fancy para pantalla, alias lfan
+lockfancyinst       Bloquear fancy para pantalla, alias lockf
 qemuins             Instala qemu y virtual en debian o arch
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
