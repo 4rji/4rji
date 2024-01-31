@@ -4,35 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "aedd12f4a5f7c2d0",
+        "id": "ae27c68432408533",
         "type": "tabs",
         "children": [
           {
-            "id": "a9c28a2229651156",
+            "id": "0d1283d50a23db44",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Tareas.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "02028d8df14c9bd5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Tareas.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -99,7 +82,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tareas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +98,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Tareas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,9 +119,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Tareas.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -160,10 +139,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "02028d8df14c9bd5",
+  "active": "0d1283d50a23db44",
   "lastOpenFiles": [
-    "WQpvsan.md",
     "Tareas.md",
+    "WQpvsan.md",
     "Welcome.md",
     "Untitled"
   ]
