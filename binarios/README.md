@@ -76,7 +76,7 @@ contenedor          Instala paquetes basicos, util en contenedores docker
 
 ###------nmap scaners
 nombre_{IP}         Da el nombre de la maquina si es linux o windows                                   
-scanporty           python3 program que hace un escaneo y pregunta el numero de puertos.               
+scanporty           python3 program que hace un escaneo y pregunta el numero de puertos.usa socket               
 nsweep_{192.168.1}  hace un nmap -sn en la red para buscar maquinas activas.                           
 puertos2            nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl (probar varios firefox)
 expo                Hace un scaneo con o sin Pn, y lo genera en carpeta tmp, hace expo1, expo2, expo3
