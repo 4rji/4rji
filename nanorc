@@ -1,0 +1,13 @@
+set autoindent
+set tabsize 4
+set smooth
+set mouse
+set nohelp
+set nowrap
+
+
+
+#poner este archivo en ~/.nanorc para que nano tenga su configuracion como
+#tabulador 4
+#pone el cursos donde ponga el mouse
+#esconde el menu de abajo
