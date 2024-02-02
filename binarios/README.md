@@ -50,7 +50,9 @@ reset               limpia la terminal
 weather             Muestra el clima geolocalizacion usar
 depurar             para depurar un script y ver su ejecusion: ❯  bash -x ./script
 ssk                 kitty +kitten ssh 
-lfcd                para moverme con cd  #copiar el plugin a zsh                                       
+lfcd                para moverme con cd  #copiar el plugin a zsh
+mdcolors            Genera colores para archivos md 
+
 genarc              genera archivos conjuntos de 100 MB
 ddf                 hace un diff archivo vs archivo.backup                                             
 copdir	            Copia un directorio por medio de ssh scp
@@ -182,7 +184,8 @@ ataquehttp          HTTP DoS Test Tool de goldeneye, descomprime en tmp y de ahi
 inundacion          hping3 un ataque de inundacion flood para pruebas de carga, pregunta por dos ataques
 metas               Script que inicia metasploit con base de datos
 ataquepython        (DoS) enviando múltiples solicitudes HTTP a una dirección IP del tipo GET
-
+encryptar           encrypta archivos con python, cambiar la ruta dentro del script para que funcione
+encryptar1          el original de encryptar 
 
 ###------distrobox
 dockercp            Alias que muestra el formato para copiar archivos en docker

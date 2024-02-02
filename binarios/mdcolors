@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Lista de colores disponibles
+colores=("Red" "Blue" "Green" "Yellow" "Orange" "Purple" "Pink" "Gray" "Black" "White" "Cyan" "Magenta" "Brown" "Gold" "Silver" "Turquoise" "Lavender" "Olive" "Teal" "Lime")
+
+# Función para mostrar la lista de colores
+mostrar_colores() {
+  echo "Elige un color (ingresa el número correspondiente):"
+  for i in "${!colores[@]}"; do
+    color_code=$((31 + i))
+    color_name="${colores[$i]}"
+    echo -e "\e[${color_code}m$i) $color_name\e[0m"
+  done
+}
+
+# Función para formatear el texto con el color seleccionado
+formatear_texto() {
+  color_name="${colores[$color_choice]}"
+  texto="$1"
+  # Formatear el texto con el color seleccionado
+  echo -e "### <span style=\"color:${color_name,,};\">$texto</span>"
+}
+
+# Mostrar la lista de colores
+mostrar_colores
+
+# Leer la elección del usuario
+read -p "Escribe el número del color que deseas: " color_choice
+
+# Verificar si la elección es válida
+if [[ ! $color_choice =~ ^[0-9]+$ || $color_choice -lt 0 || $color_choice -ge ${#colores[@]} ]]; then
+  echo "Selección no válida."
+  exit 1
+fi
+
+# Leer la frase del usuario
+read -p "Escribe la frase que deseas formatear con el color ${colores[$color_choice]}: " frase
+
+# Formatear la frase
+frase_formateada=$(formatear_texto "$frase")
+
+# Copiar la frase formateada al portapapeles
+echo -n "$frase_formateada" | xclip -selection clipboard
+
+# Mostrar la frase formateada
+echo "Frase formateada: $frase_formateada (copiada al portapapeles)"
+
