@@ -241,3 +241,4 @@ tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
+chismes             Ejecuta tcpdump y tshark para ver la red, captura wireshark
