@@ -61,8 +61,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -119,7 +118,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Tareas.md"
+              }
             }
           }
         ]
@@ -139,10 +140,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0d1283d50a23db44",
+  "active": "b3c55740630a6708",
   "lastOpenFiles": [
-    "Tareas.md",
     "WQpvsan.md",
+    "Tareas.md",
     "Welcome.md",
     "Untitled"
   ]
