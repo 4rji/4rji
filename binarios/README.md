@@ -19,7 +19,9 @@ todo_{algo}         Busca en alias y readme info
 comando             aplica -h mensaje para mostrar al inicio de un script
 comandos            Muestra varios comandos aprendidos s4vi
 colores             Actualiza los colores de la polybar y de kitty en bspwx
+
 template_paquetes   Template para instalar paquetes automaticamente en todas las distro
+verip               Verifica los permisos de los archivos linux claves
 4rji                el programa y busqueda de scripts                                                  
 4rjic	            Muestra una lista simple de 4rji
 meslo               Instala las fuentes meslo
