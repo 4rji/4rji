@@ -246,6 +246,7 @@ ansicc              Este da la opcion de elegir un solo host o todos.
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
 pans                alias ping a todos los hosts
 ansip               alias ansible playbook
+ansissh             Conecta los hosts de ansible con ssh
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista

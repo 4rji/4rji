@@ -24,8 +24,6 @@ lines_to_insert=(
     "MaxAuthTries 2"
     "MaxSessions 1"
     "PubkeyAuthentication yes"
-    "#ClientMaxAliveCount 2"
-    "Banner /etc/mctcbanner"
     "PasswordAuthentication no"  # Added line
     "Port 2246"  # Added line
 )
