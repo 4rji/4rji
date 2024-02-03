@@ -26,6 +26,8 @@ lines_to_insert=(
     "PubkeyAuthentication yes"
     "#ClientMaxAliveCount 2"
     "Banner /etc/mctcbanner"
+    "PasswordAuthentication no"  # Added line
+    "Port 2246"  # Added line
 )
 
 # Replace or add the specified lines in the sshd_config file
