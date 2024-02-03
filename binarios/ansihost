@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo ""
 # Definir el archivo de hosts de Ansible
 archivo_hosts="$HOME/.ssh/ansible_hosts"
 
@@ -11,9 +11,9 @@ agregar_host() {
     echo -n "Ingresa el puerto (por defecto es 22): "
     read puerto
     if [ -z "$puerto" ]; then
-      puerto=22 # Puerto por defecto de SSH
+        puerto=22 # Puerto por defecto de SSH
     fi
-
+	
     echo -n "Ingresa el nombre de usuario: "
     read usuario
 
@@ -21,45 +21,47 @@ agregar_host() {
     echo -n "¿Quieres especificar una llave privada? [s/n]: "
     read usar_llave
     if [ "$usar_llave" = "s" ]; then
-      echo "Llaves privadas disponibles:"
-      select ruta_llave in ~/.ssh/*; do
-        if [ -n "$ruta_llave" ]; then
-          echo "Has seleccionado $ruta_llave"
-          llave="ansible_ssh_private_key_file=$ruta_llave"
-          break
-        else
-          echo "Por favor, elige un número de la lista."
-        fi
-      done
+        echo "Llaves privadas disponibles:"
+        select ruta_llave in ~/.ssh/*; do
+            if [ -n "$ruta_llave" ]; then
+                echo "Has seleccionado $ruta_llave"
+                llave="ansible_ssh_private_key_file=$ruta_llave"
+                break
+            else
+                echo "Por favor, elige un número de la lista."
+            fi
+        done
     else
-      llave=""
+        llave=""
     fi
 
     # Agregar o crear el archivo de hosts con la configuración
     echo "$host ansible_port=$puerto ansible_user=$usuario $llave" >> $archivo_hosts
 
     echo "Host $host agregado al archivo de inventario '$archivo_hosts'."
-}
-
-# Preguntar si deseas agregar un host [S/n]
-echo -n "¿Deseas agregar un host? [S/n]: "
-echo " n para modificar puerto SSH a los host"
-read respuesta
-if [ "$respuesta" = "n" ] || [ "$respuesta" = "N" ]; then
-    modificar_puerto="s"  # Si no se agrega un host, se asume que se desea modificar el puerto SSH.
-else
-    agregar_host
-fi
 
 echo ""
+echo ""
+    # Preguntar si desea agregar otro host
+    echo -n "¿Deseas agregar otro host? [s/n]: "
+    read respuesta
+    if [ "$respuesta" = "s" ] || [ "$respuesta" = "S" ]; then
+        agregar_host # Llamar recursivamente a la función para agregar otro host
+    else
+        return 0 # Terminar la función si el usuario no desea agregar más hosts
+    fi
+}
 
-if [[ "$modificar_puerto" == "s" ]]; then
+modificar_puerto_ssh() {
     # Preguntar si deseas modificar el puerto SSH
-    read -p "¿Deseas modificar el puerto SSH en todos los hosts? [s/n]: " modify_port
+	echo ""
+    echo -n "¿Deseas modificar el puerto SSH en todos los hosts? [s/n]: "
+    read modify_port
 
     if [[ $modify_port == "s" ]]; then
         # Pedir el nuevo puerto SSH
-        read -p "Ingresa el nuevo puerto SSH: " new_ssh_port
+        echo -n "Ingresa el nuevo puerto SSH: "
+        read new_ssh_port
 
         # Actualizar el archivo de hosts de Ansible con el nuevo puerto SSH
         sed -i "s/ansible_port=[0-9]*/ansible_port=$new_ssh_port/g" $archivo_hosts
@@ -68,4 +70,13 @@ if [[ "$modificar_puerto" == "s" ]]; then
     else
         echo "No se ha modificado el puerto SSH."
     fi
+}
+
+# Preguntar si deseas agregar un host al inicio
+echo -n "¿Deseas agregar un host? [S/n]: "
+read respuesta
+if [ "$respuesta" != "n" ] && [ "$respuesta" != "N" ]; then
+    agregar_host
 fi
+
+modificar_puerto_ssh
