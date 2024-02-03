@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Definir el archivo de hosts de Ansible
-archivo_hosts="ansible_hosts"
+archivo_hosts="$HOME/.ssh/ansible_hosts"
 
 # Función para agregar un host al archivo de inventario
 agregar_host() {
@@ -41,13 +41,31 @@ agregar_host() {
     echo "Host $host agregado al archivo de inventario '$archivo_hosts'."
 }
 
-# Verificar si el usuario desea agregar más hosts
-respuesta="s"
-while [ "$respuesta" = "s" ]; do
+# Preguntar si deseas agregar un host [S/n]
+echo -n "¿Deseas agregar un host? [S/n]: "
+echo " n para modificar puerto SSH a los host"
+read respuesta
+if [ "$respuesta" = "n" ] || [ "$respuesta" = "N" ]; then
+    modificar_puerto="s"  # Si no se agrega un host, se asume que se desea modificar el puerto SSH.
+else
     agregar_host
+fi
 
-    echo -n "¿Quieres agregar otro host? [s/n]: "
-    read respuesta
-done
+echo ""
 
-echo "Proceso completado."
+if [[ "$modificar_puerto" == "s" ]]; then
+    # Preguntar si deseas modificar el puerto SSH
+    read -p "¿Deseas modificar el puerto SSH en todos los hosts? [s/n]: " modify_port
+
+    if [[ $modify_port == "s" ]]; then
+        # Pedir el nuevo puerto SSH
+        read -p "Ingresa el nuevo puerto SSH: " new_ssh_port
+
+        # Actualizar el archivo de hosts de Ansible con el nuevo puerto SSH
+        sed -i "s/ansible_port=[0-9]*/ansible_port=$new_ssh_port/g" $archivo_hosts
+
+        echo "El puerto SSH ha sido modificado en todos los hosts a $new_ssh_port."
+    else
+        echo "No se ha modificado el puerto SSH."
+    fi
+fi
