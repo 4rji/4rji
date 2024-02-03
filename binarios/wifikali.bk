@@ -3,7 +3,7 @@
 # Función para obtener una respuesta S/N del usuario
 get_response() {
     while true; do
-        read -p "$1 (s/N): " response
+        read -p "$1 (S/N): " response
         case $response in
             [Ss]* ) return 0;;
             [Nn]* ) return 1;;
@@ -12,7 +12,7 @@ get_response() {
         esac
     done
 }
-echo ""
+
 # Pregunta si desea quitar la terminal gráfica
 if get_response "¿Desea quitar la terminal gráfica?"; then
     sudo systemctl set-default multi-user.target
@@ -20,7 +20,6 @@ if get_response "¿Desea quitar la terminal gráfica?"; then
 else
     echo "No se ha cambiado el modo."
 fi
-echo ""
 
 # Pregunta si desea restaurar la GUI
 if get_response "¿Desea restaurar la GUI?"; then
@@ -29,44 +28,49 @@ if get_response "¿Desea restaurar la GUI?"; then
 else
     echo "No se ha restaurado la GUI."
 fi
-echo ""
 
-# Pregunta si desea arreglar el WiFi
+# Pregunta si desea arreglar el WiFi (Continúa el script)
 if get_response "¿Desea arreglar el WiFi?"; then
-    # Pregunta si desea instalar wpasupplicant
-    if get_response "¿Desea instalar wpasupplicant para arreglar el WiFi?"; then
-        sudo apt update && sudo apt-get install -y wpasupplicant
-        echo "wpasupplicant ha sido instalado."
-        sudo systemctl restart wpa_supplicant
-    fi
-echo ""
+    # Coloca aquí las acciones para arreglar el WiFi
 
-    # Pide al usuario el nombre de la red y la contraseña
-    read -p "Ingresa el nombre de la red Wi-Fi (SSID): " ssid
-    read -p "Ingresa la contraseña de la red Wi-Fi: " password
-echo ""
 
-    # Agrega la configuración al archivo /etc/network/interfaces
-    echo -e "\nauto wlan0" | sudo tee -a /etc/network/interfaces
-    echo -e "iface wlan0 inet dhcp" | sudo tee -a /etc/network/interfaces
-    echo -e "wpa-ssid \"$ssid\"" | sudo tee -a /etc/network/interfaces
-    echo -e "wpa-psk \"$password\"" | sudo tee -a /etc/network/interfaces
+# Pide al usuario el nombre de la red y la contraseña
+read -p "Ingresa el nombre de la red Wi-Fi (SSID): " ssid
+read -p "Ingresa la contraseña de la red Wi-Fi: " password
 
-    # Desactiva y luego activa la interfaz WLAN0
-    sudo ifdown wlan0
-    sudo ifup wlan0
+# Agrega la configuración al archivo /etc/network/interfaces
+echo -e "\nauto wlan0" | sudo tee -a /etc/network/interfaces
+echo -e "iface wlan0 inet dhcp" | sudo tee -a /etc/network/interfaces
+echo -e "wpa-ssid \"$ssid\"" | sudo tee -a /etc/network/interfaces
+echo -e "wpa-psk \"$password\"" | sudo tee -a /etc/network/interfaces
 
-    echo "Configuración de red completada."
-    echo "sudo nano /etc/network/interfaces"
+
+sudo apt update
+
+# Instala wpa_supplicant si no está instalado
+sudo apt-get install -y wpasupplicant
+
+# Reinicia el servicio de wpa_supplicant
+sudo systemctl restart wpa_supplicant
+
+# Desactiva y luego activa la interfaz WLAN0
+sudo ifdown wlan0
+sudo ifup wlan0
+
+echo "Configuración de red completada."
+echo "sudo nano /etc/network/interfaces"
+
+
+
+
 else
     echo "No se realizarán acciones para arreglar el WiFi."
 fi
 
-echo ""
 
 
 # Pregunta al usuario si desea configurar WiFi
-echo "¿Quieres configurar WiFi en Raspbian (Bullseye)? [s/N]"
+echo "¿Quieres configurar WiFi en Raspbian (Bullseye)? (s/n)"
 read respuesta
 
 if [[ $respuesta == "s" ]]; then
