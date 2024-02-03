@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ruta al archivo de inventario de Ansible
-INVENTARIO="/home/natasha/.ssh/ansible_hosts"
+INVENTARIO="$HOME/.ssh/ansible_hosts"
 
 # Inicializar un array para almacenar los hosts
 declare -a HOSTS

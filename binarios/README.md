@@ -19,7 +19,8 @@ todo_{algo}         Busca en alias y readme info
 comando             aplica -h mensaje para mostrar al inicio de un script
 comandos            Muestra varios comandos aprendidos s4vi
 colores             Actualiza los colores de la polybar y de kitty en bspwx
-wifikali            Arregla wifi en kali, terminal grafica texto, debian wifi GUI
+wifiinterfaces      Arregla wifi en kali, terminal grafica texto, debian wifi GUI
+wifikali            Crea wifi redes para kali nuevos system-connections
 template_paquetes   Template para instalar paquetes automaticamente en todas las distro
 verip               Verifica los permisos de los archivos linux claves
 4rji                el programa y busqueda de scripts                                                  
@@ -246,7 +247,7 @@ ansicc              Este da la opcion de elegir un solo host o todos.
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
 pans                alias ping a todos los hosts
 ansip               alias ansible playbook
-ansissh             Conecta los hosts de ansible con ssh
+sshansi             Conecta los hosts de ansible con ssh
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
