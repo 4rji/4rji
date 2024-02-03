@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Definir el archivo de hosts de Ansible
+archivo_hosts="ansible_hosts"
+
+# Función para agregar un host al archivo de inventario
+agregar_host() {
+    echo -n "Ingresa el nombre del host o dirección IP: "
+    read host
+
+    echo -n "Ingresa el puerto (por defecto es 22): "
+    read puerto
+    if [ -z "$puerto" ]; then
+      puerto=22 # Puerto por defecto de SSH
+    fi
+
+    echo -n "Ingresa el nombre de usuario: "
+    read usuario
+
+    # Preguntar por el uso de llave privada
+    echo -n "¿Quieres especificar una llave privada? [s/n]: "
+    read usar_llave
+    if [ "$usar_llave" = "s" ]; then
+      echo "Llaves privadas disponibles:"
+      select ruta_llave in ~/.ssh/*; do
+        if [ -n "$ruta_llave" ]; then
+          echo "Has seleccionado $ruta_llave"
+          llave="ansible_ssh_private_key_file=$ruta_llave"
+          break
+        else
+          echo "Por favor, elige un número de la lista."
+        fi
+      done
+    else
+      llave=""
+    fi
+
+    # Agregar o crear el archivo de hosts con la configuración
+    echo "$host ansible_port=$puerto ansible_user=$usuario $llave" >> $archivo_hosts
+
+    echo "Host $host agregado al archivo de inventario '$archivo_hosts'."
+}
+
+# Verificar si el usuario desea agregar más hosts
+respuesta="s"
+while [ "$respuesta" = "s" ]; do
+    agregar_host
+
+    echo -n "¿Quieres agregar otro host? [s/n]: "
+    read respuesta
+done
+
+echo "Proceso completado."

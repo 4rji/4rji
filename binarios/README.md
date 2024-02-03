@@ -239,6 +239,14 @@ zeroinst            Script para zero raspberry
 zshinst             Instala la zsh h-my-zsh powerlevel10k
 tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
 
+#Ansible
+ansihost            Crea host para ansible
+ansic               Para ejecutar comandos en los hosts, tambien esta en ingles ansic_english 
+ansicc              Este da la opcion de elegir un solo host o todos.
+ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
+pans                alias ping a todos los hosts
+ansip               alias ansible playbook
+
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
 chismes             Ejecuta tcpdump y tshark para ver la red, captura wireshark
