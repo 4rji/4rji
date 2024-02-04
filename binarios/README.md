@@ -245,7 +245,7 @@ zshinst             Instala la zsh h-my-zsh powerlevel10k
 tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
 
 #Ansible
-ansihost            Crea host para ansible
+ansiconf            Crea host para ansible con alias y crea el archivo ansible_hosts
 ansic               Para ejecutar comandos en los hosts, tambien esta en ingles ansic_english 
 ansicc              Este da la opcion de elegir un solo host o todos.
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar

@@ -1,0 +1,62 @@
+#!/bin/bash
+echo ""
+
+# Define the Ansible hosts file
+hosts_file="$HOME/.ssh/ansible_hosts"
+
+# Function to add a host to the inventory file
+add_host() {
+    echo -n "Enter the hostname or IP address: "
+    read host
+
+    echo -n "Enter the port (default is 22): "
+    read port
+    if [ -z "$port" ]; then
+      port=22 # Default SSH port
+    fi
+
+    echo -n "Enter the username: "
+    read username
+
+    echo -n "Enter the alias for the host: "
+    read alias
+
+    # Ask if a private key should be specified
+    echo -n "Do you want to specify a private key? [y/n]: "
+    read use_key
+    if [ "$use_key" = "y" ]; then
+      echo "Available private keys:"
+      select key_path in ~/.ssh/*; do
+        if [ -n "$key_path" ]; then
+          echo ""
+          echo "You have selected $key_path"
+          key="ansible_ssh_private_key_file=$key_path"
+          break
+        else
+          echo ""
+          echo "Please choose a number from the list."
+        fi
+      done
+    else
+      key=""
+    fi
+
+    # Add or create the hosts file with the configuration
+    echo ""
+    echo "$alias ansible_host=$host ansible_port=$port ansible_user=$username $key" >> "$hosts_file"
+    echo ""
+    echo "Host $alias added to the inventory file '$hosts_file'."
+}
+
+# Check if the user wants to add more hosts
+response="y"
+while [ "$response" = "y" ]; do
+    add_host
+    echo ""
+    echo -n "Do you want to add another host? [y/n]: "
+    read response
+done
+echo ""
+echo "Process completed."
+echo ""
+echo "-------------------------------------------------------------"
