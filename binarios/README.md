@@ -251,6 +251,7 @@ panss               Ping a un solo hosts, muestra la lista
 ansip               alias ansible playbook
 sshansi             Conecta los hosts de ansible con ssh
 ansihost            Cat a los hosts y pregunta si quiero editarlo
+sshtail             Funciona cuando los hosts tienen nombre 183 10.0.4.183 
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
