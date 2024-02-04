@@ -1,57 +1,22 @@
 #!/bin/bash
 
-# Pedir al usuario el nombre de la red (SSID) y la contraseña
-read -p "Ingrese el nombre de la red (SSID): " ssid
-read -sp "Ingrese la contraseña de la red: " password
-echo
+# Preguntar por el nombre de la red
+read -p "Nombre de la red: " network_name
 
-# Generar UUID para la conexión
-uuid=$(uuidgen)
+# Preguntar por la contraseña de la red
+read -s -p "Contraseña de la red: " network_password
+echo  # Agregar una línea en blanco después de la entrada de contraseña
 
-# Crear el archivo de configuración
-config_file="${ssid}.nmconnection"
+# Eliminar las líneas de configuración existentes de wlan0
+sudo sed -i '/iface wlan0/,/^$/d' /etc/network/interfaces
 
-echo "[connection]
-id=$ssid
-uuid=$uuid
-type=wifi
-interface-name=wlan0
-permissions=user:kali:;
+# Agregar las nuevas líneas de configuración
+echo "auto wlan0" | sudo tee -a /etc/network/interfaces
+echo "iface wlan0 inet dhcp" | sudo tee -a /etc/network/interfaces
+echo "    wpa-ssid \"$network_name\"" | sudo tee -a /etc/network/interfaces
+echo "    wpa-psk \"$network_password\"" | sudo tee -a /etc/network/interfaces
 
-[wifi]
-mode=infrastructure
-ssid=$ssid
+# Reiniciar la red
+sudo systemctl restart networking
 
-[wifi-security]
-auth-alg=open
-key-mgmt=wpa-psk
-psk=$password
-
-[ipv4]
-method=auto
-
-[ipv6]
-addr-gen-mode=default
-method=auto
-
-[proxy]" > $config_file
-
-echo "Archivo de configuración generado: $config_file"
-
-# Preguntar al usuario si desea ver el archivo
-read -p "¿Desea ver el archivo? [S/n]: " ver_archivo
-ver_archivo=${ver_archivo:-S} # Default a S si se presiona Enter
-
-if [[ $ver_archivo =~ ^[Ss]$ ]]; then
-    less $config_file
-fi
-
-# Preguntar si desea mover el archivo
-read -p "¿Desea mover el archivo a /etc/NetworkManager/system-connections? [S/n]: " mover_archivo
-mover_archivo=${mover_archivo:-S} # Default a S si se presiona Enter
-
-if [[ $mover_archivo =~ ^[Ss]$ ]]; then
-    sudo mv $config_file /etc/NetworkManager/system-connections/
-fi
-
-echo "cd /etc/NetworkManager/system-connections/"
+echo "La configuración de red se ha actualizado y la red se ha reiniciado."
