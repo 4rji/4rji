@@ -167,6 +167,7 @@ copyssh             copia mui clave a una maquina remota
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 sshconf             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
 sshjump             Configura los jumps infinitamente.
+sshlist             Modifica la lista de /etc/hosts allow deny para asegurar la red ssh
 
 ###------Network
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
