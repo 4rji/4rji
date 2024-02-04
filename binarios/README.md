@@ -249,9 +249,10 @@ ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se nec
 pans                alias ping a todos los hosts
 panss               Ping a un solo hosts, muestra la lista
 ansip               alias ansible playbook
-sshansi             Conecta los hosts de ansible con ssh
+sshansi_nonames     Conecta los hosts de ansible con ssh cuando no tienen nombre
+sshansi             Conecta por ssh hosts con nombre al inicio
 ansihost            Cat a los hosts y pregunta si quiero editarlo
-sshtail             Funciona cuando los hosts tienen nombre 183 10.0.4.183 
+
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
