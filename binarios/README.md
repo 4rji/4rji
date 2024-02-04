@@ -247,6 +247,7 @@ ansic               Para ejecutar comandos en los hosts, tambien esta en ingles 
 ansicc              Este da la opcion de elegir un solo host o todos.
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
 pans                alias ping a todos los hosts
+panss               Ping a un solo hosts, muestra la lista
 ansip               alias ansible playbook
 sshansi             Conecta los hosts de ansible con ssh
 

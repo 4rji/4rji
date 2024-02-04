@@ -128,6 +128,8 @@ echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
 echo "alias itec='sudo openvpn ~/Downloads/.vpnitos/itec.ovpn'"  >> ~/.zshrc
 echo "alias 4rj='cd $HOME/Documents/GitHub/4rji/binarios'"  >> ~/.zshrc
+echo "alias 4rjr='nano /home/natasha/Documents/GitHub/4rji/binarios/README.md'" >> ~/.zshrc
+
 
 echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
 echo "alias apag='sudo poweroff'"  >> ~/.zshrc
