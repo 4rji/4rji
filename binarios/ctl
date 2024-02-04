@@ -6,7 +6,7 @@ control_service() {
         echo ""
         echo "What would you like to do with $service?"
         echo ""
-        echo " st - start"
+        echo " a - start"
         echo " r - restart"
         echo " t - stop"
         echo " s - status"
@@ -54,7 +54,7 @@ control_service() {
                 echo ""
                 sudo systemctl status $service
                 ;;
-            st)
+            a)
                 sudo systemctl start $service
                 echo ""
                 echo "Checking status after starting..."
