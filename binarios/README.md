@@ -250,6 +250,7 @@ pans                alias ping a todos los hosts
 panss               Ping a un solo hosts, muestra la lista
 ansip               alias ansible playbook
 sshansi             Conecta los hosts de ansible con ssh
+ansihost            Cat a los hosts y pregunta si quiero editarlo
 
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
