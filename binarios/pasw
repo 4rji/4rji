@@ -22,7 +22,8 @@ while true; do
     echo "8. Exit and display commands"
     echo ""
 
-    read -p "Enter your choice: " input
+    read -n1 -p "Enter your choice: " input
+    echo "" # Nueva línea después de la entrada para mejor claridad
 
     case $input in
         1)
