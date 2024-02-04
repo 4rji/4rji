@@ -55,7 +55,7 @@ depurar             para depurar un script y ver su ejecusion: ❯  bash -x ./sc
 ssk                 kitty +kitten ssh 
 lfcd                para moverme con cd  #copiar el plugin a zsh
 mdcolors            Genera colores para archivos md 
-
+maquinasova         Convierte maquinas ova para qemu
 
 genarc              genera archivos conjuntos de 100 MB
 ddf                 hace un diff archivo vs archivo.backup                                             
