@@ -56,9 +56,12 @@ ssk                 kitty +kitten ssh
 lfcd                para moverme con cd  #copiar el plugin a zsh
 mdcolors            Genera colores para archivos md 
 
+
 genarc              genera archivos conjuntos de 100 MB
 ddf                 hace un diff archivo vs archivo.backup                                             
 copdir	            Copia un directorio por medio de ssh scp
+copyrsyn            Usa hosts ansible y copia un archivo con rsync y clave privada
+copyrs              Copia archivo por rsync preguntado hosts y puerto
 mackali	            Cambia la MAC de kali
 ncdu                para ver los archivos grandes, liberar espacio disco
 netevils            aun no se                                                                          

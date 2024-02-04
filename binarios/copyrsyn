@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# Check if a file name is provided as an argument
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 filename"
+  echo ""
+  exit 1
+fi
+
+# The file to be transferred
+FILE=$1
+
+# Read ~/.ssh/ansible_hosts
+HOSTS_FILE="$HOME/.ssh/ansible_hosts"
+
+# Check if ansible_hosts file exists
+if [ ! -f "$HOSTS_FILE" ]; then
+  echo "The file ~/.ssh/ansible_hosts does not exist."
+  echo ""
+  exit 1
+fi
+
+# Ask if the default SSH key should be used
+#echo -n "Do you want to use the default SSH key (~/.ssh/id_ed25519)? (yes/no): "
+#read USE_DEFAULT_KEY
+
+# Default SSH key
+DEFAULT_KEY="~/.ssh/id_ed25519"
+
+# Create an array to hold the host details
+declare -a HOSTS
+
+echo "____________________________________________________________"
+
+# Read each line from ansible_hosts and add to HOSTS array
+while IFS= read -r line
+do
+  HOSTS+=("$line")
+done < "$HOSTS_FILE"
+
+# Display the list of hosts
+echo "Available hosts:"
+for i in "${!HOSTS[@]}"; do
+  HOST_NAME=$(echo "${HOSTS[$i]}" | awk '{print $1}')
+  echo "$((i+1))) $HOST_NAME"
+done
+echo "A) All hosts"
+echo "____________________________________________________________"
+
+# Ask the user to choose a host or all hosts
+echo -n "Please select a host by number or 'A' for all hosts: "
+read SELECTION
+
+echo "____________________________________________________________"
+
+# Function to execute the rsync command
+execute_rsync() {
+  HOST=$(echo $1 | awk '{print $2}' | sed 's/ansible_host=//')
+  PORT=$(echo $1 | awk '{print $3}' | sed 's/ansible_port=//')
+  USER=$(echo $1 | awk '{print $4}' | sed 's/ansible_user=//')
+  KEY=$([[ "$USE_DEFAULT_KEY" == "yes" ]] && echo "$DEFAULT_KEY" || echo $(echo $1 | awk '{print $5}' | sed 's/ansible_ssh_private_key_file=//'))
+  
+  echo "Executing rsync to $HOST..."
+  echo ""
+  echo "comando"
+  echo "rsync -avz -e \"ssh -i $KEY -p $PORT\" $FILE $USER@$HOST:~/"
+  #rsync -avz -e "ssh -i $KEY -p $PORT" $FILE $USER@$HOST:~/
+  rsync -avz --progress --stats -e "ssh -i $KEY -p $PORT" $FILE $USER@$HOST:~/
+
+  echo "____________________________________________________________"
+}
+
+# Execute the selected option
+if [ "$SELECTION" = "A" ]; then
+  for host_detail in "${HOSTS[@]}"; do
+    execute_rsync "$host_detail"
+  done
+else
+  # Validate numeric selection
+  if [[ $SELECTION =~ ^[0-9]+$ ]] && [ "$SELECTION" -ge 1 ] && [ "$SELECTION" -le "${#HOSTS[@]}" ]; then
+    execute_rsync "${HOSTS[$SELECTION-1]}"
+  else
+    echo "Invalid selection."
+    echo "____________________________________________________________"
+  fi
+fi
