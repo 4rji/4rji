@@ -251,7 +251,7 @@ ansicc              Este da la opcion de elegir un solo host o todos. ansible
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
 ansip               Alias ping a todos los hosts ansible
 ansipp              Ping a un solo hosts, muestra la lista ansible
-ansip               alias ansible playbook 
+ansipl              Alias ansible playbook 
 sshansi_nonames     Conecta los hosts de ansible con ssh cuando no tienen nombre
 sshansi             Conecta por ssh hosts con nombre al inicio ansible
 ansihost            Cat a los hosts y pregunta si quiero editarlo ansible
