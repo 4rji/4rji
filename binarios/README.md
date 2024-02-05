@@ -246,15 +246,15 @@ tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
 
 #Ansible
 ansiconf            Crea host para ansible con alias y crea el archivo ansible_hosts
-ansic               Para ejecutar comandos en los hosts, tambien esta en ingles ansic_english 
-ansicc              Este da la opcion de elegir un solo host o todos.
+ansic               Para ejecutar comandos en los hosts, ansible. En ingles ansic_english 
+ansicc              Este da la opcion de elegir un solo host o todos. ansible
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
-pans                alias ping a todos los hosts
-panss               Ping a un solo hosts, muestra la lista
-ansip               alias ansible playbook
+ansip               Alias ping a todos los hosts ansible
+ansipp              Ping a un solo hosts, muestra la lista ansible
+ansip               alias ansible playbook 
 sshansi_nonames     Conecta los hosts de ansible con ssh cuando no tienen nombre
-sshansi             Conecta por ssh hosts con nombre al inicio
-ansihost            Cat a los hosts y pregunta si quiero editarlo
+sshansi             Conecta por ssh hosts con nombre al inicio ansible
+ansihost            Cat a los hosts y pregunta si quiero editarlo ansible
 
 
 #python herramientas
