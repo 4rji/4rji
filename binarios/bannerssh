@@ -1,0 +1,48 @@
+#!/bin/bash
+echo ""
+# Deshabilita los scripts dinámicos del MOTD moviéndolos a otra ubicación
+for file in /etc/update-motd.d/*; do
+    if [[ ! "$file" =~ ".disabled" ]]; then
+        sudo mv "$file" "${file}.disabled"
+    fi
+done
+
+# Pregunta al usuario si desea modificar el mensaje de bienvenida
+read -p "¿Quieres modificar el mensaje de bienvenida? (s/n): " respuesta
+echo ""
+if [[ $respuesta =~ ^[Ss]$ ]]; then
+    # Pregunta al usuario por el nuevo mensaje de bienvenida
+    echo ""
+    # Añade el mensaje personalizado antes del mensaje estático
+    mensaje_personalizado="
+    UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+
+⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⣾⡿⠿⠿⠿⣷⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⣴⡿⠟⣋⣩⣴⣶⡆⠀⠀⢰⣶⣦⣍⣙⠻⢿⣦⣄⠀⠀⠀⠀⠀
+⠀⠀⠀⣠⣾⡿⠋⠰⡾⠟⠋⠉⠀⠀⣀⣀⠀⠀⠉⠙⠻⢿⠆⠙⢿⣷⣄⠀⠀
+⠀⠀⣴⡿⢋⡀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢀⡙⢿⣦⠀⠀
+⠀⣼⡿⢡⣾⠏⠀⠀⢾⣷⣄⠀⠀⠀⣿⣿⠀⠀⠀⣠⣾⡷⠀⠀⠹⣿⡌⢿⣧⠀
+⢰⣿⢃⣾⡏⠀⠀⠀⠀⠙⢿⣷⣤⣶⣿⣿⣶⣤⣾⡿⠋⠀⠀⠀⠀⢹⣷⡘⣿⡆
+⣾⡿⠸⠿⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠿⠇⢻⣷
+⣿⡇⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⢸⣿
+⢿⣧⢰⣶⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⣶⡆⣼⡿
+⠸⣿⡌⢿⣇⠀⠀⠀⠀⣠⣾⡿⠛⠿⣿⣿⠿⠛⢿⣷⣄⠀⠀⠀⠀⣸⣿⢡⣿⠇
+⠀⢻⣷⡘⣿⣆⠀⠀⢾⡿⠋⠀⠀⠀⣿⣿⠀⠀⠀⠙⢿⡷⠀⠀⣰⣿⢃⣾⡟⠀
+⠀⠀⠻⣷⣌⠁⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠈⣡⣾⠟⠀⠀
+⠀⠀⠀⠙⢿⣷⣄⠰⣷⣦⣄⣀⠀⠀⠉⠉⠀⠀⣀⣠⣴⣾⠆⣠⣾⡿⠋⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠙⠻⣷⣦⣍⣙⠻⠿⠇⠀⠀⠸⠿⠟⣛⣩⣴⣾⠟⠋⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⢿⣶⣶⣶⣶⡿⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀
+    Access to this system is granted by the authority of
+
+    **** Darth Vader himself. ****
+
+    All activities on this system are meticulously scrutinized by the **** Sith Lords. ****
+    "
+
+    echo "$mensaje_personalizado" | sudo tee /etc/motd > /dev/null
+    
+    echo "El mensaje de bienvenida ha sido configurado."
+fi
+echo ""
+# Informa al usuario sobre la ubicación del archivo para futuros cambios
+echo "Puedes modificar el mensaje de bienvenida manualmente en cualquier momento editando el archivo /etc/motd."

@@ -23,7 +23,8 @@ wifiinterfaces      Arregla wifi en kali, terminal grafica texto, debian wifi GU
 wifikali            Crea wifi redes para kali nuevos system-connections
 template_paquetes   Template para instalar paquetes automaticamente en todas las distro
 verip               Verifica los permisos de los archivos linux claves
-4rji                el programa y busqueda de scripts                                                  
+4rji                el programa y busqueda de scripts
+
 4rjic	            Muestra una lista simple de 4rji
 meslo               Instala las fuentes meslo
 4rjia	            Muestra los alias
@@ -128,10 +129,8 @@ crontall            Shows crontab of everyone
 hardnet             modifies ipv4 and also ipv6 hardnetu for Ubuntu
 maskapps            masks telnet ftp for ccdc
 sshhard             Modifies ssh and makes a backup
-sntp                installs chrony                                                                    
-ebanner             cambia el banner de ssh y crea un alias                                            
-bannere             abre el editor de ssh    
-bannerm             Hace un banner para ssh   
+sntp                installs chrony     
+bannerm             Hace un banner para ssh de mctc  
 chdns               Resolv.conf change
 procesos            Muestra los procesos de los usuarios
 servicios           Encuentra servicios que no son del kernel linux corriendo.
@@ -157,6 +156,8 @@ findme              Usa el comando find para buscar archivos
 
 
 ###------ssh
+ebanner             cambia el banner de ssh antes de logearse hola cacheton y se edita con bannere                                      
+bannerssh           Edita el banner de inicio de session de ssh, cuando se loguea
 sshcom              Copia y ejecuta un script en una maquina ssh remota
 sshmonitor          sshmoni loop para correr el sshmoni while loop
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
