@@ -11,3 +11,4 @@ if [[ $? -eq 0 ]]; then
 else
   echo "Unable to access the Internet."
 fi 
+hostname -I | awk '{print $1 " | " $2}'
