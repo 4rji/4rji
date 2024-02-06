@@ -77,9 +77,8 @@ done
 
 
 
-echo "*******IP local*******"
+echo "-------   IPs local   -----------"
 
-#hostname -I | awk '{print $1}'
 hostname -I | awk '{print $1 " | " $2}'
 
 echo ""
@@ -93,23 +92,17 @@ batcat -l rb "$tempfile"
 
 #hostname -I | awk '{print $1 " | " $2 " | " $3}'
 echo ""
-echo "_________________________________________________________"
+echo "---------------------------------------------------------"
 echo "      IP publica localmente encontrada con dig"
-timeout 2 dig +short myip.opendns.com @resolver1.opendns.com
+
+timeout 2 dig +short myip.opendns.com @resolver1.opendns.com | while read -r ip; do
+    printf "%*s\n" $((($(tput cols) + ${#ip}) / 4)) "$ip"
+done
+
+#timeout 2 dig +short myip.opendns.com @resolver1.opendns.com
 echo "_________________________________________________________"
 echo ""
 
-# Ejecutar hostnamectl y guardar la salida en un archivo temporal
-#tmpfile=$(mktemp)
-hostnamectl | grep -E 'Virtualization|Operating System|Hardware Vendor' > "$tmpfile"
-
-# Eliminar las líneas no deseadas del archivo temporal
-#sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
-
-# Mostrar el contenido del archivo modificado
-catt  "$tmpfile"
-# Eliminar el archivo temporal
-rm "$tmpfile"
 
 
 echo ""
@@ -130,10 +123,11 @@ check_internet_connection() {
 }
 
 
-
+echo "---------------------------------------------------------"
+#echo "_________________________________________________________"
 # Preguntar si se desea ejecutar el script
-echo "¿Verificar la conexión y IP? [s] )"
-read -n 1 -t 2 -p "s o enter: " response
+echo "¿Verificar la conexion y IP? [s] )"
+read -n 1 -t 1 -p "Enter or wait 1s to cancel: " response
 
 # Si la respuesta es 's', ejecuta la verificación
 if [[ "$response" == "s" ]]; then
@@ -147,7 +141,9 @@ if [[ "$response" == "s" ]]; then
     # Aquí puedes descomentar la siguiente línea para eliminar el archivo temporal
     # rm "$tmpfile"
 else
-    echo "No se seleccionó verificar la conexión."
+    echo ""
+    echo "_________________________________________________________"
+    echo "Cancelado. "
 fi
 
 
