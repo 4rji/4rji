@@ -121,7 +121,7 @@ check_internet_connection() {
     ping -c 1 "$host" > /dev/null 2>&1
 
     if [[ $? -eq 0 ]]; then
-        echo " <== tu IP.  La conexión a Internet está ACTIVA."
+        echo " <== tu IP.  The Internet connection is ACTIVE."
     else
         echo "No se puede acceder a Internet."
     fi
@@ -147,3 +147,16 @@ if [[ "$response" == "s" ]]; then
 else
     echo "No se seleccionó verificar la conexión."
 fi
+
+
+
+#old version
+''' host="google.com"  # Cambia "google.com" por el host que desees
+
+ping -c 1 "$host" > /dev/null 2>&1
+
+if [[ $? -eq 0 ]]; then
+  echo "The Internet connection is active."
+else
+  echo "Unable to access the Internet."
+fi '''
