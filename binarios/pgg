@@ -90,9 +90,15 @@ tempfile=$(mktemp)
 ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); print $NF, a[1]}' > "$tempfile"
 batcat -l rb "$tempfile"
 
+
+
+
+
 #hostname -I | awk '{print $1 " | " $2 " | " $3}'
 echo ""
-echo "---------------------------------------------------------"
+echo "_________________________________________________________"
+#echo ""
+#echo "---------------------------------------------------------"
 echo "      IP publica localmente encontrada con dig"
 
 timeout 2 dig +short myip.opendns.com @resolver1.opendns.com | while read -r ip; do
@@ -110,39 +116,58 @@ echo ""
 # Función para comprobar la conexión a Internet
 check_internet_connection() {
     echo ""
-    timeout 2s curl ifconfig.me
-    local host="google.com"  # Cambia "google.com" por el host que desees
+echo ""
+echo "_________________________________________________________"
+echo ""
+echo "            From ifconfig.me: "
+    ip_address=$(timeout 2s curl -s ifconfig.me)
+printf "%*s\n" $((($(tput cols) + ${#ip_address}) / 4)) "$ip_address"
 
-    ping -c 1 "$host" > /dev/null 2>&1
+
+
+#comando para google ping internet active
+   # local host="google.com"  # Cambia "google.com" por el host que desees
+
+  #  ping -c 1 "$host" > /dev/null 2>&1
 
     if [[ $? -eq 0 ]]; then
-        echo " <== tu IP.  The Internet connection is ACTIVE."
+ #       echo "        Internet connection is ACTIVE.        "
+#	echo "               Ping google.com                "
+	echo "_________________________________________________________"
     else
         echo "No se puede acceder a Internet."
     fi
 }
 
 
-echo "---------------------------------------------------------"
+#echo "---------------------------------------------------------"
 #echo "_________________________________________________________"
+
 # Preguntar si se desea ejecutar el script
 echo "¿Verificar la conexion y IP? [s] )"
+echo ""
 read -n 1 -t 1 -p "Enter or wait 1s to cancel: " response
-
+echo ""
+echo "_________________________________________________________"
+echo ""
 # Si la respuesta es 's', ejecuta la verificación
 if [[ "$response" == "s" ]]; then
     check_internet_connection
     # Guardar la salida de ipinfo.io en un archivo temporal
     tmpfile=$(mktemp)
-    curl -s ipinfo.io | jq 'del(.loc, .org, .readme)' > "$tmpfile"
+
+    #curl -s ipinfo.io | jq 'del(.loc, .org, .readme)' > "$tmpfile"
+    echo ""
+    echo "              From ipinfo.io:" 
+    curl -s ipinfo.io | jq -r '.ip, .city, .region, .country, .postal'
+    
     echo ""
     # Mostrar el contenido del archivo temporal con batcat
-    batcat -l rb "$tmpfile"
+#   batcat -l rb "$tmpfile"
     # Aquí puedes descomentar la siguiente línea para eliminar el archivo temporal
     # rm "$tmpfile"
 else
     echo ""
-    echo "_________________________________________________________"
     echo "Cancelado. "
 fi
 
@@ -159,3 +184,15 @@ fi
 #else
 #  echo "Unable to access the Internet."
 #fi 
+
+
+echo ""
+host="google.com"  # Cambia "google.com" por el host que desees
+
+ping -c 1 "$host" > /dev/null 2>&1
+
+if [[ $? -eq 0 ]]; then
+  echo "The Internet connection is active."
+else
+  echo "Unable to access the Internet."
+fi 
