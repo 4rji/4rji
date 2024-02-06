@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [[ $# -eq 0 ]]; then
+    echo "Uso: $0 <archivo>"
+    exit 1
+fi
+
+echo "¿Enviar o recibir un archivo? (escriba 'e' o 'r')"
+read option
+
+echo "Host IP usuario@ip:PORT  "
+read remote_machine
+
+# Extraer el puerto si está especificado, de lo contrario usar el puerto 22 por defecto
+port=$(echo $remote_machine | grep -oP '(?<=:)\d+' || echo 22)
+# Remover el puerto de la cadena remote_machine si está presente
+remote_machine=$(echo $remote_machine | sed -r 's/:[0-9]+$//')
+
+if [[ $option == "e" ]]; then
+    local_file=$1
+    scp -P $port $local_file $remote_machine:~
+elif [[ $option == "r" ]]; then
+    remote_file=$1
+    scp -P $port $remote_machine:~/$remote_file .
+else
+    echo "Opción no válida. Por favor, elija 'e' o 'r'."
+fi

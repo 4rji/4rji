@@ -9,50 +9,75 @@ echo
 # Check if a file name is provided as an argument
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 filename"
-    echo
+    echo ""
     exit 1
 fi
 
 # The file to be transferred
 FILE=$1
 
-#echo "------------------------------------------------------------"
-echo
+echo ""
 
-# Ask for the destination in user@ip format
-echo -n "Please enter the destination (user@ip): "
-read DESTINATION
-echo
+CONFIG_FILE="$HOME/.ssh/config"
+declare -A host_user_map
+declare -A host_ip_map
+declare -A host_port_map
 
-# Ask for the port number
-echo -n "Please enter the port number: "
-read PORT
-echo
-
-# Default to port 22 if no port number is provided
-if [ -z "$PORT" ]; then
-    PORT=22
+# Check if SSH config file exists
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    echo "SSH configuration file does not exist."
+    echo ""
+    exit 1
 fi
 
-# Ask if the user wants to use the private key ~/.ssh/id_ed25519
-echo -n "Do you want to use the private key ~/.ssh/id_ed25519? (y/n): "
-read USE_PRIVATE_KEY
-echo
+# Read hosts, usernames, hostnames, and ports from SSH config file
+current_host=""
+while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ $line =~ ^Host\ +([^*]+)$ ]]; then
+        current_host=${BASH_REMATCH[1]}
+    elif [[ $current_host != "" ]]; then
+        if [[ $line =~ ^\ +User\ +(.+)$ ]]; then
+            host_user_map["$current_host"]=${BASH_REMATCH[1]}
+        elif [[ $line =~ ^\ +HostName\ +(.+)$ ]]; then
+            host_ip_map["$current_host"]=${BASH_REMATCH[1]}
+        elif [[ $line =~ ^\ +Port\ +(.+)$ ]]; then
+            host_port_map["$current_host"]=${BASH_REMATCH[1]}
+        fi
+    fi
+done < "$CONFIG_FILE"
 
-SSH_COMMAND="ssh -p $PORT"
-if [ "$USE_PRIVATE_KEY" = "y" ]; then
-    SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -p $PORT"
+if [ ${#host_user_map[@]} -eq 0 ]; then
+    echo "No hosts found in the SSH configuration file."
+    exit 1
 fi
 
-echo "------------------------------------------------------------"
-echo "The rsync command to execute is:"
-echo "rsync -avz --progress -e \"$SSH_COMMAND\" $FILE $DESTINATION:~/"
-echo "------------------------------------------------------------"
-echo
+echo "Available hosts for transfer:"
+select host_choice in "${!host_user_map[@]}"; do
+    if [[ -n "$host_choice" ]]; then
+        echo "You have selected: $host_choice"
+        break
+    else
+        echo "Invalid selection. Please try again."
+    fi
+done
 
-rsync -avz --progress -e "$SSH_COMMAND" $FILE $DESTINATION:~/
+USER="${host_user_map[$host_choice]}"
+IP="${host_ip_map[$host_choice]}"
+PORT="${host_port_map[$host_choice]:-22}" # Default to port 22 if not specified
 
-echo "Transfer initiated..."
-echo
+DESTINATION="$USER@$IP"
 
 echo "------------------------------------------------------------"
+echo ""
+echo "Transferring '$FILE' to $DESTINATION  "
+echo "rsync -avz --progress -e "ssh -p $PORT" $FILE $DESTINATION:~/"
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+
+# Execute rsync command
+rsync -avz --progress -e "ssh -p $PORT" $FILE $DESTINATION:~/
+
+echo ""
+echo "-----------------------------------------------------"
+echo ""
