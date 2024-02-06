@@ -1,16 +1,16 @@
 # See this wiki page for more info:
 # https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
 print_info() {
-    info title
+    #info title
     info underline
-
+    info "Users" users
     info "OS" distro
     info "Host" model
 #    info "Kernel" kernel
-    info "Uptime" uptime
+    #info "Uptime" uptime
 #    info "Packages" packages
-    info "Shell" shell
-    info "Resolution" resolution
+   # info "Shell" shell
+    #info "Resolution" resolution
   #  info "DE" de
  #   info "WM" wm
 #    info "WM Theme" wm_theme
@@ -31,7 +31,7 @@ print_info() {
     # [[ "$player" ]] && prin "Music Player" "$player"
 #      info "Local IP" local_ip
  #     info "Public IP" public_ip
-      info "Users" users
+      
     # info "Locale" locale  # This only works on glibc systems.
 
 #    info cols
@@ -760,7 +760,7 @@ image_source="auto"
 #       Slackware, SunOS, LinuxLite, OpenSUSE, Raspbian,
 #       postmarketOS, and Void have a smaller logo variant.
 #       Use '{distro name}_small' to use the small variants.
-ascii_distro="auto"
+ascii_distro="kali"
 
 # Ascii Colors
 #
