@@ -75,7 +75,8 @@ if [ "$choice" == "a" ]; then
     echo ""
     command="./agent -connect $IP:11601 -ignore-cert"
     
-    echo "Executing command in 1 second: $command"
+    echo "Executing command in 1 second:"
+    echo " $command"
     sleep 1
     $command
 elif [ "$choice" == "p" ]; then
