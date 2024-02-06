@@ -131,7 +131,7 @@ check_internet_connection() {
 
 # Preguntar si se desea ejecutar el script
 echo "¿Deseas verificar la conexión? (s para sí, enter para continuar)"
-read -t 2 -p "s o enter: " response
+read -n 1 -t 2 -p "s o enter: " response
 
 # Si la respuesta es 's', ejecuta la verificación
 if [[ "$response" == "s" ]]; then
@@ -143,10 +143,11 @@ if [[ "$response" == "s" ]]; then
     # Mostrar el contenido del archivo temporal con batcat
     batcat -l rb "$tmpfile"
     # Aquí puedes descomentar la siguiente línea para eliminar el archivo temporal
-    #rm "$tmpfile"
+    # rm "$tmpfile"
 else
     echo "No se seleccionó verificar la conexión."
 fi
+
 
 
 
