@@ -119,7 +119,7 @@ check_internet_connection() {
 echo ""
 echo "_________________________________________________________"
 echo ""
-echo "            From ifconfig.me: "
+echo "             From ifconfig.me: "
     ip_address=$(timeout 2s curl -s ifconfig.me)
 printf "%*s\n" $((($(tput cols) + ${#ip_address}) / 4)) "$ip_address"
 
