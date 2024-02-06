@@ -244,6 +244,7 @@ obsidianinst        Instala obsidian en deb, baja paquete e instala notas
 zeroinst            Script para zero raspberry
 zshinst             Instala la zsh h-my-zsh powerlevel10k
 tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
+neofetchinst        Instala y personaliza neofetch para ppg1
 
 #Ansible
 ansiconf            Crea host para ansible con alias y crea el archivo ansible_hosts
