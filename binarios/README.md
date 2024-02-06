@@ -261,3 +261,5 @@ ansihost            Cat a los hosts y pregunta si quiero editarlo ansible
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
 chismes             Ejecuta tcpdump y tshark para ver la red, captura wireshark
+proxyloco           Proxy con agente y proxy, reverse shell
+proxylococ          Comandos para su ejecucion de proxy loco reverse shell
