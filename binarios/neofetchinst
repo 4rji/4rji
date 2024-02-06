@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Descargar el archivo desde la URL
+wget -O neoconf https://raw.githubusercontent.com/4rji/4rji/main/neoconf
+
+# Verificar si la descarga fue exitosa
+if [ $? -eq 0 ]; then
+    # Crear la carpeta si no existe
+    mkdir -p ~/.config/neofetch
+
+    # Mover el archivo a la ubicación deseada
+    mv neoconf ~/.config/neofetch/config.conf
+
+    echo "El archivo se ha descargado y movido correctamente."
+else
+    echo "Hubo un error al descargar el archivo."
+fi
+
