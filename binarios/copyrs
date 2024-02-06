@@ -29,6 +29,11 @@ echo -n "Please enter the port number: "
 read PORT
 echo
 
+# Default to port 22 if no port number is provided
+if [ -z "$PORT" ]; then
+    PORT=22
+fi
+
 # Ask if the user wants to use the private key ~/.ssh/id_ed25519
 echo -n "Do you want to use the private key ~/.ssh/id_ed25519? (y/n): "
 read USE_PRIVATE_KEY
