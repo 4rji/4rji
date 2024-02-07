@@ -1,5 +1,60 @@
 #!/bin/bash
 
+# Obtener la lista de subnets del sistema
+subnets=$(ip route | awk '/src/ {print $1}')
+echo ""
+# Mostrar la lista de subnets con números
+echo "Lista de subnets disponibles:"
+echo ""
+echo "============================"
+echo ""
+count=1
+for subnet in $subnets; do
+    echo "$count) $subnet"
+    count=$((count+1))
+done
+echo ""
+echo "============================"
+echo ""
+# Mostrar el comando utilizado para obtener las subnets
+echo
+
+# Preguntar al usuario qué subnet desea utilizar
+read -n1 -p "¿Qué subnet desea utilizar? [1-$((count-1))]: " choice
+echo
+
+# Obtener la subnet seleccionada por el usuario
+selected_subnet=$(echo "$subnets" | sed -n "${choice}p")
+echo ""
+
+echo "__________________________________________________"
+echo ""
+echo ""
+echo "sudo ip route add $selected_subnet dev ligolo"
+echo
+
+# Preguntar al usuario si desea ejecutar el comando
+read -n1 -p "¿Desea ejecutar el comando? [S/n]: " execute
+echo
+
+echo ""
+# Ejecutar el comando si el usuario lo desea
+if [[ $execute =~ ^[Ss]$ ]]; then
+    sudo ip route add $selected_subnet dev ligolo
+    echo "Comando ejecutado."
+    echo ""
+else
+    echo "Comando no ejecutado."
+fi
+
+echo ""
+
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+echo ""
+
 # Mostrar el mensaje "PROXY"
 echo "Comandos para PROXY"
 echo ""
@@ -12,19 +67,10 @@ echo "start"
 
 echo ""
 echo "_________________________________________________________"
-echo ""
-echo ""
-echo "En la terminal ejecutar:"
+
 
 echo ""
-echo "2.- Cambiar la subnet a la del agente importante agregar bien la subnet"
-echo ""
-echo "sudo ip route add IP.0/24 dev ligolo"
 
-echo ""
-echo "_________________________________________________________"
-
-echo ""
 echo ""
 
 # Mensaje de confirmación
@@ -46,7 +92,9 @@ echo "'/home/ass/agent -connect IP:11601 -ignore-cert' | at now + 1 minute"
 echo "_________________________________________________________"
 
 echo ""
-
+echo "Por si acaso"
+echo ""
 echo "./agent -connect $IP:11601 -ignore-cert"
 
 echo "./proxy -selfcert"
+echo ""
