@@ -6,55 +6,57 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+echo "_________________________________________________________"
 echo ""
-echo ""
-echo "ejecutando ping -c 1 "
-echo ""
-echo ""
-
 
 sleep 0.5
-
 
 subnet="$1"
 tempfile=$(mktemp) # Crea un archivo temporal
 
 # Hace ping a cada IP en la subred y muestra la salida
 for ip in $(seq 1 254); do
-    ping -c 1 "$subnet.$ip" | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" | tee -a $tempfile &
+    ping -c 1 "$subnet.$ip" | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" | tee -a $tempfile >/dev/null &
 done
-
+echo "Escaneando ..."
 wait # Espera a que todos los procesos en segundo plano terminen
 
-
-
-
-
 echo ""
-echo ""
-echo "hecho"
+echo "Hecho."
 echo ""
 
-# Pregunta si desea guardar el archivo
-read -p "¿Desea guardar un archivo de IPs? (s/n): " guardar
+# Muestra una lista de IPs encontradas
+echo "Lista de direcciones IP encontradas:"
+echo ""
+awk '{ print NR "- " $0 }' $tempfile
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+
+# Pregunta al usuario si desea ejecutar expo para una IP específica
+read -n1 -p "¿Ejecutar Nmap a una IP? [S/n] " choice
 echo ""
 echo ""
 
+if [[ $choice =~ ^[Ss]$ ]]; then
+    read -p "Cual numero de la lista: " selected_number
+    echo ""
+    selected_ip=$(sed "${selected_number}q;d" $tempfile)
+    read -n1 -p "¿Ejetar expo nmap a $selected_ip? [S/n]: " execute_expo
 
-
-
-if [[ $guardar == "s" ]]; then
-    # Copia el archivo temporal a la ruta actual como ips.txt
-    cp $tempfile .ips1.txt
-    sed 's/ is up//' .ips1.txt > ips.txt
-#    rm ips1.txt
-    echo "Archivo guardado como ips.txt"
+    if [[ $execute_expo =~ ^[Ss]$ ]]; then
+        expo $selected_ip
+    else
+        echo "No se ejecutó el comando expo."
+    fi
+else
+    echo "Saliendo del script."
 fi
 
 # Elimina el archivo temporal
 rm $tempfile
-echo ""
-echo "*** Precausion*** Solo esta echo para /24"
-echo ""
 
-
+echo ""
+echo "*** Precaución: Este script está hecho para /24 ***"
+echo ""
