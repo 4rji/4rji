@@ -14,6 +14,7 @@ bateriamonitor      Muestra los watts y el estado de carga en kali
 bateria             new script con bateria en lugar de alias                                           
 tempe               or tempe -f temperatura de arch linux y -f crea un archivo con los datos de tempe  
 
+
 ###------utilidades sistema
 todo_{algo}         Busca en alias y readme info
 comando             aplica -h mensaje para mostrar al inicio de un script
@@ -24,7 +25,6 @@ wifikali            Crea wifi redes para kali nuevos system-connections
 template_paquetes   Template para instalar paquetes automaticamente en todas las distro
 verip               Verifica los permisos de los archivos linux claves
 4rji                el programa y busqueda de scripts
-
 4rjic	            Muestra una lista simple de 4rji
 meslo               Instala las fuentes meslo
 4rjia	            Muestra los alias
@@ -58,6 +58,7 @@ ssk                 kitty +kitten ssh
 lfcd                para moverme con cd  #copiar el plugin a zsh
 mdcolors            Genera colores para archivos md 
 maquinasova         Convierte maquinas ova para qemu
+formatoscript       Copia al portapales formato script
 
 genarc              genera archivos conjuntos de 100 MB
 ddf                 hace un diff archivo vs archivo.backup                                             
@@ -87,6 +88,8 @@ contenedor          Instala paquetes basicos, util en contenedores docker
 ###------nmap scaners
 nombre_{IP}         Da el nombre de la maquina si es linux o windows                                   
 scanporty           python3 program que hace un escaneo y pregunta el numero de puertos.usa socket               
+sweep               Hace un sweep y despues pregunta si desea ejecutar expo
+sweepold            solo hace el sweep normal de las ips
 nsweep_{192.168.1}  hace un nmap -sn en la red para buscar maquinas activas.                           
 puertos2            nmap A -O -sV  nmap -A -O -sV -oX puerto.xml --stylesheet=https://svn.nmap.org/nmap/docs/nmap.xsl (probar varios firefox)
 expo                Hace un scaneo con o sin Pn, y lo genera en carpeta tmp, hace expo1, expo2, expo3
