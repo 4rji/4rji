@@ -241,6 +241,7 @@ instsurf            instala surfeando
 #Instalaciones                                                                  
 lockfancyinst       Bloquear fancy para pantalla, alias lockf
 qemuins             Instala qemu y virtual en debian o arch
+qemuvm              Inicia la maquina virtual de qemu, desde cli :)
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 pythonscritps       instala requerimientos y baje scritps del curso de python
