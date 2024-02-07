@@ -76,7 +76,12 @@ if [ "$choice" == "a" ]; then
     command="./agent -connect $IP:11601 -ignore-cert"
     
     echo "Executing command in 1 second:"
+    echo ""
     echo " $command"
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+
     sleep 1
     $command
 elif [ "$choice" == "p" ]; then
@@ -96,7 +101,12 @@ elif [ "$choice" == "p" ]; then
 
         if [ "$start_proxy" == "Y" ] || [ "$start_proxy" == "y" ]; then
             echo ""
+            
+
             echo "Starting the proxy..."
+            echo ""
+            echo "./proxy -selfcert"
+            echo "_________________________________________________________"
             echo ""
             echo "Note: -selfcert is for lab use without an internet connection."
             echo ""

