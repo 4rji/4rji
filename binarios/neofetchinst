@@ -9,6 +9,7 @@ if [ $? -eq 0 ]; then
 #    mkdir -p ~/.config/neofetch
 
     # Mover el archivo a la ubicaci  n deseada
+ 	mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf.bk
     mv neoconf ~/.config/neofetch/config.conf
 
     echo "El archivo se ha descargado y movido correctamente."
