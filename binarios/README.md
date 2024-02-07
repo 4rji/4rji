@@ -160,6 +160,7 @@ findme              Usa el comando find para buscar archivos
 
 
 ###------ssh
+x11uso              Instrucciones para x11
 ebanner             cambia el banner de ssh antes de logearse hola cacheton y se edita con bannere                                      
 bannerssh           Edita el banner de inicio de session de ssh, cuando se loguea
 sshcom              Copia y ejecuta un script en una maquina ssh remota
