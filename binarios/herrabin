@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Colores
+azul='\e[0;34m'
+reset='\e[0m'
+verde='\e[0;32m'
+
+
 # Verificar si la opción -o está presente
 while getopts "o" opt; do
     case $opt in
@@ -92,31 +98,36 @@ if [[ $omitir != true ]]; then
 
     sudo cp -f binarios/* /usr/bin/
 
-    echo "binarios actualizados"
+      echo -e "${azul}binarios actualizados${reset}"
     cd
 
-    #hasta aqui termina la omision esto normal
+# Hasta aquí termina la omisión, esto es normal
 
     echo ""
-    echo "_________________________________________________________"
+    echo -e "${azul}_________________________________________________________${reset}"
     echo ""
 
-    echo "Si hay: Error opening terminal: xterm-kitty, ejecutar:"
+    echo -e "${azul}Si hay: Error opening terminal: xterm-kitty, ejecutar:${reset}"
     echo "export TERM=xterm"
 
+    
+    echo -e "${azul}_________________________________________________________${reset}"
     echo ""
-    echo "_________________________________________________________"
-    echo ""
+echo ""
 
 fi
 
-#para instalar functions en las bash
+# Colores
+verde='\e[0;32m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+
 echo ""
-echo "_________________________________________________________"
-echo ""
+echo -e "${verde}_________________________________________________________${reset}"
 
 # Pregunta al usuario
-read -n1 -p "¿Quieres instalar las FUNCTION en la bash? (s/N): " respuesta
+read -n1 -p "$(echo -e ${verde}'¿Instalar las {}FUNCTION en la bash? (s/N): '${reset})" respuesta
 echo ""
 
 # Define un valor predeterminado si el usuario presiona Enter
@@ -127,18 +138,25 @@ respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
 
 # Verifica la respuesta
 if [ "$respuesta" == "s" ]; then
-    echo "Ejecutando bashfun..."
+    #echo -e "${verde}Ejecutando bashfun...${reset}"
+    wget -O - https://raw.githubusercontent.com/4rji/4rji/main/binarios/bashfun | bash
     # Aquí colocas el código para ejecutar bashfun
 else
     echo ""
 fi
 
-echo ""
+
+# Colores
+verde='\e[0;32m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+echo -e "${azul}"
 echo "_________________________________________________________"
 echo ""
 
 # Pregunta al usuario
-read -n1 -p "¿Quieres instalar todos ALIAS? (s/N): " respuesta
+read -n1 -p "$(echo -e ${verde}'¿Instalar todos alias? (s/N): '${reset})" respuesta
 echo ""
 
 # Define un valor predeterminado si el usuario presiona Enter
@@ -149,26 +167,42 @@ respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
 
 # Verifica la respuesta
 if [ "$respuesta" == "s" ]; then
-    echo "instalando todos los alias... herralias"
+    echo -e "${verde}Instalando todos los alias... ${reset}"
+    wget -O - https://raw.githubusercontent.com/4rji/4rji/main/alias.sh | bash 
+    #source alias.sh  # Ejecuta el script descargado
+
+    # Borrar archivos
+    #rm alias.sh
+
     # Aquí colocas el código para ejecutar bashfun
 else
     echo ""
 fi
 
-echo ""
+
+# Colores
+verde='\e[0;32m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+amarillo='\e[0;33m'
+reset='\e[0m'
+
+echo -e "${amarillo}"
 echo "_________________________________________________________"
 echo ""
 
-echo " ########### ALERTA.  #################"
+echo -e "${amarillo} ########### ALERTA.  #################${reset}"
 echo ""
-echo "Tarda mucho en instalarse"
+echo -e "${amarillo}Tarda mucho en instalarse${reset}"
 
 echo ""
-echo "_________________________________________________________"
+echo -e "${amarillo}_________________________________________________________${reset}"
 echo ""
+
 
 # Pregunta al usuario
-read -n1 -p "¿Quieres instalar todos los paquetes de 2-arji? (s/N): " respuesta
+read -n1 -p "$(echo -e ${verde}'¿Quieres instalar  2-arji?  (s/N): '${reset})" respuesta
 echo ""
 
 # Define un valor predeterminado si el usuario presiona Enter
@@ -179,8 +213,13 @@ respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
 
 # Verifica la respuesta
 if [ "$respuesta" == "s" ]; then
-    echo "instalando todos los paquetes... 2-4rji"
-    # Aquí colocas el código para ejecutar bashfun
+    wget -O - https://raw.githubusercontent.com/4rji/4rji/main/2-4rji.sh | bash   
+   # source alias.sh  # Ejecuta el script descargado
+
+    #borrar archivos
+    #rm 2-4rji.sh
 else
     echo ""
 fi
+
+
