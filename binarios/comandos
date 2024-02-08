@@ -43,3 +43,6 @@ terminarl el video para ver mas comandos
 #discovery host scaner
 sudo arp-scan -I wlan0 10.0.4.1-10.0.4.254   #este escanea bien
 netdiscover -i wlan0
+
+#para evitar que ssh se duerma en conexiones
+ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 usuario@servidor
