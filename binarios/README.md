@@ -46,7 +46,7 @@ lid                 cambia el comportamiento de lid laptop
 msmb                monta un smb o samba.                                                              
 adio                borra un archivo con scrub                                                         
 adios               borra toda una carpeta con scrub                                                   
-herrabin            actualiza los binarios
+herrabin            actualiza los binarios, funciones, alias y 2-4rji.sh,   -o para omitir binarios 
 herralias           Actualiza los binarios descargando solo alias
 worms               Comprime una carpeta y la manda por worms, se ejecuta: worms ruta_carpeta          
 cscp                copiar archivos en scp en lugar de sftp    
