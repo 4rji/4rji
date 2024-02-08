@@ -29,18 +29,18 @@ if sudo virsh dominfo "$vm_name" > /dev/null 2>&1; then
 fi
 
 # Solicita configuraciones específicas
-echo -e "${GREEN}Configuración de la máquina virtual:${NC}"
 read -p "Introduce la cantidad de RAM en MiB (ej. 2048): " ram
 read -p "Introduce el número de núcleos de CPU (ej. 2): " cpu
-read -p "Introduce el tamaño del disco duro en GB (ej. 20): " disk_size
 
-# Descarga la imagen iso de Debian con sudo
+# Descarga la imagen qcow2 de Debian con sudo
 echo -e "${GREEN}Descargando la imagen de Debian...${NC}"
-#sudo wget -P /var/lib/libvirt/images/ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso
-echo -e "${GREEN}La imagen de Debian ha sido descargada.${NC}"
+sudo wget -P /var/lib/libvirt/images/ https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.qcow2
+                   
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
 
-
-# Creación del archivo vm.xml con la configuración del usuario ajustada
+# Creación del archivo vm.xml con la configuración del usuario y una consola
 sudo bash -c "cat > /etc/libvirt/qemu/$vm_name.xml <<EOF
 <domain type='kvm'>
   <name>$vm_name</name>
@@ -49,23 +49,15 @@ sudo bash -c "cat > /etc/libvirt/qemu/$vm_name.xml <<EOF
   <vcpu placement='static'>$cpu</vcpu>
   <os>
     <type arch='x86_64' machine='pc-i440fx-2.9'>hvm</type>
+    <boot dev='hd'/>
   </os>
   <devices>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='/var/lib/libvirt/images/${vm_name}.qcow2'/>
+      <source file='/var/lib/libvirt/images/debian-12-nocloud-amd64.qcow2'/>
       <target dev='vda' bus='virtio'/>
-      <boot order='1'/>
     </disk>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/var/lib/libvirt/images/debian-12.4.0-amd64-netinst.iso'/>
-      <target dev='hdc' bus='ide'/>
-      <boot order='2'/>
-    </disk>
-    <graphics type='vnc' port='5901' autoport='no' listen='0.0.0.0'>
-      <listen type='address' address='0.0.0.0'/>
-    </graphics>
+    <graphics type='vnc' port='-1' autoport='yes'/>
     <console type='pty'>
       <target type='serial' port='0'/>
     </console>
@@ -75,19 +67,6 @@ sudo bash -c "cat > /etc/libvirt/qemu/$vm_name.xml <<EOF
   </devices>
 </domain>
 EOF"
-
-
-
-# Creación del disco duro con el tamaño especificado
-echo -e "${GREEN}Creando disco duro de ${disk_size}GB para la máquina virtual...${NC}"
-sudo qemu-img create -f qcow2 /var/lib/libvirt/images/${vm_name}.qcow2 ${disk_size}G
-
-# Definición de la máquina virtual
-#sudo virsh define /etc/libvirt/qemu/$vm_name.xml
-#echo -e "${BLUE}La máquina virtual '${vm_name}' ha sido creada y configurada.${NC}"
-
-
-
 
 echo -e "${GREEN}Archivo $vm_name.xml creado.${NC}"
 

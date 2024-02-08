@@ -131,6 +131,7 @@ iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 ###------buscar cosas en linux
 buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
 comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
+comentadas 			Copia al portapapales las lineas no comentadas, -c para solo verlas sin copiar
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
 buscando            Comandos para usar grep awk, # ls -l email* para buscar archivos empiezan email
 grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn

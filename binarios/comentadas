@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Función para mostrar el uso del script
+mostrar_uso() {
+    echo "Uso: $0 [-c] archivo"
+    echo "-c: Solo mostrar los resultados, no copiar al portapapeles"
+    exit 1
+}
+
+# Verificar si se proporciona al menos un argumento
+if [ $# -lt 1 ]; then
+    mostrar_uso
+fi
+
+# Verificar las opciones de línea de comandos
+copiar=true
+while getopts ":c" opcion; do
+    case "${opcion}" in
+        c)
+            copiar=false
+            ;;
+        *)
+            mostrar_uso
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+# Nombre del archivo a procesar
+archivo="$1"
+
+# Comprobar si se proporciona un archivo como argumento
+if [ -z "$archivo" ]; then
+    mostrar_uso
+fi
+
+# Verificar si el archivo existe
+if [ ! -f "$archivo" ]; then
+    echo "El archivo '$archivo' no existe."
+    exit 1
+fi
+
+# Mostrar o copiar al portapapeles las líneas que no son comentarios
+if [ "$copiar" = true ]; then
+    sed -E 's/^[[:space:]]*//;s/[[:space:]]*$//' "$archivo" | grep -v '^#' | xclip -selection clipboard
+    echo "Las líneas sin comentarios y espacios adicionales del archivo '$archivo' se han copiado al portapapeles."
+else
+    sed -E 's/^[[:space:]]*//;s/[[:space:]]*$//' "$archivo" | grep -v '^#'
+fi
+
