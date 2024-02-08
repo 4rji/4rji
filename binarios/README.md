@@ -124,24 +124,7 @@ portfake            Instala portspoof emula servicios para nmap, instala todo
 faketables          aplica las reglas para portspoof, IPTABLES, proteje puertos y redirecciona trafico
 iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 
-
-###------ccdc
-pasw                Checa los usuarios con bash y los cambia a nologin
-passl               Igual que pasw pero sin batcat
-rootcheck           checks various shell configuration files .bash zsh ...
-crontall            Shows crontab of everyone
-hardnet             modifies ipv4 and also ipv6 hardnetu for Ubuntu
-maskapps            masks telnet ftp for ccdc
-sshhard             Modifies ssh and makes a backup
-sntp                installs chrony     
-bannerm             Hace un banner para ssh de mctc  
-chdns               Resolv.conf change
-procesos            Muestra los procesos de los usuarios
-servicios           Encuentra servicios que no son del kernel linux corriendo.
-findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
-ppt                 Checa lsof netstat nmap y puertos que estan escuchando en el sistema
-rkhun               Instala, actualiza y ejecuta el scaneo rkhunter, tambien instala chkrootkit
-ufwinst             instala ufw y crea regla para puerto ssh                                           
+                               
  
 
 ###------buscar cosas en linux
@@ -172,7 +155,8 @@ sshmoni             Este busca conexiones activas ssh, muestra procesos PID y lu
 itcpd               Enmascara ssh o cualquier puerto con tcpd, version ssh nmap -sV -sC
 ssh80               Conecta con ssh -L para redirijir trafico desde una maquina a otra, a browser 
 fixsshhost          Seguido de la ip, para borrar la ip del localhost cuando se duplica	
-copyssh             copia mui clave a una maquina remota                                               
+copyssh             copia mui clave a una maquina remota
+googlessh           Instala la authenticacion de google para ssh                                               
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 sshconf             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
 sshjump             Configura los jumps infinitamente.
