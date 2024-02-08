@@ -160,6 +160,7 @@ findme              Usa el comando find para buscar archivos
 
 
 ###------ssh
+x11uso              Instrucciones para x11
 ebanner             cambia el banner de ssh antes de logearse hola cacheton y se edita con bannere                                      
 bannerssh           Edita el banner de inicio de session de ssh, cuando se loguea
 sshcom              Copia y ejecuta un script en una maquina ssh remota
@@ -241,6 +242,8 @@ instsurf            instala surfeando
 #Instalaciones                                                                  
 lockfancyinst       Bloquear fancy para pantalla, alias lockf
 qemuins             Instala qemu y virtual en debian o arch
+qemuvm              Inicia la maquina virtual de qemu, desde cli :)
+qemuconsola         Para habilitar consola con virsh 
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 pythonscritps       instala requerimientos y baje scritps del curso de python
@@ -266,5 +269,7 @@ ansihost            Cat a los hosts y pregunta si quiero editarlo ansible
 #python herramientas
 proxyvery           Verifica si funcionan los proxies de una lista
 chismes             Ejecuta tcpdump y tshark para ver la red, captura wireshark
-proxyloco           Proxy con agente y proxy, reverse shell
+proxylocomenu       Menu para descargar, el primero
+proxyloco           Instala el proxy, interface e inicia
 proxylococ          Comandos para su ejecucion de proxy loco reverse shell
+agentloco           Instala amd agente
