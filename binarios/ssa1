@@ -1,27 +1,27 @@
 #!/bin/zsh
 
+# Color codes
+green="\e[32m"
+yellow="\e[33m"
+reset="\e[0m"
+
 # Ejecutar el comando y almacenar la salida en una variable
 output=$(systemctl status ssh)
 
-echo ""
-echo "SSH status:"
+echo "\n${green}SSH status:${reset}"
 # Buscar la línea que contiene 'Active:' en la salida y mostrarla
-echo "$output" | grep 'Active:'
+echo "$output" | grep --color=always 'Active:'
 
 # Agregar un renglón de separación
 echo ""
 
-#ip addr | grep "inet "  #con inet
-#ip -4 addr show | awk '/inet/ && /brd/ {print $NF, $2}'    #con subned /24
-ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); print $NF, a[1]}'
-
+# Mostrar la dirección IP local
+echo "${yellow}Dirección IP local:${reset}"
+ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); printf "\t\t\t\t%s: %s\n", $NF, a[1]}'
 
 # Agregamos el mensaje con la IP local
-echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlan0 | grep "inet " | awk '{print $2}')"
-echo ""
-echo "  *** user ***"
+echo "\n\n\n\n\t\t\t\tTu IP es: $(/usr/sbin/ifconfig wlan0 | grep "inet " | awk '{print $2}')\n"
+echo "\t\t\t\t  ${green}*** user ***${reset}\n"
 whoami
-echo ""
-echo ""
-echo " *** Puerto de escucha: ***"
+echo "\n\n\t\t\t ${yellow}*** Puerto de escucha: ***${reset}\n"
 grep -E '^#?Port ' /etc/ssh/sshd_config
