@@ -23,3 +23,13 @@ echo -n "$mensaje" | xclip -selection clipboard
 
 echo "Copiado al portapapeles."
 
+
+
+
+#agregale  espacios para que se vea mas limpio como este ejemplo:
+#echo ""
+#echo "_________________________________________________________"
+#echo ""
+
+#y también modifica las preguntas para que no esperen por enter, como este ejemplo:
+#read -n1 -p ¿Ejemplo pregunta? [S/n] 
