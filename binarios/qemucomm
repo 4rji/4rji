@@ -1,0 +1,52 @@
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mListar todas las máquinas virtuales (incluso las inactivas):\e[0m"
+echo "sudo virsh list --all"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mIniciar una máquina virtual:\e[0m"
+echo "sudo virsh start nombre_vm"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mDetener una máquina virtual:\e[0m"
+echo "sudo virsh destroy nombre_vm"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mListar snapshots de una máquina virtual:\e[0m"
+echo "sudo virsh snapshot-list nombre_vm"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mEliminar un snapshot de una máquina virtual:\e[0m"
+echo "sudo virsh snapshot-delete nombre_vm nombre_snapshot"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mEliminar una máquina virtual y todo su almacenamiento:\e[0m"
+echo "sudo virsh undefine nombre_vm --remove-all-storage"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[1;32mAcceder a la consola de una máquina virtual:\e[0m"
+echo "sudo virsh console nombre_vm"
+
+echo ""
+echo -e "\e[1;34m_________________________________________________________\e[0m"
+echo ""
