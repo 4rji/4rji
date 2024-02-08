@@ -75,6 +75,16 @@ echo -e "${NC}"
 echo -e "${GREEN}Definiendo la máquina virtual...${NC}"
 sudo virsh define /etc/libvirt/qemu/$vm_name.xml
 
+# Pregunta si desea iniciar la red predeterminada
+echo -e -n "${RED}¿Deseas iniciar la Network ahora? [S/n] ${NC}"
+read -n1 respuesta_network
+echo
+if [[ $respuesta_network =~ ^[Ss]$ ]]; then
+    echo -e "${GREEN}Iniciando Network...${NC}"
+    sudo virsh net-start default
+    echo -e "La Network ha sido iniciada.${NC}"
+fi
+
 # Pregunta si desea iniciar la máquina virtual
 echo -e -n "${RED}¿Deseas iniciar la máquina virtual ahora? [S/n] ${NC}"
 read -n1 respuesta
@@ -108,4 +118,3 @@ if [[ $respuesta_borrar =~ ^[Ss]$ ]]; then
 else
     echo -e "${GREEN}fin.${NC}"
 fi
-
