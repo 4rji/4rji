@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#inicia la maquina desde el iso pero con qemudebian la descargo y la inicio, es una version de esa
 echo "_________________________________________________________"
 echo ""
 echo "para ejecutar la imagen despues ese ese el formato"

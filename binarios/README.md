@@ -228,8 +228,8 @@ instsurf            instala surfeando
 #Instalaciones                                                                  
 lockfancyinst       Bloquear fancy para pantalla, alias lockf
 qemuins             Instala qemu y virtual en debian o arch
-qemuvm              Inicia la maquina virtual de qemu, desde cli :)
-qemuconsola         Para habilitar consola con virsh 
+qemuvm              Inicia la maquina virtual de qemu, desde cli y desde iso.
+qemuconsola         enable serial-getty@ttyS0.service  habilitar consola con virsh console  
 qemucomm            Comandos de qemu virsh
 qemudebian          Descarga, agrega e inicia una maquina debian :)
 instsublime         Instala sublime en kali
