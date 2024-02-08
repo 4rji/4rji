@@ -33,3 +33,5 @@ echo "Copiado al portapapeles."
 
 #y también modifica las preguntas para que no esperen por enter, como este ejemplo:
 #read -n1 -p ¿Ejemplo pregunta? [S/n] 
+
+#y agrega al menos 3 colores o mas para que se vea bien las lineas y preguntas
