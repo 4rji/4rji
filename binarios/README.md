@@ -197,7 +197,7 @@ kaliefi             Crea un kali efimero en distrobox
 disl                Distrobox list script que corre y muestra lista de distros 
 disefimero          Crea un distrobox efimero
 disapp              Ejecuta una aplicacion en un contenedor determinador despues del script 
-
+operarch            Instala brave o opera en distrobox en arch con yay
 
 ###------antivirus y malware
 rkhun               Instala, actualiza y ejecuta el scaneo rkhunter, tambien instala chkrootkit
