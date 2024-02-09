@@ -229,6 +229,7 @@ lockfancyinst       Bloquear fancy para pantalla, alias lockf
 qemuins             Instala qemu y virtual en debian o arch
 qemuvm              Inicia la maquina virtual de qemu, desde cli :)
 qemuconsola         Para habilitar consola con virsh 
+virs                Ejecuta comandos de virsh con la maquina automaticamente
 qemucomm            Comandos de qemu virsh
 qemudebian          Descarga, agrega e inicia una maquina debian :)
 instsublime         Instala sublime en kali

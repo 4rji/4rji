@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo -e "\e[34m_________________________________________________________\e[0m"
+echo ""
+echo -e "\e[32mListando todas las máquinas virtuales:\e[0m"
+mapfile -t vms < <(sudo virsh list --all | awk 'NR>2 {print NR-2 ")\t" $2 "\t" $3}')
+printf '%s\n' "${vms[@]}"
+echo -e "\e[34m_________________________________________________________\e[0m"
+echo ""
+
+read -p "Ingresa el número de la máquina virtual que deseas gestionar: " vm_number
+selected_vm=$(echo "${vms[vm_number-1]}" | awk '{print $2}')
+echo -e "\e[34m_________________________________________________________\e[0m"
+echo ""
+echo -e "Has seleccionado la máquina: \e[33m$selected_vm\e[0m"
+echo -e "\e[34m_________________________________________________________\e[0m"
+echo ""
+
+echo -e "\e[32m¿Qué acción deseas realizar?\e[0m"
+echo "1) Iniciar la máquina virtual"
+echo "2) Detener la máquina virtual"
+echo "3) Acceder a la consola de la máquina virtual"
+echo -e "\e[34m_________________________________________________________\e[0m"
+read -n1 -p "Selecciona una opción (1/2/3): " action
+echo ""
+echo -e "\e[34m_________________________________________________________\e[0m"
+
+case $action in
+    1)
+        echo "Iniciando la máquina virtual $selected_vm..."
+        sudo virsh start "$selected_vm"
+        ;;
+    2)
+        echo "Deteniendo la máquina virtual $selected_vm..."
+        sudo virsh shutdown "$selected_vm"
+        ;;
+    3)
+        echo "Accediendo a la consola de la máquina virtual $selected_vm. Para salir, presiona Ctrl+]"
+        sudo virsh console "$selected_vm"
+        ;;
+    *)
+        echo -e "\e[31mOpción no válida. Saliendo...\e[0m"
+        exit 1
+        ;;
+esac
+
