@@ -266,3 +266,4 @@ proxylococ          Comandos para su ejecucion de proxy loco reverse shell
 agentloco           Instala amd agente
 torperlnipe         Script para mandar trafico por tor, no funciona aun.
 sheldon             Reverse shelly shell en python, con nc sheldon {ip}
+sheldon1            La misma pero esta pregunta ip, y no tiene env shell

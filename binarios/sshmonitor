@@ -1,11 +1,15 @@
+contador=0
 while true; do
   sshmoni
-
+  let contador++
+  echo "Número de ejecuciones: $contador"
 done
 
-
-
-#while true; do
- # sudo /usr/bin/sshmoni
-  #sleep 2
-#done
+# Aquí está la versión comentada que proporcionaste, también con un contador agregado:
+# contador=0
+# while true; do
+#   sudo /usr/bin/sshmoni
+#   sleep 2
+#   let contador++
+#   echo "Número de ejecuciones: $contador"
+# done
