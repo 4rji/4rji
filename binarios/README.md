@@ -264,3 +264,4 @@ proxylocomenu       Menu para descargar, el primero
 proxyloco           Instala el proxy, interface e inicia
 proxylococ          Comandos para su ejecucion de proxy loco reverse shell
 agentloco           Instala amd agente
+torperlnipe         Script para mandar trafico por tor, no funciona aun.

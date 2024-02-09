@@ -101,7 +101,13 @@ if [[ $omitir != true ]]; then
       echo -e "${azul}binarios actualizados${reset}"
     cd
 
-# Hasta aquí termina la omisión, esto es normal
+
+echo ""
+
+fi
+
+
+ #Hasta aquí termina la omisión, esto es normal
 
     echo ""
     echo -e "${azul}_________________________________________________________${reset}"
@@ -113,9 +119,7 @@ if [[ $omitir != true ]]; then
     
     echo -e "${azul}_________________________________________________________${reset}"
     echo ""
-echo ""
 
-fi
 
 # Colores
 verde='\e[0;32m'
