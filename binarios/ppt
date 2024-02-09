@@ -1,19 +1,16 @@
 #!/bin/bash
 
-
 # Lista de paquetes a instalar
-
 paquetes=("lsof" "net-tools" "nmap")
-
 
 # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
 paquete_instalado_apt() {  
-    dpkg -l "$1" | grep -q '^ii'   >/dev/null
+    dpkg -l "$1" | grep -q '^ii' >/dev/null
 }
 
 # Función para verificar si un paquete está instalado (CentOS/RHEL)
 paquete_instalado_yum() {
-    yum list installed "$1"   >/dev/null
+    yum list installed "$1" >/dev/null
 }
 
 # Función para verificar si un paquete está instalado (Fedora)
@@ -23,7 +20,7 @@ paquete_instalado_dnf() {
 
 # Función para verificar si un paquete está instalado (Arch Linux)
 paquete_instalado_pacman() {
-    pacman -Qi "$1"  > /dev/null
+    pacman -Qi "$1" > /dev/null
 }
 
 # Detectar el sistema operativo
@@ -64,20 +61,13 @@ for paquete in "${paquetes[@]}"; do
     esac
 done
 
-
-
-
-
-
-
-
-
-
-
-
 # Función para preguntar y ejecutar lsof
 preguntar_y_ejecutar_lsof() {
-    read -p "¿Ejecutar lsof? [Enter/c]: " respuesta
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+    echo -e "\033[34mComando a ejecutar: sudo lsof -i -P -n\033[0m"
+    read -n1 -p $'\033[33m¿Ejecutar lsof? [Enter/c]: \033[0m' respuesta
     if [[ $respuesta != "c" ]]; then
         sudo lsof -i -P -n
     fi
@@ -86,30 +76,34 @@ preguntar_y_ejecutar_lsof() {
 # Función para preguntar y ejecutar netstat
 preguntar_y_ejecutar_netstat() {
     echo ""
+    echo "_________________________________________________________"
     echo ""
-    read -p "¿Ejecutar netstat? [Enter/c]: " respuesta
+    echo -e "\033[34mComando a ejecutar: netstat -tulpn\033[0m"
+    read -n1 -p $'\033[33m¿Ejecutar netstat? [Enter/c]: \033[0m' respuesta
     if [[ $respuesta != "c" ]]; then
         netstat -tulpn
     fi
 }
 
-
 # Función para preguntar y ejecutar nmap en localhost
 preguntar_y_ejecutar_nmap() {
     echo ""
+    echo "_________________________________________________________"
     echo ""
-    read -p "¿Ejecutar nmap localhost? [Enter/c]: " respuesta
+    echo -e "\033[34mComando a ejecutar: sudo nmap -T4 -p- --min-rate 1000 localhost\033[0m"
+    read -n1 -p $'\033[33m¿Ejecutar nmap localhost? [Enter/c]: \033[0m' respuesta
     if [[ $respuesta != "c" ]]; then
         sudo nmap -T4 -p- --min-rate 1000 localhost
     fi
 }
 
-
 # Función para preguntar y ejecutar ps
 preguntar_y_ejecutar_ps() {
     echo ""
+    echo "_________________________________________________________"
     echo ""
-    read -p "¿Ejecutar procesos? [Enter/c]: " respuesta
+    echo -e "\033[34mComando a ejecutar: ps -eo user,comm,pid\033[0m"
+    read -n1 -p $'\033[33m¿Ejecutar procesos? [Enter/c]: \033[0m' respuesta
     if [[ $respuesta != "c" ]]; then
         ps -eo user,comm,pid
     fi
