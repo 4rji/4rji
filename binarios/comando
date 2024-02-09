@@ -10,7 +10,7 @@ archivo_a_modificar = sys.argv[1]
 
 # Función para solicitar el mensaje personalizado
 def solicitar_mensaje():
-    return input("Por favor, ingrese el mensaje personalizado: ")
+    return input("Cual es el mensaje de ayuda? ")
 
 mensaje_personalizado = solicitar_mensaje()
 
@@ -35,25 +35,38 @@ try:
             # Insertar el bloque de código después de la línea modificada o comentada
             lineas[i + 1:i + 1] = [
                 '\n',
+                'echo ""\n',
+                'echo -e "\\033[1;34m_________________________________________________________\\033[0m"\n',
+                'echo ""\n',
                 '# Función para mostrar el mensaje de ayuda y preguntar si desea continuar\n',
                 'show_help_and_confirm() {\n',
-                '    echo\n',
-                '    echo "El comando que este script ejecuta es:"\n',
-                f'    echo "{mensaje_personalizado}"\n',
-                '    echo\n',
-                '    echo "Presione Enter para continuar o \'c\' para salir."\n',
+                '    echo ""\n',
+                
+
+
+                '    echo -e "\\033[1;32mEl comando que este script ejecuta es:\\033[0m"\n',
+                '    echo ""\n',
+
+                f'    echo -e "\\033[1;33m{mensaje_personalizado}\\033[0m"\n',
+                '    echo ""\n',
+                '    echo ""\n',
+                'echo -e "\\033[1;34m_________________________________________________________\\033[0m"\n',
+            
+                '    echo ""\n',
+
+                #'    echo -e "\\033[1;35mPresione Enter para ejecutar, otra tecla \'c\' para salir.\\033[0m"\n',
+
+#                '    echo -e "\\033[1;35mPresione Enter para ejecutar, otra tecla \\'c\\' para salir.\\033[0m"\n',
                 '\n',
                 '    # Preguntar al usuario si desea continuar\n',
-                '    read -p "Deseas continuar [c/S] " response\n',
+                '    read -n1 -p "Continuar el script?  Cancel [c]  " response\n',
+                '    echo ""  # Añadir una nueva línea para la salida\n',
                 '\n',
-                '    # Convertir la respuesta a minúsculas\n',
-                '    response=$(echo "$response" | tr \'[:upper:]\' \'[:lower:]\')\n',
-                '\n',
-                '    # Si la respuesta es \'c\', salir del script\n',
-                '    if [ "$response" == "c" ]; then\n',
-                '        echo "Saliendo del script."\n',
-                '        exit 0\n',
-                '    fi\n',
+                '    # Convertir la respuesta a minúsculas y evaluar\n',
+                '    case "$response" in\n',
+                #'    c|C) echo "Saliendo del script." ; exit 0 ;;\n',
+                '    *) echo "Continuando..." ;;\n',
+                '    esac\n',
                 '}\n',
                 '\n',
                 '# Verificar si se pasó el argumento -h\n',
