@@ -30,6 +30,7 @@ echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
+echo "alias ufwn='sudo ufw status numbered'"  >> ~/.zshrc
 
 #instalar zsh solamente
 echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
