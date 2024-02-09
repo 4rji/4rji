@@ -229,6 +229,7 @@ instsurf            instala surfeando
 qemuins             Instala qemu y virtual en debian o arch
 qemuvm              Inicia la maquina virtual de qemu, desde cli y desde iso.
 qemuconsola         enable serial-getty@ttyS0.service  habilitar consola con virsh console  
+virs                Ejecuta comandos de virsh con la maquina automaticamente
 qemucomm            Comandos de qemu virsh
 qemudebian          Descarga, agrega e inicia una maquina debian :)
 qemudebianq         Descarga una imagen qcow2, agrega e inicia una maquina debian
