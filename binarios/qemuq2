@@ -38,8 +38,6 @@ read -p "Introduce el número de núcleos de CPU (ej. 2): " cpu
 
 
 
-#!/bin/bash
-
 # Define colores para la salida
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
@@ -59,14 +57,14 @@ case $opcion in
         echo -e "${GREEN}Descargando la imagen de Debian...${NC}"
         image_url="https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.qcow2"
         file_name="debian-12-nocloud-amd64.qcow2"
-        wget -P /var/lib/libvirt/images/ "$image_url"
+        sudo wget -P /var/lib/libvirt/images/ "$image_url"
         ;;
     2)
         echo -e "${GREEN}Descargando y descomprimiendo la imagen de Kali...${NC}"
         image_url="https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-qemu-amd64.7z"
         file_name="kali-linux-2023.4-qemu-amd64.qcow2" # Asume el nombre después de descomprimir
         wget "$image_url"
-        7z x "kali-linux-2023.4-qemu-amd64.7z" -o/var/lib/libvirt/images/
+        sudo 7z x "kali-linux-2023.4-qemu-amd64.7z" -o/var/lib/libvirt/images/
         ;;
     *)
         echo "Opción no válida."
