@@ -172,3 +172,5 @@ if [[ $respuesta_borrar =~ ^[Ss]$ ]]; then
 else
     echo -e "${GREEN}fin.${NC}"
 fi
+
+echo "Kali no tiene acceso, hay que instalar qemuconsole"
