@@ -1,5 +1,80 @@
 #!/bin/bash
 
+# Lista de paquetes a instalar
+paquetes=("Apache" "HTTPD" "Nginx" "Lighttpd")
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii' >/dev/null
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" >/dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" >/dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" >/dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar el primer paquete disponible basado en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    instalado=false
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if ! paquete_instalado_apt "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete" >/dev/null && instalado=true
+            fi
+            ;;
+        "centos"|"rhel")
+            if ! paquete_instalado_yum "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete" >/dev/null && instalado=true
+            fi
+            ;;
+        "fedora")
+            if ! paquete_instalado_dnf "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete" >/dev/null && instalado=true
+            fi
+            ;;
+        "arch")
+            if ! paquete_instalado_pacman "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete" >/dev/null && instalado=true
+            fi
+            ;;
+        *)
+            ;;
+    esac
+    if [ "$instalado" = true ]; then
+        echo "Paquete $paquete instalado exitosamente."
+        break # Sale del bucle después de instalar el primer paquete disponible
+    fi
+done
+
+
+
+
+
+
+
+
+
+
 # Colores
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -21,6 +96,8 @@ stop_apache() {
     echo -e "${GREEN}Apache/httpd detenido.${NC}"
   fi
 }
+
+
 
 # Capturar señales de interrupción y terminación para ejecutar stop_apache
 trap stop_apache SIGINT SIGTERM
