@@ -1,0 +1,79 @@
+#!/bin/bash
+
+# Colores para resaltar
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+reset='\033[0m'
+
+# Función para buscar los procesos relacionados con el término proporcionado
+find_processes() {
+    ps_output=$(ps aux | grep "$search_term")
+    filtered_output=$(echo "$ps_output" | grep -v grep | awk '{print NR ". Ubicación:", $11, "       PIDs:", $2, "Usuario:", $1}')
+    echo "$filtered_output"
+}
+
+# Verificar si se proporciona un término de búsqueda
+if [ -z "$1" ]; then
+    echo -e "${red}Por favor, proporciona un término de búsqueda después de ejecutar el script.${reset}\n"
+    exit 1
+fi
+
+# Obtener el término de búsqueda del primer argumento
+search_term="$1"
+
+# Ejecutar el script hasta que se presione 'c'
+while true; do
+    # Limpiar la pantalla antes de mostrar el menú nuevamente
+    clear
+
+    # Mostrar la lista de procesos
+    echo -e "${green}Lista de procesos relacionados con '$search_term':${reset}\n"
+    find_processes
+
+    # Contar el número de procesos encontrados
+    num_processes=$(echo "$ps_output" | grep -v grep | wc -l)
+
+    # Generar un arreglo de opciones de procesos
+    options=()
+    for ((i = 1; i <= num_processes; i++)); do
+        if [ "$i" -le 9 ]; then
+            options+=("$i")
+        else
+            letter=$(printf "%c" $((i + 96 - 9))) # Convertir a letra: 10 -> a, 11 -> b, ...
+            options+=("$letter")
+        fi
+    done
+
+    # Solicitar al usuario qué proceso desea terminar
+    echo -e "\n${yellow}¿Numero a terminar? Enter para actualizar, [s] para todos, 'c' para cancelar:${reset}"
+    read  -r choice
+    echo ""
+
+
+    
+    # Verificar la selección del usuario
+    if [ "$choice" == "c" ]; then
+        echo -e "${red}Operación cancelada.${reset}\n"
+        exit 0
+    elif [ "$choice" == "s" ]; then
+        # Iterar sobre cada PID y enviar una señal de terminación
+        while IFS= read -r pid; do
+            sudo kill -9 "$pid"
+        done < <(echo "$ps_output" | grep -v grep | awk '{print $2}')
+        echo -e "${green}Señal de terminación enviada a todos los procesos.${reset}\n"
+    elif [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "$num_processes" ]; then
+        # Obtener el PID del proceso seleccionado
+        pid_to_kill=$(echo "$ps_output" | grep -v grep | awk -v choice="$choice" 'NR == choice {print $2}')
+        # Enviar una señal de terminación al proceso seleccionado
+        sudo kill -9 "$pid_to_kill"
+        echo -e "${green}Señal de terminación enviada al proceso $pid_to_kill.${reset}\n"
+    else
+        echo -e "${red}Selección no válida.${reset}\n"
+        continue
+    fi
+
+    # Esperar un segundo para permitir que los procesos terminen
+    sleep 1
+done
+
