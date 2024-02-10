@@ -149,8 +149,8 @@ x11uso              Instrucciones para x11
 ebanner             cambia el banner de ssh antes de logearse hola cacheton y se edita con bannere                                      
 bannerssh           Edita el banner de inicio de session de ssh, cuando se loguea
 sshcom              Copia y ejecuta un script en una maquina ssh remota
-sshmonitor          sshmoni loop para correr el sshmoni while loop
-lsofmonitor         Lo mismo que ssh pero escanea conexiones con lsof
+sshmoni             sshmoni loop para correr el sshmoni while loop
+lsofmoni            Lo mismo que ssh pero escanea conexiones con lsof
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
 killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
