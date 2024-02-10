@@ -28,7 +28,7 @@ def ejecutar_script():
             if proceso.poll() is not None:
                 # El proceso ha terminado antes del tiempo límite
                 break
-            time.sleep(1)  # Esperar 1 segundo
+            time.sleep(5)  # Esperar 1 segundo
 
         # Verificar si el proceso aún está en ejecución
         if proceso.poll() is None:
@@ -47,7 +47,7 @@ def main():
         ejecutar_script()
         
         # Esperamos un tiempo antes de volver a intentarlo
-        time.sleep(5)  # Esperar 0.5 segundos antes de volver a ejecutar el script
+        time.sleep(.5)  # Esperar 0.5 segundos antes de volver a ejecutar el script
 
 if __name__ == "__main__":
     main()
