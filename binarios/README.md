@@ -151,6 +151,7 @@ bannerssh           Edita el banner de inicio de session de ssh, cuando se logue
 sshcom              Copia y ejecuta un script en una maquina ssh remota
 sshmoni             sshmoni loop para correr el sshmoni while loop
 lsofmoni            Lo mismo que ssh pero escanea conexiones con lsof
+mibebe              escanea las dos sshmoni lsofmoni
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
 killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
@@ -270,3 +271,4 @@ torperlnipe         Script para mandar trafico por tor, no funciona aun.
 sheldon1            Reverse shell en python, con nc {ip} -lvnp 1234 
 sheldon             reverse shell easy
 nala                Esconde cualquier proceso, como sheldon
+psss                Escanea por conexiones lsof netstat, mi bebe
