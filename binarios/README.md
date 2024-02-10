@@ -44,7 +44,8 @@ clipp               comando | clipp , copia la salida del comando en el portapap
 jfirefox            firejail a firefox             
 pant                arregla la pantalla para monitor de 34 pulgadas xrandr                             
 lid                 cambia el comportamiento de lid laptop                                             
-msmb                monta un smb o samba.                                                              
+msmb                monta un smb o samba.    
+servidor            Inicia y detiene un servidor apache en 8080                                                         
 adio                borra un archivo con scrub                                                         
 adios               borra toda una carpeta con scrub                                                   
 herrabin            actualiza los binarios, funciones, alias y 2-4rji.sh,   -o para omitir binarios 

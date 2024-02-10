@@ -34,7 +34,12 @@ def ejecutar_script():
         if proceso.poll() is None:
             # El proceso sigue en ejecución después del tiempo límite, terminarlo
             proceso.terminate()
-            print("Escaneando otra vez... ")
+            print("")
+            print("")
+            print("")
+            print("\033[94mEscaneando otra vez... \033[0m")
+
+#            print("Escaneando otra vez... ")
 
 def main():
     while True:

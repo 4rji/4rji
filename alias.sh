@@ -82,7 +82,7 @@ echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
 echo "alias ippp='curl ifconfig.me'" >> ~/.zshrc
 echo "alias surfeando='sudo anonsurf start'" >> ~/.zshrc
-echo "alias servidor='python3 -m http.server 8000'"  >> ~/.zshrc
+#echo "alias servidor='python3 -m http.server 8000'"  >> ~/.zshrc
 echo "alias shortc='nano ~/.config/sxhkd/sxhkdrc'"  >> ~/.zshrc
 
 echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >> ~/.zshrc

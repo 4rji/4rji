@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # Sin color
+
+# Inicializar variable para controlar si Apache fue iniciado
+apache_started=false
+
+# Función para detener Apache si está corriendo
+stop_apache() {
+  if $apache_started; then
+    echo -e "${RED}Deteniendo Apache/httpd...${NC}"
+    if command -v apache2 > /dev/null; then
+      sudo service apache2 stop
+    elif command -v httpd > /dev/null; then
+      sudo service httpd stop
+    fi
+    echo -e "${GREEN}Apache/httpd detenido.${NC}"
+  fi
+}
+
+# Capturar señales de interrupción y terminación para ejecutar stop_apache
+trap stop_apache SIGINT SIGTERM
+
+echo ""
+echo -e "${BLUE}_________________________________________________________${NC}"
+echo ""
+
+# Detectar servicios instalados
+apache_installed=false
+httpd_installed=false
+python_http_installed=false
+
+if command -v apache2 > /dev/null; then
+  apache_installed=true
+elif command -v httpd > /dev/null; then
+  httpd_installed=true
+fi
+
+if command -v python3 > /dev/null; then
+  python_http_installed=true
+fi
+
+# Pregunta combinada
+if $apache_installed || $httpd_installed || $python_http_installed; then
+  echo -e "${GREEN}Se detectó Apache/httpd y/o Python en el sistema.${NC}"
+  read -n1 -p "¿Deseas iniciar Apache/httpd e iniciar el servidor en 8080? [S/n] " answer_combined
+  echo ""
+  if [[ $answer_combined =~ ^[Ss]$ ]]; then
+    # Iniciar Apache/httpd si está disponible
+    if $apache_installed; then
+      sudo service apache2 start
+      apache_started=true
+      echo -e "${GREEN}Apache iniciado.${NC}"
+    elif $httpd_installed; then
+      sudo service httpd start
+      apache_started=true
+      echo -e "${GREEN}httpd iniciado.${NC}"
+    fi
+    # Iniciar el servidor HTTP de Python en el puerto 8080
+    if $python_http_installed; then
+      # Obtener IP local
+      ip_address=$(hostname -I | cut -d' ' -f1)
+      echo -e "${BLUE}Iniciando servidor HTTP de Python en ${ip_address}:8080${NC}"
+      python3 -m http.server 8080 &
+    fi
+  fi
+else
+  echo -e "${RED}No se encontró un servicio para iniciar.${NC}"
+fi
+
