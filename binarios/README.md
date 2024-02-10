@@ -232,7 +232,7 @@ qemuconsola         enable serial-getty@ttyS0.service  habilitar consola con vir
 virs                Ejecuta comandos de virsh con la maquina automaticamente
 qemucomm            Comandos de qemu virsh
 qemudebian          Descarga, agrega e inicia una maquina debian :)
-qemudebianq         Descarga una imagen qcow2, agrega e inicia una maquina debian
+qemuq2              Descarga linuxs qcow2, agrega e inicia una maquina debian/kali opciones
 
 #Instalaciones                                                                  
 lockfancyinst       Bloquear fancy para pantalla, alias lockf
