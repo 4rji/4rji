@@ -5,15 +5,25 @@ azul='\e[0;34m'
 reset='\e[0m'
 verde='\e[0;32m'
 
+omitir=false
+omitirPreguntas=false
 
-# Verificar si la opción -o está presente
-while getopts "o" opt; do
+# Verificar las opciones -o y -p
+while getopts "op" opt; do
     case $opt in
         o)
             omitir=true
             ;;
+        p)
+            omitirPreguntas=true
+            ;;
+        \?)
+            echo "Opción inválida: -$OPTARG" >&2
+            exit 1
+            ;;
     esac
 done
+
 
 if [[ $omitir != true ]]; then
 
@@ -106,6 +116,22 @@ echo ""
 
 fi
 
+
+# Ejemplo de cómo saltar la ejecución basado en las opciones
+if [[ $omitir == true ]]; then
+    # Lógica para manejar la opción -o
+    echo "Omitiendo algo debido a -o"
+fi
+
+# Asegurarse de no ejecutar la segunda parte si -p está presente
+if [[ $omitirPreguntas == true ]]; then
+    exit 0
+fi
+
+
+
+
+#segunda parte >
 
  #Hasta aquí termina la omisión, esto es normal
 
