@@ -47,7 +47,7 @@ def main():
         ejecutar_script()
         
         # Esperamos un tiempo antes de volver a intentarlo
-        time.sleep(0.5)  # Esperar 0.5 segundos antes de volver a ejecutar el script
+        time.sleep(5)  # Esperar 0.5 segundos antes de volver a ejecutar el script
 
 if __name__ == "__main__":
     main()
