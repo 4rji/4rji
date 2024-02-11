@@ -43,7 +43,7 @@ function gestionar_vms {
         echo -e "\e[34m_________________________________________________________\e[0m"
         echo ""
 
-        read -p "Ingresa el numero de la maquina virtual que deseas gestionar: " vm_number
+        read -n1 -p "Ingresa el numero de la maquina virtual que deseas gestionar: " vm_number
         echo ""
         selected_vm=$(echo "${vms[vm_number-1]}" | awk '{print $2}')
         echo -e "\e[34m_________________________________________________________\e[0m"
