@@ -233,6 +233,7 @@ tinyurl             Muestra los alias creados en tinyurl, se descarga como tinyu
 torrelay            Instala tor relay, probado en debian
 protoninst          Instala protonvpn en kali o debian
 prandom             Cambia de VPN cada 5 min 
+fixprotonvpns       Baja los archivos de proton.
 grafanainst         Instala grafana y prometheus 
 instpalabras        El diccionario para crear palabras o al revez nwiz se llama
 tailscaleinst       El que mas he usado
