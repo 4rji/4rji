@@ -77,7 +77,7 @@ tldr                Te dice como usar otras herramientas #ejemplo tldr ffmpeg
 procesos            Muestra los procesos de los usuarios sin PID, no PID
 proceso             Muestro los Procesos con PID 
 servicios           Encuentra servicios que no son del kernel linux corriendo.
-findser             Busca si un programa esta instalado, en dpkg - apt - systemctl
+findinst             Busca si un programa esta instalado, en dpkg - apt - systemctl
 ctl {servicio}      Aplica un sudo systemctl a un servicio
 findpak             Busca paquetes y servicios que esten instalados en varias distros
 
@@ -179,6 +179,19 @@ miwl                copia wlan0 al portapapeles
 chdns	            Cambia el DNS comentando lineas y tambien quita banderas chattr +i PONE / -i QUITA 
 ppt                 Checa lsof netstat nmap y puertos que estan escuchando en el sistema
 
+#Ansible
+ansiconf            Crea host para ansible con alias y crea el archivo ansible_hosts
+ansic               Para ejecutar comandos en los hosts, ansible. En ingles ansic_english 
+ansicc              Este da la opcion de elegir un solo host o todos. ansible
+ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
+ansip               Alias ping a todos los hosts ansible
+ansipp              Ping a un solo hosts, muestra la lista ansible
+ansipl              Alias ansible playbook 
+sshansi_nonames     Conecta los hosts de ansible con ssh cuando no tienen nombre
+sshansi             Conecta por ssh hosts con nombre al inicio ansible
+ansihost            Cat a los hosts y pregunta si quiero editarlo ansible
+
+
 ###------seguridad de sistemas
 iarpon              Arpon para protejer de arp poising. arp sniff 
 iicmp               para protejer de ataques icmp, solo cambia el 0 a 1 este script
@@ -189,6 +202,7 @@ metas               Script que inicia metasploit con base de datos
 ataquepython        (DoS) enviando múltiples solicitudes HTTP a una dirección IP del tipo GET
 encryptar           encrypta archivos con python, cambiar la ruta dentro del script para que funcione
 encryptar1          el original de encryptar 
+logtxt              crea un log.txt de un binario en un bucle while true
 
 ###------distrobox
 dockercp            Alias que muestra el formato para copiar archivos en docker
@@ -249,17 +263,6 @@ zshinst             Instala la zsh h-my-zsh powerlevel10k
 tmuxinst            Archivos para la configuracion de tmux, lo instala. con B
 neofetchinst        Instala y personaliza neofetch para ppg1
 
-#Ansible
-ansiconf            Crea host para ansible con alias y crea el archivo ansible_hosts
-ansic               Para ejecutar comandos en los hosts, ansible. En ingles ansic_english 
-ansicc              Este da la opcion de elegir un solo host o todos. ansible
-ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
-ansip               Alias ping a todos los hosts ansible
-ansipp              Ping a un solo hosts, muestra la lista ansible
-ansipl              Alias ansible playbook 
-sshansi_nonames     Conecta los hosts de ansible con ssh cuando no tienen nombre
-sshansi             Conecta por ssh hosts con nombre al inicio ansible
-ansihost            Cat a los hosts y pregunta si quiero editarlo ansible
 
 
 #python herramientas

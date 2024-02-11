@@ -10,21 +10,35 @@ cafe='\033[0;33m'
 verde='\033[0;32m'
 fin_color='\033[0m'
 
-# Función para verificar conexiones SSH utilizando netstat
+
+
+
+# Funcion para verificar conexiones SSH y mostrar el puerto de escucha configurado
 verificar_conexiones_ssh() {
-    
-    
-    echo -e "${amarillo}Buscan conexiones SSH${fin_color}"
-    # Cambiamos la lógica para contar las líneas y verificar si hay conexiones
-    lineas=$(sudo netstat -tnp | grep ':22' | grep 'ESTABLISHED' | wc -l)
+    echo -e "${amarillo}Buscando conexiones SSH y puerto de escucha configurado${fin_color}"
+
+    # Extraer el puerto de escucha configurado en sshd_config
+    puerto_ssh=$(grep -E '^#?Port ' /etc/ssh/sshd_config | awk '!/^#/ {print $2}')
+    if [ -n "$puerto_ssh" ]; then
+        echo -e "${amarillo}Puerto de escucha SSH configurado(s): $puerto_ssh${fin_color}"
+    else
+        echo -e "${amarillo}Puerto de escucha SSH predeterminado: 22 (No especificado en sshd_config)${fin_color}"
+    fi
+
+    # Usamos netstat para buscar conexiones TCP ESTABLISHED sin filtrar por puerto específico y luego filtramos por procesos SSH
+    lineas=$(sudo netstat -tnp | grep 'ESTABLISHED' | awk '{print $7}' | grep '/sshd' | wc -l)
     if [ "$lineas" -gt 0 ]; then
-        echo -e "${rojo}ALERTA: Conexión activa de SSH detectada.${fin_color}"
+        echo -e "${rojo}ALERTA: Conexion activa de SSH detectada.${fin_color}"
         return 1
     else
         echo -e "${verde}No hay conexiones SSH activas en este momento.${fin_color}"
         return 0
     fi
 }
+
+
+
+
 
 # Función para verificar y terminar conexiones utilizando lsof
 verificar_y_terminar_conexiones() {
@@ -44,8 +58,20 @@ verificar_y_terminar_conexiones() {
     echo "$conexiones"
 
     echo ""
+    #esta es normal espera respuesta del usuario
+    #echo -e "${amarillo}Cual conexion deseas terminar, [s] para cerrar todas:${fin_color}"
+    #read -n1 -p " >  " opcion || true
+
+    #esta la cierra despues de 4 segundos
     echo -e "${amarillo}Cual conexion deseas terminar, [s] para cerrar todas:${fin_color}"
-    read -n1 -p " >  " opcion || true
+    read -t 4 -n1 -p " >  " opcion || exit
+
+
+
+
+# Continúa con el resto del script aquí
+
+
 
     if [[ $opcion =~ ^[Ss]$ ]]; then
         matar_todas_las_conexiones
@@ -63,6 +89,8 @@ verificar_y_terminar_conexiones() {
         echo -e "${cafe}Escaneando de nuevo...${fin_color}"
     fi
 }
+
+
 
 # Función para matar todas las conexiones activas
 matar_todas_las_conexiones() {
@@ -83,6 +111,8 @@ matar_todas_las_conexiones() {
 
     echo -e "${verde}Todas las conexiones activas han sido eliminadas.${fin_color}"
 }
+
+
 
 # Verificar conexiones SSH al inicio
 verificar_conexiones_ssh
