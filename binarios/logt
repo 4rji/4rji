@@ -10,7 +10,7 @@ fi
 BINARIO="$1"
 
 # Ejecuta el binario en un bucle con nohup
-nohup bash -c "while true; do ./$BINARIO; sleep 2; done" > log.txt 2>&1 &
+nohup bash -c "while true; do $BINARIO; sleep 2; done" > log.txt 2>&1 &
 
 echo "Ejecutando $BINARIO en un bucle. Salida redirigida a log.txt."
 

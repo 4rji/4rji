@@ -4,11 +4,14 @@
 red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
+blue='\033[0;34m' # Se agrega el color azul
 reset='\033[0m'
 
 # Función para buscar los procesos relacionados con el término proporcionado
 find_processes() {
-    ps_output=$(ps aux | grep "$search_term")
+    ps_output=$(ps aux | grep -v "[m]ataps" | grep "$search_term")
+
+#    ps_output=$(ps aux | grep "$search_term")
     # Modificación para imprimir el comando completo
     filtered_output=$(echo "$ps_output" | grep -v grep | awk '{print NR ". Comando:", substr($0, index($0,$11)), "       PIDs:", $2, "Usuario:", $1}')
     echo "$filtered_output"
@@ -29,9 +32,13 @@ search_term="$1"
 # Ejecutar el script hasta que se presione 'c'
 while true; do
     # Limpiar la pantalla antes de mostrar el menú nuevamente
-    clear
+#    clear
+    echo -e "${blue}________________________________________________________________${reset}"
 
     # Mostrar la lista de procesos
+    # Mensaje y línea azul agregados justo arriba de la impresión de la lista de procesos
+    echo -e "\n${red}Tu PID es: 33517${reset}\n"
+
     echo -e "${green}Lista de procesos relacionados con '$search_term':${reset}\n"
     find_processes
 

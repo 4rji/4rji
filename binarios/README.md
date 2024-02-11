@@ -202,7 +202,7 @@ metas               Script que inicia metasploit con base de datos
 ataquepython        (DoS) enviando múltiples solicitudes HTTP a una dirección IP del tipo GET
 encryptar           encrypta archivos con python, cambiar la ruta dentro del script para que funcione
 encryptar1          el original de encryptar 
-logtxt              crea un log.txt de un binario en un bucle while true
+logt                crea un log.txt de un binario en un bucle while true
 
 ###------distrobox
 dockercp            Alias que muestra el formato para copiar archivos en docker
