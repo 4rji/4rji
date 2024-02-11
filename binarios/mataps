@@ -37,7 +37,7 @@ while true; do
 
     # Mostrar la lista de procesos
     # Mensaje y línea azul agregados justo arriba de la impresión de la lista de procesos
-    echo -e "\n${red}Tu PID es: 33517${reset}\n"
+    echo -e "\n${red}                Usar sin sabidura.${reset}\n"
 
     echo -e "${green}Lista de procesos relacionados con '$search_term':${reset}\n"
     find_processes
