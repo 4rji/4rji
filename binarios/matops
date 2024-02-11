@@ -9,9 +9,13 @@ reset='\033[0m'
 # Función para buscar los procesos relacionados con el término proporcionado
 find_processes() {
     ps_output=$(ps aux | grep "$search_term")
-    filtered_output=$(echo "$ps_output" | grep -v grep | awk '{print NR ". Ubicación:", $11, "       PIDs:", $2, "Usuario:", $1}')
+    # Modificación para imprimir el comando completo
+    filtered_output=$(echo "$ps_output" | grep -v grep | awk '{print NR ". Comando:", substr($0, index($0,$11)), "       PIDs:", $2, "Usuario:", $1}')
     echo "$filtered_output"
 }
+
+
+
 
 # Verificar si se proporciona un término de búsqueda
 if [ -z "$1" ]; then
