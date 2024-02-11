@@ -4,18 +4,18 @@ import time
 import os
 import random
 
-# Directorio donde se encuentran los archivos de configuración de la VPN
+# Directorio donde se encuentran los archivos de configuracion de la VPN
 VPN_DIR = '~/Downloads/.vpnitos'
 VPN_DIR_ABS = os.path.expanduser(VPN_DIR)  # Convierte a ruta absoluta
 
 def get_vpn_files():
-    """Obtiene una lista de todos los archivos de configuración de VPN en el directorio."""
+    """Obtiene una lista de todos los archivos de configuracion de VPN en el directorio."""
     return [os.path.join(VPN_DIR_ABS, f) for f in os.listdir(VPN_DIR_ABS) if os.path.isfile(os.path.join(VPN_DIR_ABS, f))]
 
 def connect_vpn(vpn_file):
-    """Conecta a la VPN usando un archivo de configuración específico."""
+    """Conecta a la VPN usando un archivo de configuracion especifico."""
     print(f"Conectando a : {vpn_file}")
-    # Inicia la conexión VPN
+    # Inicia la conexion VPN
     return subprocess.Popen(['sudo', 'openvpn', '--config', vpn_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 def disconnect_vpn(vpn_process):
@@ -25,15 +25,27 @@ def disconnect_vpn(vpn_process):
     try:
         vpn_process.wait(timeout=3)  # Espera hasta 3 segundos para terminar correctamente
     except subprocess.TimeoutExpired:
-        vpn_process.kill()  # Fuerza la finalización si no termina después de 3 segundos
+        vpn_process.kill()  # Fuerza la finalizacion si no termina despues de 3 segundos
+
+def get_current_ip():
+    """Obtiene la direccion IP actual."""
+    ip_output = subprocess.check_output(['curl', 'ifconfig.me'], stderr=subprocess.STDOUT)
+    ip_output = ip_output.decode('utf-8').strip().split('\n')[-1]  # Obtener la ultima linea
+    return ip_output
 
 def main():
     while True:
         vpn_files = get_vpn_files()
-        vpn_file = random.choice(vpn_files)  # Selecciona un archivo de configuración al azar
+        vpn_file = random.choice(vpn_files)  # Selecciona un archivo de configuracion al azar
         vpn_process = connect_vpn(vpn_file)
 
-        time.sleep(500)  # Espera 5 minutos con la VPN conectada
+        # Mostrar la direccion IP actual cada 2 minutos
+        for _ in range(5):  # 5 ciclos de 2 minutos para totalizar 10 minutos
+            current_ip = get_current_ip()
+            print("\n--------------------------------------------------")
+            print("\033[34mDirección IP actual:\033[0m \033[33m", current_ip, "\033[0m")
+            print("--------------------------------------------------\n")
+            time.sleep(120)  # Espera 2 minutos
 
         disconnect_vpn(vpn_process)
 
