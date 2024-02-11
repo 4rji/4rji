@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+import subprocess
+import time
+import os
+import random
+
+# Directorio donde se encuentran los archivos de configuración de la VPN
+VPN_DIR = '~/Downloads/.vpnitos'
+VPN_DIR_ABS = os.path.expanduser(VPN_DIR)  # Convierte a ruta absoluta
+
+def get_vpn_files():
+    """Obtiene una lista de todos los archivos de configuración de VPN en el directorio."""
+    return [os.path.join(VPN_DIR_ABS, f) for f in os.listdir(VPN_DIR_ABS) if os.path.isfile(os.path.join(VPN_DIR_ABS, f))]
+
+def connect_vpn(vpn_file):
+    """Conecta a la VPN usando un archivo de configuración específico."""
+    print(f"Conectando a : {vpn_file}")
+    # Inicia la conexión VPN
+    return subprocess.Popen(['sudo', 'openvpn', '--config', vpn_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+def disconnect_vpn(vpn_process):
+    """Desconecta la VPN actual."""
+    print("Desconectando la VPN actual...")
+    vpn_process.terminate()
+    try:
+        vpn_process.wait(timeout=3)  # Espera hasta 10 segundos para terminar correctamente
+    except subprocess.TimeoutExpired:
+        vpn_process.kill()  # Fuerza la finalización si no termina después de 10 segundos
+
+def main():
+    while True:
+        vpn_files = get_vpn_files()
+        vpn_file = random.choice(vpn_files)  # Selecciona un archivo de configuración al azar
+        vpn_process = connect_vpn(vpn_file)
+
+        time.sleep(500)  # Espera 5 minutos con la VPN conectada
+
+        disconnect_vpn(vpn_process)
+
+        # Una breve pausa antes de reconectar puede ser necesaria dependiendo del sistema y la VPN
+        time.sleep(2)
+
+if __name__ == "__main__":
+    main()
