@@ -23,9 +23,9 @@ def disconnect_vpn(vpn_process):
     print("Desconectando la VPN actual...")
     vpn_process.terminate()
     try:
-        vpn_process.wait(timeout=3)  # Espera hasta 10 segundos para terminar correctamente
+        vpn_process.wait(timeout=3)  # Espera hasta 3 segundos para terminar correctamente
     except subprocess.TimeoutExpired:
-        vpn_process.kill()  # Fuerza la finalización si no termina después de 10 segundos
+        vpn_process.kill()  # Fuerza la finalización si no termina después de 3 segundos
 
 def main():
     while True:
