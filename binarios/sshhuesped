@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Función para crear un directorio temporal
+function mktem() {
+    new_dir=$(mktemp -d)
+    cd "$new_dir" || return
+}
+
+# Solicitar contraseña al usuario
+read -s -p "Introduce la contraseña: " password
+echo
+
+# Descargar la imagen silenciosamente
+mktem && wget -q "https://github.com/4rji/4rji/raw/267850cfc7bd7b6464dac9ad03884a23e12eebee/Wallpaper/Fondo5.jpg"
+
+# Extraer el archivo con steghide proporcionando la contraseña
+if [ -f "Fondo5.jpg" ]; then
+    # Proporcionar la contraseña directamente al comando steghide
+    echo "$password" | steghide extract -sf Fondo5.jpg -p "$password"
+
+    # Verificar si la extracción fue exitosa
+    if [ $? -eq 0 ]; then
+        # Verificar si el archivo extraído existe
+        if [ -f "test" ]; then
+            # Agregar o copiar las líneas al archivo $HOME/.ssh/config si el archivo existe
+            if [ -f "$HOME/.ssh/config" ]; then
+                cat test >> "$HOME/.ssh/config"
+            else
+                # Si el archivo no existe, crearlo con el contenido extraído
+                mkdir -p "$HOME/.ssh"
+                cp test "$HOME/.ssh/config"
+            fi
+        else
+            echo "No se encontró el archivo extraído."
+        fi
+    fi
+fi
+
