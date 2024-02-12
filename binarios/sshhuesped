@@ -11,7 +11,7 @@ read -s -p "Introduce la contraseña: " password
 echo
 
 # Descargar la imagen silenciosamente
-mktem && wget -q "https://github.com/4rji/4rji/raw/267850cfc7bd7b6464dac9ad03884a23e12eebee/Wallpaper/Fondo5.jpg"
+mktem && wget -q "https://github.com/4rji/4rji/blob/main/Wallpaper/Fondo5.jpg"
 
 # Extraer el archivo con steghide proporcionando la contraseña
 if [ -f "Fondo5.jpg" ]; then
