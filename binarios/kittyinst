@@ -1,0 +1,101 @@
+# Lista de paquetes a instalar
+paquetes=("kitty" )
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii'   2>/dev/null
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" 2> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" 2> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" 2> /dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar paquetes basados en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if ! paquete_instalado_apt "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete"  2>/dev/null
+            fi
+            ;;
+        "centos"|"rhel")
+            if ! paquete_instalado_yum "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete" 2>/dev/null
+            fi
+            ;;
+        "fedora")
+            if ! paquete_instalado_dnf "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete" 2>/dev/null
+            fi
+            ;;
+        "arch")
+            if ! paquete_instalado_pacman "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete" 2>/dev/null
+            fi
+            ;;
+        *)
+            ;;
+    esac
+done
+
+
+#!/bin/bash
+
+# Definir colores para los mensajes
+green='\033[0;32m'
+yellow='\033[0;33m'
+nocolor='\033[0m'
+
+# Verificar si la carpeta de kitty existe, si no, crearla
+kitty_dir="$HOME/.config/kitty"
+if [ ! -d "$kitty_dir" ]; then
+    mkdir -p "$kitty_dir"
+    echo -e "${green}Directorio de kitty creado:${nocolor} $kitty_dir"
+else
+    echo -e "${green}Directorio de kitty encontrado:${nocolor} $kitty_dir"
+fi
+
+# Descargar y copiar el archivo de configuración de kitty
+config_file="$kitty_dir/kitty.conf"
+if [ ! -f "$config_file" ]; then
+    wget -q -O "$config_file" "https://raw.githubusercontent.com/4rji/4rji/main/kitty/kitty.conf"
+    echo -e "${green}Archivo de configuración de kitty descargado y copiado:${nocolor} $config_file"
+else
+    wget -q -O "$config_file" "https://raw.githubusercontent.com/4rji/4rji/main/kitty/kitty.conf"
+    echo -e "${yellow}El archivo de configuración de kitty ha sido reemplazado.${nocolor}"
+fi
+
+# Descargar y copiar el archivo de colores de kitty
+color_file="$kitty_dir/color.ini"
+if [ ! -f "$color_file" ]; then
+    wget -q -O "$color_file" "https://raw.githubusercontent.com/4rji/4rji/main/kitty/color.ini"
+    echo -e "${green}Archivo de colores de kitty descargado y copiado:${nocolor} $color_file"
+else
+    wget -q -O "$color_file" "https://raw.githubusercontent.com/4rji/4rji/main/kitty/color.ini"
+    echo -e "${yellow}El archivo de colores de kitty ha sido reemplazado.${nocolor}"
+fi
+
+# Mensaje de instalación exitosa
+echo -e "${green}Instalación exitosa.${nocolor}"
+
