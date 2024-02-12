@@ -278,6 +278,7 @@ agentloco           Instala amd agente
 torperlnipe         Script para mandar trafico por tor, no funciona aun.
 sheldon1            Reverse shell en python, con nc {ip} -lvnp 1234 
 sheldon             reverse shell easy
+sheldonf            Usa sheldon para enviar un archivo, ejecutar sheldonf help
 nala                Esconde cualquier proceso, como sheldon
 psss                Escanea por conexiones lsof netstat, mi bebe
 mapa                Busca un proceso despues del script y lo mata ps aux

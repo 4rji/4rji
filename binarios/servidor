@@ -1,4 +1,33 @@
 #!/bin/bash
+
+echo ""
+echo -e "\033[1;34m_________________________________________________________\033[0m"
+echo ""
+# Función para mostrar el mensaje de ayuda y preguntar si desea continuar
+show_help_and_confirm() {
+    echo ""
+    echo -e "\033[1;32mEl comando que este script ejecuta es:\033[0m"
+    echo ""
+    echo -e "\033[1;33msudo python3 -m http.server 8080\033[0m"
+    echo ""
+    echo ""
+echo -e "\033[1;34m_________________________________________________________\033[0m"
+    echo ""
+
+    # Preguntar al usuario si desea continuar
+    read -n1 -p "Continuar el script?  Cancel [c]  " response
+    echo ""  # Añadir una nueva línea para la salida
+
+    # Convertir la respuesta a minúsculas y evaluar
+    case "$response" in
+    *) echo "Continuando..." ;;
+    esac
+}
+
+# Verificar si se pasó el argumento -h
+if [ "$1" == "-h" ]; then
+    show_help_and_confirm
+fi
 # Lista de paquetes a instalar
 paquetes=("apache2" "httpd" "nginx" "lighttpd")
 

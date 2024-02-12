@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+import sys
+import socket
+
+if len(sys.argv) != 4:
+    print("\033[91mUsage: script.py <IP> <port> <-c command> <file>\033[0m")
+    print("\033[95mOn the other machine, run: nc -l -p 1235 > file\033[0m")
+    print("\033[92mto send commands run: nc -l -p 1234 | /bin/bash\033[0m")
+    
+
+
+    #print("\033[91mUsage: script.py <IP> <port> <file>\033[0m")
+    sys.exit(1)
+
+ip = sys.argv[1]  # IP is specified as the first argument
+port = int(sys.argv[2])  # Port is specified as the second argument
+file_to_send = sys.argv[3]  # File to send is specified as the third argument
+
+# Function to send the file over the connection
+def send_file(sock, file):
+    try:
+        with open(file, 'rb') as f:
+            content = f.read()
+            sock.sendall(content)
+        print("\033[92mFile sent successfully.\033[0m")
+    except Exception as e:
+        print("\033[91mError sending the file:", e, "\033[0m")
+
+# Establish TCP connection with the specified IP and port
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((ip, port))
+    print("\033[96mConnection established with", ip, "on port", port, ".\033[0m")
+except Exception as e:
+    print("\033[91mError establishing connection:", e, "\033[0m")
+    sys.exit(1)
+
+# Send the file over the connection
+send_file(s, file_to_send)
+
+# Close the connection
+s.close()
