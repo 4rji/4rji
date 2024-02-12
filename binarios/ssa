@@ -29,7 +29,7 @@ if systemctl is-active ssh &> /dev/null; then
     sudo systemctl stop ssh
     echo ""
     echo "El servicio SSH ha sido         ***  DESACTIVADO  *** ."
-    echo -e "\n\n\t\t\e[32mSSH status:\e[0m \e[31m$(systemctl status ssh | grep -oP '(?<=Active: ).*(?= since)')\e[0m\n"
+    echo -e "\n\n\t\t\e[32mSSH status:\e[0m $(systemctl status ssh | grep -oP '(?<=Active: ).*(?= since)')\n"
 
   else
     echo "No se ha desactivado el servicio SSH."
