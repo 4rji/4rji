@@ -109,8 +109,9 @@ if [[ $omitir != true ]]; then
     sudo cp -f binarios/* /usr/bin/
 
       echo -e "${azul}binarios actualizados${reset}"
+      todou
     cd
-
+   
 
 echo ""
 
