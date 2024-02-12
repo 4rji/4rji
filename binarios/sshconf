@@ -20,27 +20,33 @@ agregar_config_ssh() {
     fi
 
     # Añadir la nueva configuración al final del archivo config
-    echo -e "\nHost $host_alias\n    HostName $host\n    User $user" >> "$ssh_config"
+    echo ""
+    echo -e "\e[33m_________________________________________________________\e[0m"
+    echo ""
+    echo ""
+    echo -e "\e[36mAgregando la siguiente configuración al archivo SSH:\e[0m"
+    echo ""
+    echo -e "\e[33mHost: $host_alias\e[0m"
+    echo -e "\e[33m  HostName: $host\e[0m"
+    echo -e "\e[33m  User: $user\e[0m"
     if [ ! -z "$ssh_port" ]; then
-        echo "    Port $ssh_port" >> "$ssh_config"
+        echo -e "\e[33m  Port: $ssh_port\e[0m"
     fi
-
     if [[ $agregar_identity == "s" ]]; then
-        echo "    IdentityFile ~/.ssh/id_ed25519" >> "$ssh_config"
+        echo -e "\e[33m  IdentityFile: ~/.ssh/id_ed25519\e[0m"
     fi
     echo ""
     echo ""
-    echo " *** La configuración ha sido añadida a $ssh_config   ***"
+    echo -e "\e[32m *** La configuración ha sido añadida correctamente al archivo $ssh_config ***\e[0m"
     echo ""
 }
 
 # Función para el menú de configuración de host simple
 configurar_host_simple() {
-    read -p "Nombre del Host para la maquina: " final_alias
-    read -p "Direccion usuario@host: " final_host
-    read -p "Puerto de conexion o Enter para puerto 22: " final_ssh_port
-    read -p "¿Deseas agregar 'IdentityFile ~/.ssh/id_ed25519' para el host? [s/N]: " agregar_identity
-
+    read -p $'\e[33mNombre del Host para la máquina: \e[0m' final_alias
+    read -p $'\e[33mDirección usuario@host: \e[0m' final_host
+    read -p $'\e[33mPuerto de conexión o Enter para puerto 22: \e[0m' -n 3 final_ssh_port
+    read -n1 -p $'\e[33m¿Deseas agregar \'IdentityFile ~/.ssh/id_ed25519\' para el host? [S/n]: \e[0m' agregar_identity
     agregar_config_ssh "$final_alias" "$final_host" "$final_ssh_port" "$agregar_identity"
 }
 
@@ -48,34 +54,38 @@ configurar_host_simple() {
 continuar="s"
 while [ "$continuar" == "s" ]; do
     echo ""
-    echo "Elige una opción:"
+    echo -e "\e[34mElige una opción:\e[0m"
     echo ""
-    echo "1. Configurar Host simple"
-    echo "2. Ver el archivo ~/.ssh_config y editarlo después"
+    echo -e "\e[33mv - Ver el archivo ~/.ssh_config\e[0m"
+    echo -e "\e[33me - Editar el archivo ~/.ssh_config\e[0m"
+    echo -e "\e[33ma - Agregar un host\e[0m"
     echo ""
-    read -p "Selección: " opcion
+    read -n1 -p $'\e[33mSeleccion: \e[0m' opcion
     echo ""
 
     case $opcion in
-        1)
-            configurar_host_simple
-            ;;
-        2)
+        v)
             cat ~/.ssh/config
             echo ""
-            read -p "¿Quieres editarlo? [s/N]: " -n 1 -r
+            read -n1 -p $'\e[33m¿Quieres editarlo? [S/n]: \e[0m' respuesta
             echo ""
-            if [[ $REPLY =~ ^[Ss]$ ]]
+            if [[ $respuesta =~ ^[Ss]$ ]]
             then
-                nano ~/.ssh/config  # o cualquier editor que prefieras
+                nano ~/.ssh/config
             fi
             ;;
+        e)
+            nano ~/.ssh/config
+            ;;
+        a)
+            configurar_host_simple
+            ;;
         *)
-            echo "Opción no válida."
+            echo -e "\e[31mOpción no válida.\e[0m"
             ;;
     esac
 
     echo ""
-    read -p "¿Deseas realizar otra configuración? [s/N]: " continuar
+    read -n1 -p $'\e[33m¿Deseas realizar otra configuración? [S/n]: \e[0m' continuar
+    echo ""
 done
-
