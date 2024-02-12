@@ -4,7 +4,13 @@ import sys
 import socket
 
 if len(sys.argv) != 4:
-    print("\033[91mUsage: script.py <IP> <port> <file>\033[0m")
+    print("\033[91mUsage: script.py <IP> <port> <-c command> <file>\033[0m")
+    print("\033[95mOn the other machine, run: nc -l -p 1235 > file\033[0m")
+    print("\033[92mto send commands run: nc -l -p 1234 | /bin/bash\033[0m")
+    
+
+
+    #print("\033[91mUsage: script.py <IP> <port> <file>\033[0m")
     sys.exit(1)
 
 ip = sys.argv[1]  # IP is specified as the first argument
@@ -35,4 +41,3 @@ send_file(s, file_to_send)
 
 # Close the connection
 s.close()
-
