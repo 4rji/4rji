@@ -1,0 +1,30 @@
+#!/bin/bash
+
+
+
+
+function mktem() {
+    new_dir=$(mktemp -d)
+    echo "Directorio creado en: $new_dir"
+    cd "$new_dir" || return
+    echo "Cambiado al directorio: $PWD"
+}
+
+mktem
+
+
+
+#para que no pida confirmacion
+bash -c 'rm -f ~/Downloads/.vpnitos/*'
+
+
+git clone https://github.com/4rji/4rji.git
+cd 4rji
+unzip Ban1_aa12.zip  
+
+cd Ban1_aa12
+mv * ~/Downloads/.vpnitos
+
+#pass
+echo "Reemplazar contrasena cc"
+sudo mv ~/Downloads/.vpnitos/cc.txt /
