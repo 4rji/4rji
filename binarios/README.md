@@ -280,4 +280,4 @@ sheldon1            Reverse shell en python, con nc {ip} -lvnp 1234
 sheldon             reverse shell easy
 nala                Esconde cualquier proceso, como sheldon
 psss                Escanea por conexiones lsof netstat, mi bebe
-mataps              Busca un proceso despues del script y lo mata ps aux
+mapa                Busca un proceso despues del script y lo mata ps aux

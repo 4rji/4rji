@@ -10556,3 +10556,4 @@ main() {
 }
 
 main "$@"
+hostname -I | awk '{print $1 " | " $2}'

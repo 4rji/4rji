@@ -21,18 +21,17 @@ if [ -f "Fondo5.jpg" ]; then
     # Verificar si la extracción fue exitosa
     if [ $? -eq 0 ]; then
         # Verificar si el archivo extraído existe
-        if [ -f "test" ]; then
+        if [ -f "config" ]; then
             # Agregar o copiar las líneas al archivo $HOME/.ssh/config si el archivo existe
             if [ -f "$HOME/.ssh/config" ]; then
-                cat test >> "$HOME/.ssh/config"
+                cat config >> "$HOME/.ssh/config"
             else
                 # Si el archivo no existe, crearlo con el contenido extraído
                 mkdir -p "$HOME/.ssh"
-                cp test "$HOME/.ssh/config"
+                cp config "$HOME/.ssh/config"
             fi
         else
-            echo "No se encontró el archivo extraído."
+            echo "No se encontró el archivo de configuración extraído."
         fi
     fi
 fi
-
