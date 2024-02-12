@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Función para crear un directorio temporal
+mktem() {
+    new_dir=$(mktemp -d)
+    cd "$new_dir" || return
+}
+
+# Solicitar contraseña al usuario
+read -s -p "Introduce la contraseña: " password
+echo
+
+mktem
+
+cp ~/.ssh/config .
+
+cp /home/natasha/Documents/GitHub/4rji/Wallpaper/guacamaya.jpg .
+
+steghide embed -ef config -cf guacamaya.jpg -sf desktop.jpg -p "$password"
+
+cp desktop.jpg /home/natasha/Documents/GitHub/4rji/Wallpaper/desktop.jpg
