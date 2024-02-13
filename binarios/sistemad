@@ -4,14 +4,14 @@
 .DS_Store
 10.0.4.0
 4rji
-2
 4rji.backup.20231110
 4rji.old
+4rji_2
 4rjia
 4rjic
 4scp
-2
 4scp2.old
+4scp_2
 adio
 adios
 agentloco
@@ -29,7 +29,7 @@ ansipp
 ansissh
 apachenombre
 aplic-yano
-2
+aplic-yano_2
 archivotemporal
 artilleria
 artires
@@ -75,10 +75,10 @@ crontt
 cscp
 cscp-old
 csftp
-2
+csftp_2
 ctl
 cx
-2
+cx_2
 cxp
 cxx
 dcc
@@ -154,6 +154,7 @@ instprotonvpn
 instsublime
 instsurf
 inundacion
+ippsec
 ips
 ipt
 itcpd
@@ -164,7 +165,7 @@ killsshmanual
 kittyinst
 launchpad
 lid
-2
+lid_2
 limitssh
 limpiar
 lockfancyinst
@@ -293,7 +294,7 @@ sshmonitorsc
 sshtail
 sss
 sss.old
-2
+sss.old_2
 sss_arch
 sss_old
 surempal
@@ -326,10 +327,10 @@ verip
 virs
 whichsys
 whr
-2
+whr_2
 whx
 whx.old
-2
+whx.old_2
 wificonect
 wifiinterfaces
 wifikali
