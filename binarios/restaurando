@@ -96,8 +96,12 @@ if [ "$1" == "-t" ]; then
     # Ejecutar el script y programar un backup
     programar_backup
 else
-    # Preguntar al usuario si desea ejecutar el siguiente comando 'whoami'
-    read -p "¿Deseas ejecutar el siguiente comando 'whoami'? (s/n): " opcion
+    # Preguntar al usuario si desea ejecutar el siguiente comando 'whoami' con un tiempo de espera de 5 segundos
+    read -t 5 -p "¿Deseas ejecutar el siguiente comando 'whoami'? (s/n): " opcion
+    
+    # Establecer 's' como respuesta predeterminada si no hay entrada después de 5 segundos
+    opcion=${opcion:-s}
+    
     if [ "$opcion" == "s" ]; then
         # Ejecutar el comando 'whoami'
         whoami
@@ -119,8 +123,10 @@ else
         rm ~/.zshrc
         touch ~/.zshrc
 
+        # Eliminar otros archivos (se asume que este era el intento)
+        rm ~/.todo.txt
+        rm ~/.aliaseses.md
+        
         echo "¡Proceso completado!"
-
-
     fi
 fi
