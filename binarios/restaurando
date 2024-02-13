@@ -1,5 +1,8 @@
-#!/bin/bash
+no funciona, para que se ejecute en shel y no en temporal. puedes ayudarme>
 
+#!/bin/bash
+ #para que se ejecuta con shell
+umask 22
 
 
 # Lista de paquetes a instalar
@@ -75,6 +78,7 @@ mostrar_ayuda() {
 
 # Función para programar la tarea de backup
 programar_backup() {
+    
     # Pedir al usuario la cantidad de tiempo para el backup en minutos
     read -p "¿En cuántos minutos quieres hacer el backup? (ejemplo: 10): " tiempo
 
@@ -86,7 +90,7 @@ programar_backup() {
 
     # Programar el comando 'restaurando' para ejecutarse en el tiempo especificado
     echo "El comando 'restaurando' se ejecutará en $tiempo minutos."
-    echo "/usr/bin/restaurando > /dev/null 2>&1" | at now + $tiempo minutes
+    echo "/usr/bin/restaurando " | at now + $tiempo minutes
 
     # Mensaje final no es necesario, ya que atq mostrará la tarea
 }
@@ -96,8 +100,7 @@ if [ "$1" == "-t" ]; then
     # Ejecutar el script y programar un backup
     programar_backup
 else
-    # Ejecutar el comando 'whoami' directamente sin hacer preguntas
-    whoami
+   
 
     # Definir el archivo del que se extraerán las líneas
     archivo="/usr/bin/systemad"
