@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Solicitar al usuario la frecuencia de ejecución en minutos
+read -p "¿Con qué frecuencia desea ejecutar el script en minutos? " frequency
+
+# Validar la entrada del usuario
+if ! [[ "$frequency" =~ ^[0-9]+$ ]]; then
+    echo "Error: Por favor, ingrese un número entero válido."
+    exit 1
+fi
+
+# Generar el contenido del archivo .service
+service_content="[Unit]
+Description=Servicio de copia de seguridad periódica
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sheldono
+
+[Install]
+WantedBy=multi-user.target
+"
+
+# Guardar el contenido en un archivo .service
+echo "$service_content" > /etc/systemd/system/restaurar.service
+
+# Generar el contenido del archivo .timer
+timer_content="[Unit]
+Description=Temporizador para ejecutar el servicio de copia de seguridad
+
+[Timer]
+OnUnitActiveSec=${frequency}min
+AccuracySec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+"
+
+# Guardar el contenido en un archivo .timer
+echo "$timer_content" > /etc/systemd/system/restaurar.timer
+
+# Notificar al usuario
+echo "Los archivos 'restaurar.service' y 'restaurar.timer' se han creado correctamente."
+echo "Asegúrate de recargar systemd para que detecte los cambios."
+

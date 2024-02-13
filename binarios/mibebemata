@@ -10,9 +10,6 @@ cafe='\033[0;33m'
 verde='\033[0;32m'
 fin_color='\033[0m'
 
-
-
-
 # Funcion para verificar conexiones SSH y mostrar el puerto de escucha configurado
 verificar_conexiones_ssh() {
     echo -e "${amarillo}Buscando conexiones SSH y puerto de escucha configurado${fin_color}"
@@ -36,10 +33,6 @@ verificar_conexiones_ssh() {
     fi
 }
 
-
-
-
-
 # Función para verificar y terminar conexiones utilizando lsof
 verificar_y_terminar_conexiones() {
     
@@ -58,16 +51,9 @@ verificar_y_terminar_conexiones() {
     echo "$conexiones"
 
     echo ""
-    #esta es normal espera respuesta del usuario
-    #echo -e "${amarillo}Cual conexion deseas terminar, [s] para cerrar todas:${fin_color}"
-    #read -n1 -p " >  " opcion || true
-
-    #esta la cierra despues de 4 segundos
+    # Espera respuesta del usuario por 4 segundos
     echo -e "${amarillo}Cual conexion deseas terminar, [s] para cerrar todas:${fin_color}"
     read -t 4 -n1 -p " >  " opcion || exit
-
-
-
 
     if [[ $opcion =~ ^[Ss]$ ]]; then
         matar_todas_las_conexiones
@@ -86,14 +72,11 @@ verificar_y_terminar_conexiones() {
     fi
 }
 
-
-
 # Función para matar todas las conexiones activas
 matar_todas_las_conexiones() {
     echo ""
     echo -e "\e[34m_________________________________________________________\e[0m\n"
 
-    
     echo ""
     echo -e "${rojo}Cerrando todas las conexiones activas...${fin_color}"
     # Obtiene los PIDs de todas las conexiones activas excluyendo las que están en escucha y las de tailscale
@@ -106,12 +89,28 @@ matar_todas_las_conexiones() {
     done
 
     echo -e "${verde}Todas las conexiones activas han sido eliminadas.${fin_color}"
+
+    # Detener el bucle de mostrar conexiones activas
+    kill $mostrar_conexiones_pid
 }
 
-
+# Función para mostrar conexiones activas cada 4 segundos
+mostrar_conexiones_activas() {
+    while true; do
+        echo -e "\e[34m_________________________________________________________\e[0m\n"
+        echo -e "${amarillo}Mostrando conexiones activas...${fin_color}"
+        sudo lsof -i -n -P | grep 'ESTABLISHED' | grep -v 'LISTEN' | grep -v 'tailscale' | nl
+        sleep 4
+    done
+}
 
 # Verificar conexiones SSH al inicio
 verificar_conexiones_ssh
 
-# Verificar y terminar conexiones
-verificar_y_terminar_conexiones
+# Iniciar el bucle para mostrar conexiones activas en segundo plano
+mostrar_conexiones_activas &
+mostrar_conexiones_pid=$!
+
+# Espera 13 segundos y luego ejecuta la función para matar todas las conexiones
+sleep 13 && matar_todas_las_conexiones
+

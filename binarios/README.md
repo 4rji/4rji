@@ -155,6 +155,7 @@ sshcom              Copia y ejecuta un script en una maquina ssh remota
 sshmoni             sshmoni loop para correr el sshmoni while loop
 lsofmoni            Lo mismo que ssh pero escanea conexiones con lsof
 mibebe              escanea las dos sshmoni lsofmoni
+mibebemata          Mi bebe mata solo. lol
 sshmonitorsc        Script que checa conexiones ssh activas (reemplazado por sshmoni
 killsshauto         Cierra automaticamente todos los PID de ssh que encuentro con sshmoni
 killsshmanual       Pregunta su quiero hacer sudo kill a los PID de ssh de sshmoni
@@ -282,6 +283,8 @@ sheldon             reverse shell easy
 sheldonf            Usa sheldon para enviar un archivo, ejecutar sheldonf help
 sheldono            el original cuando no tengo interaccion
 nala                Esconde cualquier proceso, como sheldon
+simbo               Trabaja con sheldono, y nala para esconderme ctl
 psss                Escanea por conexiones lsof netstat, mi bebe
+pssc                Mismo que psss pero este las cierra en 12 segundos automaticamente
 mapa                Busca un proceso despues del script y lo mata ps aux
 ippsec              Script de ippsec de ssh, aun no lo pruebo
