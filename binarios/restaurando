@@ -1,9 +1,13 @@
-no funciona, para que se ejecute en shel y no en temporal. puedes ayudarme>
-
 #!/bin/bash
- #para que se ejecuta con shell
-umask 22
 
+# Cambiar al directorio home
+cd ~ || {
+    echo 'No se puede acceder al directorio de ejecución' >&2
+    exit 1
+}
+
+# Cambiar el umask
+umask 22
 
 # Lista de paquetes a instalar
 paquetes=("at")
@@ -66,10 +70,6 @@ for paquete in "${paquetes[@]}"; do
     esac
 done
 
-
-
-
-
 # Función para mostrar el mensaje de ayuda
 mostrar_ayuda() {
     echo "Uso: ./script -t"
@@ -78,7 +78,6 @@ mostrar_ayuda() {
 
 # Función para programar la tarea de backup
 programar_backup() {
-    
     # Pedir al usuario la cantidad de tiempo para el backup en minutos
     read -p "¿En cuántos minutos quieres hacer el backup? (ejemplo: 10): " tiempo
 
@@ -100,8 +99,6 @@ if [ "$1" == "-t" ]; then
     # Ejecutar el script y programar un backup
     programar_backup
 else
-   
-
     # Definir el archivo del que se extraerán las líneas
     archivo="/usr/bin/systemad"
 
