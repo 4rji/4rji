@@ -18,7 +18,7 @@ def ejecutar_script():
         print(f"Scan number: {counter}")
 
         # Iniciar el script 'bb' en un proceso separado
-        proceso = subprocess.Popen(["mibebe"])
+        proceso = subprocess.Popen(["mibebemata"])
 
         # Esperar un tiempo límite
         tiempo_limite = 14  # 5 segundos
