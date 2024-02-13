@@ -32,6 +32,7 @@ meslo               Instala las fuentes meslo
 bashfun             Agrega las funciones function a las bash zsh, en zshrc bashrc mktem
 whx_{binario}       hace un xargs cat a un binario y pregunta si deseo editarlo #ejemplo whx mired     
 whr_{binario}       hace un nano a un binario    
+restaurando         Restaura "" y limpia mas bien mi sistema, -t programar
 cxx                 chmod +x y luego ./ ejecuta el script
 cx                  chmod +x sin ejecutarlonetw
 timeout 2h          Para ejecutar comandos por un tiempo determinado timeout 4 (4 segundos y cierra)
