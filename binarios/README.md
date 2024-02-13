@@ -282,3 +282,4 @@ sheldonf            Usa sheldon para enviar un archivo, ejecutar sheldonf help
 nala                Esconde cualquier proceso, como sheldon
 psss                Escanea por conexiones lsof netstat, mi bebe
 mapa                Busca un proceso despues del script y lo mata ps aux
+ippsec              Script de ippsec de ssh, aun no lo pruebo
