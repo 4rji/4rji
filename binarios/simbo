@@ -1,32 +1,46 @@
 #!/bin/bash
 
-# Solicitar al usuario la frecuencia de ejecución en minutos
-read -p "¿Con qué frecuencia desea ejecutar el script en minutos? " frequency
+# Ask the user if they want to use the default script path (/usr/bin/)
+read -p "Do you want to use the default script path (/usr/bin/)? [c]hange/enter default: " use_default
 
-# Validar la entrada del usuario
+if [[ $use_default == "c" ]]; then
+    read -p "Enter the full path of the script: " script_path
+else
+    script_path="/usr/bin/"
+    read -p "Script name: " script_name
+    script_path+="$script_name"
+fi
+
+# Ask the user how they want to name the service
+read -p "How do you want to name the service? (Enter the service name without the .service extension): " service_name
+
+# Ask the user for the execution frequency in minutes
+read -p "How often do you want to execute the script (in minutes)? " frequency
+
+# Validate user input
 if ! [[ "$frequency" =~ ^[0-9]+$ ]]; then
-    echo "Error: Por favor, ingrese un número entero válido."
+    echo "Error: Please enter a valid integer for the frequency."
     exit 1
 fi
 
-# Generar el contenido del archivo .service
+# Generate the content for the .service file
 service_content="[Unit]
-Description=Servicio de copia de seguridad periódica
+Description=Backup from system admin $script_path
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sheldono
+ExecStart=$script_path
 
 [Install]
 WantedBy=multi-user.target
 "
 
-# Guardar el contenido en un archivo .service
-echo "$service_content" > /etc/systemd/system/restaurar.service
+# Save the content to a .service file
+echo "$service_content" | sudo tee "/etc/systemd/system/$service_name.service" > /dev/null
 
-# Generar el contenido del archivo .timer
+# Generate the content for the .timer file
 timer_content="[Unit]
-Description=Temporizador para ejecutar el servicio de copia de seguridad
+Description=Timer to execute the $service_name service
 
 [Timer]
 OnUnitActiveSec=${frequency}min
@@ -37,10 +51,37 @@ Persistent=true
 WantedBy=timers.target
 "
 
-# Guardar el contenido en un archivo .timer
-echo "$timer_content" > /etc/systemd/system/restaurar.timer
+# Save the content to a .timer file
+echo "$timer_content" | sudo tee "/etc/systemd/system/$service_name.timer" > /dev/null
 
-# Notificar al usuario
-echo "Los archivos 'restaurar.service' y 'restaurar.timer' se han creado correctamente."
-echo "Asegúrate de recargar systemd para que detecte los cambios."
+# Notify the user
+echo ""
+echo "The files '$service_name.service' and '$service_name.timer' have been created successfully."
+echo "Reloading systemd to detect the changes..."
+sudo systemctl daemon-reload
+echo "Systemd reloaded successfully."
+echo ""
 
+# Show the location of the created files
+echo "The files have been created in the following location:"
+ls  "/etc/systemd/system/"
+echo ""
+
+
+
+# Function to show the status of the created service if the user desires
+show_service_status() {
+    read -n1 -p "Do you want to see the status of the service? [\e[32ms\e[0m/n]: " answer
+    if [[ "$answer" == "s" ]]; then
+        sudo systemctl enable "$service_name"
+        sudo systemctl start "$service_name"
+        sudo systemctl status "$service_name"
+    fi
+}
+
+# Call the function to show the status of the service
+show_service_status
+
+echo ""
+echo "Directory of the files:"
+echo "/etc/systemd/system/"

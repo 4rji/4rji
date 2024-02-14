@@ -167,6 +167,7 @@ copyssh             copia mui clave a una maquina remota
 googlessh           Instala la authenticacion de google para ssh                                               
 fixssh              arregla cuando la clave ssh no se conecta porque hay un duplicado.                 
 sshconf             Hace un archivo .ssh/config para conectarse por medio de jump ejemplo: ssh maquina-final
+sshhost             Lista los hosts del archivo sshconf, para conectarse
 sshjump             Configura los jumps infinitamente.
 sshlist             Modifica la lista de /etc/hosts allow deny para asegurar la red ssh
 sshhuesped          Huespedes de mi configuracion
@@ -284,7 +285,7 @@ sheldonf            Usa sheldon para enviar un archivo, ejecutar sheldonf help
 sheldono            while loop con ip integrada a servidor nube
 sheldonos           Sin el loop, el mismo que arriba
 nala                Esconde cualquier proceso, como sheldon
-simbo               Trabaja con sheldono, y nala para esconderme ctl
+simbo               Es el CTL Trabaja con sheldono, y nala para esconderme sheldongo
 psss                Escanea por conexiones lsof netstat, mi bebe
 pssc                Mismo que psss pero este las cierra en 12 segundos automaticamente
 mapa                Busca un proceso despues del script y lo mata ps aux
