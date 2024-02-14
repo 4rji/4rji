@@ -49,5 +49,5 @@ if [ ! -f "$file" ]; then
     exit 1
 fi
 
-
-echo "base de datos de "todo" actualizado"
+echo -e "\033[0;32mBase de datos actualizada.\033[0m"
+#echo "base de datos actualizada"

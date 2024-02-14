@@ -100,9 +100,9 @@ expo                Hace un scaneo con o sin Pn, y lo genera en carpeta tmp, hac
 expo4               crea un archibo clip1 del portapapeles para expo5                                  
 expo5               limpia el archivo targeted y muestra solo los servicios, crea resumen 
 sweepall            hace nmap xml para abrir con firefox, USA sweep, ips y puertos o puertos2
-sweepnet {ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
-nbash               bash escaneo de puertos de una maquina , no usa nmap, nbash 10.0.4.50
-pbash               /dev/tcp/[IP] bash scaner puertos open (50 principales puertos only) en la red 10.0.4
+sweepnet_{ip}	    Hace un sweep a toda la subnet, 10.0 o 192.168
+nbash               BASH escaneo de puertos de una maquina , no usa nmap, nbash 10.0.4.50
+pbash               /dev/tcp/[IP] BASH scaner puertos open (50 principales puertos only) en la red 10.0.4
 
 ###------Nessus
 nessus              activa nesus y muestra el puerto donde abrirlo en firefox                          
