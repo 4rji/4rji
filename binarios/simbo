@@ -26,9 +26,12 @@ fi
 # Generate the content for the .service file
 service_content="[Unit]
 Description=Backup from system admin $script_path
+After=network-online.target
+Wants=network-online.target
+
 
 [Service]
-Type=oneshot
+Type=simple
 ExecStart=$script_path
 
 [Install]
@@ -66,16 +69,16 @@ echo ""
 echo "The files have been created in the following location:"
 ls  "/etc/systemd/system/"
 echo ""
-
-
+echo "enabled and started"
+sudo systemctl enable "$service_name"
+sudo systemctl start "$service_name"
 
 # Function to show the status of the created service if the user desires
 show_service_status() {
-    read -n1 -p "Do you want to see the status of the service? [\e[32ms\e[0m/n]: " answer
+    read -n1 -p "CTL the service? [\e[32ms\e[0m/n]: " answer
     if [[ "$answer" == "s" ]]; then
-        sudo systemctl enable "$service_name"
-        sudo systemctl start "$service_name"
-        sudo systemctl status "$service_name"
+                
+        ctl "$service_name"
     fi
 }
 

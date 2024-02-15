@@ -290,3 +290,4 @@ psss                Escanea por conexiones lsof netstat, mi bebe
 pssc                Mismo que psss pero este las cierra en 12 segundos automaticamente
 mapa                Busca un proceso despues del script y lo mata ps aux
 ippsec              Script de ippsec de ssh, aun no lo pruebo
+pythonroot          Pasos para ver si python te hace root 
