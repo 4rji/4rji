@@ -69,7 +69,7 @@ echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la 
 echo "alias ssk='kitty +kitten ssh '" >> ~/.zshrc
 echo "alias lockf='i3lock-fancy '" >> ~/.zshrc
 echo "alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts '"  >> ~/.zshrc 
-echo "alias ansip='ansible all -m ping -i ~/.ssh/ansible_hosts '"  >> ~/.zshrc 
+#echo "alias ansip='ansible all -m ping -i ~/.ssh/ansible_hosts '"  >> ~/.zshrc 
 #echo "alias ansihost='nano $HOME/.ssh/ansible_hosts '" >> ~/.zshrc
 
 

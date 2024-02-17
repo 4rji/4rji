@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Función para imprimir en color
+print_color() {
+    local color=$1
+    shift
+    echo -e "\e[${color}m$@\e[0m"
+}
+
+# Si se proporciona al menos un argumento
+if [ $# -gt 0 ]; then
+    # Ejecutar el comando Ansible con los argumentos adicionales proporcionados
+    ansible all "$@" -m ping -i ~/.ssh/ansible_hosts
+else
+    # Ejecutar el comando Ansible por defecto
+    output=$(ansible all -m ping -i ~/.ssh/ansible_hosts | awk '/SUCCESS/{print $1}')
+    
+    # Utilizar expresiones regulares para extraer los nombres de los hosts conectados
+    connected_hosts=$(echo "$output" | sed 's/$/: online/' | awk '{print "\033[1;34m" $1 "\033[0m" " \033[1;32monline\033[0m"}')
+    
+    # Imprimir los nombres de los hosts en línea en azul y "online" en verde
+    print_color '32' "$connected_hosts"
+fi
