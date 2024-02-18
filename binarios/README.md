@@ -171,6 +171,7 @@ sshhost             Lista los hosts del archivo sshconf, para conectarse
 sshjump             Configura los jumps infinitamente.
 sshlist             Modifica la lista de /etc/hosts allow deny para asegurar la red ssh
 sshhuesped          Huespedes de mi configuracion
+sshic               Crea el sshi para pasar iniciar ssh sin mensajes ni autorizacion ippsec
 
 ###------Network
 fixwifibspwm        Arregla el wifi de bspwm cuando no funciona, instala y agrega una linea 
@@ -188,7 +189,7 @@ ansiconf            Crea host para ansible con alias y crea el archivo ansible_h
 ansic               Para ejecutar comandos en los hosts, ansible. En ingles ansic_english 
 ansicc              Este da la opcion de elegir un solo host o todos. ansible
 ansibleplay         Crea archivos ejemplos de ansible play para ejecutar, se necesitan modificar
-ansip               Alias ping a todos los hosts ansible
+ansip               Alias ping a todos los hosts ansible, -a para todos
 ansipp              Ping a un solo hosts, muestra la lista ansible
 ansipl              Alias ansible playbook 
 sshansi_nonames     Conecta los hosts de ansible con ssh cuando no tienen nombre
