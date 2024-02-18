@@ -101,10 +101,9 @@ if [[ $omitir != true ]]; then
     # Aquí puedes llamar a la función mktem
     mktem
 
-    git clone https://github.com/4rji/4rji.git
-    cd 4rji/
+    git clone https://github.com/4rji/bina.git
+    cd bina
 
-    ./alias.sh
 
     sudo cp -f binarios/* /usr/bin/
 
