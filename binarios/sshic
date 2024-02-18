@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Solicitar los datos al usuario
+read -p "Ingresa la dirección IP del servidor: " ip
+read -p "Ingresa el puerto SSH del servidor: " port
+read -p "Ingresa el nombre de usuario: " username
+read -s -p "Ingresa la contraseña: " password
+echo
+
+# Verificar si el archivo /usr/bin/sshi existe
+if [ -f "/usr/bin/sshi" ]; then
+    echo "El archivo /usr/bin/sshi ya existe. Modificando..."
+else
+    echo "El archivo /usr/bin/sshi no existe. Creando..."
+fi
+
+# Guardar el comando SSH en el archivo /usr/bin/sshi
+sudo tee /usr/bin/sshi > /dev/null <<EOF
+#!/bin/bash
+echo ""
+echo "sshpass -p '$password' ssh -p '$port' -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '$username@$ip'"
+echo ""
+
+sshpass -p "$password" ssh -p "$port" -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$username@$ip"
+EOF
+
+# Dar permisos de ejecución al nuevo script
+sudo chmod +x /usr/bin/sshi
+
+echo "El script sshi ha sido modificado o creado en /usr/bin/sshi con los datos proporcionados."
