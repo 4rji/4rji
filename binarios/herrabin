@@ -101,7 +101,7 @@ if [[ $omitir != true ]]; then
     # Aquí puedes llamar a la función mktem
     mktem
 
-    git clone https://github.com/4rji/bina.git
+    git clone --depth 1 https://github.com/4rji/bina.git
     cd bina
 
 
