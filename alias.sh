@@ -101,7 +101,7 @@ echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
 echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
-echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
+#echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
 echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias resta='sudo systemctl restart '"  >> ~/.zshrc
