@@ -171,8 +171,16 @@ check_ip() {
 
 
 
+host="google.com"  # Cambia "google.com" por el host que desees
 
-echo -e "\e[36m¿Verificar la conexión y IP? [s/n]\e[0m"
+timeout 1.5 ping -c 1 "$host" > /dev/null 2>&1
+
+if [[ $? -eq 0 ]]; then
+  echo -e "\e[32mThe Internet connection is active.\e[0m"
+else
+  echo -e "\e[31mUnable to access the Internet.\e[0m"
+fi 
+
 echo ""
 read -n 1 -t 1.5 -p "Enter o espera 1.5s para cancelar: " response
 echo ""
@@ -186,13 +194,3 @@ else
 fi
 
 echo ""
-
-host="google.com"  # Cambia "google.com" por el host que desees
-
-timeout 1.5 ping -c 1 "$host" > /dev/null 2>&1
-
-if [[ $? -eq 0 ]]; then
-  echo -e "\e[32mThe Internet connection is active.\e[0m"
-else
-  echo -e "\e[31mUnable to access the Internet.\e[0m"
-fi 

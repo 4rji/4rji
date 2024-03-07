@@ -74,7 +74,7 @@ echo "alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts '"  >> 
 
 
 ## de el archivo primera
-echo "alias joplininst='sudo apt-get install nodejs npm joplin'" >> ~/.zshrc
+#echo "alias joplininst='sudo apt-get install nodejs npm joplin'" >> ~/.zshrc
 #echo "alias joplininstapp='wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash'" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
