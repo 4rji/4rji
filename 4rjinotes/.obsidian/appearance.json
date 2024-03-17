@@ -1,3 +1,6 @@
 {
-  "accentColor": ""
+  "accentColor": "#1d43dd",
+  "baseFontSize": 17,
+  "showViewHeader": true,
+  "theme": "obsidian"
 }
