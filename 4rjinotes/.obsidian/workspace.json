@@ -11,11 +11,52 @@
             "id": "5a12c968df440ee4",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Pentesting/Presentacion/1.- Introduccion.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "88036e2100fae9ab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Pentesting/Presentacion/1.- Introduccion.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "6ce85370ea7458eb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Pentesting/Presentacion/3.- Reporting.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "aaf8df5f2224fa11",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Pentesting/Presentacion/1.- Introduccion.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -81,6 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Pentesting/Presentacion/1.- Introduccion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -97,6 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Pentesting/Presentacion/1.- Introduccion.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -118,7 +161,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Pentesting/Presentacion/1.- Introduccion.md"
+              }
             }
           }
         ]
@@ -138,8 +183,16 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5a12c968df440ee4",
+  "active": "aaf8df5f2224fa11",
   "lastOpenFiles": [
+    "Pentesting/Presentacion/4.- Types of Penetration.md",
+    "Pentesting/Presentacion/3.- Reporting.md",
+    "Pentesting/Presentacion/1.- Introduction.md",
+    "Pentesting/Presentacion/1.- Introduccion.md",
+    "Pentesting/Presentacion/2.- Type of penetration test.md",
+    "Pentesting/Presentacion",
+    "Pentesting",
+    "Pasted image 20240316042055.png",
     "htb/tres/scripts",
     "htb/tres/exploits",
     "htb/tres/content",
@@ -148,9 +201,6 @@
     "htb/dos/scripts",
     "htb/dos/exploits",
     "htb/dos/content",
-    "htb/dos/nmap",
-    "htb/dos",
-    "htb/12/scripts",
     "Welcome.md"
   ]
 }
