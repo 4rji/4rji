@@ -103,7 +103,7 @@ echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; 
 
 #echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
-echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
+
 echo "alias resta='sudo systemctl restart '"  >> ~/.zshrc
 echo "alias statt='sudo systemctl status '"  >> ~/.zshrc
 
@@ -162,6 +162,7 @@ echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/port
 
 #echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
+echo "alias carpeta='du -sh '" >> ~/.zshrc
 
 
 
