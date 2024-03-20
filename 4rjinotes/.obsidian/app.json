@@ -1,4 +1,5 @@
 {
   "showInlineTitle": false,
-  "attachmentFolderPath": "./screenshots"
+  "attachmentFolderPath": "./screenshots",
+  "promptDelete": false
 }

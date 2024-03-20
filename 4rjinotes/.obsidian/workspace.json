@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b63f5755a46ff9e7",
+        "id": "0e4f342a95cb79fd",
         "type": "tabs",
         "children": [
           {
-            "id": "5d9bef0663c9c031",
+            "id": "e816d688735a44ef",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -48,7 +44,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "path:\"htb/\" ",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,8 +61,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -86,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -147,8 +138,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8c57baabc7054ae4",
+  "active": "e816d688735a44ef",
   "lastOpenFiles": [
+    "htb/test.md",
     "Pentesting/Presentacion/1.- Introduccion.md",
     "Pentesting/Presentacion/3.- Reporting.md",
     "Recopilacion de herramientas.md",
