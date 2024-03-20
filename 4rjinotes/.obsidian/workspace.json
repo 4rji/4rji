@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0e4f342a95cb79fd",
+        "id": "b4b4203004ce24e2",
         "type": "tabs",
         "children": [
           {
-            "id": "e816d688735a44ef",
+            "id": "9c46a1eb4ec6d590",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -138,7 +138,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e816d688735a44ef",
+  "active": "9c46a1eb4ec6d590",
   "lastOpenFiles": [
     "htb/test.md",
     "Pentesting/Presentacion/1.- Introduccion.md",
