@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "path:\"htb/\" ",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -65,7 +65,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -146,7 +147,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5d9bef0663c9c031",
+  "active": "8c57baabc7054ae4",
   "lastOpenFiles": [
     "Pentesting/Presentacion/1.- Introduccion.md",
     "Pentesting/Presentacion/3.- Reporting.md",
