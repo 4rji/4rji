@@ -1,0 +1,35 @@
+```bash
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_top_100_udp_nmap.txt" -oX "/home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/xml/_top_100_udp_nmap.xml" localhost
+```
+
+[/home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_top_100_udp_nmap.txt](file:///home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_top_100_udp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Thu Mar 21 03:43:19 2024 as: nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN /home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_top_100_udp_nmap.txt -oX /home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/xml/_top_100_udp_nmap.xml localhost
+Warning: Hostname localhost resolves to 2 IPs. Using 127.0.0.1.
+Nmap scan report for localhost (127.0.0.1)
+Host is up, received user-set (0.000019s latency).
+Other addresses for localhost (not scanned): ::1
+Scanned at 2024-03-21 03:43:20 CDT for 2s
+All 100 scanned ports on localhost (127.0.0.1) are in ignored states.
+Not shown: 100 closed udp ports (port-unreach)
+Too many fingerprints match this host to give specific OS details
+TCP/IP fingerprint:
+SCAN(V=7.94SVN%E=4%D=3/21%OT=%CT=%CU=7%PV=N%DS=0%DC=L%G=N%TM=65FBF32A%P=x86_64-pc-linux-gnu)
+SEQ()
+SEQ(CI=Z)
+T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=N)
+U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)
+IE(R=N)
+IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 0 hops
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Mar 21 03:43:22 2024 -- 1 IP address (1 host up) scanned in 2.77 seconds
+
+```

@@ -1,0 +1,48 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_quick_tcp_nmap.txt" -oX "/home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/xml/_quick_tcp_nmap.xml" localhost
+```
+
+[/home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_quick_tcp_nmap.txt](file:///home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_quick_tcp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Thu Mar 21 03:43:19 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/_quick_tcp_nmap.txt -oX /home/ass/Documents/GitHub/4rji/4rjinotes/htb/local/results/localhost/scans/xml/_quick_tcp_nmap.xml localhost
+Warning: Hostname localhost resolves to 2 IPs. Using 127.0.0.1.
+Nmap scan report for localhost (127.0.0.1)
+Host is up, received user-set (0.000039s latency).
+Other addresses for localhost (not scanned): ::1
+Scanned at 2024-03-21 03:43:20 CDT for 12s
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE REASON         VERSION
+22/tcp open  ssh     syn-ack ttl 64 OpenSSH 9.6p1 Debian 4 (protocol 2.0)
+| ssh-hostkey: 
+|   256 68:14:2d:b9:5c:80:c4:c5:84:70:cc:2d:6b:8f:88:30 (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFcLI6oYWCZ6SdZlk3lF5YmNO1JteAeXxmL+pp3RIzhkiyiKHcENaFrH4VLRv6pPdcypCeVqt9plf0BYA9px0uw=
+|   256 16:9f:4e:82:e9:83:f4:e1:66:6d:aa:0d:66:d7:4d:e6 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXVZRwk9QD7y+h19wPuF1W7EuTO0ctzGtj2XLntX3B3
+Aggressive OS guesses: Linux 2.6.32 (96%), Linux 3.7 - 3.10 (96%), Linux 3.8 (95%), Linux 3.8 - 4.14 (95%), Linux 3.16 (95%), Linux 3.1 (95%), Linux 3.2 (95%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (95%), Linux 3.11 - 3.14 (94%), Linux 3.10 (94%)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.94SVN%E=4%D=3/21%OT=22%CT=1%CU=30569%PV=N%DS=0%DC=L%G=Y%TM=65FB
+OS:F334%P=x86_64-pc-linux-gnu)SEQ(CI=Z)SEQ(SP=100%GCD=1%ISR=10F%TI=Z%CI=Z%I
+OS:I=I%TS=A)OPS(O1=MFFD7ST11NW7%O2=MFFD7ST11NW7%O3=MFFD7NNT11NW7%O4=MFFD7ST
+OS:11NW7%O5=M5B4%O6=MFFD7ST11)OPS(O1=MFFD7ST11NW7%O2=MFFD7ST11NW7%O3=MFFD7N
+OS:NT11NW7%O4=MFFD7ST11NW7%O5=MFFD7ST11NW7%O6=MFFD7ST11)WIN(W1=8200%W2=8200
+OS:%W3=8200%W4=8200%W5=400%W6=8200)WIN(W1=8200%W2=8200%W3=8200%W4=8200%W5=8
+OS:200%W6=8200)ECN(R=Y%DF=Y%T=40%W=8200%O=MFFD7NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T
+OS:=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T3(R=Y%DF=N%T=33%W=400%S=O%A=Z%F
+OS:=S%O=M5B4%RD=0%Q=)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=
+OS:Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%
+OS:RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%I
+OS:PL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Uptime guess: 6.170 days (since Thu Mar 14 23:39:06 2024)
+Network Distance: 0 hops
+TCP Sequence Prediction: Difficulty=256 (Good luck!)
+IP ID Sequence Generation: All zeros
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Mar 21 03:43:32 2024 -- 1 IP address (1 host up) scanned in 13.33 seconds
+
+```
