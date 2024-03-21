@@ -1,5 +1,6 @@
 {
   "showInlineTitle": false,
   "attachmentFolderPath": "./screenshots",
-  "promptDelete": false
+  "promptDelete": false,
+  "showUnsupportedFiles": true
 }
