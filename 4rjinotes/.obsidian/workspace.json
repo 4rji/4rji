@@ -23,9 +23,11 @@
             "id": "1380546e52dd9df0",
             "type": "leaf",
             "state": {
-              "type": "release-notes",
+              "type": "markdown",
               "state": {
-                "currentVersion": "1.5.11"
+                "file": "htb/base/exploits/a.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -96,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md",
+                "file": "htb/base/exploits/a.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md",
+                "file": "htb/base/exploits/a.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -136,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Pentesting/Presentacion/1.- Introduccion.md"
+                "file": "htb/base/exploits/a.md"
               }
             }
           }
@@ -159,24 +161,25 @@
   },
   "active": "1380546e52dd9df0",
   "lastOpenFiles": [
-    "htb/test.md",
+    "htb/base/exploits/a.md",
+    "htb/base/nmap/nmap1",
+    "htb/base/nmap/OS-tipo",
+    "htb/base/exploits/webshell.php",
+    "htb/base/exploits/test.php",
+    "htb/base/exploits/shell",
+    "htb/base/exploits/a",
+    "htb/base/nmap",
+    "htb/base/exploits",
+    "htb/base",
     "htb",
+    "htb/test.md",
     "Pentesting/Presentacion/1.- Introduccion.md",
     "Pentesting/Presentacion/3.- Reporting.md",
     "Recopilacion de herramientas.md",
     "Pentesting/Presentacion/4.- Types of Penetration.md",
     "Pentesting/Presentacion/1.- Introduction.md",
     "Pentesting/Presentacion/2.- Type of penetration test.md",
-    "Pentesting/Presentacion",
-    "Pentesting",
     "Pasted image 20240316042055.png",
-    "htb/tres/scripts",
-    "htb/tres/exploits",
-    "htb/tres/content",
-    "htb/tres/nmap",
-    "htb/tres",
-    "htb/dos/scripts",
-    "htb/dos/exploits",
     "Welcome.md"
   ]
 }
