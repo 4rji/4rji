@@ -164,7 +164,6 @@ echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/port
 
 echo "alias carpeta='du -sh '" >> ~/.zshrc
 echo "alias archivserv='cd ~/archivebox && docker-compose up'" >> ~/.zshrc
-echo "alias archiva='sudo docker-compose run archivebox add --depth=0 '" >> ~/.zshrc
 
 
 
