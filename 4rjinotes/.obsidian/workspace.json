@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Osint/UNS/What we do.md",
+                "file": "Osint/UNS/TheHarvester.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Osint/UNS/What we do.md",
+                "file": "Osint/UNS/TheHarvester.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Osint/UNS/What we do.md",
+                "file": "Osint/UNS/TheHarvester.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Osint/UNS/What we do.md"
+                "file": "Osint/UNS/TheHarvester.md"
               }
             }
           }
@@ -161,12 +161,14 @@
   },
   "active": "a22fb8738a0e12b7",
   "lastOpenFiles": [
+    "Osint/UNS/Nslookup.md",
+    "Osint/UNS/TheHarvester.md",
+    "Osint/UNS/What we do.md",
     "Osint/UNS/screenshots/UNS_MAAP_SellSheet.pdf",
     "Osint/UNS/screenshots/Pasted image 20240321162913.png",
     "Osint/UNS/screenshots/Pasted image 20240321162843.png",
     "Osint/UNS/screenshots",
     "Recopilacion de herramientas.md",
-    "Osint/UNS/What we do.md",
     "htb/local/results/localhost/report/report.md/localhost/Services/Service - tcp-22-ssh/Nmap SSH.md",
     "Osint/UNS",
     "Osint",
@@ -181,7 +183,6 @@
     "htb/local/results/localhost/report/report.md/localhost/Port Scans",
     "htb/local/results/localhost/scans/xml/_top_100_udp_nmap.xml",
     "htb/local/results/localhost/scans/xml/_quick_tcp_nmap.xml",
-    "htb/local/results/localhost/scans/xml/_full_tcp_nmap.xml",
     "htb/local/results/localhost/report/report.md",
     "Pentesting/Presentacion/1.- Introduccion.md",
     "htb/base/nmap/nmap1.md",
