@@ -4,35 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "f3efd36270064840",
+        "id": "7feb70359d2b8e36",
         "type": "tabs",
         "children": [
           {
-            "id": "34a14db433095e40",
+            "id": "a41c4171e0be4e45",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "htb/local/results/localhost/report/report.md/localhost/Services/Service - tcp-22-ssh/Nmap SSH.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "a22fb8738a0e12b7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Osint/UNS/What we do.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Osint/UNS/What we do.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Osint/UNS/What we do.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Osint/UNS/What we do.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -159,15 +138,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a22fb8738a0e12b7",
+  "active": "a41c4171e0be4e45",
   "lastOpenFiles": [
+    "htb/local/results/localhost/report/report.md/localhost/Services/Service - tcp-22-ssh/Nmap SSH.md",
+    "Osint/UNS/TheHarvester.md",
+    "Osint/UNS/Nslookup.md",
+    "Osint/UNS/What we do.md",
     "Osint/UNS/screenshots/UNS_MAAP_SellSheet.pdf",
     "Osint/UNS/screenshots/Pasted image 20240321162913.png",
     "Osint/UNS/screenshots/Pasted image 20240321162843.png",
     "Osint/UNS/screenshots",
     "Recopilacion de herramientas.md",
-    "Osint/UNS/What we do.md",
-    "htb/local/results/localhost/report/report.md/localhost/Services/Service - tcp-22-ssh/Nmap SSH.md",
     "Osint/UNS",
     "Osint",
     "htb/local/results/localhost/report/report.md/localhost/Manual Commands.md",
@@ -181,7 +162,6 @@
     "htb/local/results/localhost/report/report.md/localhost/Port Scans",
     "htb/local/results/localhost/scans/xml/_top_100_udp_nmap.xml",
     "htb/local/results/localhost/scans/xml/_quick_tcp_nmap.xml",
-    "htb/local/results/localhost/scans/xml/_full_tcp_nmap.xml",
     "htb/local/results/localhost/report/report.md",
     "Pentesting/Presentacion/1.- Introduccion.md",
     "htb/base/nmap/nmap1.md",

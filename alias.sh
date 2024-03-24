@@ -79,7 +79,7 @@ echo "alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts '"  >> 
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
-echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
+#echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
 echo "alias ippp='curl ifconfig.me'" >> ~/.zshrc
 echo "alias surfeando='sudo anonsurf start'" >> ~/.zshrc
 #echo "alias servidor='python3 -m http.server 8000'"  >> ~/.zshrc
@@ -99,7 +99,7 @@ echo "alias fixsc='cd $HOME/4rji/fixed/binarios'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
 echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
-echo "alias g4rji='f(){ git clone https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
+echo "alias g4rji='f(){ git clone --depth 1 https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
 #echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
@@ -163,6 +163,8 @@ echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/port
 #echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
 echo "alias carpeta='du -sh '" >> ~/.zshrc
+echo "alias archivserv='cd ~/archivebox && docker-compose up'" >> ~/.zshrc
+
 
 
 
