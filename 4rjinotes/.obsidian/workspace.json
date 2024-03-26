@@ -146,8 +146,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "624a6d352f333a3a",
+  "active": "a41c4171e0be4e45",
   "lastOpenFiles": [
+    "htb/testrsync",
     "htb/wifinetic/content/etc/opkg/keys/4d017e6f1ed5d616",
     "htb/wifinetic/content/etc/opkg/keys",
     "htb/wifinetic/content/etc/nftables.d/README",
@@ -158,7 +159,6 @@
     "htb/wifinetic/content/etc/config/uhttpd",
     "htb/wifinetic/content/etc/config/ucitrack",
     "htb/wifinetic/content/etc/config/system",
-    "htb/wifinetic/content/etc/config/rpcd",
     "htb/wifinetic/obsidian-pentesting-template.md",
     "htb/wifinetic.md",
     "htb/template.md",
