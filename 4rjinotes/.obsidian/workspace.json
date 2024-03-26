@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "htb/redpanda/RedPanda.md",
+                "file": "htb/template.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "htb/redpanda/RedPanda.md",
+                "file": "htb/template.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "htb/redpanda/RedPanda.md",
+                "file": "htb/template.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "htb/redpanda/RedPanda.md"
+                "file": "htb/template.md"
               }
             }
           }
@@ -148,19 +148,26 @@
   },
   "active": "624a6d352f333a3a",
   "lastOpenFiles": [
-    "htb/redpanda/exploits/ippsec_creds.xml",
-    "htb/redpanda/exploits/ippsec.jpg",
-    "htb/redpanda/exploits/export.xml",
-    "htb/redpanda/exploits",
+    "htb/wifinetic/content/etc/opkg/keys/4d017e6f1ed5d616",
+    "htb/wifinetic/content/etc/opkg/keys",
+    "htb/wifinetic/content/etc/nftables.d/README",
+    "htb/wifinetic/content/etc/nftables.d/10-custom-filter-chains.nft",
+    "htb/wifinetic/content/etc/dropbear/dropbear_rsa_host_key",
+    "htb/wifinetic/content/etc/dropbear/dropbear_ed25519_host_key",
+    "htb/wifinetic/content/etc/config/wireless",
+    "htb/wifinetic/content/etc/config/uhttpd",
+    "htb/wifinetic/content/etc/config/ucitrack",
+    "htb/wifinetic/content/etc/config/system",
+    "htb/wifinetic/content/etc/config/rpcd",
+    "htb/wifinetic/obsidian-pentesting-template.md",
+    "htb/wifinetic.md",
+    "htb/template.md",
     "htb/redpanda/RedPanda.md",
-    "htb/redpanda/nmap/targeted",
-    "htb/redpanda/nmap/allPorts",
-    "htb/redpanda/content/whatweb",
-    "htb/redpanda/content/users",
-    "htb/redpanda/content/payload",
-    "htb/redpanda/nmap",
-    "htb/redpanda/content",
-    "htb/redpanda",
+    "htb/lame/lame.md",
+    "htb/base/base.md",
+    "htb/mirai/mirai.md",
+    "htb/redpanda/redpanda-walk.md",
+    "htb/redpanda/exploits/ippsec.jpg",
     "htb/local/results/localhost/report/report.md/localhost/Services/Service - tcp-22-ssh/Nmap SSH.md",
     "Osint/UNS/TheHarvester.md",
     "Osint/UNS/Nslookup.md",
@@ -180,9 +187,6 @@
     "htb/test.md",
     "Pentesting/Presentacion/3.- Reporting.md",
     "Pentesting/Presentacion/4.- Types of Penetration.md",
-    "Pentesting/Presentacion/1.- Introduction.md",
-    "Pentesting/Presentacion/2.- Type of penetration test.md",
-    "Pasted image 20240316042055.png",
-    "Welcome.md"
+    "Pasted image 20240316042055.png"
   ]
 }

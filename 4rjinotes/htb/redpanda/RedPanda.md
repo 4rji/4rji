@@ -143,37 +143,8 @@ RwNRnQ60aT55qz5sV7N9AAAADXJvb3RAcmVkcGFuZGE=
 
 ya de ahi simplemente usar la clave para logear como root, con chmod 600
 
-&nbsp;  
+
    
    
    
    
-   
-   
- 
-
-&nbsp;
-
-&nbsp;  
-   
- 
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-[RedPanda.pdf](:/789d3583eebb4aceb5c1208d306766ee)
