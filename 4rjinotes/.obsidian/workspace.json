@@ -146,8 +146,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a41c4171e0be4e45",
+  "active": "624a6d352f333a3a",
   "lastOpenFiles": [
+    "htb/cap",
+    "htb/Untitled.md",
+    "htb/template.md",
     "htb/testrsync",
     "htb/wifinetic/content/etc/opkg/keys/4d017e6f1ed5d616",
     "htb/wifinetic/content/etc/opkg/keys",
@@ -158,10 +161,8 @@
     "htb/wifinetic/content/etc/config/wireless",
     "htb/wifinetic/content/etc/config/uhttpd",
     "htb/wifinetic/content/etc/config/ucitrack",
-    "htb/wifinetic/content/etc/config/system",
     "htb/wifinetic/obsidian-pentesting-template.md",
     "htb/wifinetic.md",
-    "htb/template.md",
     "htb/redpanda/RedPanda.md",
     "htb/lame/lame.md",
     "htb/base/base.md",
@@ -186,7 +187,6 @@
     "htb/base/exploits/a.md",
     "htb/test.md",
     "Pentesting/Presentacion/3.- Reporting.md",
-    "Pentesting/Presentacion/4.- Types of Penetration.md",
     "Pasted image 20240316042055.png"
   ]
 }
