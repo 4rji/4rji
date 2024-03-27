@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "htb/cap/cap.md",
+                "file": "htb/antique/antique.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "htb/cap/cap.md",
+                "file": "htb/antique/antique.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "htb/cap/cap.md",
+                "file": "htb/antique/antique.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "htb/cap/cap.md"
+                "file": "htb/antique/antique.md"
               }
             }
           }
@@ -148,19 +148,31 @@
   },
   "active": "a41c4171e0be4e45",
   "lastOpenFiles": [
-    "htb/template.md",
+    "htb/antique/exploits/chisel/chisel",
+    "htb/antique/exploits/chisel/test/e2e/udp_test.go",
+    "htb/antique/exploits/chisel/test/e2e/tls_test.go",
+    "htb/antique/exploits/chisel/test/e2e/socks_test.go",
+    "htb/antique/exploits/chisel/test/e2e/setup_test.go",
+    "htb/antique/exploits/chisel/test/e2e/proxy_test.go",
+    "htb/antique/exploits/chisel/test/e2e/cert_utils_test.go",
+    "htb/antique/exploits/chisel/test/e2e/base_test.go",
+    "htb/antique/exploits/chisel/test/e2e/auth_test.go",
+    "htb/antique/exploits/chisel/test/bench/userfile",
+    "htb/antique/exploits/chisel/test/bench/perf.md",
+    "htb/antique/exploits/chisel/test/bench/main.go",
+    "htb/antique/exploits/chisel/example/reverse-tunneling-authenticated.md",
+    "htb/antique/exploits/chisel/README.md",
+    "htb/htb.md",
     "htb/cap/cap.md",
-    "htb/cap/content/captura.cap",
-    "htb/cap/content/0.pcap",
-    "htb/cap/content/1.pcap",
-    "htb/cap/test",
-    "htb/wifinetic/content/spray",
+    "htb/caca/nmap/caca.md",
+    "htb/antique/nmap/antique.md",
+    "htb/test/test.md",
+    "htb/as/as.md",
+    "htb/antique/antique.md",
+    "htb/caca/caca.md",
+    "htb/antique/template.md",
+    "htb/template.md",
     "htb/wifinetic/obsidian-pentesting-template.md",
-    "htb/cap/nmap/nmap1",
-    "htb/cap/nmap/OS-tipo",
-    "htb/cap/scripts",
-    "htb/cap/nmap",
-    "htb/cap/exploits",
     "htb/wifinetic/wifinetic.md",
     "htb/Untitled.md",
     "htb/wifinetic.md",
@@ -173,20 +185,8 @@
     "htb/local/results/localhost/report/report.md/localhost/Services/Service - tcp-22-ssh/Nmap SSH.md",
     "Osint/UNS/TheHarvester.md",
     "Osint/UNS/Nslookup.md",
-    "Osint/UNS/What we do.md",
     "Osint/UNS/screenshots/Pasted image 20240321162913.png",
     "Osint/UNS/screenshots/Pasted image 20240321162843.png",
-    "Recopilacion de herramientas.md",
-    "htb/local/results/localhost/report/report.md/localhost/Manual Commands.md",
-    "htb/local/results/localhost/report/report.md/localhost/Commands.md",
-    "htb/local/results/localhost/report/report.md/localhost/Port Scans/PortScan - Top 100 UDP Ports.md",
-    "htb/local/results/localhost/report/report.md/localhost/Port Scans/PortScan - All TCP Ports.md",
-    "htb/local/results/localhost/report/report.md/localhost/Port Scans/PortScan - Top TCP Ports.md",
-    "htb/local/results/localhost/report/report.md",
-    "Pentesting/Presentacion/1.- Introduccion.md",
-    "htb/base/nmap/nmap1.md",
-    "htb/base/exploits/a.md",
-    "htb/test.md",
     "Pasted image 20240316042055.png"
   ]
 }

