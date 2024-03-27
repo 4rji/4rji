@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "htb/template.md",
+                "file": "htb/cap/cap.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "htb/template.md",
+                "file": "htb/cap/cap.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "htb/template.md",
+                "file": "htb/cap/cap.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "htb/template.md"
+                "file": "htb/cap/cap.md"
               }
             }
           }
@@ -148,20 +148,21 @@
   },
   "active": "a41c4171e0be4e45",
   "lastOpenFiles": [
-    "htb/wifinetic/wifinetic.md",
-    "htb/cap",
-    "htb/Untitled.md",
     "htb/template.md",
-    "htb/testrsync",
-    "htb/wifinetic/content/etc/opkg/keys/4d017e6f1ed5d616",
-    "htb/wifinetic/content/etc/opkg/keys",
-    "htb/wifinetic/content/etc/nftables.d/README",
-    "htb/wifinetic/content/etc/nftables.d/10-custom-filter-chains.nft",
-    "htb/wifinetic/content/etc/dropbear/dropbear_rsa_host_key",
-    "htb/wifinetic/content/etc/dropbear/dropbear_ed25519_host_key",
-    "htb/wifinetic/content/etc/config/wireless",
-    "htb/wifinetic/content/etc/config/uhttpd",
+    "htb/cap/cap.md",
+    "htb/cap/content/captura.cap",
+    "htb/cap/content/0.pcap",
+    "htb/cap/content/1.pcap",
+    "htb/cap/test",
+    "htb/wifinetic/content/spray",
     "htb/wifinetic/obsidian-pentesting-template.md",
+    "htb/cap/nmap/nmap1",
+    "htb/cap/nmap/OS-tipo",
+    "htb/cap/scripts",
+    "htb/cap/nmap",
+    "htb/cap/exploits",
+    "htb/wifinetic/wifinetic.md",
+    "htb/Untitled.md",
     "htb/wifinetic.md",
     "htb/redpanda/RedPanda.md",
     "htb/lame/lame.md",
@@ -186,7 +187,6 @@
     "htb/base/nmap/nmap1.md",
     "htb/base/exploits/a.md",
     "htb/test.md",
-    "Pentesting/Presentacion/3.- Reporting.md",
     "Pasted image 20240316042055.png"
   ]
 }
