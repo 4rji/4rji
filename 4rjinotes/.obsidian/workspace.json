@@ -146,8 +146,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "624a6d352f333a3a",
+  "active": "a41c4171e0be4e45",
   "lastOpenFiles": [
+    "htb/wifinetic/wifinetic.md",
     "htb/cap",
     "htb/Untitled.md",
     "htb/template.md",
@@ -160,7 +161,6 @@
     "htb/wifinetic/content/etc/dropbear/dropbear_ed25519_host_key",
     "htb/wifinetic/content/etc/config/wireless",
     "htb/wifinetic/content/etc/config/uhttpd",
-    "htb/wifinetic/content/etc/config/ucitrack",
     "htb/wifinetic/obsidian-pentesting-template.md",
     "htb/wifinetic.md",
     "htb/redpanda/RedPanda.md",

@@ -11,9 +11,10 @@ Name | IP Address | Tech Stack | Web Server | DB
 
 ### Loot - Credentials<font color="red">:</font> 
 
-**User** | **Password** | **System**
--- | -- | --
--- | -- | --
+| **User** | **Password** | **System** |
+| -------- | ------------ | ---------- |
+|          |              |            |
+|          |              |            |
 
 <hr>
 
@@ -111,3 +112,5 @@ netstat -antup | grep '127.0.0.1' --color=auto
 ##### <font color="red">[+]</font> I/O - PsPy<font color="red">:</font> 
 ```bash
 ```
+
+
