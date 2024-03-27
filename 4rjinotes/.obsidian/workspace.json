@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "htb/template.md",
+                "file": "htb/wifinetic/wifinetic.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "htb/template.md",
+                "file": "htb/wifinetic/wifinetic.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "htb/template.md",
+                "file": "htb/wifinetic/wifinetic.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "htb/template.md"
+                "file": "htb/wifinetic/wifinetic.md"
               }
             }
           }
@@ -148,6 +148,9 @@
   },
   "active": "a41c4171e0be4e45",
   "lastOpenFiles": [
+    "htb/template.md",
+    "htb/wifinetic/wifinetic.md",
+    "htb/wifinetic/obsidian-pentesting-template.md",
     "htb/testrsync",
     "htb/wifinetic/content/etc/opkg/keys/4d017e6f1ed5d616",
     "htb/wifinetic/content/etc/opkg/keys",
@@ -158,10 +161,7 @@
     "htb/wifinetic/content/etc/config/wireless",
     "htb/wifinetic/content/etc/config/uhttpd",
     "htb/wifinetic/content/etc/config/ucitrack",
-    "htb/wifinetic/content/etc/config/system",
-    "htb/wifinetic/obsidian-pentesting-template.md",
     "htb/wifinetic.md",
-    "htb/template.md",
     "htb/redpanda/RedPanda.md",
     "htb/lame/lame.md",
     "htb/base/base.md",
