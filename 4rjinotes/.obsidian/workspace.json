@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "7feb70359d2b8e36",
+        "id": "62231baace8e007d",
         "type": "tabs",
         "children": [
           {
-            "id": "a41c4171e0be4e45",
+            "id": "692ebf25f3d8b8aa",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "htb/antique/antique.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "htb/antique/antique.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "htb/antique/antique.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "htb/antique/antique.md"
-              }
+              "state": {}
             }
           }
         ]
@@ -146,8 +138,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a41c4171e0be4e45",
+  "active": "692ebf25f3d8b8aa",
   "lastOpenFiles": [
+    "htb/antique/antique.md",
+    "htb/template.md",
+    "htb/htb.md",
+    "htb/wifinetic/wifinetic.md",
+    "htb/cap/cap.md",
     "htb/antique/exploits/proxy",
     "htb/antique/exploits/ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz",
     "htb/antique/exploits/README.md",
@@ -159,22 +156,16 @@
     "htb/antique/exploits/chisel/test/e2e/udp_test.go",
     "htb/antique/exploits/chisel/test/e2e/tls_test.go",
     "htb/antique/exploits/chisel/test/e2e/socks_test.go",
-    "htb/antique/exploits/chisel/test/e2e/setup_test.go",
     "htb/antique/exploits/chisel/test/bench/perf.md",
     "htb/antique/exploits/chisel/example/reverse-tunneling-authenticated.md",
     "htb/antique/exploits/chisel/README.md",
-    "htb/htb.md",
-    "htb/cap/cap.md",
     "htb/caca/nmap/caca.md",
     "htb/antique/nmap/antique.md",
     "htb/test/test.md",
     "htb/as/as.md",
-    "htb/antique/antique.md",
     "htb/caca/caca.md",
     "htb/antique/template.md",
-    "htb/template.md",
     "htb/wifinetic/obsidian-pentesting-template.md",
-    "htb/wifinetic/wifinetic.md",
     "htb/Untitled.md",
     "htb/wifinetic.md",
     "htb/redpanda/RedPanda.md",
