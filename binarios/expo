@@ -1,0 +1,68 @@
+#!/bin/bash
+
+echo ""
+
+
+# Función para mostrar el mensaje de ayuda y preguntar si desea continuar
+show_help_and_confirm() {
+    echo
+    echo "El comando que este script ejecuta es:"
+    echo ""
+    echo "1) - nmap -p- --open -T5 -v -n <ip> -oG allPorts"
+    echo "2) - nmap -p- --open -T5 -v -n -Pn <ip> -oG allPorts"
+    echo
+    read -n1 -p "Presione Enter para continuar o 'c' para salir. " response
+
+    echo "" # Agregar espacio después de la entrada
+    echo "_________________________________________________________"
+    echo ""
+
+    # Convertir la respuesta a minúsculas y verificar si se presionó 'c'
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+    if [ "$response" == "c" ]; then
+        echo "Saliendo del script."
+        exit 0
+    fi
+}
+
+# Verificar si se pasó el argumento -h
+if [ "$1" == "-h" ]; then
+    show_help_and_confirm
+fi
+
+# Verificar si se pasó la IP como argumento
+if [ -z "$1" ]; then
+    echo "Debe especificar la IP como argumento del script."
+    exit 1
+fi
+
+echo ""
+echo "Selecciona el tipo de escaner que deseas usar:"
+echo ""
+echo "1. Ejecutar escaneo sin Pn "
+echo "2. Ejecutar escaneo con Pn "
+echo ""
+echo "_________________________________________________________"
+echo "" # Agregar espacio después de la entrada
+
+
+echo "El comando a ejecutar es: nmap -p- --open -T5 -v -n "
+read -n1 -p "Elige (1 o 2): " choice
+
+echo "" # Agregar espacio después de la entrada
+echo "_________________________________________________________"
+echo ""
+
+case $choice in
+    1)
+        echo "Ejecutando escaneo sin Pn..."
+        nmap -p- --open -T5 -v -n "$1" -oG allPorts
+        ;;
+    2)
+        echo "Ejecutando escaneo con Pn..."
+        nmap -p- --open -T5 -v -n -Pn "$1" -oG allPorts
+        ;;
+    *)
+        echo "Opción no válida. Por favor, elige 1 o 2."
+        ;;
+esac

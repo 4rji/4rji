@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Color codes
+green="\e[32m"
+yellow="\e[33m"
+reset="\e[0m"
+
+# Funci  n para obtener la interfaz de red
+get_network_interface() {
+    # Verificar si wlan0 existe
+    if ifconfig wlan0 &>/dev/null; then
+        echo "wlan0"
+    else
+        # Obtener el nombre de la interfaz de red
+        interface=$(ip route | awk '/default/ {print $5}')
+        echo "$interface"
+    fi
+}
+
+# Obtener la interfaz de red
+network_interface=$(get_network_interface)
+
+# Ejecutar el comando y almacenar la salida en una variable
+output=$(systemctl status ssh)
+#echo ""
+#echo -e "\n\t${green}SSH status:${reset}"
+#echo -e "\n\n\t\t\t\tSSH status: $(systemctl status ssh | grep -oP '(?<=Active: ).*(?= since)')\n"
+echo -e "\n\n\t\t\e[32mSSH status:\e[0m \e[31m$(systemctl status ssh | grep -oP '(?<=Active: ).*(?= since)')\e[0m\n"
+
+# Buscar la l  nea que contiene 'Active:' en la salida y mostrarla
+#echo "$output" | grep --color=always 'Active:'
+
+# Agregar un rengl  n de separaci  n
+#echo ""
+
+# Mostrar la direcci  n IP local
+#echo "${yellow}Direcci  n IP local:${reset}"
+ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); printf "\t\t\t\t%s: %s\n", $NF, a[1]}'
+echo ""
+echo ""
+echo -e "\e[34m                  ___________________________________________________\e[0m"
+# Agregamos el mensaje con la IP local
+echo -e "\n\t\t\t\tTu IP es: $(/usr/sbin/ifconfig "$network_interface" | grep "inet " | awk '{print $2}')\n"
+echo -e "\t\t\t\t  ${green}---   $(whoami)   ---${reset}\n"
+
+echo -e "\n\t\t\t ${yellow}*** Puerto de escucha: ***${reset}\n"
+echo -e "\t\t\t\t  $(grep -E '^#?Port ' /etc/ssh/sshd_config | awk '!/^#/')"

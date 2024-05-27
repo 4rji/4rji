@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+# Obtener la dirección IP de wlan0
+ip_wlan0=$(ifconfig wlan0 | grep -oP 'inet \K\S+')
+
+# Obtener la dirección IP de eth0
+ip_eth0=$(ifconfig eth0 | grep -oP 'inet \K\S+')
+
+# Copiar la dirección IP de wlan0 al portapapeles
+echo $ip_wlan0 | xclip -selection clipboard
+
+# Mostrar la dirección IP de wlan0 en la consola
+echo "Dirección IP de wlan0: $ip_wlan0"
+
+# Mostrar la dirección IP de eth0 en la consola
+echo "Dirección IP de eth0: $ip_eth0"
+

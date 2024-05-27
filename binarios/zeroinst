@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sudo systemctl set-default multi-user.target
+sudo apt install kitty neofetch lsd wget git bat curl nmap        
+
+rm -rf Music Pictures Public Templates Videos
+echo ""
+echo "Instalar manualmente tailscale con el siguiente comando"
+echo ""
+echo "curl -fsSL https://tailscale.com/install.sh | sh"
+
+echo "curl -fsSL https://tailscale.com/install.sh | sh" | xclip -selection clipboard
+echo ""
+echo "Copiado al portapapeles"

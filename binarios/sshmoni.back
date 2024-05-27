@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Función para verificar si un paquete está instalado
+paquete_instalado() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Instalar paquetes necesarios
+paquetes=("net-tools")
+for paquete in "${paquetes[@]}"; do 
+    if ! paquete_instalado "$paquete"; then  
+        sudo apt-get install -y "$paquete"  
+    fi  
+done
+
+# SSH Port y PID File
+SSH_PORT=22
+PID_FILE="/tmp/pidssh"
+
+# Check if the script is running as root
+if [ "$EUID" -ne 0 ]; then
+    echo "Some process details might not be shown. Please run as root for complete details."
+fi
+
+# Function to check for SSH connections
+check_ssh_connections() {
+    > "$PID_FILE"
+    local connections=$(netstat -tnp | grep ':'"$SSH_PORT" | grep 'ESTABLISHED')
+    if [ ! -z "$connections" ]; then
+        echo ""
+        echo "**********   ALERT : Active SSH connection detected.   ***********"
+        echo ""
+        local count=1
+        echo "$connections" | while IFS= read -r line; do
+            local ip=$(echo "$line" | awk '{print $5}')
+            local pid=$(echo "$line" | awk '{print $7}' | grep -o '[0-9]*')
+            local user=$(ps -o user= -p "$pid" 2>/dev/null)
+            echo "$count) IP: $ip, User: $user, PID: $pid"
+            echo "$pid" >> "$PID_FILE"
+            ((count++))
+        done
+    else
+        echo ""
+        echo "No active SSH connections at this time."
+	echo ""    
+fi
+}
+
+# Call the check function once
+check_ssh_connections
+
+# Read PIDs into an array
+mapfile -t pids < "$PID_FILE"
+
+# Check if there are no active SSH connections
+if [ ${#pids[@]} -eq 0 ]; then
+    echo "Would you like to start a monitoring loop? (s/Enter):"
+    read -r loop_answer
+    if [[ "$loop_answer" == "s" ]]; then
+        while true; do
+            sudo /usr/bin/sshmoni
+            sleep 2
+        done
+    else
+        exit 0
+    fi
+fi
+
+# Ask which connection to kill
+echo ""
+echo "Enter the number of the connection you want to kill, or press Enter to exit:"
+echo ""
+
+read -r selection
+
+# Check if the user pressed Enter (empty input)
+if [ -z "$selection" ]; then
+    echo "Exit requested."
+    exit 0
+fi
+
+# Convert the selection to a number and check if it's within the valid range
+if [[ "$selection" =~ ^[0-9]+$ ]] && [ "$selection" -gt 0 ] && [ "$selection" -le ${#pids[@]} ]; then
+    selected_pid=${pids[$selection-1]}
+    sudo kill "$selected_pid"
+    echo "Executed 'sudo kill' on PID $selected_pid."
+else
+    echo "Invalid selection."
+fi

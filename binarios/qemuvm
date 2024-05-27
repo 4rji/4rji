@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#inicia la maquina desde el iso pero con qemudebian la descargo y la inicio, es una version de esa
+echo "_________________________________________________________"
+echo ""
+echo "para ejecutar la imagen despues ese ese el formato"
+echo ""
+echo "qemu-system-x86_64 -hda ~/Downloads/qemuvm/NOMBRE.qcow2 -smp 4 -m 4000 "
+echo ""
+echo ""
+echo "smp es nucleos y -m es la Ram"
+echo ""
+
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+read -n1 -p "¿Deseas crear una maquina nueva? [S/n] " respuesta
+echo ""
+
+if [[ $respuesta =~ ^[Ss]$ ]]; then
+    mkdir -p ~/Downloads/qemuvm
+    read -p "Nombre para la imagen del disco duro virtual (sin extensión): " nombre_imagen
+    read -p "Tamaño del disco duro virtual en gigabytes: " tamano_gb
+    echo ""
+    echo "Creando un disco duro virtual de $tamano_gb GB en ~/Downloads/qemuvm/$nombre_imagen.qcow2..."
+	echo ""
+    qemu-img create -f qcow2 ~/Downloads/qemuvm/$nombre_imagen.qcow2 ${tamano_gb}G 
+    
+    echo "Disco duro virtual creado."
+fi
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+read -p "¿Ruta completa del ISO que quieres usar?  " ruta_iso
+echo ""
+
+read -p "Cantidad de memoria RAM en megabytes: " ram_mb
+read -p "Cantidad de núcleos de procesador: " num_nucleos
+echo ""
+echo "_________________________________________________________"
+echo ""
+
+comando="qemu-system-x86_64 -hda ~/Downloads/qemuvm/$nombre_imagen.qcow2 -smp $num_nucleos -m $ram_mb -cdrom $ruta_iso -boot d"
+echo "Se creará una máquina virtual con el siguiente comando:"
+echo ""
+echo $comando
+echo ""
+echo "_________________________________________________________"
+echo ""
+read -n1 -p "¿Quieres ejecutar este comando para iniciar la instalación? [S/n] " iniciar
+echo ""
+
+if [[ $iniciar =~ ^[Ss]$ ]]; then
+	echo ""
+    echo "Iniciando la máquina virtual para la instalación en segundo plano..."
+    eval $comando & disown
+    echo ""
+    echo "La instalación de la máquina virtual ha comenzado en segundo plano."
+fi
+
+echo ""

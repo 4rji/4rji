@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Function to control the service
+control_service() {
+    while true; do
+        echo ""
+        echo "What would you like to do with $service?"
+        echo ""
+        echo " a - start"
+        echo " r - restart"
+        echo " t - stop"
+        echo " s - status"
+        echo " e - enable"
+        echo " d - disable"
+        echo " c - cancel"
+        echo " m - mask"
+        echo " q - exit"
+        echo ""
+        echo -n "Select an option: "
+        read -n 1 action
+        echo ""
+
+        case $action in
+            r)
+                sudo systemctl restart $service
+                echo ""
+                echo "Checking status after restarting..."
+                sleep 1
+                echo ""
+                sudo systemctl status $service
+                ;;
+            e)
+                sudo systemctl enable $service
+                ;;
+            d)
+                sudo systemctl disable $service
+                ;;
+            s)
+                sudo systemctl status $service
+                ;;
+            t)
+                sudo systemctl stop $service
+                echo ""
+                echo "Checking status after stopping..."
+                sleep 1
+                echo ""
+                sudo systemctl status $service
+                ;;
+            m)
+                sudo systemctl --now mask $service
+                echo ""
+                echo "Checking status after masking..."
+                sleep 1
+                echo ""
+                sudo systemctl status $service
+                ;;
+            a)
+                sudo systemctl start $service
+                echo ""
+                echo "Checking status after starting..."
+                sleep .5
+                echo ""
+                sudo systemctl status $service
+                ;;
+            c)
+                echo "Canceling..."
+                break
+                ;;
+            q)
+                echo "Exiting..."
+                exit 0
+                ;;
+            *)
+                echo "Invalid option."
+                ;;
+        esac
+    done
+}
+
+echo ""
+
+# Check if an argument was provided
+if [ $# -eq 0 ]; then
+    echo "Usage: ctl <service>"
+    exit 1
+fi
+
+service=$1
+control_service

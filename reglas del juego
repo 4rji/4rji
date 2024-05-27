@@ -1,0 +1,29 @@
+reglas del juego
+
+Dejar abiertolos puertos de la pagina web Presto, 80 y 445, si bloquean el puerto ssh van a perder conexion al servidor.
+
+No pierdan tiempo bloqueando IPs, si el atacante es dueno de la subnet o botnet, puede atacar con cientas de Ips deferentes (Y poseo las dos)
+
+En tiempos aleatorios, en la carpeta /tmp encontraran un archivo que dice CCDC, borrenlo pero si aparece despues de unos minutos significa que aun tengo acceso a la maquina. 
+
+No van a encontrar procesos de conexiones porque no mantengo una sesion abierta, pero pueden buscar logs o otros procesos corriendo que parezcan sospechosos.
+
+
+
+#Consejos
+
+Todo la solucion esta en el KillChain, si siguen los pasos seguron encuentran todos los preblemas de la maquina.
+
+Cambiar el puerto de ssh puede complicar las cosas de muchas maneras, ofuscando los demas puertos o hacer los escaneos de nmap muy lentos definitivamente me haran el camino mas dificil.
+
+Las llaves son una pieza fundamental en el acceso a cualquier lugar.
+
+
+
+
+#Tareas
+
+Apuntas los servidores a los de google o cloudfare
+
+Actualizar los paquetes e instalar rkhunter para buscar el rootkit (aun sigo trabajando en el)
+

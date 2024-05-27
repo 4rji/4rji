@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Solicitar palabras y caracteres
+printf "Ingresa las palabras separadas por espacios: "
+read words
+
+printf "Ingresa los caracteres especiales: "
+read special_characters
+
+# Calcular la longitud del patrón
+pattern_length=${#words}${#special_characters}+6
+
+# Solicitar longitud
+printf "Ingresa la longitud mínima y máxima deseada (igual o mayor que %s): " $pattern_length
+read min_length max_length
+
+# Generar el diccionario con crunch
+crunch ${min_length} ${max_length} -t @@@${words}@@@${special_characters} -o diccionario.txt

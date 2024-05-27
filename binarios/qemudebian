@@ -1,0 +1,144 @@
+#!/bin/bash
+
+# Colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # Sin Color
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Solicita al usuario el nombre de la máquina virtual a crear
+read -p "Introduce el nombre de la máquina virtual a crear: " vm_name
+
+# Verifica si la máquina virtual ya existe
+if sudo virsh dominfo "$vm_name" > /dev/null 2>&1; then
+    echo -e "${RED}La máquina virtual '${vm_name}' ya existe.${NC}"
+    read -n1 -p "¿Deseas eliminar la máquina virtual existente? [S/n] " respuesta_eliminar
+    echo
+    if [[ $respuesta_eliminar =~ ^[Ss]$ ]]; then
+        sudo virsh destroy "$vm_name"
+        sudo virsh undefine "$vm_name"
+        echo -e "${BLUE}La máquina virtual '${vm_name}' ha sido eliminada.${NC}"
+    else
+        echo -e "${RED}Operación cancelada.${NC}"
+        exit 1
+    fi
+fi
+
+# Solicita configuraciones específicas
+echo -e "${GREEN}Configuración de la máquina virtual:${NC}"
+read -p "Introduce la cantidad de RAM en MiB (ej. 2048): " ram
+read -p "Introduce el número de núcleos de CPU (ej. 2): " cpu
+read -p "Introduce el tamaño del disco duro en GB (ej. 20): " disk_size
+
+# Descarga la imagen iso de Debian con sudo
+echo -e "${GREEN}Descargando la imagen de Debian...${NC}"
+#sudo wget -P /var/lib/libvirt/images/ https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.4.0-amd64-netinst.iso
+echo -e "${GREEN}La imagen de Debian ha sido descargada.${NC}"
+
+
+# Creación del archivo vm.xml con la configuración del usuario ajustada
+sudo bash -c "cat > /etc/libvirt/qemu/$vm_name.xml <<EOF
+<domain type='kvm'>
+  <name>$vm_name</name>
+  <memory unit='KiB'>$((ram * 1024))</memory>
+  <currentMemory unit='KiB'>$((ram * 1024))</currentMemory>
+  <vcpu placement='static'>$cpu</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-2.9'>hvm</type>
+  </os>
+  <devices>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/>
+      <source file='/var/lib/libvirt/images/${vm_name}.qcow2'/>
+      <target dev='vda' bus='virtio'/>
+      <boot order='1'/>
+    </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/var/lib/libvirt/images/debian-12.4.0-amd64-netinst.iso'/>
+      <target dev='hdc' bus='ide'/>
+      <boot order='2'/>
+    </disk>
+    <graphics type='vnc' port='5901' autoport='no' listen='0.0.0.0'>
+      <listen type='address' address='0.0.0.0'/>
+    </graphics>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+    <interface type='network'>
+      <source network='default'/>
+    </interface>
+  </devices>
+</domain>
+EOF"
+
+
+
+# Creación del disco duro con el tamaño especificado
+echo -e "${GREEN}Creando disco duro de ${disk_size}GB para la máquina virtual...${NC}"
+sudo qemu-img create -f qcow2 /var/lib/libvirt/images/${vm_name}.qcow2 ${disk_size}G
+
+# Definición de la máquina virtual
+#sudo virsh define /etc/libvirt/qemu/$vm_name.xml
+#echo -e "${BLUE}La máquina virtual '${vm_name}' ha sido creada y configurada.${NC}"
+
+
+
+
+echo -e "${GREEN}Archivo $vm_name.xml creado.${NC}"
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Define y inicia la máquina virtual con virsh usando sudo
+echo -e "${GREEN}Definiendo la máquina virtual...${NC}"
+sudo virsh define /etc/libvirt/qemu/$vm_name.xml
+
+# Pregunta si desea iniciar la red predeterminada
+echo -e -n "${RED}¿Deseas iniciar la Network ahora? [S/n] ${NC}"
+read -n1 respuesta_network
+echo
+if [[ $respuesta_network =~ ^[Ss]$ ]]; then
+    echo -e "${GREEN}Iniciando Network...${NC}"
+    sudo virsh net-start default
+    echo -e "La Network ha sido iniciada.${NC}"
+fi
+
+# Pregunta si desea iniciar la máquina virtual
+echo -e -n "${RED}¿Deseas iniciar la máquina virtual ahora? [S/n] ${NC}"
+read -n1 respuesta
+echo
+case $respuesta in
+  S|s ) echo -e "${GREEN}"
+        sudo virsh start "$vm_name"
+        echo -e "La máquina virtual ${RED}$vm_name${GREEN} ha sido iniciada.${NC}"
+        ;;
+  N|n ) echo -e "${BLUE}La máquina virtual no se iniciará.${NC}"
+        ;;
+  * ) echo -e "${RED}Opción no válida. La máquina virtual no se iniciará.${NC}"
+      ;;
+esac
+
+echo ""
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Pregunta si desea eliminar la máquina virtual después de usarla
+echo -e -n "${BLUE}¿Iniciar consola [S/n] ${NC}"
+read -n1 respuesta_borrar
+echo
+if [[ $respuesta_borrar =~ ^[Ss]$ ]]; then
+    echo -e "${GREEN}Iniciando...${NC}"
+    sudo virsh console "$vm_name"
+    
+    #echo -e "${BLUE}La máquina virtual '${vm_name}' ha sido eliminada.${NC}"
+else
+    echo -e "${GREEN}fin.${NC}"
+fi

@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+sudo nano /etc/systemd/logind.conf
+
+echo "Restart the service now? (Press S for yes, Enter for no)"
+read -k1 input
+if [[ $input == "S" || $input == "s" ]]; then
+    sudo systemctl restart systemd-logind
+    echo "systemd-logind service restarted."
+else
+    echo "You chose not to restart the service. Changes will take effect on next reboot."
+fi

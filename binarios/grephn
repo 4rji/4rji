@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+# Comprueba si se proporcionó un directorio
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 <directorio>"
+    exit 1
+fi
+
+# Asigna el directorio a una variable
+directorio=$1
+
+# Comprueba si el directorio existe
+if [ ! -d "$directorio" ]; then
+    echo "El directorio no existe: $directorio"
+    exit 1
+fi
+
+# Pide al usuario que ingrese la palabra clave
+echo -n "Introduce la(s) palabra(s) a buscar: "
+read palabras
+
+# Busca la palabra clave en todos los archivos del directorio
+echo "Buscando '$palabras' en archivos de $directorio..."
+grep -Hn "$palabras" "$directorio"/*
+
+#tambien puedo buscar en la linea simplemente usando esto
+### grep -Hn ssh *
+
+#busca ssh en todo el directorio y muestra 
+# Este script utiliza las opciones -Hn con grep:
+
+# -H hace que grep muestre el nombre del archivo antes de la línea que coincide.
+# -n hace que grep muestre el número de línea de la coincidencia.
+# De esta manera, el script mostrará tanto el nombre del archivo como el número 
+# de línea y el contenido de la línea que contiene la palabra buscada.

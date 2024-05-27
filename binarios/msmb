@@ -1,0 +1,71 @@
+#!/bin/bash
+
+echo -e "\n\033[1;31m_________________________________________________________\033[0m"
+
+
+default_mount_point="/mnt/smb"
+
+echo -e "\n\033[1;34mEste es el comando:\033[0m"
+#echo ""
+echo "sudo mount -t cifs //server_name/shared_directory mount_point -o username=username,password=password"
+echo ""
+echo -e "\n\033[1;34mEste para ver los recursos disponibles:\033[0m"
+echo "smbclient -L //IP_name -U "
+echo ""
+
+echo -e "\n\033[1;33mSi no funciona, instalar cifs-utils, samba o smb.\033[0m\n"
+
+# Solicitar al usuario si desea cambiar el punto de montaje
+read -p "El punto de montaje por defecto es default_mount_point. ¿Desea cambiarlo? (enter para no): " change_mount
+if [ "$change_mount" == "s" ]; then
+    read -p "Ingrese el nuevo directorio de montaje local: " mount_point
+else
+    mount_point=$default_mount_point
+fi
+
+
+
+# Verificar si el directorio de montaje local existe, de lo contrario, crearlo con sudo
+if [ ! -d "$mount_point" ]; then
+    echo -e "\n\033[1;32mCreando el directorio de montaje local...\033[0m"
+    sudo mkdir -p "$mount_point"
+fi
+echo -e "\n\033[1;34m_________________________________________________________\033[0m\n"
+# Solicitar los datos necesarios
+read -p "Ingrese el nombre del servidor o la dirección IP: " server_name
+read -p "Ingrese el nombre de usuario: " username
+read -s -p "Ingrese la contraseña: " password
+echo -e "\n"
+echo -e "\n\033[1;34m_________________________________________________________\033[0m\n"
+echo ""
+# Mostrar los recursos disponibles en el servidor SMB
+echo -e "\033[1;34mRecursos disponibles en el servidor SMB:\033[0m"
+smbclient -L //$server_name -U $username%$password
+echo -e "\n\033[1;34m_________________________________________________________\033[0m\n"
+
+read -p "Ingrese el nombre del directorio compartido que desea montar: " shared_directory
+echo ""
+
+# Montar el servidor SMB
+sudo mount -t cifs //$server_name/$shared_directory $mount_point -o username=$username,password=$password
+
+# Verificar si el montaje tuvo éxito
+if [ $? -eq 0 ]; then
+    echo -e "\n\033[1;32mSe ha montado con éxito el servidor SMB en $mount_point\033[0m"
+    echo "$mount_point" | xclip -selection clipboard  # Copiar el directorio montado al portapapeles
+    echo -e "\033[1;32mEl directorio montado se ha copiado al portapapeles.\033[0m"
+else
+    echo -e "\n\033[1;31mHubo un problema al intentar montar el servidor SMB. Por favor, verifique sus credenciales y la conexión.\033[0m"
+fi
+
+echo -e "\n\033[1;34m_________________________________________________________\033[0m\n"
+
+# Desmontar el servidor SMB si se encuentra montado
+if mount | grep -q "$mount_point"; then
+    sudo umount "$mount_point"
+    echo -e "\033[1;32mSe ha desmontado el servidor SMB de $mount_point\033[0m"
+else
+    echo -e "\033[1;33mEl servidor SMB no está montado en $mount_point\033[0m"
+fi
+
+echo -e "\n\033[1;34m_________________________________________________________\033[0m\n"

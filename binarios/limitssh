@@ -1,0 +1,17 @@
+#!/bin/bash
+
+sudo apt install firewalld
+
+# Limit SSH to the competition subnet
+sudo firewall-cmd --permanent --zone=public --remove-service=ssh
+sudo firewall-cmd --permanent --zone=public \
+--add-rich-rule='rule family=ipv4 source address=172.20.240.0/22 service name=ssh log prefix="SSH Logs" level="notice" accept'
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-all --zone=public
+
+#Blocking ICMP packets on firewalld:  
+
+sudo firewall-cmd --set-target=DROP --zone=public --permanent
+sudo firewall-cmd -zone=public --remove-icmp-block={echo-request,echo-reply, \  
+timestamp-request,timestamp-reply} --permanent
+sudo firewall-cmd --reload

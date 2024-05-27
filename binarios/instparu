@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+# Instalar base-devel si no está instalado
+if ! command -v pacman &> /dev/null; then
+    echo "Error: pacman no encontrado. Asegúrate de que estás en un sistema Arch Linux."
+    exit 1
+fi
+
+if ! pacman -Qq base-devel &> /dev/null; then
+    echo "Instalando base-devel..."
+    sudo pacman -S base-devel
+fi
+
+# Clonar paru desde AUR
+if [ ! -d "paru" ]; then
+    git clone https://aur.archlinux.org/paru.git
+fi
+
+cd paru || exit
+
+# Compilar e instalar paru
+makepkg -si
+
+# Instalar scrub con paru
+paru -S scrub

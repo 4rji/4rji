@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+if [[ $# -ne 1 ]]; then
+    echo "Uso: $0 <archivo.cap>"
+    exit 1
+fi
+
+archivo="$1"
+
+if [[ $archivo != *.cap ]]; then
+    echo "El archivo debe tener la extensión .cap"
+    exit 1
+fi
+
+wordlist="/usr/share/wordlists/rockyou.txt"
+
+comando="sudo aircrack-ng $archivo -w $wordlist"
+
+echo "Ejecutando el siguiente comando: $comando"
+
+eval $comando

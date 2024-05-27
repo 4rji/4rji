@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Preguntar al usuario si desea cancelar
+read "cancelar?Para continuar, presiona Enter. Para restaurar el estado de la batería, escribe 'no': "
+
+if [[ "$cancelar" == "no" ]]; then
+    cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.sh
+    echo "El archivo bateria.sh ha sido restaurado desde el respaldo."
+else
+    read "ip_target?Por favor, ingresa la nueva dirección IP de destino: "
+    echo "echo \"$ip_target\"" > ~/.config/bin/bateria.sh
+    echo "El archivo ~/.config/bin/bateria.sh ha sido actualizado con la nueva dirección IP: $ip_target"
+fi

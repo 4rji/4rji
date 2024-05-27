@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+# Crear un archivo temporal
+tempfile=$(mktemp)
+
+# Ejecutar el comando y almacenar la salida en el archivo temporal
+ssa1 > "$tempfile"
+
+# Puedes realizar otras operaciones con el archivo si es necesario
+# Por ejemplo, mostrar su contenido con cat
+batcat -l rb "$tempfile"
+
+
+# Verifica el estado del servicio sshd
+if systemctl is-active sshd &> /dev/null; then
+  echo "El servicio sshd está          **^^   ACTIVO   ^^**."
+  echo ""
+  read "desactivar_sshd?¿Desea  * DESACTIVAR * el servicio sshd? (s para si/Enter para continuar)"
+  if [[ "$desactivar_sshd" == "s" ]]; then
+    sudo systemctl stop sshd
+    echo ""
+    echo "El servicio sshd ha sido         ***  DESACTIVADO  *** ."
+  else
+    echo "No se ha desactivado el servicio sshd."
+  fi
+else
+  echo "El servicio sshd está              ***  INACTIVO  ***."
+  echo ""
+  read "activar_sshd?¿Desea  * ACTIVAR * el servicio sshd? (s para si/Enter para continuar)"
+  if [[ "$activar_sshd" == "s" ]]; then
+    sudo systemctl start sshd
+    echo
+    interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+  echo ""
+    echo "El servicio sshd ha sido         **^^  ACTIVADO  ^^**."
+
+    echo -e "\n\n\n\nTu IP es: $(/usr/sbin/ifconfig wlp0s20f3 | grep "inet " | awk '{print $2}')"
+    echo "*** Tu usuario es: *** "
+    whoami
+  else
+    echo "No se ha activado el servicio sshd."
+  fi
+fi
+

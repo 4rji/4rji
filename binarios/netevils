@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+# Deshabilitar los caminos de comunicación no seguros
+sudo systemctl --now mask ftpd
+sudo systemctl --now mask tftpd
+
+# Eliminar telnet y FTP en sistemas Debian/Ubuntu
+if [[ -x $(command -v apt) ]]; then
+    sudo apt-get remove -y telnet ftp ftpd tftp talk talkd tftp tftpd
+fi
+
+sudo apt autoremove

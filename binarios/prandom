@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+import subprocess
+import time
+import os
+import random
+
+# Directory where the VPN configuration files are located
+VPN_DIR = '~/Downloads/.vpnitos'
+VPN_DIR_ABS = os.path.expanduser(VPN_DIR)  # Convert to absolute path
+
+def get_vpn_files():
+    """Get a list of all VPN configuration files in the directory."""
+    return [os.path.join(VPN_DIR_ABS, f) for f in os.listdir(VPN_DIR_ABS) if os.path.isfile(os.path.join(VPN_DIR_ABS, f))]
+
+def connect_vpn(vpn_file):
+    """Connect to the VPN using a specific configuration file."""
+    print(f"Connecting to: {vpn_file}")
+    # Start the VPN connection
+    return subprocess.Popen(['sudo', 'openvpn', '--config', vpn_file], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+def disconnect_vpn(vpn_process):
+    """Disconnect the current VPN."""
+    print("Disconnecting the current VPN...")
+    vpn_process.terminate()
+    try:
+        vpn_process.wait(timeout=3)  # Wait up to 3 seconds to terminate gracefully
+    except subprocess.TimeoutExpired:
+        vpn_process.kill()  # Force termination if it doesn't terminate after 3 seconds
+
+def get_current_ip():
+    """Get the current IP address."""
+    ip_output = subprocess.check_output(['curl', 'ifconfig.me'], stderr=subprocess.STDOUT)
+    ip_output = ip_output.decode('utf-8').strip().split('\n')[-1]  # Get the last line
+    return ip_output
+
+def main():
+    while True:
+        vpn_files = get_vpn_files()
+        vpn_file = random.choice(vpn_files)  # Select a random configuration file
+        vpn_process = connect_vpn(vpn_file)
+
+        # Wait for 12 seconds for the VPN to connect
+        time.sleep(12)
+
+        # Show the current IP address every 2 minutes
+        for _ in range(5):  # 5 cycles of 2 minutes to total 10 minutes
+            current_ip = get_current_ip()
+            print("\n--------------------------------------------------")
+            print("\033[34mCurrent IP Address:\033[0m \033[33m", current_ip, "\033[0m")
+            print("--------------------------------------------------\n")
+            time.sleep(120)  # Wait 2 minutes
+
+        disconnect_vpn(vpn_process)
+
+        # A brief pause before reconnecting may be necessary depending on the system and the VPN
+        time.sleep(2)
+
+if __name__ == "__main__":
+    main()

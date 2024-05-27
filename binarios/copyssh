@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+# Pedir la dirección IP del servidor
+read "server_address?Introduce la dirección IP del servidor al que quieres copiar la clave SSH (por ejemplo, user@1.1.1.1): "
+
+# Preguntar si se desea generar una nueva clave SSH
+read "generate_ssh_key?¿Quieres generar una nueva clave SSH? Presiona 's' para sí, o presiona Enter para continuar sin generar la clave: "
+if [[ $generate_ssh_key == "s" ]]; then
+    # Generar una nueva clave SSH
+    ssh-keygen -t ed25519
+fi
+
+# Copiar la clave SSH al servidor
+ssh-copy-id "$server_address"

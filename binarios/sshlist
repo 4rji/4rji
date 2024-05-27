@@ -1,0 +1,96 @@
+#!/bin/bash
+echo ""
+# Muestra todas las líneas sin comentar de /etc/hosts.deny
+echo "Mostrando las lineas sin comentar de /etc/hosts.DENY:"
+echo ""
+sudo grep -v '^#' /etc/hosts.deny | grep -v '^$'
+echo ""
+echo ""
+echo ""
+echo ""
+# Añade un espacio para separar las secciones
+echo "-----------------------------------------"
+echo ""
+
+
+# Pregunta si quiere ver las lineas de /etc/hosts.allow
+read -p "¿Quieres ver las lineas de /etc/hosts.ALLOW? [s/n]: " respuesta
+echo ""
+if [[ $respuesta == "s" ]]; then
+    echo "Lineas sin comentar de /etc/hosts.allow:"
+    echo ""
+    echo ""
+    sudo grep -v '^#' /etc/hosts.allow | grep -v '^$'
+    echo ""
+    echo ""
+    echo ""
+fi
+
+# Añade un espacio para separar las secciones
+echo "-----------------------------------------"
+echo ""
+echo ""
+
+# Pregunta si quiere bloquear todas las IPs
+read -p "¿Quieres bloquear todas las IPs? [s/n]: " bloquear_ips
+if [[ $bloquear_ips == "s" ]]; then
+    echo "sshd: ALL" | sudo tee -a /etc/hosts.deny > /dev/null
+    echo ""
+    echo "Se ha bloqueado todas las IPs para SSH."
+    echo ""
+fi
+
+# Añade un espacio para separar las secciones
+echo "-----------------------------------------"
+echo ""
+
+# Pregunta si quiere agregar una IP a la lista de permitidos
+read -p "¿Quieres agregar una IP a la lista de permitidos? [s/n]: " agregar_ip
+echo "Tambien puedes agregar subnets como 10.0.4.0/24"
+echo ""
+if [[ $agregar_ip == "s" ]]; then
+    read -p "Ingresa la IP que deseas permitir: " ip_permitida
+    echo ""
+    echo "sshd: $ip_permitida" | sudo tee -a /etc/hosts.allow > /dev/null
+    echo "Se ha añadido la IP $ip_permitida a la lista de permitidos."
+fi
+
+# Añade un espacio para separar las secciones
+echo "*************************************************"
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+echo ""
+
+# Pregunta si quiere ver las líneas de /etc/hosts.allow
+read -p "¿Quieres ver los cambios de /etc/hosts.ALLOW? [s/n]: " respuesta
+if [[ $respuesta == "s" ]]; then
+	echo ""
+    echo "Mostrando las líneas sin comentar de /etc/hosts.allow:"
+    echo ""
+    sudo grep -v '^#' /etc/hosts.allow | grep -v '^$'
+    echo ""
+fi
+
+# Añade un espacio para separar las secciones
+echo ""
+echo ""
+echo ""
+echo ""
+
+echo "*************************************************"
+echo ""
+echo ""
+
+# Pregunta si quiere ver las líneas de /etc/hosts.deny
+read -p "¿Quieres ver los cambios de /etc/hosts.deny? [s/n]: " respuesta
+if [[ $respuesta == "s" ]]; then
+    echo ""
+    echo "Mostrando las líneas sin comentar de /etc/hosts.deny:"
+    echo ""
+    sudo grep -v '^#' /etc/hosts.deny | grep -v '^$'
+    echo ""
+    echo ""
+fi

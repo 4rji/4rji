@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Función para manejar Ctrl+C
+function ctrl_c {
+    echo -e "\n\n[!] Saliendo...\n"
+    tput cnorm  # Restaurar el cursor
+    exit 1
+}
+
+# Capturar señal SIGINT (Ctrl+C)
+trap ctrl_c SIGINT
+
+# Función para obtener el rango de puertos
+function getPortRange {
+    read -p "Ingrese el rango de puertos (por ejemplo, 20-80): " range
+    IFS='-' read -ra PORTS <<< "$range"
+    if [ ${#PORTS[@]} -eq 2 ]; then
+        ports=( $(seq ${PORTS[0]} ${PORTS[1]}) )
+    else
+        echo "Rango de puertos inválido. Usando el rango completo (1-65535)."
+        ports=( $(seq 1 65535) )
+    fi
+}
+
+# Función para verificar el puerto
+function checkPort {
+    (exec 3<> /dev/tcp/$1/$2) 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo "[+] Host $1 - Port $2 (OPEN)"
+    fi
+    exec 3<&-
+    exec 3>&-
+}
+
+# Solicitar al usuario que especifique el rango de puertos
+getPortRange
+
+tput civis  # Ocultar el cursor
+
+# Verificar argumento
+if [ "$1" ]; then
+    for port in ${ports[@]}; do
+        checkPort $1 $port
+    done
+else
+    echo -e "\n[!] Uso: $0 <ip-address>\n"
+fi
+
+wait
+tput cnorm  # Restaurar el cursor
+

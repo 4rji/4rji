@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+mktem
+cd "$(xclip -o -sel clip)"
+
+
+# Instalar dependencias
+sudo apt install libayatana-appindicator3-1 gir1.2-ayatanaappindicator3-0.1 gnome-shell-extension-appindicator -f
+
+# Descargar el paquete de ProtonVPN
+wget https://repo.protonvpn.com/debian/dists/unstable/main/binary-all/protonvpn-beta-release_1.0.3-2_all.deb
+
+# Instalar el paquete de ProtonVPN
+sudo dpkg -i ./protonvpn-beta-release_1.0.3-2_all.deb && sudo apt update
+
+# Actualizar el sistema
+sudo apt update && sudo apt upgrade
+
+# Instalar ProtonVPN para el entorno de escritorio GNOME
+sudo apt install proton-vpn-gnome-desktop -f
+
+# Actualizar nuevamente el sistema
+sudo apt update && sudo apt upgrade
+
+rm protonvpn-beta-release_1.0.3-2_all.deb -f

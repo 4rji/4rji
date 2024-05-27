@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+if [ $# -ne 1 ]; then
+  echo "Uso: $0 <comando>"
+  exit 1
+fi
+
+comando="$1"
+
+# Busca la ubicación del comando binario
+ruta_comando=$(which "$comando")
+
+if [ -z "$ruta_comando" ]; then
+  echo "El comando '$comando' no se encontró en el sistema."
+  exit 1
+fi
+
+# Muestra la ubicación del comando binario
+echo "Ubicación de $comando:"
+echo "$ruta_comando"
+
+# Copia la ubicación del comando al portapapeles
+echo "$ruta_comando" | xclip -selection clipboard
+
+# Muestra el contenido del archivo binario
+#cat "$ruta_comando"
+batcat -l rb --paging=never "$ruta_comando"
+#y

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Disable non-secure communication paths
+sudo systemctl --now mask ftpd  
+sudo systemctl --now mask tftpd
+
+# Remove telnet and FTP
+if [ -x "$(command -v apt)" ]; then
+sudo apt remove -y telnet ftp ftpd tftp talk talkd tftp tftpd
+elif [ -x "$(command -v yum)" ]; then
+  yum remove -y telnet ftp ftpd tftp talk talkd tftp tftpd
+else
+  echo "Package manager not found. Please remove telnet, FTP, and related daemons manually."
+fi
+
+

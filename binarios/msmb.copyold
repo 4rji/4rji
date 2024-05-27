@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo "Este es el comando:"
+echo "sudo mount -t cifs //server_name/shared_directory mount_point -o username=username,password=password"
+echo ""
+echo "si no funciona, instalar cifs-utils "
+echo "samba o smb"
+echo ""
+# Solicitar los datos necesarios
+read -p "Ingrese el nombre del servidor o la dirección IP: " server_name
+read -p "Ingrese el nombre de usuario: " username
+read -s -p "Ingrese la contraseña: " password
+echo
+
+read -p "Ingrese el nombre del directorio compartido: " shared_directory
+read -p "Ingrese el nombre de la carpeta de montaje local: " mount_point
+
+# Verificar si el directorio de montaje local existe, de lo contrario, crearlo
+if [ ! -d "$mount_point" ]; then
+    echo "Creando el directorio de montaje local..."
+    mkdir -p "$mount_point"
+fi
+
+# Montar el servidor SMB
+sudo mount -t cifs //$server_name/$shared_directory $mount_point -o username=$username,password=$password
+
+# Verificar si el montaje tuvo éxito
+if [ $? -eq 0 ]; then
+    echo "Se ha montado con éxito el servidor SMB en $mount_point"
+    echo "$mount_point" | xclip -selection clipboard  # Copiar el directorio montado al portapapeles
+    echo "El directorio montado se ha copiado al portapapeles."
+else
+    echo "Hubo un problema al intentar montar el servidor SMB. Por favor, verifique sus credenciales y la conexión."
+fi
+

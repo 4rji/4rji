@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+# Crear un archivo temporal
+tempfile=$(mktemp)
+
+# Ejecutar el comando y almacenar la salida en el archivo temporal
+ssa1 > "$tempfile"
+
+# Puedes realizar otras operaciones con el archivo si es necesario
+# Por ejemplo, mostrar su contenido con cat
+cat "$tempfile"
+
+# No eliminar el archivo temporal, dejarlo en /tmp
+# Si deseas eliminarlo más tarde, puedes hacerlo manualmente

@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Preguntar por la palabra a reemplazar
+echo "¿Qué palabra deseas reemplazar?"
+read palabra_antigua
+
+# Preguntar por la ruta del archivo
+echo "Ingresa la ruta completa del archivo:"
+read ruta_archivo
+
+# Preguntar por la palabra de reemplazo
+echo "¿Con qué palabra deseas reemplazar '$palabra_antigua'?"
+read palabra_nueva
+
+# Realizar el reemplazo en el archivo especificado con sudo
+sudo sed -i "s/$palabra_antigua/$palabra_nueva/g" $ruta_archivo
+
+echo "Proceso completado."

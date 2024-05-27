@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+if [ -z "$1" ]; then
+    echo "Uso: $0 <archivo>"
+    exit 1
+fi
+
+archivo="$1"
+chmod +x "$archivo" 
+
+./"$archivo"

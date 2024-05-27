@@ -1,0 +1,32 @@
+#!/bin/bash
+
+echo "Selecciona el sistema para instalar QEMU y Virt-Manager:"
+echo "1. Debian"
+echo "2. Arch"
+echo "Presiona Enter para continuar con otras tareas del script."
+
+# Leer la elección del usuario
+read -p "Introduce tu elección (1/2), o presiona Enter para continuar: " eleccion
+
+case $eleccion in
+    1)
+        echo "Instalando en Debian..."
+        sudo apt install qemu-system virt-manager -y
+        ;;
+    2)
+        echo "Instalando en Arch..."
+        sudo pacman -Syu --noconfirm virt-manager
+        sudo pacman -Syu --noconfirm qemu
+        sudo systemctl enable libvirtd
+        sudo systemctl start libvirtd
+        ;;
+    *)
+        echo "Opción no válida o ninguna opción seleccionada. Continuando con el script..."
+        ;;
+esac
+
+
+echo ""
+echo "Para arreglar los permisos en carpetas ejecutar"
+echo ""
+echo "sudo chown -R nombredeusuario /ruta/a/carpeta"

@@ -1,0 +1,256 @@
+#!/bin/bash
+
+# Colores
+azul='\e[0;34m'
+reset='\e[0m'
+verde='\e[0;32m'
+
+omitir=false
+omitirPreguntas=false
+
+# Verificar las opciones -o y -p
+while getopts "op" opt; do
+    case $opt in
+        o)
+            omitir=true
+            ;;
+        p)
+            omitirPreguntas=true
+            ;;
+        \?)
+            echo "Opción inválida: -$OPTARG" >&2
+            exit 1
+            ;;
+    esac
+done
+
+
+if [[ $omitir != true ]]; then
+
+    #omitir -o
+
+    # Función para verificar si un paquete está instalado
+
+    paquetes=("sudo" "curl" "git" "kitty" "nano" "ifupdown" "sudo" "zsh" "xclip" "python3" "bat" "lsd" "tldr" "iproute2" "net-tools" "iputils-ping" "moreutils"  )
+
+    # Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+    paquete_instalado_apt() {  
+        dpkg -l "$1" | grep -q '^ii'  
+    }
+
+    # Función para verificar si un paquete está instalado (CentOS/RHEL)
+    paquete_instalado_yum() {
+        yum list installed "$1"  
+    }
+
+    # Función para verificar si un paquete está instalado (Fedora)
+    paquete_instalado_dnf() {
+        dnf list installed "$1" 
+    }
+
+    # Función para verificar si un paquete está instalado (Arch Linux)
+    paquete_instalado_pacman() {
+        pacman -Qi "$1" 
+    }
+
+    # Detectar el sistema operativo
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        OS=$ID
+    fi
+
+    # Instalar paquetes basados en el sistema operativo
+    for paquete in "${paquetes[@]}"; do
+        case $OS in
+            "debian"|"ubuntu"|"kali")
+                if ! paquete_instalado_apt "$paquete"; then
+                    echo "Instalando el paquete $paquete..."
+                    sudo apt install -y "$paquete" 
+                fi
+                ;;
+            "centos"|"rhel")
+                if ! paquete_instalado_yum "$paquete"; then
+                    echo "Instalando el paquete $paquete..."
+                    sudo yum install -y "$paquete" 
+                fi
+                ;;
+            "fedora")
+                if ! paquete_instalado_dnf "$paquete"; then
+                    echo "Instalando el paquete $paquete..."
+                    sudo dnf install -y "$paquete"
+                fi
+                ;;
+            "arch")
+                if ! paquete_instalado_pacman "$paquete"; then
+                    echo "Instalando el paquete $paquete..."
+                    sudo pacman -S --noconfirm "$paquete" 
+                fi
+                ;;
+            *)
+                ;;
+        esac
+    done
+
+    function mktem() {
+        new_dir=$(mktemp -d)
+        echo "Directorio creado en: $new_dir"
+        cd "$new_dir" || return
+        echo "Cambiado al directorio: $PWD"
+    }
+
+    # Aquí puedes llamar a la función mktem
+    mktem
+
+    git clone --depth 1  https://github.com/4rji/bina.git
+    cd bina
+
+
+    sudo cp -f binarios/* /usr/bin/
+
+      echo -e "${azul}binarios actualizados${reset}"
+      todou
+    cd
+   
+
+echo ""
+
+fi
+
+
+# ejemplo de como saltar la ejecución basado en las opciones
+if [[ $omitir == true ]]; then
+    # Lógica para manejar la opción -o
+    echo "Omitiendo algo debido a -o"
+fi
+
+# Asegurarse de no ejecutar la segunda parte si -p está presente
+if [[ $omitirPreguntas == true ]]; then
+    exit 0
+fi
+
+
+
+
+#segunda parte >
+
+ #Hasta aquí termina la omisión, esto es normal
+
+    echo ""
+    echo -e "${azul}_________________________________________________________${reset}"
+    echo ""
+
+    echo -e "${azul}Si hay: Error opening terminal: xterm-kitty, ejecutar:${reset}"
+    echo "export TERM=xterm"
+
+    
+    echo -e "${azul}_________________________________________________________${reset}"
+    echo ""
+
+
+# Colores
+verde='\e[0;32m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+
+echo ""
+echo -e "${verde}_________________________________________________________${reset}"
+
+# Pregunta al usuario
+read -n1 -p "$(echo -e ${verde}'¿Instalar las {}FUNCTION en la bash? (s/N): '${reset})" respuesta
+echo ""
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-n}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    #echo -e "${verde}Ejecutando bashfun...${reset}"
+    wget -O - https://raw.githubusercontent.com/4rji/4rji/main/binarios/bashfun | bash
+    # Aquí colocas el código para ejecutar bashfun
+else
+    echo ""
+fi
+
+
+# Colores
+verde='\e[0;32m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+echo -e "${azul}"
+echo "_________________________________________________________"
+echo ""
+
+# Pregunta al usuario
+read -n1 -p "$(echo -e ${verde}'¿Instalar todos alias? (s/N): '${reset})" respuesta
+echo ""
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-n}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    echo -e "${verde}Instalando todos los alias... ${reset}"
+    wget -O - https://raw.githubusercontent.com/4rji/4rji/main/alias.sh | bash 
+    #source alias.sh  # Ejecuta el script descargado
+
+    # Borrar archivos
+    #rm alias.sh
+
+    # Aquí colocas el código para ejecutar bashfun
+else
+    echo ""
+fi
+
+
+# Colores
+verde='\e[0;32m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+amarillo='\e[0;33m'
+reset='\e[0m'
+
+echo -e "${amarillo}"
+echo "_________________________________________________________"
+echo ""
+
+echo -e "${amarillo} ########### ALERTA.  #################${reset}"
+echo ""
+echo -e "${amarillo}Tarda mucho en instalarse${reset}"
+
+echo ""
+echo -e "${amarillo}_________________________________________________________${reset}"
+echo ""
+
+
+# Pregunta al usuario
+read -n1 -p "$(echo -e ${verde}'¿Quieres instalar  2-arji?  (s/N): '${reset})" respuesta
+echo ""
+
+# Define un valor predeterminado si el usuario presiona Enter
+respuesta=${respuesta:-n}
+
+# Convierte la respuesta a minúsculas para facilitar la comparación
+respuesta=$(echo $respuesta | tr '[:upper:]' '[:lower:]')
+
+# Verifica la respuesta
+if [ "$respuesta" == "s" ]; then
+    wget -O - https://raw.githubusercontent.com/4rji/4rji/main/2-4rji.sh | bash   
+   # source alias.sh  # Ejecuta el script descargado
+
+    #borrar archivos
+    #rm 2-4rji.sh
+else
+    echo ""
+fi
+
+todou
+

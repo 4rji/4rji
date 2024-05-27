@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo ""
+# Tomar el nombre del programa del primer argumento del script
+programa=$1
+
+if [ -z "$programa" ]
+then
+  echo "Por favor, especifica el nombre del programa como argumento del script."
+  echo "Uso: $0 nombre_del_programa"
+  exit 1
+fi
+
+# Buscar el programa con dpkg
+echo "****** Buscando $programa con dpkg... ******"
+dpkg -l | grep $programa
+
+echo ""
+echo ""
+
+# Buscar el programa con apt
+echo "***** Buscando $programa con apt... *******"
+apt list --installed | grep $programa
+
+echo ""
+
+# Verificar si el programa tiene un servicio asociado en systemctl
+echo "***** Verificando si $programa tiene un servicio en systemctl...  *****"
+systemctl list-unit-files | grep $programa
+#systemctl | grep $programa

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Definir las opciones y sus URLs
+declare -A options
+options["herralias"]="https://raw.githubusercontent.com/4rji/4rji/main/alias.sh"
+options["RaspberryZero"]="https://raw.githubusercontent.com/4rji/4rji/main/binarios/zeroinst"
+options["CCDC"]="https://raw.githubusercontent.com/4rji/ccdc/main/ccdc.sh"
+options["torrelay"]="https://raw.githubusercontent.com/4rji/4rji/main/binarios/torrelay"
+options["herrabin"]="https://raw.githubusercontent.com/4rji/4rji/main/binarios/herrabin"
+
+
+
+# Mostrar las opciones en un menú
+echo "Cual script quieres descargar y ejecutar:"
+echo ""
+select opt in "${!options[@]}" "Salir"; do
+    case $opt in
+        "Salir")
+            echo "Saliendo..."
+            exit 0
+            ;;
+        *)
+            if [[ -n "${options[$opt]}" ]]; then
+                URL_elegida="${options[$opt]}"
+                echo "Ejecutando wget -O - $URL_elegida | bash"
+                wget -O - "$URL_elegida" | bash
+                break
+            else
+                echo "Opción inválida. Intenta de nuevo."
+            fi
+            ;;
+    esac
+done
+
+
+echo "
+
+tinyurl.com/herratodo
+https://raw.githubusercontent.com/4rji/4rji/main/binarios/tinyurl
+
+tinyurl.com/zeroinst
+https://raw.githubusercontent.com/4rji/4rji/main/binarios/zeroinst
+
+tinyurl.com/ccdcmsp
+https://raw.githubusercontent.com/4rji/ccdc/main/ccdc.sh
+
+tinyurl.com/torrelay
+https://raw.githubusercontent.com/4rji/4rji/main/binarios/torrelay
+
+tinyurl.com/herrabin
+https://raw.githubusercontent.com/4rji/4rji/main/binarios/herrabin"

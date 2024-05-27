@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+# Crear el archivo /etc/mctcbanner
+sudo touch /etc/mctcbanner
+
+# Establecer permisos y propietario
+sudo chmod 644 /etc/mctcbanner
+sudo chown root: /etc/mctcbanner
+
+# Respaldo de los archivos issue y motd
+sudo mv /etc/issue /etc/issue.orig
+sudo mv /etc/motd /etc/motd.orig
+
+# Agregar el texto al archivo /etc/mctcbanner
+cat <<EOT | sudo tee /etc/mctcbanner
+UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+  
+You must have explicit, authorized permission to access or configure this device.
+Unauthorized attempts and actions to access or use this system may result in civil
+and/or criminal penalties. All activities performed on this device are logged and
+monitored.
+EOT
+
+# Crear enlaces simbólicos
+sudo ln -s /etc/mctcbanner /etc/issue
+sudo ln -s /etc/mctcbanner /etc/motd

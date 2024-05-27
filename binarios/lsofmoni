@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import subprocess
+
+counter = 0
+while True:
+    # Executes the 'sshmoni' binary. Make sure 'sshmoni' is accessible in the PATH,
+    # or provide the absolute path to the binary.
+    subprocess.run(["lsofmonitor"])
+    
+    counter += 1
+    print(f"Scan number: {counter}")

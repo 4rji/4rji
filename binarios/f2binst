@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("rsyslog" "fail2ban")
+
+paquete_instalado() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do
+    if paquete_instalado "$paquete"; then
+        echo "El paquete $paquete ya está instalado."
+    else
+        echo "Instalando el paquete $paquete..."
+        sudo apt-get install -y "$paquete"
+    fi
+done
+
+sleep 1
+
+
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+
+# Ruta al archivo jail.local de Fail2Ban
+JAIL_FILE="/etc/fail2ban/jail.local"
+
+# Verificar si el archivo existe
+if [[ -f "$JAIL_FILE" ]]; then
+    # Crear una copia de seguridad del archivo original
+    sudo cp "$JAIL_FILE" "${JAIL_FILE}.bak"
+
+    # Comentar las líneas especificadas
+    sudo sed -i '/^\[sshd\]/,/^backend = %\(sshd_backend\)s/s/^/#/' "$JAIL_FILE"
+
+    # Añadir las nuevas líneas al principio del archivo
+    sudo sed -i '1 i\[sshd]\nenabled = true\nport = ssh\nfilter = sshd\nlogpath = /var/log/auth.log\nmaxretry = 2\n' "$JAIL_FILE"
+
+    echo "Modificaciones aplicadas con éxito."
+else
+    echo "El archivo $JAIL_FILE no existe."
+fi
+
+
+sleep 1
+
+
+#esto de arriba se cambio por el script binario f2u 
+#echo "alias ub='read -p "Ingresa la dirección IP que deseas remover del jail: " ip_address && sudo fail2ban-client set sshd unbanip $ip_address'" >> ~/.bashrc
+#echo 'alias ub="read -p '\''Ingresa la dirección IP que deseas remover del jail: '\'' ip_address && sudo fail2ban-client set sshd unbanip \$ip_address"' >> ~/.zshrc
+
+
+# Iniciar el servicio Fail2ban
+sudo systemctl enable --now fail2ban
+#sudo systemctl start fail2ban
+
+
+#security onion o para enviar log a el servidor
+#read -p "Ingrese la dirección IP de Security Onion: " ip_address
+#echo "*.* @$ip_address" | sudo tee -a /etc/rsyslog.conf >/dev/null
+#sudo systemctl restart fail2ban
+#sudo systemctl restart rsyslog
+
+
+#Tuve problemas en la instalacion porque ssh no generaba logs o el sistema
+#se agrego la instsalacion de rsyslog. 
+
+#este script muestra los comandos de abajo
+f2bcomm
+
+echo ""
+
+echo "IMPORTANTE"
+echo ""
+
+echo "no se te olvide cambiar los tiempos de jail con f2mod alias"
+echo "para tiempo ilimitado: bantime = -1"
+echo "para ver los comandos de nuevo f2bcomm"
+#Comandos de fail2ban f2b
+
+#f2b = banea una IP
+#f2u = remueve la IP de jail
+#f2j = muestra jail
+
+#f2mod = modifica archivo de configuracion y reiniciar despues
+#f2r = reinicia f2ban
+#f2s = status 
+#rs2 = creo para security onion 

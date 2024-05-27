@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Intervalo en segundos para verificar nuevas conexiones
+INTERVALO=5
+
+# Colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m' # Sin Color
+
+# Línea de separación
+SEPARATOR=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -)
+
+while true; do
+  lsof -i -P -n | awk 'NR==1 || !seen[$0]++' > /tmp/conexiones_actuales
+
+  if [ -f /tmp/conexiones_previas ]; then
+    nuevas_conexiones=$(comm -13 /tmp/conexiones_previas /tmp/conexiones_actuales)
+
+    if [ ! -z "$nuevas_conexiones" ]; then
+      echo -e "${GREEN}Nuevas conexiones detectadas:${NC}"
+      echo "$SEPARATOR"
+      echo -e "${RED}$nuevas_conexiones${NC}"
+      echo "$SEPARATOR"
+      echo ""
+    fi
+  fi
+
+  mv /tmp/conexiones_actuales /tmp/conexiones_previas
+  sleep $INTERVALO
+done
+

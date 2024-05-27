@@ -1,0 +1,67 @@
+#!/bin/bash
+
+tempfile=$(mktemp)
+
+cleanup() {
+    # Esta función se ejecutará al finalizar el script para eliminar el archivo temporal.
+    rm -f "$tempfile"
+}
+
+trap cleanup EXIT
+
+while true; do
+    echo "Choose a command to execute:"
+    echo ""
+    echo "1. Users with interactive shell grep -v '/usr/sbin/nologin'"
+    echo "2. Users with interactive shell cat /etc/passwd"
+    echo "3. Show content of /etc/passwd with 'bash'"
+    echo "4. Change a user's shell to /usr/sbin/nologin"
+    echo "5. System accounts (less than uid 1000)"
+    echo "6. System accounts (more than uid 1000)"
+    echo "7. See getcap"
+    echo "8. Exit and display commands"
+    echo ""
+
+    read -n1 -p "Enter your choice: " input
+    echo "" # Nueva línea después de la entrada para mejor claridad
+
+    case $input in
+        1)
+            awk -F':' '{if ($7 != "/usr/sbin/nologin") print $1 " : " $7}' /etc/passwd > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        2)
+            grep -v '/usr/sbin/nologin' /etc/passwd > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        3)
+            grep 'bash' /etc/passwd --color > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        4)
+            echo "Enter the username to change to nologin:"
+            read username
+            sudo usermod -s /usr/sbin/nologin $username
+            ;;
+        5)
+            awk -F: '$3 < 1000 {print $1, $3}' /etc/passwd > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        6)
+            awk -F: '($3 >= 1000) {print $1}' /etc/passwd > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+        7)
+            getcap -r / 2>/dev/null > "$tempfile"
+            batcat -l rb "$tempfile"
+            ;;
+
+        8)
+            echo "Exiting..."
+            break
+            ;;
+        *)
+            echo "Invalid option."
+            ;;
+    esac
+done

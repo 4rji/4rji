@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Ubicación del archivo de inventario de Ansible
+ARCHIVO_INVENTARIO="$HOME/.ssh/ansible_hosts"
+
+echo "¿Dónde deseas ejecutar el comando?"
+echo "1. Todos los hosts"
+echo "2. Un host específico"
+read -p "Selecciona una opción (1/2): " OPCION
+
+if [ "$OPCION" = "2" ]; then
+    echo "Hosts disponibles:"
+    # Obtener solo las direcciones IP o nombres de host del archivo de inventario, excluyendo grupos y variables
+    declare -a hosts
+    while IFS= read -r line; do
+        if [[ $line =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ || $line =~ ^[a-zA-Z0-9_.-]+ ]]; then
+            hosts+=("$line")
+        fi
+    done < "$ARCHIVO_INVENTARIO"
+    
+    for i in "${!hosts[@]}"; do
+        echo "$((i+1)). ${hosts[$i]%% *}"  # Muestra solo la dirección IP o el nombre del host
+    done
+
+    # Pedir al usuario que elija un host
+    read -p "Elige el número del host: " HOST_NUM
+    HOST_SELECCIONADO="${hosts[$((HOST_NUM-1))]}"
+    HOST_SELECCIONADO="${HOST_SELECCIONADO%% *}"  # Extrae solo la dirección IP o el nombre del host
+    
+    # Pedir al usuario el comando a ejecutar
+    read -p "Ingresa el comando que deseas ejecutar en el host $HOST_SELECCIONADO: " COMANDO
+    
+    echo "El comando a ejecutar es en el host seleccionado: $HOST_SELECCIONADO"
+    TARGET="$HOST_SELECCIONADO"
+else
+    # Pedir al usuario el comando a ejecutar en todos los hosts
+    read -p "Ingresa el comando que deseas ejecutar en todos los hosts: " COMANDO
+    
+    echo "El comando a ejecutar es en todos los hosts"
+    TARGET="all"
+fi
+
+# Mostrar y pedir confirmación para ejecutar el comando
+echo "ansible $TARGET -i $ARCHIVO_INVENTARIO -m shell -a '$COMANDO'"
+read -p "¿Quieres enviar la orden? (s/n): " CONFIRMACION
+
+if [ "$CONFIRMACION" = "s" ]; then
+    # Ejecutar el comando de Ansible
+    ansible $TARGET -i $ARCHIVO_INVENTARIO -m shell -a "$COMANDO"
+else
+    echo "Operación cancelada."
+fi

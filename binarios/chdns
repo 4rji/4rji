@@ -1,0 +1,54 @@
+#!/bin/bash
+echo ""
+echo ""
+echo "Current DNS"
+
+echo ""
+cat /etc/resolv.conf
+echo ""
+
+# Function to change DNS to Google
+change_dns_google() {
+    echo "Commenting all lines in /etc/resolv.conf"
+    sudo sed -i 's/^/#/' /etc/resolv.conf
+    echo "nameserver 8.8.8.8" | sudo tee -a /etc/resolv.conf
+    echo "DNS changed to Google (8.8.8.8)"
+}
+
+# Function to change DNS to a specific IP address
+change_dns_custom() {
+    read -p "Enter the desired DNS IP address: " user_ip
+    echo "Commenting all lines in /etc/resolv.conf"
+    sudo sed -i 's/^/#/' /etc/resolv.conf
+    echo "nameserver $user_ip" | sudo tee -a /etc/resolv.conf
+    echo "DNS changed to $user_ip"
+}
+
+# Function to lock the /etc/resolv.conf file
+lock_dns() {
+    sudo chattr +i /etc/resolv.conf
+    echo "The /etc/resolv.conf file has been locked."
+}
+
+# Function to unlock the /etc/resolv.conf file
+unlock_dns() {
+    sudo chattr -i /etc/resolv.conf
+    echo "The /etc/resolv.conf file has been unlocked."
+}
+
+# Selection menu
+echo "Select an option:"
+echo "1. Change DNS to Google (8.8.8.8)"
+echo "2. Change DNS to a custom IP address"
+echo "3. Lock DNS"
+echo "4. Unlock DNS"
+read -p "Option: " option
+
+# Execute the selected option
+case $option in
+    1) change_dns_google ;;
+    2) change_dns_custom ;;
+    3) lock_dns ;;
+    4) unlock_dns ;;
+    *) echo "Invalid option. Exiting." ;;
+esac

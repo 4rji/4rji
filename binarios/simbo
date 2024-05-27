@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# Ask the user if they want to use the default script path (/usr/bin/)
+read -p "Do you want to use the default script path (/usr/bin/)? [c]hange/enter default: " use_default
+
+if [[ $use_default == "c" ]]; then
+    read -p "Enter the full path of the script: " script_path
+else
+    script_path="/usr/bin/"
+    read -p "Script name: " script_name
+    script_path+="$script_name"
+fi
+
+# Ask the user how they want to name the service
+read -p "How do you want to name the service? (Enter the service name without the .service extension): " service_name
+
+# Ask the user for the execution frequency in minutes
+read -p "How often do you want to execute the script (in minutes)? " frequency
+
+# Validate user input
+if ! [[ "$frequency" =~ ^[0-9]+$ ]]; then
+    echo "Error: Please enter a valid integer for the frequency."
+    exit 1
+fi
+
+# Generate the content for the .service file
+service_content="[Unit]
+Description=Backup from system admin $script_path
+After=network-online.target
+Wants=network-online.target
+
+
+[Service]
+Type=simple
+ExecStart=$script_path
+
+[Install]
+WantedBy=multi-user.target
+"
+
+# Save the content to a .service file
+echo "$service_content" | sudo tee "/etc/systemd/system/$service_name.service" > /dev/null
+
+# Generate the content for the .timer file
+timer_content="[Unit]
+Description=Timer to execute the $service_name service
+
+[Timer]
+OnUnitActiveSec=${frequency}min
+AccuracySec=1min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+"
+
+# Save the content to a .timer file
+echo "$timer_content" | sudo tee "/etc/systemd/system/$service_name.timer" > /dev/null
+
+# Notify the user
+echo ""
+echo "The files '$service_name.service' and '$service_name.timer' have been created successfully."
+echo "Reloading systemd to detect the changes..."
+sudo systemctl daemon-reload
+echo "Systemd reloaded successfully."
+echo ""
+
+# Show the location of the created files
+echo "The files have been created in the following location:"
+ls  "/etc/systemd/system/"
+echo ""
+echo "enabled and started"
+sudo systemctl enable "$service_name"
+sudo systemctl start "$service_name"
+
+# Function to show the status of the created service if the user desires
+show_service_status() {
+    read -n1 -p "CTL the service? [\e[32ms\e[0m/n]: " answer
+    if [[ "$answer" == "s" ]]; then
+                
+        ctl "$service_name"
+    fi
+}
+
+# Call the function to show the status of the service
+show_service_status
+
+echo ""
+echo "Directory of the files:"
+echo "/etc/systemd/system/"

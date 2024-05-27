@@ -1,0 +1,51 @@
+#!/bin/bash
+
+echo ""
+
+
+
+
+# Check crontabs for all system users and save to a file
+output_file="$HOME/crontall"
+echo "Crontabs of all system users:" > "$output_file"
+for username in $(cut -d: -f1 /etc/passwd); do
+    echo "User: $username" >> "$output_file"
+    sudo crontab -u $username -l >> "$output_file" 2>&1
+    echo "" >> "$output_file"
+done
+
+echo ""
+# Display the content of the file
+cat "$output_file" | less
+ 
+ echo ""
+
+echo "crontall file created"
+# Show the path of the file
+echo "Path of crontall: $output_file"
+
+
+
+
+
+
+echo ""
+echo ""
+echo ""
+
+
+# Ask if the user wants to delete all crontabs
+read -p "Do you want to delete crontabs for all users? (y/[enter]) " answer
+case $answer in
+    [Yy]* )
+        for username in $(cut -d: -f1 /etc/passwd); do
+            echo "Deleting crontab for user: $username"
+            sudo crontab -u $username -r
+        done
+        echo "All crontabs have been deleted."
+        ;;
+    * )
+        echo "Crontabs not deleted."
+        ;;
+esac
+

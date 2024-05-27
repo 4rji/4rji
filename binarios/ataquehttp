@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Descomprime el archivo ZIP
+unzip -d /tmp /usr/bin/GoldenEye-master.zip
+
+# Cambia al directorio descomprimido
+cd /tmp/GoldenEye-master
+
+# Asegura que el script Python tiene permisos de ejecución
+chmod +x goldeneye.py
+
+echo "Ejecuta el script Python"
+echo "./goldeneye.py http://IP"

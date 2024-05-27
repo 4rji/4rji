@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Color codes
+green="\e[32m"
+yellow="\e[33m"
+reset="\e[0m"
+
+
+# Agregar un renglón de separación
+echo -e "\e[33m" # Amarillo
+echo ""
+ifconfig | grep inet | grep -v 127.0.0.1 | sed 's/^/    /'
+echo -e "\e[31m" # Rojo
+echo ""
+
+
+
+
+# Funci  n para obtener la interfaz de red
+get_network_interface() {
+    # Verificar si wlan0 existe
+    if ifconfig wlan0 &>/dev/null; then
+        echo "wlan0"
+    else
+        # Obtener el nombre de la interfaz de red
+        interface=$(ip route | awk '/default/ {print $5}')
+        echo "$interface"
+    fi
+}
+
+# Obtener la interfaz de red
+network_interface=$(get_network_interface)
+
+# Mostrar la direcci  n IP local
+#echo "${yellow}Direcci  n IP local:${reset}"
+ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); printf "\t\t\t\t%s: %s\n", $NF, a[1]}'
+echo ""
+#echo ""
+echo -e "\e[34m                  ___________________________________________________\e[0m"
+# Agregamos el mensaje con la IP local
+#echo -e "\n\t\t\t\tTu IP es: $(/usr/sbin/ifconfig "$network_interface" | grep "inet " | awk '{print $2}')\n"
+#echo -e "\n\t\t\t\tTu IP es: $(/usr/sbin/ifconfig "$network_interface" | grep "inet " | awk '{print "("$1")", $2}')\n"
+echo -e "\n\t\t\t\tTu IP de $network_interface es: $(/usr/sbin/ifconfig "$network_interface" | grep "inet " | awk '{print $2}')\n"
+

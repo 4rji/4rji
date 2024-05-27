@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Comprueba si se proporcionó un argumento al script
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 <archivo.ova>"
+    exit 1
+fi
+
+# Nombre del archivo OVA proporcionado como argumento
+archivo_ova="$1"
+
+# Extrae el contenido del archivo OVA
+echo "Extrayendo el archivo $archivo_ova..."
+tar -xvf "$archivo_ova"
+
+# Encuentra el archivo VMDK dentro de los archivos extraídos
+archivo_vmdk=$(ls *.vmdk)
+
+if [ -z "$archivo_vmdk" ]; then
+    echo "No se encontró ningún archivo .vmdk después de extraer $archivo_ova"
+    exit 1
+fi
+
+# Define el nombre del archivo de salida QCOW2
+archivo_qcow2="${archivo_vmdk%.vmdk}.qcow2"
+
+# Convierte el VMDK a QCOW2
+echo "Convirtiendo $archivo_vmdk a formato QCOW2 ($archivo_qcow2)..."
+qemu-img convert -f vmdk "$archivo_vmdk" -O qcow2 "$archivo_qcow2"
+
+# Comprueba si la conversión fue exitosa
+if [ $? -eq 0 ]; then
+    echo "Conversión completada con éxito."
+    echo "Archivo resultante: $archivo_qcow2"
+else
+    echo "Hubo un error durante la conversión."
+fi

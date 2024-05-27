@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Instalar Chrony en sistemas que usan apt
+#sudo apt-get update
+sudo apt-get install chrony -f
+
+# Reiniciar el servicio chrony
+sudo systemctl restart chrony
+
+# Verificar el estado de chrony
+sudo systemctl status chrony

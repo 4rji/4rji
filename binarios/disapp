@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Check if additional arguments are provided
+if [ "$#" -eq 0 ]; then
+    echo "Agrega al final del comando *distro -- aplicación*"
+    echo "Ejemplo: disapp arch -- opera (para abrir opera)"
+else
+    # Execute distrobox-enter with provided arguments
+    distrobox-enter -T -n "$@"
+fi
+

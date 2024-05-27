@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Mostrar las redes WiFi disponibles
+echo "Redes WiFi disponibles:"
+iwconfig
+
+# Pedir al usuario el nombre de la red SSID
+echo -n "Por favor, ingrese el nombre de la red SSID: "
+read ssid
+
+# Pedir al usuario la contraseña de la red
+echo -n "Por favor, ingrese la contraseña de la red: "
+read -s password
+echo
+
+# Pedir al usuario el conector wifi a utilizar
+echo -n "Por favor, ingrese el nombre del conector WiFi (por ejemplo, wlan0, wlan1): "
+read ifname
+
+# Conectar a la red WiFi
+sudo nmcli device wifi connect "$ssid" password "$password" ifname "$ifname"
+

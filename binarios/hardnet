@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Backup /etc/sysctl.conf
+    sudo cp /etc/sysctl.conf /etc/sysctl.conf.backup
+echo ""
+
+
+# Ask if the user wants to modify /etc/sysctl.conf for Network Hardening
+read -p "Do you want to perform Network Hardening in /etc/sysctl.conf? (y/n): " response
+
+# Verify the response
+if [[ $response == "y" ]]; then
+    
+    # Adjustments in /etc/sysctl.conf
+    echo "
+net.ipv4.conf.all.accept_source_route=0
+net.ipv4.ip_forward=0
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+net.ipv4.conf.all.accept_redirects=0
+net.ipv4.conf.all.secure_redirects=0
+net.ipv4.conf.all.send_redirects=0
+net.ipv4.conf.all.rp_filter=2
+net.ipv4.icmp_echo_ignore_all = 0
+" | sudo tee -a /etc/sysctl.conf
+
+    # Ask if the user wants to restart the service
+    read -p "Do you want to restart the service now? (y/n): " restart_response
+
+    # Verify the response about restarting
+    if [[ $restart_response == "y" ]]; then
+        sudo sysctl --system
+    else
+        echo "Operation cancelled. Changes will require a reboot to take effect."
+    fi
+
+else
+    echo "Operation cancelled. No changes were made to /etc/sysctl.conf."
+fi
+echo ""
+echo ""
+echo "check changes on:"
+echo "cat /etc/sysctl.conf"
+echo ""
+echo "backup on:"
+echo "/etc/sysctl.conf.backup"
+echo ""
+echo ""
+echo ""
+echo "**************** END ****************"

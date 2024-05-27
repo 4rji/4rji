@@ -1,0 +1,20 @@
+
+#!/bin/bash
+
+# Download the ProtonVPN package
+wget https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-2_all.deb
+
+# Install the package
+sudo dpkg --install protonvpn-stable-release_1.0.3-2_all.deb
+
+# Verify the package integrity
+echo "c68a0b8dad58ab75080eed7cb989e5634fc88fca051703139c025352a6ee19ad  protonvpn-stable-release_1.0.3-2_all.deb" | sha256sum --check -
+
+# Update package lists
+sudo apt-get update
+
+# Install ProtonVPN GNOME desktop application
+sudo apt-get install proton-vpn-gnome-desktop
+
+# Remove the downloaded package file
+rm protonvpn-stable-release_1.0.3-2_all.deb

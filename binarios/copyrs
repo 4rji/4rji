@@ -1,0 +1,83 @@
+#!/bin/bash
+
+echo
+echo "============================================================"
+echo "                       File Transfer                        "
+echo "============================================================"
+echo
+
+# Check if a file name is provided as an argument
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 filename"
+    echo ""
+    exit 1
+fi
+
+# The file to be transferred
+FILE=$1
+
+echo ""
+
+CONFIG_FILE="$HOME/.ssh/config"
+declare -A host_user_map
+declare -A host_ip_map
+declare -A host_port_map
+
+# Check if SSH config file exists
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    echo "SSH configuration file does not exist."
+    echo ""
+    exit 1
+fi
+
+# Read hosts, usernames, hostnames, and ports from SSH config file
+current_host=""
+while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ $line =~ ^Host\ +([^*]+)$ ]]; then
+        current_host=${BASH_REMATCH[1]}
+    elif [[ $current_host != "" ]]; then
+        if [[ $line =~ ^\ +User\ +(.+)$ ]]; then
+            host_user_map["$current_host"]=${BASH_REMATCH[1]}
+        elif [[ $line =~ ^\ +HostName\ +(.+)$ ]]; then
+            host_ip_map["$current_host"]=${BASH_REMATCH[1]}
+        elif [[ $line =~ ^\ +Port\ +(.+)$ ]]; then
+            host_port_map["$current_host"]=${BASH_REMATCH[1]}
+        fi
+    fi
+done < "$CONFIG_FILE"
+
+if [ ${#host_user_map[@]} -eq 0 ]; then
+    echo "No hosts found in the SSH configuration file."
+    exit 1
+fi
+
+echo "Available hosts for transfer:"
+select host_choice in "${!host_user_map[@]}"; do
+    if [[ -n "$host_choice" ]]; then
+        echo "You have selected: $host_choice"
+        break
+    else
+        echo "Invalid selection. Please try again."
+    fi
+done
+
+USER="${host_user_map[$host_choice]}"
+IP="${host_ip_map[$host_choice]}"
+PORT="${host_port_map[$host_choice]:-22}" # Default to port 22 if not specified
+
+DESTINATION="$USER@$IP"
+
+echo "------------------------------------------------------------"
+echo ""
+echo "Transferring '$FILE' to $DESTINATION  "
+echo "rsync -avz --progress -e "ssh -p $PORT" $FILE $DESTINATION:~/"
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+
+# Execute rsync command
+rsync -avz --progress -e "ssh -p $PORT" $FILE $DESTINATION:~/
+
+echo ""
+echo "-----------------------------------------------------"
+echo ""

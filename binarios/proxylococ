@@ -1,0 +1,113 @@
+#!/bin/bash
+echo ""
+# Preguntar al usuario qué subnet desea utilizar
+read -p "¿Cuál es la subnet del agente (ejemplo: 192.168.1.0/24)? " selected_subnet
+echo ""
+
+echo "__________________________________________________"
+echo ""
+echo ""
+echo "sudo ip route add $selected_subnet dev ligolo"
+echo ""
+
+# Preguntar al usuario si desea ejecutar el comando
+read -n1 -p "¿Desea agregar la ruta? [s/N]: " execute
+echo ""
+
+echo ""
+# Ejecutar el comando si el usuario lo desea
+if [[ $execute =~ ^[Ss]$ ]]; then
+    sudo ip route add $selected_subnet dev ligolo
+    echo ""
+    echo "Comando ejecutado."
+    echo ""
+else
+    echo "Comando no ejecutado."
+fi
+
+echo ""
+
+echo ""
+echo "______________________  Siguiente  ___________________________________"
+
+echo ""
+echo ""
+
+
+echo ""
+
+# Preguntar si desea ver los comandos de ejecución de nuevo
+read -n1 -p "¿Desea ver los comandos de ejecución de nuevo? [s/N]: " view_commands
+echo ""
+if [[ $view_commands =~ ^[Ss]$ ]]; then
+    echo ""
+    echo ""
+    echo ""
+    echo "          AGENTE"
+    echo ""
+    echo "./agent -connect IP:11601 -ignore-cert"
+    
+    echo ""
+    echo "          Proxy "
+    echo "./proxy -selfcert"
+    echo ""
+fi
+echo ""
+echo "______________________  Siguiente  ___________________________________"
+
+echo ""
+echo ""
+echo ""
+
+# Preguntar si desea ver las instrucciones
+read -n1 -p "¿Comandos de PROXY ? [s/N]: " view_instructions
+echo ""
+if [[ $view_instructions =~ ^[Ss]$ ]]; then
+    echo ""
+    echo "# Mostrar el mensaje 'PROXY'"
+    echo "Comandos para PROXY"
+    echo ""
+    echo "1.- Regresar a la sesión del proxy"
+    echo "session"
+    echo ""
+    echo "Para empezar el proxy"
+    echo "start"
+    echo ""
+    echo "__________"
+    echo ""
+    echo "La subnet ya se agregó entonces ya estaría lista"
+    echo ""
+    echo "Para borrar la subnet :"
+    echo "sudo ip link delete ligolo"
+    echo ""
+fi
+echo ""
+
+
+echo "______________________  Siguiente  ___________________________________"
+echo ""
+echo ""
+echo ""
+
+
+# Preguntar si desea ver cómo usar crontabs
+read -n1 -p "¿Desea ver cómo usar crontabs? [s/N]: " view_crontabs
+echo ""
+if [[ $view_crontabs =~ ^[Ss]$ ]]; then
+    echo ""
+    echo "Agregar a crontab"
+    echo "crontab -e"
+    echo ""
+    echo "* * * * * cd /home/ass && ./agent -connect IP:11601 -ignore-cert"
+    echo ""
+    echo ""
+    echo "con 'at' "
+    echo ""
+    echo "'/home/ass/agent -connect IP:11601 -ignore-cert' | at now + 1 minute"
+    echo ""
+fi
+echo ""
+
+echo "______________________  FIN. ___________________________________"
+echo ""
+echo ""

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Función para mostrar el mensaje de ayuda y preguntar si desea continuar
+show_help_and_confirm() {
+    echo
+    echo "El comando que este script ejecuta es:"
+    echo "sudo nano /etc/systemd/logind.conf"
+    echo
+    echo "Presione Enter para continuar o 'c' para salir."
+
+    # Preguntar al usuario si desea continuar
+    read -p "Deseas continuar [c/S] " response
+
+    # Convertir la respuesta a minúsculas
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    # Si la respuesta es 'c', salir del script
+    if [ "$response" == "c" ]; then
+        echo "Saliendo del script."
+        exit 0
+    fi
+}
+
+# Verificar si se pasó el argumento -h
+if [ "$1" == "-h" ]; then
+    show_help_and_confirm
+fi
+
+
+sudo nano /etc/systemd/logind.conf
+
+echo "Restart the service now? (Press S for yes, Enter for no)"
+read -k1 input
+if [[ $input == "S" || $input == "s" ]]; then
+    sudo systemctl restart systemd-logind
+    echo "systemd-logind service restarted."
+else
+    echo "You chose not to restart the service. Changes will take effect on next reboot."
+fi

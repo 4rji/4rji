@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Paths to the necessary files
+current_now_path="/sys/class/power_supply/BAT0/current_now"
+voltage_now_path="/sys/class/power_supply/BAT0/voltage_now"
+status_path="/sys/class/power_supply/BAT0/status"
+
+# Read the current, voltage, and status
+current_now=$(cat "$current_now_path")
+voltage_now=$(cat "$voltage_now_path")
+status=$(cat "$status_path")
+
+# Convert microamperes to amperes and microvolts to volts
+current_in_amperes=$(echo "scale=6; $current_now / 1000000" | bc)
+voltage_in_volts=$(echo "scale=6; $voltage_now / 1000000" | bc)
+
+# Calculate power in watts
+power_in_watts=$(echo "$current_in_amperes * $voltage_in_volts" | bc)
+
+echo "Battery Status: $status"
+echo "Power: $power_in_watts Watts"

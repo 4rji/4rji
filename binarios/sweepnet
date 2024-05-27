@@ -1,0 +1,13 @@
+#!/bin/zsh
+set -x 
+
+for i in {1..255}
+do
+  for j in {1..255}
+  do
+    sweep $1.$i.$j 2>/dev/null
+  done
+done
+
+set +x
+

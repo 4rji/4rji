@@ -1,0 +1,174 @@
+#!/bin/bash
+
+# Colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # Sin Color
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Solicita al usuario el nombre de la máquina virtual a crear
+read -p "Introduce el nombre de la máquina virtual a crear: " vm_name
+
+# Verifica si la máquina virtual ya existe
+if sudo virsh dominfo "$vm_name" > /dev/null 2>&1; then
+    echo -e "${RED}La máquina virtual '${vm_name}' ya existe.${NC}"
+    read -n1 -p "¿Deseas eliminar la máquina virtual existente? [S/n] " respuesta_eliminar
+    echo
+    if [[ $respuesta_eliminar =~ ^[Ss]$ ]]; then
+        sudo virsh destroy "$vm_name"
+        sudo virsh undefine "$vm_name"
+        echo -e "${BLUE}La máquina virtual '${vm_name}' ha sido eliminada.${NC}"
+    else
+        echo -e "${RED}Operación cancelada.${NC}"
+        exit 1
+    fi
+fi
+
+# Solicita configuraciones específicas
+read -p "Introduce la cantidad de RAM en MiB (ej. 2048): " ram
+read -p "Introduce el número de núcleos de CPU (ej. 2): " cpu
+
+
+
+
+
+
+
+# Define colores para la salida
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+# Lista de opciones
+echo "Selecciona la imagen a descargar:"
+echo "1) Debian"
+echo "2) Kali"
+read -p "Introduce tu elección (1/2): " opcion
+
+# Variables de URL de imagen y nombre de archivo
+image_url=""
+file_name=""
+
+case $opcion in
+    1)
+        echo -e "${GREEN}Descargando la imagen de Debian...${NC}"
+        image_url="https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.qcow2"
+        file_name="debian-12-nocloud-amd64.qcow2"
+        sudo wget -P /var/lib/libvirt/images/ "$image_url"
+        ;;
+    2)
+        echo -e "${GREEN}Descargando y descomprimiendo la imagen de Kali...${NC}"
+        image_url="https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-qemu-amd64.7z"
+        file_name="kali-linux-2023.4-qemu-amd64.qcow2" # Asume el nombre después de descomprimir
+        wget "$image_url"
+        sudo 7z x "kali-linux-2023.4-qemu-amd64.7z" -o/var/lib/libvirt/images/
+        ;;
+    *)
+        echo "Opción no válida."
+        exit 1
+        ;;
+esac
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Ajusta la ruta del archivo en el archivo vm.xml
+sudo bash -c "cat > /etc/libvirt/qemu/$vm_name.xml <<EOF
+<domain type='kvm'>
+  <name>$vm_name</name>
+  <memory unit='KiB'>$((ram * 1024))</memory>
+  <currentMemory unit='KiB'>$((ram * 1024))</currentMemory>
+  <vcpu placement='static'>$cpu</vcpu>
+  <os>
+    <type arch='x86_64' machine='pc-i440fx-2.9'>hvm</type>
+    <boot dev='hd'/>
+  </os>
+  <devices>
+    <disk type='file' device='disk'>
+      <driver name='qemu' type='qcow2'/>
+      <source file='/var/lib/libvirt/images/$file_name'/>
+      <target dev='vda' bus='virtio'/>
+    </disk>
+    <graphics type='vnc' port='-1' autoport='yes'/>
+    <console type='pty'>
+      <target type='serial' port='0'/>
+    </console>
+    <interface type='network'>
+      <source network='default'/>
+    </interface>
+  </devices>
+</domain>
+EOF"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+echo -e "${GREEN}Archivo $vm_name.xml creado.${NC}"
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Define y inicia la máquina virtual con virsh usando sudo
+echo -e "${GREEN}Definiendo la máquina virtual...${NC}"
+sudo virsh define /etc/libvirt/qemu/$vm_name.xml
+
+# Pregunta si desea iniciar la red predeterminada
+echo -e -n "${RED}¿Deseas iniciar la Network ahora? [S/n] ${NC}"
+read -n1 respuesta_network
+echo
+if [[ $respuesta_network =~ ^[Ss]$ ]]; then
+    echo -e "${GREEN}Iniciando Network...${NC}"
+    sudo virsh net-start default
+    echo -e "La Network ha sido iniciada.${NC}"
+fi
+
+# Pregunta si desea iniciar la máquina virtual
+echo -e -n "${RED}¿Deseas iniciar la máquina virtual ahora? [S/n] ${NC}"
+read -n1 respuesta
+echo
+case $respuesta in
+  S|s ) echo -e "${GREEN}"
+        sudo virsh start "$vm_name"
+        echo -e "La máquina virtual ${RED}$vm_name${GREEN} ha sido iniciada.${NC}"
+        ;;
+  N|n ) echo -e "${BLUE}La máquina virtual no se iniciará.${NC}"
+        ;;
+  * ) echo -e "${RED}Opción no válida. La máquina virtual no se iniciará.${NC}"
+      ;;
+esac
+
+echo ""
+
+echo -e "${GREEN}"
+echo "_________________________________________________________"
+echo -e "${NC}"
+
+# Pregunta si desea eliminar la máquina virtual después de usarla
+echo -e -n "${BLUE}¿Iniciar consola [S/n] ${NC}"
+read -n1 respuesta_borrar
+echo
+if [[ $respuesta_borrar =~ ^[Ss]$ ]]; then
+    echo -e "${GREEN}Iniciando...${NC}"
+    sudo virsh console "$vm_name"
+    
+    #echo -e "${BLUE}La máquina virtual '${vm_name}' ha sido eliminada.${NC}"
+else
+    echo -e "${GREEN}fin.${NC}"
+fi
+
+echo "Kali no tiene acceso, hay que instalar qemuconsole"

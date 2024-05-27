@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Función para mostrar el mensaje de ayuda y preguntar si desea continuar
+show_help_and_confirm() {
+    echo
+    echo "El comando que este script ejecuta es:"
+    echo "scp /usr/bin/[nombre_del_binario] [usuario@ip]:/tmp/"
+    echo
+    echo "Presione Enter para continuar o 'c' para salir."
+
+    # Preguntar al usuario si desea continuar
+    read -p "Deseas continuar [c/S] " response
+
+    # Convertir la respuesta a minúsculas
+    response=$(echo "$response" | tr '[:upper:]' '[:lower:]')
+
+    # Si la respuesta es 'c', salir del script
+    if [ "$response" == "c" ]; then
+        echo "Saliendo del script."
+        exit 0
+    fi
+}
+
+# Verificar si se pasó el argumento -h
+if [ "$1" == "-h" ]; then
+    show_help_and_confirm
+fi
+
+# Verifica si se proporcionó un argumento (nombre del binario)
+if [ $# -eq 0 ]; then
+    echo "Uso: $0 <nombre_del_binario>"
+    exit 1
+fi
+
+# Nombre del binario
+binario=$1
+
+# Ruta completa del binario en la máquina local
+ruta_binario_local="/usr/bin/$binario"
+
+# Verifica si el binario existe en /usr/bin en la máquina local
+if [ ! -f "$ruta_binario_local" ]; then
+    echo "El binario no se encontró en /usr/bin de la máquina local."
+    exit 1
+fi
+
+# Pide al usuario la dirección de la máquina remota (formato usuario@ip)
+echo "Introduce la dirección de la máquina remota (formato usuario@ip):"
+read maquina_remota
+
+# Pregunta si desea copiar el archivo a la máquina remota
+echo "¿Deseas copiar el archivo a /tmp en la máquina remota? (s/n)"
+read copiar_respuesta
+
+if [[ $copiar_respuesta =~ ^[Ss]$ ]]; then
+    # Transferir el binario a la máquina remota
+    scp $ruta_binario_local $maquina_remota:/tmp/
+    # Pregunta si desea ejecutar el archivo
+    echo "¿Deseas ejecutar el archivo ahora en la máquina remota? (s/n)"
+    read ejecutar_respuesta
+    if [[ $ejecutar_respuesta =~ ^[Ss]$ ]]; then
+        # Ejecutar el binario
+        ssh $maquina_remota "chmod +x /tmp/$binario; /tmp/$binario"
+    fi
+else
+    # Ejecutar el binario directamente en la máquina remota sin copiarlo
+    cat $ruta_binario_local | ssh $maquina_remota "cat > /tmp/$binario; chmod +x /tmp/$binario; /tmp/$binario; rm /tmp/$binario"
+fi

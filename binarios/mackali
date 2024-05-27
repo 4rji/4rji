@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+
+
+interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+
+echo ""
+
+# Mostrar las interfaces y sus direcciones IP
+echo "                           Interfaces de red y sus direcciones IP:"
+echo ""
+echo "$interfaces"
+echo ""
+
+
+
+
+# Preguntar qué interfaz quieres configurar
+read "interfaz?Ingresa el nombre de la interfaz que quieres configurar: "
+
+# Preguntar por la nueva MAC
+read "nueva_MAC?Ingresa la nueva MAC: "
+
+# Mostrar el estado actual de la interfaz
+echo "Estado actual de la interfaz $interfaz:"
+ifconfig $interfaz | grep "ether"
+
+# Cambiar la dirección MAC
+sudo ifconfig $interfaz hw ether $nueva_MAC
+
+# Reiniciar la interfaz
+sudo ifconfig $interfaz down
+sudo ifconfig $interfaz up
+
+# Mostrar el estado actual de la interfaz después del cambio
+echo "Estado actual de la interfaz $interfaz:"
+ifconfig $interfaz | grep "ether"

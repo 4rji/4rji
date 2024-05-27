@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+# Solicitar al usuario el nombre de la carpeta principal
+echo "Ingrese el nombre de la carpeta principal:"
+read nombre_carpeta_principal
+
+# Crear la carpeta principal
+if mkdir "$nombre_carpeta_principal"; then
+  echo "Se ha creado la carpeta \"$nombre_carpeta_principal\""
+else
+  echo "Error al crear la carpeta principal."
+  exit 1
+fi
+
+# Lista de nombres de las subcarpetas
+subcarpetas=("content" "exploits" "nmap")
+
+# Crear las subcarpetas dentro de la carpeta principal
+for subcarpeta in "${subcarpetas[@]}"; do
+  ruta_subcarpeta="$nombre_carpeta_principal/$subcarpeta"
+  if mkdir "$ruta_subcarpeta"; then
+    echo "Se ha creado la subcarpeta \"$subcarpeta\""
+  else
+    echo "Error al crear la subcarpeta \"$subcarpeta\"."
+  fi
+done
+
+# Fin del script
+echo "Proceso completado."

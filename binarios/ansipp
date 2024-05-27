@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Ruta al archivo de inventario
+inventory_file="$HOME/.ssh/ansible_hosts"
+
+# Verificar si el archivo de inventario existe
+if [ ! -e "$inventory_file" ]; then
+  echo "El archivo de inventario ansible no existe en $inventory_file."
+  exit 1
+fi
+
+# Leer las líneas del archivo de inventario y crear una lista
+host_list=($(awk '/^\[.*\]$/ {next} NF {print $1}' "$inventory_file"))
+
+# Mostrar la lista de hosts disponibles
+echo "Hosts disponibles:"
+for i in "${!host_list[@]}"; do
+  echo "$i: ${host_list[$i]}"
+done
+
+# Pedir al usuario el número del host al que hacer ping
+read -p "Ingresa el número del host al que quieres hacer ping: " host_number
+
+# Verificar si el número ingresado es válido
+if ! [[ "$host_number" =~ ^[0-9]+$ ]] || ((host_number < 0 || host_number >= ${#host_list[@]})); then
+  echo "Número de host no válido."
+  exit 1
+fi
+
+# Obtener el nombre del host seleccionado
+selected_host="${host_list[$host_number]}"
+
+# Mostrar el comando a ejecutar
+echo "Ejecutando ping en $selected_host:"
+ping_command="ansible $selected_host -m ping -i $inventory_file"
+echo $ping_command
+
+# Ejecutar el comando ping
+$ping_command

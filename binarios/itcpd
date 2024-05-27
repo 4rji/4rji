@@ -1,0 +1,32 @@
+#!/bin/bash
+
+paquetes=("tcpd" )
+
+paquete_instalado() {
+dpkg -l "$1" | grep -q '^ii'
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then
+sudo apt-get install -y "$paquete"
+fi
+done
+
+
+echo ""
+echo "             *************** INSTRUCCIONES ****************"
+echo " -----  Editar -----"
+echo ""
+echo "sudo nano /etc/hosts.allow"
+echo ""
+echo "En hosts.allow, agrega una línea para permitir conexiones SSH desde direcciones IP confiables:"
+echo "sshd: 192.168.1.0/24"
+
+echo ""
+
+echo "sudo nano /etc/hosts.deny"
+echo ""
+echo "En hosts.deny, agrega una línea para denegar todas las demás conexiones SSH:"
+echo "sshd: ALL"
+echo ""
+echo "sudo systemctl restart ssh"
+echo "- para aplicar los cambios en ssh"

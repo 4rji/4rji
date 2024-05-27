@@ -1,0 +1,12 @@
+#!/bin/bash
+echo ""
+# Check crontabs for the current user
+echo "Crontab of the current user ($USER):"
+crontab -l
+echo ""
+echo ""
+
+# Check root's crontabs
+echo "Crontab with sudo:"
+sudo crontab -l
+echo ""

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Download repo
+git clone https://github.com/hposton/python-for-cybersecurity
+
+# Enter repo
+cd python-for-cybersecurity
+
+# Install requirements
+python -m pip install -r requirements.txt
+
+echo "From https://github.com/hposton/python-for-cybersecurity\n"

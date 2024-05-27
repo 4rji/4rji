@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+# Crear un archivo temporal
+tempfile=$(mktemp)
+
+# Ejecutar el comando y almacenar la salida en el archivo temporal
+ssa1 > "$tempfile"
+
+# Puedes realizar otras operaciones con el archivo si es necesario
+# Por ejemplo, mostrar su contenido con cat
+batcat -l rb "$tempfile"
+
+
+## Verifica el estado del servicio SSH
+
+if systemctl is-active --quiet sshd; then  
+echo "El servicio SSH está **^^ ACTIVO ^^**."  
+else  
+echo "El servicio SSH está *** INACTIVO ***."  
+fi  
+echo ""
+

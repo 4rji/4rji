@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# Comprobar si se ha proporcionado un directorio como argumento
+if [ -z "$1" ]; then
+    echo "Por favor, especifica el directorio en el que buscar (ejemplo: ./script /ruta/del/directorio)."
+    exit 1
+else
+    directorio=$1
+fi
+
+echo "Elige una opción para tu búsqueda:"
+echo "1. Buscar por nombre"
+echo "2. Buscar por extensión"
+echo "3. Buscar archivo específico"
+echo "4. Buscar por tamaño"
+echo "5. Buscar directorio"
+read opcion
+
+# Pregunta específica según la opción elegida
+case $opcion in
+    1)
+        echo "Ingresa el nombre (o parte del nombre) del archivo o directorio:"
+        ;;
+    2)
+        echo "Ingresa la extensión del archivo sin el punto (ejemplo: jpg, txt):"
+        ;;
+    3)
+        echo "Ingresa el nombre exacto del archivo (incluyendo extensión si aplica):"
+        ;;
+    4)
+        echo "Ingresa el tamaño del archivo (ejemplo: +50M para archivos mayores de 50 MB, -100k para archivos menores de 100 KB):"
+        ;;
+    5)
+        echo "Ingresa el nombre (o parte del nombre) del directorio:"
+        ;;
+    *)
+        echo "Opción no válida"
+        exit 1
+        ;;
+esac
+read busqueda
+
+echo "Max depth (ingresa un número o presiona Enter para sin límite):"
+read maxdepth
+
+# Construir el comando find base
+comando="find $directorio"
+
+# Agregar maxdepth si es necesario
+if [[ ! -z "$maxdepth" ]]; then
+    comando="$comando -maxdepth $maxdepth"
+fi
+
+# Agregar opciones basadas en la elección del usuario
+case $opcion in
+    1)
+        # Buscar por nombre, insensible a mayúsculas y minúsculas
+        comando="$comando -iname \"*${busqueda}*\""
+        ;;
+    2)
+        # Buscar por extensión
+        comando="$comando -type f -name \"*.${busqueda}\""
+        ;;
+    3)
+        # Buscar archivo específico
+        comando="$comando -name \"${busqueda}\""
+        ;;
+    4)
+        # Buscar por tamaño
+        comando="$comando -size ${busqueda}"
+        ;;
+    5)
+        # Buscar directorio
+        comando="$comando -type d -iname \"*${busqueda}*\""
+        ;;
+    *)
+        echo "Opción no válida"
+        exit 1
+        ;;
+esac
+
+echo "Ejecutando comando:"
+echo ""
+echo "$comando"
+echo ""
+echo "comando copiado al portapapeles"
+sleep 1
+echo "$comando" | xclip -selection clipboard
+echo ""
+eval $comando

@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Ruta al archivo de inventario de Ansible
+INVENTARIO="$HOME/.ssh/ansible_hosts"
+
+# Inicializar un array para almacenar los hosts
+declare -a HOSTS
+declare -a SSH_COMMANDS
+
+echo "Cargando hosts desde $INVENTARIO..."
+
+INDEX=1
+# Leer cada línea del archivo de inventario
+while IFS= read -r line; do
+    # Ignorar líneas vacías y comentarios
+    if [[ "$line" =~ ^[[:space:]]*$ ]] || [[ "$line" =~ ^# ]]; then
+        continue
+    fi
+
+    # Extraer la dirección IP o nombre del host, usuario, puerto y clave privada (si están definidos)
+    HOST=$(echo $line | cut -d ' ' -f1)
+    USER=$(echo $line | grep -o 'ansible_user=[^ ]*' | cut -d '=' -f2)
+    PORT=$(echo $line | grep -o 'ansible_port=[^ ]*' | cut -d '=' -f2)
+    KEY=$(echo $line | grep -o 'ansible_ssh_private_key_file=[^ ]*' | cut -d '=' -f2)
+
+    # Construir el comando SSH
+    SSH_COMMAND="ssh"
+    if [ ! -z "$KEY" ]; then
+        SSH_COMMAND+=" -i $KEY"
+    fi
+    if [ ! -z "$PORT" ]; then
+        SSH_COMMAND+=" -p $PORT"
+    fi
+    if [ ! -z "$USER" ]; then
+        SSH_COMMAND+=" $USER@$HOST"
+    else
+        SSH_COMMAND+=" $HOST"
+    fi
+
+    # Almacenar los hosts y comandos SSH
+    HOSTS+=("$HOST")
+    SSH_COMMANDS+=("$SSH_COMMAND")
+
+    echo "$INDEX. $HOST"
+    ((INDEX++))
+done < "$INVENTARIO"
+
+# Preguntar al usuario a cuál host desea conectarse
+read -p "Elige el número del host al que quieres conectarte: " HOST_NUM
+
+# Validar la entrada del usuario
+if [ "$HOST_NUM" -le 0 ] || [ "$HOST_NUM" -gt "${#HOSTS[@]}" ]; then
+    echo "Selección inválida."
+    exit 1
+fi
+
+# Ejecutar el comando SSH para el host seleccionado
+echo "Conectando a ${HOSTS[$((HOST_NUM-1))]}..."
+eval "${SSH_COMMANDS[$((HOST_NUM-1))]}"

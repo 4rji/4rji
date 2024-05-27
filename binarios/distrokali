@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Función para la pregunta
+ask_to_execute() {
+    echo -e "\e[1;34m¿Desea ejecutar 'distrobox enter kali-rolling-latest'? \e[0m"
+    read -t 2 -n 1 -p "Presiona [c] para cancelar, enter para ejecutar: " answer
+    echo
+    if [ "$answer" = "c" ]; then
+        echo -e "\e[1;31mOperación cancelada.\e[0m"
+    else
+        echo -e "\e[1;32mEjecutando 'distrobox enter kali-rolling-latest'...\e[0m"
+        # Agrega el comando que deseas ejecutar aquí
+        distrobox enter kali-rolling-latest
+    fi
+}
+
+# Llamada a la función
+ask_to_execute

@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+
+
+import subprocess
+import time
+import os
+
+def ejecutar_script():
+    # Contador para el número de escaneos
+    counter = 0
+    
+    while True:
+        # Ejecutar el comando 'sshmonitor'
+        #subprocess.run(["sshmonitor"])
+        
+        # Incrementar el contador
+        counter += 1
+        print(f"Scan number: {counter}")
+
+        # Iniciar el script 'bb' en un proceso separado
+        proceso = subprocess.Popen(["mibebemata"])
+
+        # Esperar un tiempo límite
+        tiempo_limite = 14  # 5 segundos
+        tiempo_inicio = time.time()
+
+        while time.time() - tiempo_inicio < tiempo_limite:
+            if proceso.poll() is not None:
+                # El proceso ha terminado antes del tiempo límite
+                break
+            time.sleep(5)  # Esperar 1 segundo
+
+        # Verificar si el proceso aún está en ejecución
+        if proceso.poll() is None:
+            # El proceso sigue en ejecución después del tiempo límite, terminarlo
+            proceso.terminate()
+            print("")
+            print("")
+            print("")
+            print("\033[94mEscaneando otra vez... \033[0m")
+
+#            print("Escaneando otra vez... ")
+
+def main():
+    while True:
+        # Llamamos a la función para ejecutar el script
+        ejecutar_script()
+        
+        # Esperamos un tiempo antes de volver a intentarlo
+        time.sleep(2)  # Esperar 0.5 segundos antes de volver a ejecutar el script
+
+if __name__ == "__main__":
+    main()
+
+

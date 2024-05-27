@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Obtener la lista de interfaces de red y sus direcciones IP
+echo
+interfaces=$(ip addr | awk '/^[0-9]+:/ {gsub(/:/,"",$2); iface=$2} /^    inet / {print iface, $2}')
+
+# Mostrar las interfaces y sus direcciones IP
+echo "Interfaces de red y sus direcciones IP:"
+echo
+echo "$interfaces"
+
+# Agregar un renglón de separación
+echo ""
+
+# Obtener la dirección IP de la interfaz eth0
+ip_address=$(echo "$interfaces" | grep "ewlp0s20f3th0" | awk '{print $2}' | cut -d '/' -f 1)
+
+# Mostrar la dirección IP de eth0
+#echo "Dirección IP de eth0: $ip_address"
+
+echo 'Direccion publica ' 
+curl ifconfig.me
+
+echo ""
+# Copiar la dirección IP de eth0 al portapapeles
+echo "$ip_address" | xclip -selection c
+echo ""
+echo "dirección IP de eth0 al portapapeles"

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Asegúrate de que se haya proporcionado una subred como argumento
+if [ $# -ne 1 ]; then
+    echo "Por favor, proporciona una subred como argumento. Ejemplo: ./script.sh 192.168.1"
+    exit 1
+fi
+
+echo ""
+echo ""
+echo "ejecutando ping -c 1 "
+echo ""
+echo ""
+
+
+sleep 0.5
+
+
+subnet="$1"
+tempfile=$(mktemp) # Crea un archivo temporal
+
+# Hace ping a cada IP en la subred y muestra la salida
+for ip in $(seq 1 254); do
+    ping -c 1 "$subnet.$ip" | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" | tee -a $tempfile &
+done
+
+wait # Espera a que todos los procesos en segundo plano terminen
+
+
+
+
+
+echo ""
+echo ""
+echo "hecho"
+echo ""
+
+# Pregunta si desea guardar el archivo
+read -p "¿Desea guardar un archivo de IPs? (s/n): " guardar
+echo ""
+echo ""
+
+
+
+
+if [[ $guardar == "s" ]]; then
+    # Copia el archivo temporal a la ruta actual como ips.txt
+    cp $tempfile .ips1.txt
+    sed 's/ is up//' .ips1.txt > ips.txt
+#    rm ips1.txt
+    echo "Archivo guardado como ips.txt"
+fi
+
+# Elimina el archivo temporal
+rm $tempfile
+echo ""
+echo "*** Precausion*** Solo esta echo para /24"
+echo ""
+
+

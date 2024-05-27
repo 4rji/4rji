@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "habilitar: X11Forwarding yes
+X11DisplayOffset 10"
+echo ""
+echo "ssh -X -i /home/ass/.ssh/id_ed25519 -p 4423 usuario@host"
+echo "ssh -Y para mas permisiva"
+

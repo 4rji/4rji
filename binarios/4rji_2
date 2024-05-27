@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+# Definir la ruta completa al archivo README.md
+file="/usr/bin/README.md"
+
+# Verificar la existencia del archivo
+if [ ! -f "$file" ]; then
+    echo "El archivo $file no existe."
+    exit 1
+fi
+
+# Leer el contenido del archivo
+content=$(cat "$file")
+
+# Mostrar el contenido del archivo en una lista
+dialog --backtitle "README.md Viewer" --title "Contenido de README.md" --msgbox "$content" 20 80
+
+# Mostrar el menú de búsqueda
+search=$(dialog --backtitle "README.md Viewer" --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
+
+# Realizar la búsqueda en el archivo
+result=$(grep -i "$search" "$file")
+
+# Mostrar los resultados de la búsqueda
+dialog --backtitle "README.md Viewer" --title "Resultados de la búsqueda" --msgbox "$result" 20 80

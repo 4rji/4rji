@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Preguntar por el nombre de la red
+read -p "Nombre de la red: " network_name
+
+# Preguntar por la contraseña de la red
+read -s -p "Contraseña de la red: " network_password
+echo  # Agregar una línea en blanco después de la entrada de contraseña
+
+# Eliminar las líneas de configuración existentes de wlan0
+sudo sed -i '/iface wlan0/,/^$/d' /etc/network/interfaces
+
+# Agregar las nuevas líneas de configuración
+echo "auto wlan0" | sudo tee -a /etc/network/interfaces
+echo "iface wlan0 inet dhcp" | sudo tee -a /etc/network/interfaces
+echo "    wpa-ssid \"$network_name\"" | sudo tee -a /etc/network/interfaces
+echo "    wpa-psk \"$network_password\"" | sudo tee -a /etc/network/interfaces
+
+echo ""
+# Pregunta al usuario
+read -p "¿Deseas reiniciar la red? [S/n] " respuesta
+
+# Convierte la respuesta a minúsculas
+respuesta=${respuesta,,} # Esto asegura que la comparación funcione tanto para mayúsculas como minúsculas
+
+if [[ -z "$respuesta" ]] || [[ "$respuesta" == "s" ]]; then
+    echo "Reiniciando la red..."
+    sudo systemctl restart networking
+    echo "La red ha sido reiniciada."
+elif [[ "$respuesta" == "n" ]]; then
+    echo "Operación cancelada."
+else
+    echo "Respuesta no válida. Cancelando..."
+fi

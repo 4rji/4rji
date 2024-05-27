@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+
+# Definir la ruta completa al archivo README.md
+<<<<<<< Updated upstream
+file="/usr/bin/README.md"
+=======
+file="$HOME/.README.md"
+>>>>>>> Stashed changes
+
+# Verificar la existencia del archivo
+if [ ! -f "$file" ]; then
+    echo "El archivo $file no existe."
+    exit 1
+fi
+
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
+# Bucle principal para mantener el programa en funcionamiento después de mostrar el contenido y los resultados de búsqueda
+while true; do
+    # Leer el contenido del archivo y formatearlo
+    content=$(sed 's/ *= */=/' "$file" | column -t -s "=")
+
+    # Mostrar el contenido del archivo en una lista con desplazamiento
+    whiptail --title "Contenido de README.md" --scrolltext --yes-button "OK" --no-button "Salir" --yesno "$content" 30 100
+
+    # Obtener la respuesta del usuario
+    response=$?
+
+    # Salir del bucle si el usuario elige salir
+    if [ $response -ne 0 ]; then
+        break
+    fi
+
+    # Mostrar el menú de búsqueda
+    search=$(whiptail --inputbox "Buscar palabra:" 8 40 3>&1 1>&2 2>&3 3>&-)
+
+    # Realizar la búsqueda en el archivo
+    result=$(grep -i "$search" "$file" | sed 's/ *= */=/')
+
+    # Formatear los resultados de la búsqueda
+    result=$(echo "$result" | column -t -s "=")
+
+    # Mostrar los resultados de la búsqueda
+    whiptail --title "Resultados de la búsqueda" --msgbox "$result" 30 100
+
+    # Preguntar al usuario si desea continuar o salir del programa
+    whiptail --yesno "¿Desea realizar otra búsqueda?" 7 40
+
+    # Salir del bucle si el usuario elige salir
+    response=$?
+    if [ $response -ne 0 ]; then
+        break
+    fi
+done
+

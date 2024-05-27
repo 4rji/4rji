@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Verificar si se proporciona un argumento que representa el archivo
+if [ -z "$1" ]; then
+    echo "Por favor, proporcione un nombre de archivo."
+    exit 1
+fi
+
+# Verificar si el archivo existe
+if [ ! -f "$1" ]; then
+    echo "El archivo especificado no existe."
+    exit 1
+fi
+
+# Asignar permisos de ejecución al archivo
+chmod +x "$1"
+echo "Se han asignado permisos de ejecución al archivo $1."
+

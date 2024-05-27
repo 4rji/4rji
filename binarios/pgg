@@ -1,0 +1,196 @@
+#!/bin/bash
+echo ""
+
+# Lista de paquetes a instalar
+paquetes=("dnsutils" "jq" "systemd" "iproute2" )
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii'   2>/dev/null
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" 2> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" 2> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" 2> /dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar paquetes basados en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if ! paquete_instalado_apt "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete"  2>/dev/null
+            fi
+            ;;
+        "centos"|"rhel")
+            if ! paquete_instalado_yum "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete" 2>/dev/null
+            fi
+            ;;
+        "fedora")
+            if ! paquete_instalado_dnf "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete" 2>/dev/null
+            fi
+            ;;
+        "arch")
+            if ! paquete_instalado_pacman "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete" 2>/dev/null
+            fi
+            ;;
+        *)
+            ;;
+    esac
+done
+
+
+
+# Color codes
+green="\e[32m"
+yellow="\e[33m"
+reset="\e[0m"
+
+# Funci  n para obtener la interfaz de red
+get_network_interface() {
+    # Verificar si wlan0 existe
+    if ifconfig wlan0 &>/dev/null; then
+        echo "wlan0"
+    else
+        # Obtener el nombre de la interfaz de red
+        interface=$(ip route | awk '/default/ {print $5}')
+        echo "$interface"
+    fi
+}
+
+# Obtener la interfaz de red
+network_interface=$(get_network_interface)
+
+echo -e "\e[33;1m                _______________ INTERFACES _______________\e[0m\n"
+                  
+# Mostrar la direcci  n IP local
+#echo "${yellow}Direcci  n IP local:${reset}"
+ip -4 addr show | awk '/inet/ && !/127.0.0.1/ {split($2, a, "/"); printf "\t\t\t\t%s: %s\n", $NF, a[1]}'
+echo ""
+echo ""
+echo -e "\e[34m                  ___________________________________________________\e[0m"
+# Agregamos el mensaje con la IP local
+echo -e "\n\t\t\tTu IP Locales: $(/usr/sbin/ifconfig "$network_interface" | grep "inet " | awk '{print $2}')\n"
+echo -e "\t\t\t  ${green}---   $(whoami)   ---${reset}\n"
+
+#echo -e "\n\t\t\t ${yellow}*** Puerto de escucha: ***${reset}\n"
+#echo -e "\t\t\t\t  $(grep -E '^#?Port ' /etc/ssh/sshd_config | awk '!/^#/')"
+
+
+
+echo ""
+printf "\e[34;1m_________________________________________________________\e[0m\n"
+echo ""
+printf "\e[34;1m      IP pública encontrada con dig\e[0m\n"
+echo ""
+
+timeout 1.5 dig +short myip.opendns.com @resolver1.opendns.com | while read -r ip; do
+    # Calcula el espaciado necesario para centrar la IP
+    cols=$(tput cols)
+    ip_length=${#ip}
+    spaces=$(( (cols - ip_length) / 2 ))
+
+    # Usa printf para espaciar y luego imprimir la IP en rojo
+    printf "%$((spaces - 35))s\e[31m%s\e[0m\n" "" "$ip"
+
+    #printf "%${spaces}s" ""
+    #printf "\e[31m%s\e[0m\n" "$ip"
+done
+
+printf "\e[34;1m_________________________________________________________\e[0m\n"
+echo ""
+echo ""
+
+
+
+
+
+
+
+check_ip() {
+    local url_list=(
+        'https://ipinfo.io/json'
+        'https://api.myip.com'
+        'https://ifconfig.me/all.json'
+    )
+
+    for url in "${url_list[@]}"; do
+#        echo -e "\e[0mInformacion IP de \e[0m\e[38;5;94m$url...\e[0m"
+        echo -e "\e[38;5;94mInformacion IP de $url...\e[0m"
+
+ #       echo -e "\e[33mInformacion IP de $url...\e[0m"
+        echo ""
+        local request="$(curl -s "$url")"
+        local response="$?"
+
+        if [[ "$response" -ne 0 ]]; then
+            echo "Error al conectar con $url"
+            continue
+        fi
+
+        # Procesar la respuesta dependiendo de la URL
+        if [[ "$url" == "https://ipinfo.io/json" ]]; then
+            echo "$request" | jq -r '.ip, .city, .region, .country, .postal // empty' | awk '{print "\033[33m" $0 "\033[0m"}'
+            return 0
+        elif [[ "$url" == "https://api.myip.com" ]]; then
+            # api.myip.com proporciona ip, country, y country code, pero no ciudad o región
+            echo "$request" | jq -r '.ip, .country // empty' | awk '{print "\033[33m" $0 "\033[0m"}'
+            return 0
+        elif [[ "$url" == "https://ifconfig.me/all.json" ]]; then
+            # ifconfig.me ofrece un conjunto de datos más amplio, pero nos centraremos en ip_addr y country
+            echo "$request" | jq -r '.ip_addr, .country // empty' | awk '{print "\033[33m" $0 "\033[0m"}'
+            return 0
+        fi
+    done
+
+    echo "No se pudo obtener la dirección IP pública desde las fuentes disponibles."
+}
+
+
+
+host="google.com"  # Cambia "google.com" por el host que desees
+
+timeout 1.5 ping -c 1 "$host" > /dev/null 2>&1
+
+if [[ $? -eq 0 ]]; then
+  echo -e "\e[32mThe Internet connection is active.\e[0m"
+else
+  echo -e "\e[31mUnable to access the Internet.\e[0m"
+fi 
+
+echo ""
+read -n 1 -t 1.5 -p "Enter o espera 1.5s para cancelar: " response
+echo ""
+echo -e "\e[36m_________________________________________________________\e[0m"
+echo ""
+
+if [[ "$response" == "s" ]]; then
+    check_ip
+else
+    echo "Cancelado."
+fi
+
+echo ""

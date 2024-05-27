@@ -1,0 +1,39 @@
+#!/bin/bash
+echo " quita el nombre a nginx de nmap
+
+modificar el archivo
+sudo nano /etc/nginx/nginx.conf
+
+y quitar la # de:
+
+        server_tokens off
+
+reiniciar 
+sudo systemctl restart nginx
+y en apache
+
+sudo nano /etc/apache2/apache2.conf
+
+Agrega o modifica las siguientes directivas:
+
+ServerTokens Prod
+ServerSignature Off
+
+sudo systemctl restart apache2
+
+
+modificar agregando lo siguiente en el archivo para protejer root
+sudo nano /etc/nginx/sites-enabled/default
+a bajo de location:
+
+
+        location ~ /\.git {
+                deny all;
+        }
+        
+        location ~ /\. {
+                deny all;
+        }
+
+
+"

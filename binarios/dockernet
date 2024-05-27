@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Ingrese los datos para crear una MACVLAN:"
+
+read -p "Ingrese el subnet (ej. 10.0.4.0/24): " subnet
+read -p "Ingrese el gateway (ej. 10.0.4.1): " gateway
+read -p "Ingrese el parent (ej. wlan0): " parent
+read -p "Ingrese el nombre de la red: " nombre_red
+
+echo ""
+echo ""
+echo "El comando para crear la IPVLAN es:"
+echo ""
+echo "sudo docker network create -d ipvlan --subnet $subnet --gateway $gateway -o parent=$parent $nombre_red"
+
+
+echo ""
+echo ""
+echo ""
+echo "El comando ejemplo para correr un contenedor Docker es:"
+
+echo ""
+echo "docker run --network=$nombre_red -it --ip 192.168.122.200 kali"
+echo ""

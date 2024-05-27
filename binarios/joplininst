@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Check if npm is installed
+if ! command -v npm &>/dev/null; then
+  echo "npm is not installed. Installing npm..."
+  sudo apt-get install -y npm
+fi
+
+
+# Check if Node.js is installed
+if ! command -v node &>/dev/null; then
+  echo "Node.js is not installed. Installing Node.js 12+..."
+  curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+fi
+
+
+
+# Install Joplin Terminal
+if ! command -v joplin &>/dev/null; then
+  echo "Installing Joplin Terminal..."
+  NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
+  sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+else
+  echo "Joplin Terminal is already installed."
+fi
+
+echo "Joplin Terminal is now installed and ready to use."

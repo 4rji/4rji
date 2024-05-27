@@ -1,0 +1,197 @@
+#!/bin/bash
+
+echo ""
+echo -e "\033[1;34m_________________________________________________________\033[0m"
+echo ""
+# Función para mostrar el mensaje de ayuda y preguntar si desea continuar
+show_help_and_confirm() {
+    echo ""
+    echo -e "\033[1;32mEl comando que este script ejecuta es:\033[0m"
+    echo ""
+    echo -e "\033[1;33msudo python3 -m http.server 8080\033[0m"
+    echo ""
+    echo ""
+echo -e "\033[1;34m_________________________________________________________\033[0m"
+    echo ""
+
+    # Preguntar al usuario si desea continuar
+    read -n1 -p "Continuar el script?  Cancel [c]  " response
+    echo ""  # Añadir una nueva línea para la salida
+
+    # Convertir la respuesta a minúsculas y evaluar
+    case "$response" in
+    *) echo "Continuando..." ;;
+    esac
+}
+
+# Verificar si se pasó el argumento -h
+if [ "$1" == "-h" ]; then
+    show_help_and_confirm
+fi
+# Lista de paquetes a instalar
+paquetes=("apache2" "httpd" "nginx" "lighttpd")
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" &> /dev/null && return 0 || return 1
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" &> /dev/null && return 0 || return 1
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" &> /dev/null && return 0 || return 1
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" &> /dev/null && return 0 || return 1
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar el primer paquete disponible basado en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    instalado=false
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if paquete_instalado_apt "$paquete"; then
+                echo "Paquete $paquete ya instalado."
+                break # Sale del bucle si el paquete ya está instalado
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete" &> /dev/null && instalado=true
+            fi
+            ;;
+        "centos"|"rhel")
+            if paquete_instalado_yum "$paquete"; then
+                echo "Paquete $paquete ya está instalado."
+                break
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete" &> /dev/null && instalado=true
+            fi
+            ;;
+        "fedora")
+            if paquete_instalado_dnf "$paquete"; then
+                echo "Paquete $paquete ya está instalado."
+                break
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete" &> /dev/null && instalado=true
+            fi
+            ;;
+        "arch")
+            if paquete_instalado_pacman "$paquete"; then
+                echo "Paquete $paquete ya está instalado."
+                break
+            else
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete" &> /dev/null && instalado=true
+            fi
+            ;;
+        *)
+            echo "Sistema operativo no soportado."
+            break
+            ;;
+    esac
+    if [ "$instalado" = true ]; then
+        echo "Paquete $paquete instalado exitosamente."
+        break # Sale del bucle después de instalar el primer paquete disponible
+    fi
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m' # Sin color
+
+# Inicializar variable para controlar si Apache fue iniciado
+apache_started=false
+
+# Función para detener Apache si está corriendo
+stop_apache() {
+  if $apache_started; then
+    echo -e "${RED}Deteniendo Apache/httpd...${NC}"
+    if command -v apache2 > /dev/null; then
+      sudo service apache2 stop
+    elif command -v httpd > /dev/null; then
+      sudo service httpd stop
+    fi
+    echo -e "${GREEN}Apache/httpd detenido.${NC}"
+  fi
+}
+
+
+
+# Capturar señales de interrupción y terminación para ejecutar stop_apache
+trap stop_apache SIGINT SIGTERM
+
+echo ""
+echo -e "${BLUE}_________________________________________________________${NC}"
+echo ""
+
+# Detectar servicios instalados
+apache_installed=false
+httpd_installed=false
+python_http_installed=false
+
+if command -v apache2 > /dev/null; then
+  apache_installed=true
+elif command -v httpd > /dev/null; then
+  httpd_installed=true
+fi
+
+if command -v python3 > /dev/null; then
+  python_http_installed=true
+fi
+
+# Pregunta combinada
+if $apache_installed || $httpd_installed || $python_http_installed; then
+  echo -e "${GREEN}Se detectó Apache/httpd y/o Python en el sistema.${NC}"
+  read -n1 -p "¿Deseas iniciar Apache/httpd e iniciar el servidor en 8080? [S/n] " answer_combined
+  echo ""
+  if [[ $answer_combined =~ ^[Ss]$ ]]; then
+    # Iniciar Apache/httpd si está disponible
+    if $apache_installed; then
+      sudo service apache2 start
+      apache_started=true
+      echo -e "${GREEN}Apache iniciado.${NC}"
+    elif $httpd_installed; then
+      sudo service httpd start
+      apache_started=true
+      echo -e "${GREEN}httpd iniciado.${NC}"
+    fi
+    # Iniciar el servidor HTTP de Python en el puerto 8080
+    if $python_http_installed; then
+      # Obtener IP local
+      ip_address=$(hostname -I | cut -d' ' -f1)
+      echo -e "${BLUE}Iniciando servidor HTTP de Python en ${ip_address}:8080${NC}"
+      python3 -m http.server 8080 
+    fi
+  fi
+else
+  echo -e "${RED}No se encontró un servicio para iniciar.${NC}"
+fi
+

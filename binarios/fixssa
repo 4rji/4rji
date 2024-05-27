@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+# Ruta del binario
+binario="/usr/bin/ssa"
+
+# Reemplazar "eth0" por la interfaz ingresada por el usuario en el binario con sudo
+echo "¿Cuál es tu interfaz?"
+read interfaz
+
+# Escapar barras inclinadas para evitar problemas con sed
+interfaz_escaped=$(echo $interfaz | sed 's/\//\\\//g')
+
+sudo sed -i "s/eth0/$interfaz_escaped/g" $binario
+
+# Buscar "ssh" y reemplazar con "sshd"
+sudo sed -i 's/ssh/sshd/g' $binario
+
+echo "Proceso completado."

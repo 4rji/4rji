@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    # Si no se proporcionan argumentos, lee de la entrada estándar
+    xclip -selection clipboard
+    echo "La salida del comando ha sido copiada al portapapeles."
+else
+    # Si se proporcionan argumentos, ejecuta como estaba previsto
+    "$@" | xclip -selection clipboard
+    echo "La salida del comando ha sido copiada al portapapeles."
+fi

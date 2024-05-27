@@ -1,0 +1,42 @@
+#!/bin/bash
+
+paquetes=("clamav")
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+#actualiza la base de datos
+sudo systemctl stop clamav-freshclam
+sudo freshclam
+sudo systemctl start clamav-freshclam
+
+#el scaneo
+#sudo clamscan -i -r --move /tmp --max-scansize=1024M --max-filesize=500M /var/
+#!/bin/bash
+
+# Pedir al usuario la ruta a escanear
+echo "Por favor, introduce la ruta que quieres escanear:"
+read ruta_escaneo
+
+# Comprobar si se ha introducido una ruta
+if [[ -z "$ruta_escaneo" ]]; then
+    echo "No se ha introducido ninguna ruta. El script se cerrará."
+    exit 1
+fi
+
+# Obtener la fecha y hora actual para el nombre del archivo de salida
+fecha_actual=$(date "+%Y%m%d%H%M%S")
+archivo_salida="$HOME/scan$fecha_actual.txt"
+
+# Ejecutar ClamAV y guardar los resultados
+echo "Realizando escaneo de ClamAV en la ruta: $ruta_escaneo"
+sudo clamscan -i -r --move=/tmp --max-scansize=1024M --max-filesize=500M "$ruta_escaneo" > "$archivo_salida"
+
+echo "Escaneo completado. Resultados guardados en: $archivo_salida"
+

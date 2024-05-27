@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo ""
+
+# Solicitar los datos al usuario
+read -p $'\e[34m    IP  : \e[0m' ip
+read -p $'\e[34mPuerto: \e[0m' port
+read -p $'\e[34m    User: \e[0m' username
+read -s -p $'\e[34m    Password: \e[0m' password
+echo ""
+echo ""
+echo "Password is saved on the file sshi - WARNING -  "
+#echo -e "\n\033[1;33m_________________________________________________________\033[0m\n"
+
+#    echo -e "\e[93m Creando la configuracion sshi...\e[0m"
+
+# Guardar el comando SSH en el archivo /usr/bin/sshi
+sudo tee /usr/bin/sshi > /dev/null <<EOF
+#!/bin/bash
+echo ""
+echo -e "\e[94msshpass -p '$password' ssh -p '$port' -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '$username@$ip'\e[0m"
+echo ""
+
+sshpass -p "$password" ssh -p "$port" -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$username@$ip"
+EOF
+
+# Dar permisos de ejecución al nuevo script
+sudo chmod +x /usr/bin/sshi
+
+
+echo -e "\n\033[1;37m_____________________Configuration_______________________\033[0m\n"
+echo ""
+echo -e "\e[34msshpass -p '$password'\e[0m"
+echo -e "\e[95mssh -p '$port'\e[0m"
+echo -e "\e[91m-o GlobalKnownHostsFile=/dev/null\e[0m"
+echo -e "\e[32m-o UserKnownHostsFile=/dev/null\e[0m"
+echo -e "\e[33m-o StrictHostKeyChecking=no\e[0m"
+echo -e "\e[92m'$username@$ip'\e[0m"
+#echo -e "\n\033[1;37m_________________________________________________________\033[0m\n"
+
+echo "                __________  To connect just type sshi ____________"
+echo ""
+#echo -e "\e[94msshpass -p "$password" ssh -p "$port" -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no "$username@$ip" "
+echo -e "\e[94msshpass -p '$password' ssh -p '$port' -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '$username@$ip'\e[0m"

@@ -1,0 +1,94 @@
+#!/bin/bash
+
+cd /tmp
+
+echo "Seleccione el sistema operativo para el Splunk Universal Forwarder 9.1.2:"
+echo "1. Windows"
+echo "2. Linux"
+echo "3. Mac"
+echo "4. FreeBSD"
+read -p "Ingrese su elección (1/2/3/4): " os_choice
+
+case $os_choice in
+    1) # Windows
+        echo "Seleccione la arquitectura para Windows:"
+        echo "1. 64-bit"
+        echo "2. 32-bit"
+        read -p "Ingrese su elección (1/2): " win_arch
+
+        case $win_arch in
+            1) wget -O splunkforwarder-9.1.2-b6b9c8185839-x64-release.msi "https://download.splunk.com/products/universalforwarder/releases/9.1.2/windows/splunkforwarder-9.1.2-b6b9c8185839-x64-release.msi";;
+            2) wget -O splunkforwarder-9.1.2-b6b9c8185839-x86-release.msi "https://download.splunk.com/products/universalforwarder/releases/9.1.2/windows/splunkforwarder-9.1.2-b6b9c8185839-x86-release.msi";;
+            *) echo "Selección no válida"; exit 1;;
+        esac
+        ;;
+
+    2) # Linux
+        echo "Seleccione la versión para Linux:"
+        echo "1. 64-bit rpm"
+        echo "2. 64-bit deb"
+        echo "3. 64-bit tgz"
+        echo "4. ARM deb"
+        echo "5. ARM tgz"
+        read -p "Ingrese su elección (1/2/3/4/5): " linux_version
+
+        case $linux_version in
+            1) wget -O splunkforwarder-9.1.2-b6b9c8185839.x86_64.rpm "https://download.splunk.com/products/universalforwarder/releases/9.1.2/linux/splunkforwarder-9.1.2-b6b9c8185839.x86_64.rpm";;
+            2) wget -O splunkforwarder-9.1.2-b6b9c8185839-linux-2.6-amd64.deb "https://download.splunk.com/products/universalforwarder/releases/9.1.2/linux/splunkforwarder-9.1.2-b6b9c8185839-linux-2.6-amd64.deb";;
+            3) wget -O splunkforwarder-9.1.2-b6b9c8185839-Linux-x86_64.tgz "https://download.splunk.com/products/universalforwarder/releases/9.1.2/linux/splunkforwarder-9.1.2-b6b9c8185839-Linux-x86_64.tgz";;
+            4) wget -O splunkforwarder-9.1.2-b6b9c8185839-Linux-armv8.deb "https://download.splunk.com/products/universalforwarder/releases/9.1.2/linux/splunkforwarder-9.1.2-b6b9c8185839-Linux-armv8.deb";;
+            5) wget -O splunkforwarder-9.1.2-b6b9c8185839-Linux-armv8.tgz "https://download.splunk.com/products/universalforwarder/releases/9.1.2/linux/splunkforwarder-9.1.2-b6b9c8185839-Linux-armv8.tgz";;
+            *) echo "Selección no válida"; exit 1;;
+        esac
+        ;;
+
+    3) # Mac
+        echo "Seleccione la versión para Mac:"
+        echo "1. M1"
+        echo "2. Intel"
+        read -p "Ingrese su elección (1/2): " mac_version
+
+        case $mac_version in
+            1) wget -O splunkforwarder-9.1.2-b6b9c8185839-darwin-universal2.dmg "https://download.splunk.com/products/universalforwarder/releases/9.1.2/osx/splunkforwarder-9.1.2-b6b9c8185839-darwin-universal2.dmg";;
+            2) wget -O splunkforwarder-9.1.2-b6b9c8185839-macosx-10.11-intel.dmg "https://download.splunk.com/products/universalforwarder/releases/9.1.2/osx/splunkforwarder-9.1.2-b6b9c8185839-macosx-10.11-intel.dmg";;
+            *) echo "Selección no válida"; exit 1;;
+        esac
+        ;;
+
+    4) # FreeBSD
+        wget -O splunkforwarder-9.1.2-b6b9c8185839-FreeBSD11-amd64.tgz "https://download.splunk.com/products/universalforwarder/releases/9.1.2/freebsd/splunkforwarder-9.1.2-b6b9c8185839-FreeBSD11-amd64.tgz"
+        ;;
+
+    *) echo "Selección no válida"; exit 1;;
+esac
+
+echo "Descargando versión seleccionada..."
+
+
+
+# Cambiando al directorio /tmp para descargar
+cd /tmp
+
+
+# Si se descargó un archivo .deb, continuar con la instalación y configuración
+if [[ $os_choice -eq 2 ]] && ([[ $linux_version -eq 2 ]] || [[ $linux_version -eq 4 ]]); then
+    # Mover el archivo descargado a /opt/
+    downloaded_file=$(ls /tmp/splunkforwarder-9.1.2*b6b9c8185839*.deb)
+    sudo mv $downloaded_file /opt/
+
+    # Instalar el archivo .deb desde /opt/
+    sudo dpkg -i /opt/$(basename $downloaded_file)
+    
+    # Asegurarse de estar en el directorio correcto para iniciar Splunk
+    cd /opt/splunkforwarder/bin
+    sudo ./splunk start --accept-license
+
+    # Configurar el servidor
+    read -p "Ingrese la dirección IP del servidor y el puerto (ejemplo: 192.168.1.139:9998): " server_address
+    sudo ./splunk add forward-server $server_address
+
+    # Checar el servicio
+    sudo systemctl enable --now SplunkForwarder
+    sudo systemctl status SplunkForwarder
+    echo "systemctl status SplunkForwarder"
+fi

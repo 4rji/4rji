@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Color codes
+green="\033[32m"
+yellow="\033[33m"
+red="\033[31m"
+blue="\033[34m"
+reset="\033[0m"
+
+# Agregar un renglón de separación
+echo -e "${yellow}" # Amarillo
+echo ""
+ifconfig | grep inet | grep -v 127.0.0.1 | sed 's/^/    /'
+echo -e "${red}" # Rojo
+echo ""
+
+# Función para obtener la interfaz de red principal
+get_network_interface() {
+    # Se especifica en1 directamente, asumiendo que es la interfaz deseada
+    echo "en1"
+}
+
+# Obtener la interfaz de red
+network_interface=$(get_network_interface)
+
+# Mostrar la dirección IP local
+echo -e "${blue}                  ___________________________________________________${reset}"
+echo -e "\n\t\t\t\tTu IP de $network_interface es: $(ifconfig "$network_interface" | grep "inet " | awk '{print $2}')\n"
+

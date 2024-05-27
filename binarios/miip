@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Obtener la dirección IP de eth0
+ip=$(ifconfig eth0 | grep -oP 'inet \K\S+')
+
+# Copiar la dirección IP al portapapeles
+echo $ip | xclip -selection clipboard
+
+# Mostrar la dirección IP en la consola
+echo "Dirección IP de eth0: $ip"
+

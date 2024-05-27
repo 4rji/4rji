@@ -1,0 +1,52 @@
+#!/bin/bash
+echo ""
+echo "            *********** nmcli connection show --active *************"
+# Mostrar conexiones activas
+echo "Conexiones activas:"
+nmcli connection show --active
+
+echo ""
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("iperf" "wavemon" "network-manager")
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+echo ""
+echo "             ******** nmcli dev wifi ********"
+nmcli dev wifi
+echo ""
+echo "             ******** nmcli device ********"
+nmcli device
+echo ""
+
+echo "              ******** wavemon ********"
+echo "wavemon para ver la potencia de transmision"
+
+echo ""
+echo "iperf -s (servidor) -u (UDP) -d (dualtest)"
+echo "iperf -c {ip_servidor} -u (UDP) -d (dualtest) "
+echo ""
+echo ""
+
+# Preguntar al usuario si desea ver más detalles
+read -p "¿Desea ver más detalles de las conexiones activas? (s/n): " choice
+
+# Verificar la respuesta del usuario
+if [ "$choice" = "s" ]; then
+    # Mostrar detalles de las conexiones activas
+    nmcli -p device show
+else
+    # Cancelar la acción si no se elige 's'
+    echo "Acción cancelada."
+fi
+

@@ -1,0 +1,14 @@
+#!/bin/bash
+nff
+#neofetch
+echo ""
+host="google.com"  # Cambia "google.com" por el host que desees
+
+timeout 2 ping -c 1 "$host" > /dev/null 2>&1
+
+if [[ $? -eq 0 ]]; then
+  echo "The Internet connection is active."
+else
+  echo "Unable to access the Internet."
+fi 
+hostname -I | awk '{print $1 " | " $2}'

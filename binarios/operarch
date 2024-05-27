@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Colores
+color_verde='\e[0;32m'
+color_amarillo='\e[0;33m'
+color_azul='\e[0;34m'
+color_reset='\e[0m'
+
+echo -e "${color_azul}\n_________________________________________________________\n${color_reset}"
+echo -e "${color_amarillo}¿Qué navegador deseas instalar?\n${color_reset}"
+
+echo -e "${color_azul}1.${color_reset} Brave"
+echo -e "${color_azul}2.${color_reset} Opera"
+echo ""
+echo -e "${color_amarillo}Selecciona una opción:${color_reset} "
+echo ""
+
+read -n1 -p "Opción: " opcion
+echo -e "\n${color_verde}_________________________________________________________\n${color_reset}"
+
+case $opcion in
+    1)
+        echo -e "${color_azul}Instalando Brave...\n${color_reset}"
+        sudo pacman -Sy --noconfirm base-devel
+        sudo pacman -Sy --noconfirm git
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si --noconfirm
+        yay -S --noconfirm brave-bin
+        ;;
+    2)
+        echo -e "${color_azul}Instalando Opera...\n${color_reset}"
+        sudo pacman -Sy --noconfirm base-devel
+        sudo pacman -Sy --noconfirm git
+        git clone https://aur.archlinux.org/yay.git
+        cd yay
+        makepkg -si --noconfirm
+        yay -S --noconfirm opera
+        ;;
+    *)
+        echo -e "${color_azul}Opción no válida.${color_reset}"
+        ;;
+esac
+

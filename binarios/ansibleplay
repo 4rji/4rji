@@ -1,0 +1,106 @@
+#!/bin/bash
+
+# Pregunta al usuario qué acción desea realizar
+echo "Seleccione la tarea que desea ejecutar:"
+echo "1. Gestionar paquetes con apt"
+echo "2. Copiar archivos a ubicaciones remotas"
+echo "3. Ejecutar comandos en un nodo remoto"
+echo "4. Ejecutar un script local en un nodo remoto"
+echo "5. Descargar archivos de Internet"
+echo "6. Gestionar repositorios git"
+echo "7. Gestionar tareas cron"
+read -p "Ingrese el número de la tarea: " tarea
+
+# Genera el archivo YAML de Ansible basado en la selección
+case $tarea in
+  1)
+    cat <<'EOF' >apt_example.yml
+# Ejemplo para instalar paquetes usando apt en sistemas basados en Debian/Ubuntu.
+- hosts: all
+  become: yes
+  tasks:
+    - name: Instalar un paquete con apt
+      ansible.builtin.apt:
+        name: vim  # Cambia 'vim' por el nombre del paquete que deseas instalar.
+        state: present  # 'present' asegura que el paquete esté instalado.
+EOF
+    echo "Se creó el archivo apt_example.yml con ejemplos y descripciones."
+    ;;
+  2)
+    cat <<'EOF' >copy_example.yml
+# Ejemplo para copiar archivos a ubicaciones remotas.
+- hosts: all
+  tasks:
+    - name: Copiar archivo a ubicación remota
+      ansible.builtin.copy:
+        src: /src/path/local.txt  # Ruta local del archivo a copiar.
+        dest: /dest/path/remote.txt  # Ruta destino en el host remoto.
+EOF
+    echo "Se creó el archivo copy_example.yml con ejemplos y descripciones."
+    ;;
+  3)
+    cat <<'EOF' >command_example.yml
+# Ejemplo para ejecutar comandos en un nodo remoto.
+- hosts: all
+  tasks:
+    - name: Ejecutar un comando en el nodo remoto
+      ansible.builtin.command: ls -lah  # Comando a ejecutar.
+EOF
+    echo "Se creó el archivo command_example.yml con ejemplos y descripciones."
+    ;;
+  4)
+    cat <<'EOF' >script_example.yml
+# Ejemplo para ejecutar un script local en nodos remotos.
+- hosts: all
+  tasks:
+    - name: Ejecutar un script local en nodos remotos
+      ansible.builtin.script: /path/to/local/script.sh  # Ruta del script local a ejecutar.
+EOF
+    echo "Se creó el archivo script_example.yml con ejemplos y descripciones."
+    ;;
+  5)
+    cat <<'EOF' >get_url_example.yml
+# Ejemplo para descargar archivos de Internet a nodos remotos.
+- hosts: all
+  tasks:
+    - name: Descargar un archivo de Internet
+      ansible.builtin.get_url:
+        url: http://example.com/path/to/file  # URL del archivo a descargar.
+        dest: /path/to/destination  # Ruta destino en el host remoto.
+EOF
+    echo "Se creó el archivo get_url_example.yml con ejemplos y descripciones."
+    ;;
+  6)
+    cat <<'EOF' >git_example.yml
+# Ejemplo para gestionar repositorios git en nodos remotos.
+- hosts: all
+  tasks:
+    - name: Gestionar un repositorio git
+      ansible.builtin.git:
+        repo: 'https://github.com/example/repo.git'  # URL del repositorio.
+        dest: /path/to/destination  # Ruta donde se clonará el repositorio.
+EOF
+    echo "Se creó el archivo git_example.yml con ejemplos y descripciones."
+    ;;
+  7)
+    cat <<'EOF' >cron_example.yml
+# Ejemplo para gestionar tareas cron en nodos remotos.
+- hosts: all
+  tasks:
+    - name: Gestionar una tarea cron
+      ansible.builtin.cron:
+        name: "Ejemplo de tarea cron"  # Descripción de la tarea cron.
+        user: "root"  # Usuario bajo el cual se ejecutará la tarea.
+        job: "echo 'Hola Mundo' > /dev/null 2>&1"  # Comando a ejecutar.
+        minute: "0"  # Minuto de ejecución (0-59).
+        hour: "0"  # Hora de ejecución (0-23).
+        day: "*"  # Día del mes (1-31).
+        month: "*"  # Mes del año (1-12 o nombres).
+        weekday: "*"  # Día de la semana (0-7 donde 7 es domingo, o nombres).
+EOF
+    echo "Se creó el archivo cron_example.yml con ejemplos y descripciones."
+    ;;
+  *)
+    echo "Opción no válida."
+    ;;
+esac

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+apt install curl wget sudo kitty nmap magic-wormhole bat zsh nano docker.io tor  wget curl htop gcc build-essential python3-pip proxychains -y
+

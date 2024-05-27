@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+echo " sftp usuario@ip:archivo ~ "
+# Solicitar el nombre de usuario
+echo "Ingresa el nombre de usuario: "
+read username
+
+# Solicitar la dirección IP de destino
+echo "Ingresa la dirección IP de destino: "
+read ip_address
+
+# Solicitar el nombre del archivo
+echo "Ingresa el nombre del archivo que deseas copiar: "
+read file_name
+
+# Establecer la conexión SFTP y transferir el archivo
+sftp $username@$ip_address:$file_name ~
+
+#asi es la estructura
+#sftp usuario@ip:archivo ~

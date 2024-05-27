@@ -1,0 +1,51 @@
+#!/bin/bash
+ssa1
+
+# Función para imprimir una línea violeta centrada
+print_violet_line() {
+  echo -e "\e[35m                  ___________________________________________________\e[0m"
+  echo -e "\n\n"  # Agregar dos espacios vacíos abajo
+}
+
+# Función para mostrar la pregunta y leer la respuesta
+ask_question() {
+  local question="$1"
+  local response
+  read -p "$question [s/n]? " -n 1 response  # Cambiar el formato de la pregunta a [s/n] con la opción predeterminada para cancelar
+  echo "$response"
+}
+
+# Imprimir una línea violeta centrada antes de las preguntas
+print_violet_line
+echo ""
+
+# Verificar el estado del servicio SSH
+if systemctl is-active ssh &> /dev/null; then
+  echo ""
+
+  # Preguntar si se desea desactivar el servicio SSH
+  desactivar_ssh=$(ask_question "DESACTIVAR el servicio SSH")
+  if [[ "$desactivar_ssh" == "s" ]]; then
+    sudo systemctl stop ssh
+    echo ""
+    echo "El servicio SSH ha sido         ***  DESACTIVADO  *** ."
+    echo -e "\n\n\t\t\e[32mSSH status:\e[0m $(systemctl status ssh | grep -oP '(?<=Active: ).*(?= since)')\n"
+
+  else
+    echo "No se ha desactivado el servicio SSH."
+  fi
+else
+  echo ""
+  
+  # Preguntar si se desea activar el servicio SSH
+  activar_ssh=$(ask_question "Activar el servidor SSH")
+  if [[ "$activar_ssh" == "s" ]]; then
+    sudo systemctl start ssh
+    echo ""
+    echo "El servicio SSH ha sido         **^^  ACTIVADO  ^^**."
+    echo -e "\n\n\t\t\e[32mSSH status:\e[0m \e[31m$(systemctl status ssh | grep -oP '(?<=Active: ).*(?= since)')\e[0m\n"
+
+  else
+    echo "No se ha activado el servicio SSH."
+  fi
+fi

@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Clonar el repositorio Yay desde AUR
+git clone https://aur.archlinux.org/yay.git
+
+# Cambiar al directorio yay
+cd yay
+
+# Compilar e instalar Yay
+makepkg -si
+
+# Instalar el paquete Termius con Yay
+yay -S termius

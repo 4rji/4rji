@@ -1,0 +1,130 @@
+#!/bin/bash
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+# Show the list of downloads
+echo "AMD64"
+echo "1 ligolo-ng Agent 0.5.1 linux"
+echo "2 ligolo-ng Proxy 0.5.1 linux"
+echo ""
+echo ""
+echo "ARM64"
+echo "3 ligolo-ng Agent 0.5.1 linux"
+echo "4 ligolo-ng Proxy 0.5.1 linux"
+echo ""
+
+# Divider line
+echo "_________________________________________________________"
+echo ""
+
+read -p "Choose the number of the download you want: " option
+echo ""
+# Divider line
+echo "_________________________________________________________"
+
+# Download the chosen file with wget
+case $option in
+    1)
+        wget -q https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.1/ligolo-ng_agent_0.5.1_linux_amd64.tar.gz
+        file="ligolo-ng_agent_0.5.1_linux_amd64.tar.gz"
+        ;;
+    2)
+        wget -q https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.1/ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz
+        file="ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz"
+        ;;
+    3)
+        wget -q https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.1/ligolo-ng_agent_0.5.1_darwin_arm64.tar.gz
+        file="ligolo-ng_agent_0.5.1_darwin_arm64.tar.gz"
+        ;;
+    4)
+        wget -q https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.1/ligolo-ng_proxy_0.5.1_linux_arm64.tar.gz
+        file="ligolo-ng_proxy_0.5.1_linux_arm64.tar.gz"
+        ;;
+    *)
+        echo "Invalid option."
+        exit 1
+        ;;
+esac
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+# Extract the downloaded file
+tar xzvf $file
+echo ""
+
+# Show the message and options for Agent or Proxy
+echo "More agents at: https://github.com/nicocha30/ligolo-ng/releases"
+echo ""
+echo ""
+
+#read -p "Continue with Agent (a) or Proxy (p)? " choice
+read -n1 -p "Continue with Agent (a) or Proxy (p)? " choice
+echo ""
+# Divider line
+echo "_________________________________________________________"
+echo ""
+# Check the choice and proceed
+if [ "$choice" == "a" ]; then
+    echo "Installing the agent..."
+    # You can add the code here to install the agent
+    # If it's an agent, ask for the proxy's IP address
+    read -p "What is the proxy's IP address? " IP
+    echo "omit -ignore-cert for lab purposes"
+    echo ""
+    command="./agent -connect $IP:11601 -ignore-cert"
+    
+    echo "Executing command in 1 second:"
+    echo ""
+    echo " $command"
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+
+    sleep 1
+    $command
+elif [ "$choice" == "p" ]; then
+    read -n1 -p "Do you want to start the interface? [Y/n] " start_interface
+    start_interface=${start_interface:-Y}
+
+    if [ "$start_interface" == "Y" ] || [ "$start_interface" == "y" ]; then
+        sudo ip tuntap add user $USER mode tun ligolo
+        sudo ip link set ligolo up
+        ip a | grep ligolo
+        sleep 1
+        echo ""
+    
+        # If it's a proxy, ask if you want to start it
+        read -n1 -p "Do you want to start the proxy? [Y/n] " start_proxy
+        start_proxy=${start_proxy:-Y}
+
+        if [ "$start_proxy" == "Y" ] || [ "$start_proxy" == "y" ]; then
+            echo ""
+            
+
+            echo "Starting the proxy..."
+            echo ""
+            echo "./proxy -selfcert"
+            echo "_________________________________________________________"
+            echo ""
+            echo "Note: -selfcert is for lab use without an internet connection."
+            echo ""
+            sleep 1
+            ./proxy -selfcert
+        fi
+    fi
+    
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+    
+else
+    echo "Invalid option."
+    exit 1
+fi
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+

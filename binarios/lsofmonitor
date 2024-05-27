@@ -1,0 +1,104 @@
+#!/bin/bash
+
+# Función para verificar si un paquete está instalado
+paquete_instalado() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Instalar paquetes necesarios
+paquetes=("lsof")
+for paquete in "${paquetes[@]}"; do 
+    if ! paquete_instalado "$paquete"; then  
+        sudo apt-get install -y "$paquete"  
+    fi  
+done
+
+# Archivo para guardar los PID de conexiones nuevas
+PID_FILE="/tmp/pidssh"
+
+# Definir colores
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[1;34m' # Azul fuerte
+NC='\033[0m' # Sin Color
+
+# Línea de separación
+SEPARATOR=$(printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -)
+
+check_new_connections() {
+    > "$PID_FILE"
+    local connections=$(lsof -i -n -P | grep 'ESTABLISHED' | grep -v 'LISTEN')
+    if [ ! -z "$connections" ]; then
+        echo -e "${RED}${SEPARATOR}${NC}"
+        echo -e "${RED}       ALERTA: Conexión activa detectada.      ${NC}"
+        echo -e "${RED}${SEPARATOR}${NC}\n"
+        local count=1
+        echo "$connections" | while IFS= read -r line; do
+            local protocol=$(echo "$line" | awk '{print $8}')
+            local ip=$(echo "$line" | awk '{print $9}' | cut -d'>' -f2 | cut -d':' -f1)
+            local pid=$(echo "$line" | awk '{print $2}')
+            local user=$(echo "$line" | awk '{print $3}')
+            echo -e "${YELLOW}$count) Conexion: $user, IP: $ip, PID: $pid, Conexión: $protocol a $ip${NC}"
+            echo "$pid" >> "$PID_FILE"
+            ((count++))
+        done
+        echo -e "${RED}${SEPARATOR}${NC}"
+        ask_to_kill_connection
+    else
+        echo -e "${GREEN}No hay conexiones activas en este momento.${NC}\n"
+        exit_after_delay
+    fi
+}
+
+ask_to_kill_connection() {
+    echo -e "\nSelecciona numero o [s] para terminar TODAS\n"
+    read -n 1 -t 5 -p " >  " selection
+
+    if [ -z "$selection" ]; then
+        echo -e "${BLUE}Escaneando de nuevo...${NC}"
+        exit_after_delay
+    elif [ "$selection" = "A" ] || [ "$selection" = "a" ]; then
+        kill_all_connections
+    elif [[ "$selection" =~ ^[0-9]+$ ]]; then
+        handle_connection_selection "$selection"
+    elif [ "$selection" = "S" ] || [ "$selection" = "s" ]; then
+        kill_all_connections
+    else
+        echo -e "${RED}Selección inválida. Saliendo...${NC}"
+        exit_after_delay
+    fi
+}
+
+handle_connection_selection() {
+    local selection=$1
+    mapfile -t pids < "$PID_FILE"
+
+    if [ "$selection" -gt 0 ] && [ "$selection" -le ${#pids[@]} ]; then
+        local selected_pid=${pids[$selection-1]}
+        sudo kill "$selected_pid"
+        echo "Ejecutado 'sudo kill' en PID $selected_pid."
+        exit_after_delay
+    else
+        echo "Selección inválida."
+        exit_after_delay
+    fi
+}
+
+kill_all_connections() {
+    echo "Terminando todas las conexiones..."
+    while read -r pid; do
+        sudo kill -9 "$pid"
+        echo "Conexión terminada para PID $pid."
+    done < "$PID_FILE"
+    exit_after_delay
+}
+
+exit_after_delay() {
+    #echo "    --- Comprobando nuevamente en 4 segundos...    --- "
+    sleep 5
+    exit 0
+}
+
+# Llamar a la función de chequeo una vez
+check_new_connections

@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+# Comprueba si se proporcionó un directorio
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 <directorio>"
+    exit 1
+fi
+
+# Asigna el directorio a una variable
+directorio=$1
+
+# Comprueba si el directorio existe
+if [ ! -d "$directorio" ]; then
+    echo "El directorio no existe: $directorio"
+    exit 1
+fi
+
+# Pide al usuario que ingrese la palabra clave
+echo -n "Introduce la(s) palabra(s) a buscar: "
+read palabras
+
+# Busca la palabra clave en todos los archivos del directorio
+echo "Buscando '$palabras' en archivos de $directorio..."
+for archivo in "$directorio"/*
+do
+    if grep -q "$palabras" "$archivo"; then
+        echo "Encontrado en: $archivo"
+        cat "$archivo"
+    fi
+done
+

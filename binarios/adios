@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+# Verificación de argumento
+if [[ $# -ne 1 ]]; then
+  echo "Usage: $0 <directory>"
+  exit 1
+fi
+
+# Verificar si el directorio existe
+if [ ! -d "$1" ]; then
+    echo "El directorio especificado no existe."
+    exit 1
+fi
+
+# Definir una función recursiva para aplicar scrub a los archivos en el directorio actual y sus subdirectorios
+apply_scrub_recursive() {
+  for file in "$1"/*; do
+    if [ -f "$file" ]; then
+      scrub -p dod "$file"
+    elif [ -d "$file" ]; then
+      apply_scrub_recursive "$file"  # llamada recursiva para aplicar scrub a los subdirectorios
+    fi
+  done
+}
+
+# Aplicar el comando 'scrub' a todos los archivos en el directorio y sus subdirectorios
+apply_scrub_recursive "$1"
+
+# Aplicar el comando 'shred' a todos los archivos dentro del directorio y sus subdirectorios
+for file in "$1"/*; do
+  if [ -f "$file" ]; then
+    shred -zun 10 -v "$file"
+  fi
+done
+
+# Borrar el directorio después de ejecutar los comandos
+rm -rf "$1"

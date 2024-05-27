@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+
+import sys
+
+if len(sys.argv) != 2:
+    print(f"Uso: {sys.argv[0]} <nombre_del_archivo_a_modificar>")
+    sys.exit(1)
+
+archivo_a_modificar = sys.argv[1]
+
+# Función para solicitar el mensaje personalizado
+def solicitar_mensaje():
+    return input("Cual es el mensaje de ayuda? ")
+
+mensaje_personalizado = solicitar_mensaje()
+
+try:
+    with open(archivo_a_modificar, 'r') as archivo:
+        lineas = archivo.readlines()
+
+    linea_modificada = False
+    for i, linea in enumerate(lineas):
+        if linea.startswith("#!/bin/zsh"):
+            lineas[i] = "#!/bin/bash\n"
+            linea_modificada = True
+        elif linea.startswith("#!/bin/bash"):
+            # La línea ya es bash, no es necesario cambiarla.
+            linea_modificada = True
+        elif not linea_modificada and not linea.startswith("#"):
+            # Comentar la primera línea no bash/zsh
+            lineas[i] = "# " + lineas[i]
+            linea_modificada = True
+
+        if linea_modificada:
+            # Insertar el bloque de código después de la línea modificada o comentada
+            lineas[i + 1:i + 1] = [
+                '\n',
+                'echo ""\n',
+                'echo -e "\\033[1;34m_________________________________________________________\\033[0m"\n',
+                'echo ""\n',
+                '# Función para mostrar el mensaje de ayuda y preguntar si desea continuar\n',
+                'show_help_and_confirm() {\n',
+                '    echo ""\n',
+                
+
+
+                '    echo -e "\\033[1;32mEl comando que este script ejecuta es:\\033[0m"\n',
+                '    echo ""\n',
+
+                f'    echo -e "\\033[1;33m{mensaje_personalizado}\\033[0m"\n',
+                '    echo ""\n',
+                '    echo ""\n',
+                'echo -e "\\033[1;34m_________________________________________________________\\033[0m"\n',
+            
+                '    echo ""\n',
+
+                #'    echo -e "\\033[1;35mPresione Enter para ejecutar, otra tecla \'c\' para salir.\\033[0m"\n',
+
+#                '    echo -e "\\033[1;35mPresione Enter para ejecutar, otra tecla \\'c\\' para salir.\\033[0m"\n',
+                '\n',
+                '    # Preguntar al usuario si desea continuar\n',
+                '    read -n1 -p "Continuar el script?  Cancel [c]  " response\n',
+                '    echo ""  # Añadir una nueva línea para la salida\n',
+                '\n',
+                '    # Convertir la respuesta a minúsculas y evaluar\n',
+                '    case "$response" in\n',
+                #'    c|C) echo "Saliendo del script." ; exit 0 ;;\n',
+                '    *) echo "Continuando..." ;;\n',
+                '    esac\n',
+                '}\n',
+                '\n',
+                '# Verificar si se pasó el argumento -h\n',
+                'if [ "$1" == "-h" ]; then\n',
+                '    show_help_and_confirm\n',
+                'fi\n'
+            ]
+            break  # Salir del bucle después de modificar
+
+    with open(archivo_a_modificar, 'w') as archivo:
+        archivo.writelines(lineas)
+
+    print(f"El archivo '{archivo_a_modificar}' ha sido modificado con éxito.")
+
+except FileNotFoundError:
+    print(f"El archivo '{archivo_a_modificar}' no existe.")
+    sys.exit(1)

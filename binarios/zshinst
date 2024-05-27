@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+import subprocess
+import os
+
+def instalar_zsh():
+    respuesta = input("¿Deseas instalar la ZSH? [s/n]: ").strip().lower()
+    if respuesta == "s":
+        subprocess.run("sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\"", shell=True)
+        print("Por favor, vuelve a abrir este script después de instalar Zsh.")
+        exit()
+
+def instalar_tema():
+    respuesta = input("¿Deseas instalar el tema Powerlevel10k? [s/n]: ").strip().lower()
+    if respuesta == "s":
+        os.environ["ZSH_CUSTOM"] = os.environ.get("ZSH_CUSTOM", "~/.oh-my-zsh/custom")
+        subprocess.run("git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k", shell=True)
+        print("Tema instalado.")
+
+
+if __name__ == "__main__":
+    instalar_zsh()
+    instalar_tema()
+
+    print("")
+    print("Configuración completa.")
+    print("")
+    print("Corre el script herralias para traer los alias")
+    print("herralias")
+
+    print("")
+    print("luego ejecuta:")
+    
+    print("")
+    print('c2 = ZSH_THEME="powerlevel10k/powerlevel10k"')
+    print("c3 = plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)")
+    print(" ")
+    print("\ninstalar los plugins:")
+    print("c4")
+    print("c5")
+    print("  ")
+    print("c1 instala de nuevo el tema powerlevel10k.git")
+

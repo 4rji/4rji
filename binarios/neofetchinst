@@ -1,0 +1,35 @@
+#!/bin/bash
+
+i neofetch
+
+echo ""
+# Descargar el archivo desde la URL
+wget -O neoconf https://raw.githubusercontent.com/4rji/4rji/main/neoconf
+
+# Verificar si la descarga fue exitosa
+if [ $? -eq 0 ]; then
+    # Crear la carpeta si no existe
+#    mkdir -p ~/.config/neofetch
+
+    # Mover el archivo a la ubicaci  n deseada
+ 	#mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf.bk
+    mv neoconf ~/.config/neofetch/config.conf
+
+    echo "El archivo se ha descargado y movido correctamente."
+echo ""
+    # Preguntar al usuario por el nuevo nombre
+    read -p "Nombre del host nuevo: " nuevo_nombre
+
+    # Reemplazar la palabra "casiton" en /usr/bin/nff con el nuevo nombre usando sudo
+    sudo sed -i "s/casiton/$nuevo_nombre/g" /usr/bin/nff
+
+    echo "Se ha realizado el reemplazo en /usr/bin/nff con el nuevo nombre."
+else
+    echo "Hubo un error al descargar el archivo."
+fi
+
+sudo rm /usr/bin/neofetch
+sudo cp /usr/bin/nff /usr/bin/wm
+
+sudo chattr +i /usr/bin/nff
+sudo chattr +i /usr/bin/wm

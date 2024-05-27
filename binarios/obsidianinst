@@ -1,0 +1,27 @@
+#!/bin/bash
+
+paquetes=("obsidian")
+
+paquete_instalado() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do
+    if paquete_instalado "$paquete"; then
+        echo "El paquete $paquete ya está instalado."
+        exit 0
+    else
+        echo "Instalando el paquete $paquete..."
+        #sudo apt-get install -y "$paquete"
+    fi
+done
+
+
+cd /tmp
+
+#download
+wget https://github.com/obsidianmd/obsidian-releases/releases/download/v1.5.3/obsidian_1.5.3_amd64.deb
+
+sudo dpkg -i obsidian_1.5.3_amd64.deb
+
+cd

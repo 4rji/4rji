@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Función para instalar Chrony y reiniciar el servicio
+install_chrony() {
+    if command -v yum &> /dev/null; then
+        sudo yum install -y chrony
+        sudo systemctl restart chronyd
+        sudo systemctl status chronyd
+    elif command -v apt-get &> /dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y chrony
+        sudo systemctl restart chrony
+        sudo systemctl status chrony
+    else
+        echo "No se pudo detectar el sistema operativo compatible."
+        exit 1
+    fi
+}
+
+# Llamar a la función para instalar Chrony
+install_chrony
+
+echo ""
+echo ""
+echo " **** **** **** just in case *** *** *** "
+echo "timedatctl set-timezone America/Chicago"

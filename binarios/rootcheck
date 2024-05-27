@@ -1,0 +1,48 @@
+#!/bin/bash
+
+
+
+        read -p "Press Enter to execute 'sudo cat /root/.bashrc': " 
+        sudo cat /root/.bashrc
+
+        echo ""
+        echo "**************** END ****************"
+
+        echo ""
+        read -p "Press Enter to execute 'sudo cat /root/.shrc': " 
+        sudo cat /root/.shrc
+        echo ""
+        echo ""
+        echo "**************** END ****************"
+        echo ""
+        read -p "Press Enter to execute 'sudo cat /root/.cshrc': " 
+        sudo cat /root/.cshrc
+        echo ""
+        echo ""
+        echo "**************** END ****************"
+        echo ""
+        read -p "Press Enter to execute 'sudo cat /root/.tcshrc': " 
+        sudo cat /root/.tcshrc
+        echo ""
+        echo ""
+        echo "**************** END ****************"
+
+        echo ""
+        read -p "Press Enter to execute 'sudo cat /root/.profile': " 
+        sudo cat /root/.profile
+        echo ""
+        echo ""
+        echo "**************** END ****************"
+
+        echo ""
+        read -p "Press Enter to execute 'sudo cat /root/.bash_profile': " 
+        sudo cat /root/.bash_profile
+        echo ""
+        
+        echo ""
+        echo "**************** END ****************"
+        echo ""
+        echo ""
+                 
+        
+        

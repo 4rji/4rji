@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Función para instalar UFW en sistemas basados en Debian
+install_ufw_debian() {
+    sudo apt-get update
+    sudo apt-get install ufw -y
+}
+
+# Función para instalar UFW en sistemas basados en Red Hat
+install_ufw_redhat() {
+    sudo yum install ufw -y
+}
+
+# Función para habilitar UFW y configurar reglas
+configure_ufw() {
+    # Habilitar UFW
+    sudo ufw enable
+
+    # Permitir el tráfico SSH en el puerto 22
+    sudo ufw allow 22
+
+    # Recargar UFW para aplicar los cambios
+    sudo ufw reload
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/debian_version ]; then
+    # Sistema basado en Debian (Ubuntu)
+    echo "Instalando UFW en sistema Debian..."
+    install_ufw_debian
+    configure_ufw
+    echo "Configuración completa."
+elif [ -f /etc/redhat-release ]; then
+    # Sistema basado en Red Hat (CentOS o Fedora)
+    echo "Instalando UFW en sistema Red Hat..."
+    install_ufw_redhat
+    configure_ufw
+    echo "Configuración completa."
+else
+    # Sistema no compatible
+    echo "Este sistema no es compatible con el script."
+    exit 1
+fi

@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+# Función para verificar si un valor está dentro de un rango
+function dentro_de_rango() {
+    local valor="$1"
+    local min="$2"
+    local max="$3"
+
+    if (( $(echo "$valor >= $min" | bc -l) )) && (( $(echo "$valor <= $max" | bc -l) )); then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Pide al usuario que ingrese un número
+echo "Ingresa el valor del brillo (entre 0.1 y 1.0): "
+read brillo
+
+# Verifica si el número ingresado está dentro del rango permitido
+if dentro_de_rango "$brillo" 0.1 1.0; then
+    # Ejecuta el comando xrandr con el valor del brillo elegido al final
+    xrandr --output eDP-1 --brightness "$brillo"
+else
+    echo "Error: El valor del brillo debe estar entre 0.1 y 1.0"
+fi

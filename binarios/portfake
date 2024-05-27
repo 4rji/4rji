@@ -1,0 +1,50 @@
+#!/bin/bash
+
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("git" "make" "g++" "iptables" )
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+
+# Clonar el repositorio de Portspoof
+git clone https://github.com/drk1wi/portspoof.git
+cd portspoof/
+
+# Compilar e instalar Portspoof
+./configure
+make
+sudo make install
+#sudo make installcheck
+make cleanls
+
+# Crear directorio para la configuración de Portspoof y mover archivos
+sudo mkdir -p /etc/portspoof
+sudo mv tools/portspoof.conf /etc/portspoof/
+sudo mv tools/portspoof_signatures /etc/portspoof/
+
+# Verificar el movimiento de los archivos
+echo "Archivos movidos a /etc/portspoof:"
+ls /etc/portspoof
+echo ""
+echo "agregar iptables"
+echo "sudo iptables -t nat -A PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444"
+echo "para eliminar esa regla"
+echo "sudo iptables -t nat -D PREROUTING -p tcp -m tcp --dport 1:65535 -j REDIRECT --to-ports 4444"
+echo ""
+# Instrucciones para ejecutar Portspoof
+echo "para ejecutar solo escribir"
+echo "portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures"
+echo "alias=iniciafakep"
+
+cd ~
+rm -rf portspoof

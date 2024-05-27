@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# Lista de paquetes a instalar
+#paquetes=("nano" "zsh")
+paquetes=("php7.4-cli" "php7.4-common" "php7.4-curl" "php7.4-zip" "wget" "php7.4-gd" "php7.4-mysql" "php7.4-xml" "php7.4-mbstring" "php7.4-json" "php7.4-intl" "unzip" "composer" "git" "nano" "zsh" "php-xml" "php-zip" "php" "apache2" "mysqp-server")
+
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" &> /dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar paquetes basados en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if ! paquete_instalado_apt "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete"
+            fi
+            ;;
+        "centos"|"rhel")
+            if ! paquete_instalado_yum "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete"
+            fi
+            ;;
+        "fedora")
+            if ! paquete_instalado_dnf "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete"
+            fi
+            ;;
+        "arch")
+            if ! paquete_instalado_pacman "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete"
+            fi
+            ;;
+        *)
+            ;;
+    esac
+done
+
+
+
+
+
+wget -O - https://raw.githubusercontent.com/4rji/4rji/main/binarios/herrabin | bash
+
+mkdir prestashop
+cd prestashop
+
+wget https://download.prestashop.com/download/releases/prestashop_1.7.6.7.zip
+
+unzip prestashop_1.7.6.7.zip
+unzip prestashop_1.7.6.7.zip
+cd ..
+
+mv prestashop /var/www/html
+
+
+chown -R www-data:www-data /var/www/html/prestashop/
+
+
+sudo systemctl restart apache2
+
+
+sudo a2enmod rewrite
+
+sudo systemctl restart apache2
+
+
+
+
+echo "https://youtu.be/eQoJufGAZHc?si=qlKTznwy7nDqzS_G"

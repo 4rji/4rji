@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo ls /etc/sudoers.d/*  # you should see /etc/sudoers.d/mctc
+
+sudo grep -v '^#' /etc/sudoers /etc/sudoers.d/* 

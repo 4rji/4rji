@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Location of the Ansible inventory file
+INVENTORY_FILE="ansible_hosts"
+
+# Prompt the user for the command to execute
+echo -n "Enter the command you want to run on the hosts: "
+read COMMAND
+
+# Display the Ansible command that will be executed
+echo "The command to be executed is: "
+echo "ansible all -i $INVENTORY_FILE -m shell -a '$COMMAND' "
+echo ""
+
+# Ask for user confirmation
+echo -n "Do you want to send the command? (y/n): "
+read CONFIRMATION
+
+if [ "$CONFIRMATION" = "y" ]; then
+  # Execute the Ansible command
+  ansible all -i $INVENTORY_FILE -m shell -a "$COMMAND" 
+else
+  echo "Operation canceled."
+fi

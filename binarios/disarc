@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("docker" "distrobox")
+
+paquete_instalado() {  
+    pacman -Qi "$1" &> /dev/null  
+}
+
+for paquete in "${paquetes[@]}"; do 
+    if ! paquete_instalado "$paquete"; then  
+        sudo pacman -S --noconfirm "$paquete"  
+    fi  
+done
+
+
+
+# Crear el grupo docker y añadir el usuario actual al grupo
+if ! getent group docker > /dev/null 2>&1; then
+    sudo groupadd docker
+fi
+
+sudo usermod -aG docker $USER
+
+
+# Pregunta al usuario si quiere arreglar los permisos
+read -p "¿Quieres arreglar los permisos? (s/enter continuar): " respuesta
+
+# Si la respuesta es 's' o 'S', ejecuta los comandos
+if [[ $respuesta == "s" || $respuesta == "S" ]]; then
+    echo "Arreglando permisos..."
+
+    # Ejecuta los comandos para arreglar permisos
+    newgrp docker
+    ls -l /var/run/docker.sock
+    sudo chown root:docker /var/run/docker.sock
+    sudo systemctl restart docker
+
+    echo "Permisos arreglados."
+else
+    echo "No se han realizado cambios."
+fi
+
+
+
+
+# Opciones de distribuciones
+echo "Elige una distribución para instalar con DistroBox:"
+echo "1) CentOS Stream 8"
+echo "2) CentOS Stream 9"
+echo "3) Debian 10"
+echo "4) Debian 11"
+echo "5) Debian 12"
+echo "6) Fedora"
+echo "7) Fedora 39"
+echo "8) Red Hat 9"
+echo "9) Rocky Linux"
+echo "10) Ubuntu 20.04"
+echo "11) Ubuntu 22.04"
+echo "12) CentOS 8"
+echo "13) CentOS 9"
+echo "14) Debian Bullseye"
+echo "15) Debian Bookworm"
+echo "16) Kali Linux"
+echo "17) Mint 21.1"
+echo '18) ArchLinux'
+echo "19) Más información"
+
+# Leer la elección del usuario
+read -p "Introduce el número de tu elección: " choice
+
+# Asignar la imagen correspondiente a la elección
+case $choice in
+    1) image="quay.io/toolbx-images/centos-toolbox:stream8" ;;
+    2) image="quay.io/toolbx-images/centos-toolbox:stream9" ;;
+    3) image="quay.io/toolbx-images/debian-toolbox:10" ;;
+    4) image="quay.io/toolbx-images/debian-toolbox:11" ;;
+    5) image="quay.io/toolbx-images/debian-toolbox:12" ;;
+    6) image="registry.fedoraproject.org/fedora-toolbox:latest" ;;
+    7) image="registry.fedoraproject.org/fedora-toolbox:39" ;;
+    8) image="registry.access.redhat.com/ubi9/toolbox" ;;
+    9) image="quay.io/toolbx-images/rockylinux-toolbox:latest" ;;
+    10) image="quay.io/toolbx-images/ubuntu-toolbox:20.04" ;;
+    11) image="quay.io/toolbx-images/ubuntu-toolbox:22.04" ;;
+    12) image="quay.io/centos/centos:stream8" ;;
+    13) image="quay.io/centos/centos:stream9" ;;
+    14) image="docker.io/library/debian:bullseye-backports" ;;
+    15) image="docker.io/library/debian:bookworm-backports" ;;
+    16) image="docker.io/kalilinux/kali-rolling:latest" ;;
+    17) image="docker.io/linuxmintd/mint21.1-amd64" ;;
+    18) image="docker.io/library/archlinux:latest" ;;
+    19) echo "Visita esta página web para más información: https://github.com/89luca89/distrobox/blob/main/docs/compatibility.md#containers-distros"
+       exit 0
+       ;;
+    *) echo "Opción no válida."
+       exit 1
+       ;;
+esac
+
+# Crear la distrobox
+distrobox create -i $image
+
+
+#fix permisions on docker
+#fixdockerper  es el otro script que lo arregla
+
+# newgrp docker
+# ls -l /var/run/docker.sock
+# sudo chown root:docker /var/run/docker.sock
+# sudo systemctl restart docker

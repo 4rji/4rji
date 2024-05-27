@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Asegúrate de que se haya proporcionado una subred como argumento
+if [ $# -ne 1 ]; then
+    echo "Por favor, proporciona una subred como argumento. Ejemplo: ./script.sh 192.168.1"
+    exit 1
+fi
+
+echo "_________________________________________________________"
+echo ""
+
+sleep 0.5
+
+subnet="$1"
+tempfile=$(mktemp) # Crea un archivo temporal
+
+# Hace ping a cada IP en la subred y muestra la salida
+for ip in $(seq 1 254); do
+    ping -c 1 "$subnet.$ip" | grep "64 bytes" | cut -d " " -f 4 | tr -d ":" | tee -a $tempfile >/dev/null &
+done
+echo "Escaneando ..."
+wait # Espera a que todos los procesos en segundo plano terminen
+
+echo ""
+echo "Hecho."
+echo ""
+
+# Muestra una lista de IPs encontradas
+echo "Lista de direcciones IP encontradas:"
+echo ""
+awk '{ print NR "- " $0 }' $tempfile
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+
+# Pregunta al usuario si desea ejecutar expo para una IP específica
+read -n1 -p "¿Ejecutar Nmap a una IP? [S/n] " choice
+echo ""
+echo ""
+
+if [[ $choice =~ ^[Ss]$ ]]; then
+    read -p "Cual numero de la lista: " selected_number
+    echo ""
+    selected_ip=$(sed "${selected_number}q;d" $tempfile)
+    read -n1 -p "¿Ejetar expo nmap a $selected_ip? [S/n]: " execute_expo
+
+    if [[ $execute_expo =~ ^[Ss]$ ]]; then
+        expo $selected_ip
+    else
+        echo "No se ejecutó el comando expo."
+    fi
+else
+    echo "Saliendo del script."
+fi
+
+# Elimina el archivo temporal
+rm $tempfile
+
+echo ""
+echo "*** Precaución: Este script está hecho para /24 ***"
+echo ""

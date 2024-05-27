@@ -1,0 +1,56 @@
+#!/bin/bash
+
+
+function mktem() {
+    new_dir=$(mktemp -d)
+    echo "Directorio creado en: $new_dir"
+    cd "$new_dir" || return
+    echo "Cambiado al directorio: $PWD"
+}
+
+
+
+
+# Aquí puedes llamar a la función mktem
+mktem
+
+
+
+
+git clone https://github.com/4rji/4rji.git
+cd 4rji/colores_nuevos
+
+
+
+
+#hacer un backup de los archivos
+mkdir ~/.config/polybar/backup
+mv ~/.config/polybar/* ~/.config/polybar/backup
+
+
+#copiar los archivos de los colores nuevos
+cp polybar/* ~/.config/polybar/ -r
+
+
+#restaurar la configuracion de la barra como la tenia
+cp ~/.config/polybar/backup/config ~/.config/polybar/
+cp ~/.config/polybar/backup/current.ini ~/.config/polybar/
+cp ~/.config/polybar/backup/launch.sh ~/.config/polybar/
+
+
+
+
+mkdir ~/.config/kitty/backup
+mv ~/.config/kitty/* ~/.config/kitty/backup
+cp kitty/* ~/.config/kitty/
+
+
+
+
+#https://raw.githubusercontent.com/4rji/4rji/main/colores_nuevos/kitty/color.ini
+#https://raw.githubusercontent.com/4rji/4rji/main/colores_nuevos/kitty/kitty.conf
+
+
+
+
+

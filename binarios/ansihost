@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo ""
+batcat ~/.ssh/ansible_hosts 
+
+#funcion para hacer un cat a hosts
+echo ""
+echo "----------------------------------------------"
+echo ""
+
+read -p "Quieres editar los hosts? [s/n]: " respuesta
+if [[ $respuesta == "s" ]]; then
+	nano ~/.ssh/ansible_hosts
+	echo ""
+fi
+
+	

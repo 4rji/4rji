@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Generar la clave SSH
+ssh-keygen -t ed25519
+
+# Obtener el cliente en formato usuario@IP y el puerto SSH
+echo "Ingresa el cliente en formato 'usuario@IP':"
+read cliente
+
+echo "Ingresa el puerto SSH:"
+read puerto_ssh
+
+# Copiar la clave SSH al host
+ssh-copy-id -i ~/.ssh/id_ed25519.pub -p "$puerto_ssh" "$cliente"

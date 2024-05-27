@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# SSH Port
+SSH_PORT=22
+
+# Function to check for SSH connections
+check_ssh_connections() {
+    # Use ss to search for connections on the SSH port
+    local connections=$(ss -tna | grep 'ESTAB.*:'"$SSH_PORT")
+    if [ ! -z "$connections" ]; then
+        echo "Alert: Active SSH connection detected."
+        echo "$connections"
+        # You can add code here to send notifications if needed
+    else
+        echo "No active SSH connections at this time."
+    fi
+}
+
+# Call the check function once
+check_ssh_connections

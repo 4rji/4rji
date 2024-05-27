@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# Función para verificar si un paquete está instalado
+
+paquetes=("unattended-upgrades" "apt-listchanges" "nyx" "gnupg" "curl" "git" "wget" "kitty" "nano" "sudo" "btop" "apt-transport-https" "tor" "deb.torproject.org-keyring")
+
+paquete_instalado() {  
+dpkg -l "$1" | grep -q '^ii'  
+}
+
+for paquete in "${paquetes[@]}"; do if ! paquete_instalado "$paquete"; then  
+sudo apt-get install -y "$paquete"  
+fi  
+done
+
+
+
+
+
+# Extract VERSION_CODENAME from /etc/os-release
+VERSION_CODENAME=$(grep VERSION_CODENAME /etc/os-release | cut -d= -f2)
+
+# Create the new file /etc/apt/sources.list.d/tor.list
+echo "deb [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org $VERSION_CODENAME main" | sudo tee /etc/apt/sources.list.d/tor.list
+
+echo "deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org $VERSION_CODENAME main" | sudo tee -a /etc/apt/sources.list.d/tor.list
+
+# Add the GPG Key
+wget -qO- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | gpg --dearmor | sudo tee /usr/share/keyrings/tor-archive-keyring.gpg >/dev/null
+
+# Update repositories again
+sudo apt update
+
+# Install ToR and deb.torproject.org-keyring
+sudo apt install tor deb.torproject.org-keyring
+
+# Configure ToR
+echo '## BASE CONFIG
+Nickname
+ContactInfo your@e-mail
+ORPort 443
+ExitRelay 0
+SocksPort 0
+
+## BANDWIDTH
+
+## The config below has a maximum of 800GB
+
+## (up/down) per month, starting on the 1st
+
+## for exit traffic
+##ExitRelay 1
+##ExitPolicy accept *:*
+
+
+## at midnight
+#AccountingMax 800 GB
+#AccountingStart month 1 0:00
+
+## MONITORING
+
+ControlPort 9051
+CookieAuthentication 1' | sudo tee -a /etc/tor/torrc
+
+#####
+
+
+while true; do
+    echo "Selecciona una opción:"
+    echo "1. Iniciar y habilitar Tor (service (docker))"
+    echo "2. Iniciar y habilitar Tor (systemctl (debian))"
+    read -p "Elije una opción (1 o 2): " opcion
+
+    case $opcion in
+        1)
+            # Opción 1: Iniciar y habilitar Tor usando 'service'
+            service tor start
+            service tor enable
+            break  # Salir del bucle después de ejecutar la opción válida
+            ;;
+        2)
+            # Opción 2: Iniciar y habilitar Tor usando 'systemctl'
+            sudo systemctl enable --now tor
+            sudo systemctl status tor
+            break  # Salir del bucle después de ejecutar la opción válida
+            ;;
+        *)
+            echo "Opción no válida. Por favor, elige 1 o 2."
+            ;;
+    esac
+done
+
+
+
+
+
+
+# Enable ToR and restart
+#sudo systemctl enable --now tor
+#sudo systemctl status tor
+
+echo "Abre el archivo 
+sudo nano /etc/tor/torrc
+para personalizar el relay"
+
+
+#deb [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org bookworm main
+#deb-src [signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org bookworm main

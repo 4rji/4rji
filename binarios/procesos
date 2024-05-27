@@ -1,0 +1,49 @@
+#!/bin/bash
+
+mostrar_procesos() {
+    ps_output=$(ps -eo user,comm)
+    IFS=$'\n' read -r -d '' -a lines <<< "$ps_output"
+
+    for line in "${lines[@]:1}"; do
+        user=$(echo "$line" | awk '{print $1}')
+        process=$(echo "$line" | awk '{print $2}')
+        printf "%-15s %-20s\n" "$user" "$process"
+    done
+}
+
+mostrar_procesos | sort | uniq
+
+echo ""
+echo "procesos | grep -v root" | xclip -selection clipboard
+echo ""
+echo "Fin del script."
+echo ""
+echo "Ejecuta este comando para que no muestre los procesos de root:"
+echo "procesos | grep -v root | sort | uniq "
+echo ""
+echo "También ese comando ya fue copiado al portapapeles."
+echo ""
+echo "Puedes usar:\nprocesos > procesos\n"
+echo "Esto para crear un archivo y buscar algún proceso en específico."
+echo ""
+echo "Ejemplos:\ncat procesos | sort | uniq | grep -v palabra1\n"
+#echo "awk '{print $1 "\t" $2}' procesos | uniq | sort | grep -v root\n"
+echo "grep -i para incluir, grep -v para excluir root por ejemplo\n"
+echo ""
+
+# Nuevas funcionalidades agregadas aquí
+echo "¿Deseas crear un archivo llamado 'procesos'? (s/n):"
+read crearArchivo
+
+if [[ $crearArchivo == 's' ]]; then
+    mostrar_procesos > procesos
+    echo "Archivo 'procesos' creado."
+    echo "¿Deseas buscar algo en el archivo 'procesos'? (s/n):"
+    read buscarEnArchivo
+
+    if [[ $buscarEnArchivo == 's' ]]; then
+        echo "Introduce la palabra a buscar:"
+        read palabra
+        cat procesos | sort | uniq | grep -i "$palabra"
+    fi
+fi

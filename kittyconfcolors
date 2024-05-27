@@ -1,0 +1,28 @@
+
+# Otros colores
+color0 #ff0000
+color1 #00ff00
+color2 #ffffff
+color3 #ffff00
+color4 #ff00ff
+color5 #00ffff
+color6 #ff9900
+color7 #ffffff
+
+# kitty.conf
+
+# Color del texto normal
+foreground #ffffff
+
+# Color del fondo normal
+background #000000
+
+# Otros colores
+color0 #ff0000    # Rojo
+color1 #00ff00    # Verde
+color2 #ffffff    # Blanco en lugar de azul
+color3 #ffff00    # Amarillo
+color4 #ff00ff    # Magenta
+color5 #00ffff    # Cian
+color6 #ff9900    # Naranja
+color7 #ffffff    # Blanco

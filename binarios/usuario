@@ -1,0 +1,81 @@
+#!/bin/bash
+
+# Colores
+amarillo='\e[0;33m'
+azul='\e[0;34m'
+reset='\e[0m'
+
+# Preguntar por el nombre del grupo
+read -p "Introduce el nombre del grupo: " nombre_grupo
+
+# Preguntar por el ID del grupo
+read -p "Introduce el ID del grupo: " id_grupo
+
+# Preguntar por el nombre de usuario
+read -p "Introduce el nombre de usuario: " nombre_usuario
+
+# Preguntar por el ID del usuario
+read -p "Introduce el ID del usuario: " id_usuario
+
+# Confirmación del usuario
+echo ""
+echo -e "${amarillo}¿Estás seguro de crear el siguiente usuario con los datos anteriores? [S/n] ${reset}"
+read -n1 confirmacion
+echo ""
+
+if [[ "$confirmacion" =~ ^[Ss]$ ]]; then
+    # Espacios para una mejor visualización
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+
+    # Crear el grupo
+    echo -e "${azul}Creando el grupo $nombre_grupo con el ID $id_grupo...${reset}"
+    groupadd -g $id_grupo $nombre_grupo
+
+    # Crear el usuario
+    echo -e "${azul}Creando el usuario $nombre_usuario con el ID $id_usuario...${reset}"
+    useradd -u $id_usuario -g $id_grupo -s /bin/bash -m $nombre_usuario
+
+    # Establecer contraseña para el usuario
+    echo -e "${azul}Estableciendo contraseña para el usuario $nombre_usuario...${reset}"
+    passwd $nombre_usuario
+
+    # Editar el archivo sudoers para el usuario
+    echo -e "${azul}Editando el archivo /etc/sudoers.d/$nombre_usuario...${reset}"
+    echo "$nombre_usuario ALL=(ALL:ALL) ALL" | sudo tee /etc/sudoers.d/$nombre_usuario > /dev/null
+    echo ""
+
+    # Espacios para una mejor visualización
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+
+    # Mostrar el archivo sudoers editado
+    echo "Editando el archivo /etc/sudoers.d/$nombre_usuario..."
+    echo "Mostrando el archivo"
+    echo ""
+    cat /etc/sudoers.d/$nombre_usuario
+    echo ""
+    echo "fin."
+    # Pregunta para cambiar al usuario creado
+    echo ""
+    read -n1 -p "¿Quieres ir al usuario creado? [S/n] " respuesta
+    echo ""
+
+    # Cambiar al usuario creado si la respuesta es afirmativa
+    if [[ "$respuesta" =~ ^[Ss]$ ]]; then
+        su $nombre_usuario
+    fi
+
+else
+    echo "Operación cancelada."
+fi
+
+
+
+
+
+
+
+

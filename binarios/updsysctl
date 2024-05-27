@@ -1,0 +1,45 @@
+#!/bin/bash
+echo ""
+# Líneas a agregar al final de /etc/sysctl.conf
+lines_to_add="
+net.ipv4.ip_forward = 0
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+net.ipv4.icmp_ignore_bogus_error_responses = 1
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+net.ipv4.conf.all.accept_source_route=0
+ipv4.conf.all.forwarding=0
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+net.ipv4.conf.all.accept_redirects=0
+net.ipv4.conf.all.secure_redirects=0
+net.ipv4.conf.all.send_redirects=0
+net.ipv4.conf.all.rp_filter=2
+net.ipv4.icmp_echo_ignore_all = 0
+
+
+"
+
+# Añadir líneas al final de /etc/sysctl.conf
+echo "$lines_to_add" | sudo tee -a /etc/sysctl.conf
+
+echo ""
+echo ""
+# Preguntar si se desean reiniciar las variables de sysctl
+read -p "¿Deseas reiniciar las variables de sysctl ahora? (y/n): " answer
+
+if [ "$answer" == "y" ]; then
+    # Reiniciar las variables de sysctl
+    sudo sysctl --system
+    echo "Variables de sysctl reiniciadas."
+    echo ""     
+else
+    echo "No se reiniciaron las variables de sysctl. Puedes reiniciarlas manualmente ejecutando 'sudo sysctl --system'."
+    echo ""
+fi

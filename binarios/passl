@@ -1,0 +1,141 @@
+#!/bin/bash
+
+while true; do
+    
+    echo "Choose a command to execute:"
+    echo ""
+    echo "1. Users with interactive shell grep -v '/usr/sbin/nologin"
+    echo ""
+    echo "2. Users with interactive shell cat /etc/passwd "
+    echo ""
+    echo "3. Show content of /etc/passwd with 'bash' "
+    echo ""
+    echo "4. Change a user's shell to /usr/sbin/nologin"
+    echo ""
+    echo "5. System accounts (less than uid 1000)"
+
+    echo ""
+    echo "6. System accounts (more than uid 1000)"
+    echo ""
+    echo "7. See getcap "
+
+    echo ""
+    echo "8. Exit and display commands"
+                echo ""
+
+
+    # Wait for user input (just one character)
+    read -n1 -s input
+    echo ""
+    echo ""
+
+    case $input in
+        1)
+            echo ""
+            echo "***********************************************"
+            echo "more lines: awk /etc/pass/ /usr/sbin/nologin"
+            echo "***********************************************"
+            echo ""
+            awk -F':' '
+            {
+                if ($7 != "/usr/sbin/nologin")
+                    print $1 " : m" $7 ""
+            }' /etc/passwd | less
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            ;;
+        2)
+            echo ""
+            echo "***********************************************"
+            echo "grep -v '/usr/sbin/nologin' /etc/passwd"
+            echo "***********************************************"
+            echo ""
+
+            grep -v 'nologin' /etc/passwd | less
+
+            echo ""
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            
+  
+            ;;
+        3)
+            echo ""
+             echo "***********************************************"
+            echo "grep -v '/usr/sbin/nologin' /etc/passwd" 
+            echo "***********************************************"
+            echo "" 
+            cat /etc/passwd | grep bash --color
+            echo ""
+            echo ""
+            echo "***********************************************"
+            echo ""
+
+            ;;
+        4)
+            echo ""
+            echo "Enter the username to change to nologin:"
+            read username
+            echo ""
+            sudo usermod -s /usr/sbin/nologin $username 
+            echo ""
+            
+            echo ""
+            echo "***********************************************"
+            echo ""
+            ;;
+        5)
+            echo ""
+
+
+            echo ""
+            awk -F: '$3 < 1000 {print $1, $3}' /etc/passwd | less
+
+            echo ""
+            echo "***********************************************"
+            echo ""
+            ;;
+        6)
+            echo ""
+
+
+            echo ""
+            awk -F: '($3 >= 1000) {print $1}' /etc/passwd | less
+
+            echo ""
+            echo "***********************************************"
+            echo ""
+            echo ""
+            ;;
+        7)
+            echo ""
+            echo ""
+            getcap -r / 2>/dev/null
+
+            echo ""
+            echo "Look for:  ** cap_setuid=ep **"
+            echo "***********************************************"
+            echo ""
+            ;;
+
+
+        8)
+            echo ""
+            echo "Exiting..."
+            echo ""
+            echo "cat /etc/passwd"
+            echo ""
+            echo "Command to change a user's shell to nologin: "
+            echo "sudo usermod -s /usr/sbin/nologin user_name"
+            echo ""
+            break
+            ;;
+        *)
+            echo "Invalid option."
+            ;;
+    esac
+done

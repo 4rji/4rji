@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Pide al usuario el nombre del alias y el comando a ejecutar
+echo -n "Ingresa el nombre del alias: "
+read alias_name
+
+echo -n "Ingresa el comando que quieres asignar al alias: "
+read command
+
+# Añade el alias al archivo .zshrc
+echo "alias $alias_name='$command'" >> ~/.zshrc
+
+# Verifica si el archivo aliaszsh existe
+if [ -f ~/.aliaszsh ]; then
+    # Si existe, agrega el nuevo alias al final del archivo
+    echo "echo \"alias $alias_name='$command'\" >> ~/.zshrc" >> ~/.aliaszsh
+else
+    # Si no existe, crea un nuevo archivo con el alias
+    echo "echo \"alias $alias_name='$command'\" >> ~/.zshrc" > ~/.aliaszsh
+fi
+
+echo "Alias configurado con éxito."

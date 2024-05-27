@@ -1,0 +1,34 @@
+#!/usr/bin/python3
+
+import subprocess
+import sys
+
+def start_nessus():
+    subprocess.run(['sudo', 'systemctl', 'start', 'nessusd.service'])
+    print("Nessus service has been started.")
+
+def stop_nessus():
+    subprocess.run(['sudo', 'systemctl', 'stop', 'nessusd.service'])
+    print("Nessus service has been stopped.")
+
+def check_nessus_status():
+    status_output = subprocess.run(['sudo', 'systemctl', 'is-active', 'nessusd.service'], capture_output=True, text=True)
+    status = status_output.stdout.strip()
+    return status
+
+if __name__ == "__main__":
+    nessus_status = check_nessus_status()
+    if nessus_status == "active":
+        response = input("Nessus is currently running. Do you want to stop it? (y/n): ")
+        if response.lower() == 'y':
+            stop_nessus()
+        else:
+            print("No action taken.")
+    else:
+        response = input("Nessus is currently not running. Do you want to start it? (y/n): ")
+        if response.lower() == 'y':
+            start_nessus()
+        else:
+            print("No action taken.")
+
+    print("- Then go to https://localhost:8834/ to configure your scanner")

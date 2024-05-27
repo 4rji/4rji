@@ -1,0 +1,22 @@
+#!/bin/bash
+
+FILE="/etc/default/rkhunter"
+
+# Verificar si el script se ejecuta con privilegios de superusuario
+if [[ $EUID -ne 0 ]]; then
+   echo "Este script debe ser ejecutado con privilegios de superusuario."
+   exit 1
+fi
+
+# Comentar las líneas existentes
+sed -i '/^CRON_DAI/s/^/#/' $FILE
+sed -i '/^CRON_DB_UP/s/^/#/' $FILE
+sed -i '/^APT_AUTO/s/^/#/' $FILE
+
+# Agregar nuevas líneas al principio del archivo
+sed -i '1iCRON_DAILY_RUN="true"' $FILE
+sed -i '1iCRON_DB_UPDATE="true"' $FILE
+sed -i '1iAPT_AUTOGEN="true"' $FILE
+
+echo "Archivo $FILE actualizado correctamente."
+

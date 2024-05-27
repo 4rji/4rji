@@ -1,0 +1,90 @@
+#!/bin/bash
+
+# Verificar si se está ejecutando con privilegios de superusuario (sudo)
+if [ "$EUID" -ne 0 ]; then
+    echo "Este script debe ejecutarse con privilegios de superusuario (sudo)."
+    exit 1
+fi
+
+
+
+# Definir colores
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+# Definir la lista de archivos y sus permisos esperados
+files=(
+    "/etc/passwd:644"
+    "/etc/shadow:600"
+    "/etc/group:644"
+    "/etc/gshadow:600"
+    "/etc/sudoers:440"
+    "/etc/ssh/sshd_config:644"
+    "/etc/hosts.allow:644"
+    "/etc/hosts.deny:644"
+    "/etc/cron.allow:644"
+    "/etc/cron.deny:644"
+    "/etc/securetty:600"
+    "/etc/security/limits.conf:644"
+    "/etc/audit/auditd.conf:644"
+    "/etc/sysctl.conf:644"
+    "/var/log/secure:640"
+    "/var/log/auth.log:640"
+    "/var/log/audit/audit.log:640"
+)
+
+# Inicializar la lista de archivos para corregir
+files_to_fix=()
+
+# Función para verificar los permisos
+check_permissions() {
+    for file_info in "${files[@]}"; do
+        file=$(echo "$file_info" | cut -d ":" -f 1)
+        expected_perm=$(echo "$file_info" | cut -d ":" -f 2)
+
+        # Verificar si el archivo existe
+        if [ -e "$file" ]; then
+            actual_perm=$(stat -c "%a" "$file")
+
+            if [ "$actual_perm" -eq "$expected_perm" ]; then
+                echo -e "[$file] - ${GREEN}Los permisos están configurados correctamente ($expected_perm).${NC}"
+            else
+                echo -e "[$file] - ${RED}Los permisos NO están configurados correctamente. Permisos actuales: $actual_perm${NC}"
+                files_to_fix+=("$file")
+            fi
+        else
+            echo -e "[$file] - El archivo no existe en el sistema."
+        fi
+    done
+}
+
+# Función para corregir permisos
+fix_permissions() {
+    for file in "${files_to_fix[@]}"; do
+        chmod $(echo "$file_info" | cut -d ":" -f 2) "$file"
+        echo "Se han corregido los permisos de [$file]."
+    done
+
+    # Corregir permisos específicos de /etc/shadow y /etc/gshadow
+    sudo chown root:root /etc/shadow
+    sudo chmod 600 /etc/shadow
+    sudo chown root:shadow /etc/gshadow
+    sudo chmod 600 /etc/gshadow
+
+    echo "Los permisos incorrectos han sido corregidos."
+}
+
+# Verificar los permisos
+check_permissions
+
+if [ ${#files_to_fix[@]} -eq 0 ]; then
+    echo "Todos los permisos están configurados correctamente."
+else
+    read -p "¿Deseas corregir los permisos incorrectos? (S/N): " answer
+    if [ "$answer" == "S" ] || [ "$answer" == "s" ]; then
+        fix_permissions
+    else
+        echo "No se han realizado cambios en los permisos."
+    fi
+fi

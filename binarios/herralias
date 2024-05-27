@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+curl -O https://raw.githubusercontent.com/4rji/4rji/main/alias.sh
+source alias.sh  # Ejecuta el script descargado
+
+#borrar archivos
+rm alias.sh
+
+echo ""
+echo "Alias actualizados únicamente y se borro el archivo"

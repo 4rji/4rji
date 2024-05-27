@@ -1,0 +1,123 @@
+#!/bin/bash
+echo ""
+
+# Lista de paquetes a instalar
+paquetes=("iptables" )
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" &> /dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar paquetes basados en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if ! paquete_instalado_apt "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete"
+            fi
+            ;;
+        "centos"|"rhel")
+            if ! paquete_instalado_yum "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete"
+            fi
+            ;;
+        "fedora")
+            if ! paquete_instalado_dnf "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete"
+            fi
+            ;;
+        "arch")
+            if ! paquete_instalado_pacman "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete"
+            fi
+            ;;
+        *)
+            ;;
+    esac
+done
+
+
+
+
+
+
+
+
+
+
+
+# Clone the Artillery repository
+git clone https://github.com/BinaryDefense/artillery.git
+
+#Download from my repo
+#git clone https://github.com/4rji/4rji.git
+#unzip artillery.zip
+# Change to the artillery directory
+#cd artillery/
+cd artillery
+# Run the setup script
+sudo python3 setup.py
+
+cd ..
+sudo rm -rf artillery
+
+
+# Ruta al archivo de configuración
+CONFIG_FILE="/var/artillery/config"
+
+# Comentar las líneas existentes
+sudo sed -i 's/^HONEYPOT_BAN="OFF"/#HONEYPOT_BAN="OFF"/' "$CONFIG_FILE"
+sudo sed -i 's/^SSH_BRUTE_ATTEMPTS="4"/#SSH_BRUTE_ATTEMPTS="4"/' "$CONFIG_FILE"
+sudo sed -i 's/^FTP_BRUTE_MONITOR="OFF"/#FTP_BRUTE_MONITOR="OFF"/' "$CONFIG_FILE"
+
+
+sudo sed -i 's/^LOG_MESSAGE_ALERT="Artillery has detected an attack from %ip% for a connection on a honeypot port %port%"/#LOG_MESSAGE_ALERT="Artillery has detected an attack from %ip% for a connection on a honeypot port %port%"/' "$CONFIG_FILE"
+sudo sed -i 's/^LOG_MESSAGE_BAN="Artillery has blocked (and blacklisted) an attack from %ip% for a connection to a honeypot restricted port %port%"/#LOG_MESSAGE_BAN="Artillery has blocked (and blacklisted) an attack from %ip% for a connection to a honeypot restricted port %port%"/' "$CONFIG_FILE"
+
+# Agregar las nuevas líneas al principio del archivo
+sudo sed -i '1iHONEYPOT_BAN="ON"\nSSH_BRUTE_ATTEMPTS="2"\nLOG_MESSAGE_BAN="MinneSec has blocked (and blacklisted) an attack from %ip% for a connection to a honeypot restricted port %port%"\nLOG_MESSAGE_ALERT="MinneSec has detected an attack from %ip% for a connection on a honeypot port %port%"' "$CONFIG_FILE"
+sudo sed -i '1iHONEYPOT_BAN="ON"' "$CONFIG_FILE"
+
+sudo sed -i '1iFTP_BRUTE_MONITOR="ON"' "$CONFIG_FILE"
+
+
+
+echo "      *************** INSTRUCCIONES **************"
+
+echo "modificar el archivo"
+echo "/var/artillery/config"
+echo "unbanar para banlist"
+echo "sudo nano /var/artillery/banlist.txt"
+echo "artires para reiniciar el servicio"
+echo ""
+echo "Se iniciara nano config en 2 segundos"
+echo ""
+echo "Modificar manualmente los puertos !!!! IMPORTANTE !!! lo demas ya se modifico"
+sleep 3
+sudo nano /var/artillery/config

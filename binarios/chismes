@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Mostrar la lista de interfaces disponibles y permitir al usuario seleccionar una
+echo "Interfaces disponibles:"
+interfaces=( $(ifconfig -a | grep '^[a-zA-Z]' | awk '{print $1}') )
+i=1
+for interface in "${interfaces[@]}"
+do
+    echo "$i) $interface"
+    let i++
+done
+
+echo "Por favor, selecciona el número de la interfaz de red que deseas capturar:"
+read choice
+selected_interface=${interfaces[$choice-1]}
+
+# Verificar si el usuario seleccionó una interfaz válida
+if [ -z "$selected_interface" ]; then
+    echo "Selección no válida. Saliendo."
+    exit 1
+fi
+
+# Verificar si el archivo captura.cap ya existe
+if [ -e "captura.cap" ]; then
+    echo "El archivo captura.cap ya existe."
+    read -p "¿Quieres sobrescribirlo? [S/n]: " overwrite
+    overwrite=${overwrite:-S}  # Si la entrada es vacía, asume "S"
+    if [ "$overwrite" != "S" ] && [ "$overwrite" != "s" ]; then
+        timestamp=$(date +%Y%m%d%H%M%S)
+        new_filename="captura_$timestamp.cap"
+        echo "Se creará un nuevo archivo: $new_filename en lugar de sobrescribir."
+    else
+        new_filename="captura.cap"
+    fi
+else
+    new_filename="captura.cap"
+fi
+
+# Mostrar el comando a ejecutar
+echo "Ejecutando: sudo tcpdump -i $selected_interface -w $new_filename -v"
+sudo tcpdump -i "$selected_interface" -w "$new_filename" -v
+
+echo "Captura completada y guardada en $new_filename."
+
+
+
+
+
+
+echo ""
+
+## Preguntar si desea ver el archivo de manera limpia con tshark y otros comandos
+#read -p "¿Quieres ver la captura limpia? [S/n]: " view
+#view=${view:-S}  # Si la entrada es vacía, asume "S"
+#if [[ "$view" == "S" || "$view" == "s" ]]; then
+#    tshark -r "$new_filename" | awk '{for (i=3; i<=NF; i++) printf $i " "; print ""}' | less
+#fi
+
+
+
+#echo ""
+# Mensaje para ver el archivo completo
+#echo "Para ver el archivo completo, ejecutar: tshark -r $new_filename"
+
+
+
+
+
+
+
+
+
+# Preguntar si desea ver el archivo con tshark
+read -p "¿Quieres ver el archivo con tshark? [S/n]: " view
+view=${view:-S}  # Si la entrada es vacía, asume "S"
+if [[ "$view" == "S" || "$view" == "s" ]]; then
+	tshark -r "$new_filename"
+fi

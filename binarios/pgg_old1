@@ -1,0 +1,49 @@
+#!/bin/zsh
+
+# Ejecutar hostnamectl y guardar la salida en un archivo temporal
+tmpfile=$(mktemp)
+hostnamectl > "$tmpfile"
+
+# Eliminar las líneas no deseadas del archivo temporal
+sed -i '/Machine ID:/d; /Boot ID:/d; /Firmware Version:/d; /Firmware Date:/d; /Firmware Age:/d' "$tmpfile"
+
+# Mostrar el contenido del archivo modificado
+cat "$tmpfile"
+
+# Eliminar el archivo temporal
+rm "$tmpfile"
+
+
+echo ""
+
+# Función para comprobar la conexión a Internet
+check_internet_connection() {
+    local host="google.com"  # Cambia "google.com" por el host que desees
+
+    ping -c 1 "$host" > /dev/null 2>&1
+
+    if [[ $? -eq 0 ]]; then
+        echo "La conexión a Internet está ACTIVA."
+    else
+        echo "No se puede acceder a Internet."
+    fi
+}
+
+# Preguntar si se desea ejecutar el script
+echo "¿Deseas verificar la conexión? (s para sí, enter para continuar)"
+read response
+
+if [[ "$response" == "s" ]]; then
+    check_internet_connection
+    echo ""
+
+    # Guardar la salida de ipinfo.io en un archivo temporal
+    tmpfile=$(mktemp)
+    curl -s ipinfo.io | jq 'del(.loc, .org, .readme)' > "$tmpfile"
+
+    # Mostrar el contenido del archivo temporal con bat
+    bat -l rb "$tmpfile"
+
+    # Eliminar el archivo temporal
+    rm "$tmpfile"
+fi

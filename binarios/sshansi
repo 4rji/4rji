@@ -1,0 +1,88 @@
+#!/bin/bash
+
+echo ""
+# Ruta al archivo de inventario de Ansible
+INVENTARIO="$HOME/.ssh/ansible_hosts"
+
+# Inicializar un array para almacenar los nombres de los hosts
+declare -a NOMBRES
+declare -a SSH_COMMANDS
+
+echo "Cargando hosts desde $INVENTARIO..."
+echo ""
+echo "-------------------------------------------------------------------"
+echo ""
+INDEX=1
+# Variable para omitir la primera línea
+PRIMERA_LINEA=true
+
+# Leer cada línea del archivo de inventario
+while IFS= read -r line; do
+    # Omitir la primera línea
+    if [ "$PRIMERA_LINEA" = true ]; then
+        PRIMERA_LINEA=false
+        continue
+    fi
+
+    # Ignorar líneas vacías y comentarios
+    if [[ "$line" =~ ^[[:space:]]*$ ]] || [[ "$line" =~ ^# ]]; then
+        continue
+    fi
+
+    # Extraer el nombre (primer campo) y la dirección IP con la clave ansible_host
+    NOMBRE=$(echo $line | cut -d ' ' -f1)
+    HOST=$(echo $line | grep -o 'ansible_host=[^ ]*' | cut -d '=' -f2)
+    # Si no se encuentra ansible_host, se continúa con el siguiente ciclo para evitar errores
+    if [ -z "$HOST" ]; then
+        continue
+    fi
+
+    USER=$(echo $line | grep -o 'ansible_user=[^ ]*' | cut -d '=' -f2)
+    PORT=$(echo $line | grep -o 'ansible_port=[^ ]*' | cut -d '=' -f2)
+    KEY=$(echo $line | grep -o 'ansible_ssh_private_key_file=[^ ]*' | cut -d '=' -f2)
+
+    # Construir el comando SSH
+    SSH_COMMAND="ssh"
+    if [ ! -z "$KEY" ]; then
+        SSH_COMMAND+=" -i $KEY"
+    fi
+    if [ ! -z "$PORT" ]; then
+        SSH_COMMAND+=" -p $PORT"
+    fi
+    if [ ! -z "$USER" ]; then
+        SSH_COMMAND+=" $USER@$HOST"
+    else
+        SSH_COMMAND+=" $HOST"
+    fi
+
+    # Almacenar los nombres y comandos SSH
+    NOMBRES+=("$NOMBRE")
+    SSH_COMMANDS+=("$SSH_COMMAND")
+
+    echo "$INDEX. $NOMBRE"
+    ((INDEX++))
+done < "$INVENTARIO"
+echo ""
+echo "-------------------------------------------------------------------"
+# Preguntar al usuario a cuál host desea conectarse
+echo ""
+read -p "Elige el numero del host al que quieres conectarte: " HOST_NUM
+
+# Validar la entrada del usuario
+if [ "$HOST_NUM" -le 0 ] || [ "$HOST_NUM" -gt "${#NOMBRES[@]}" ]; then
+    echo "Selección inválida."
+    exit 1
+fi
+
+# Mostrar el comando SSH que será ejecutado
+echo ""
+echo "*******************"
+echo "Ejecutando comando: "
+echo ""
+echo "${SSH_COMMANDS[$((HOST_NUM-1))]}"
+echo ""
+# Ejecutar el comando SSH para el host seleccionado
+echo "Conectando a ${NOMBRES[$((HOST_NUM-1))]}..."
+echo ""
+echo "__________________________________________________"
+eval "${SSH_COMMANDS[$((HOST_NUM-1))]}"

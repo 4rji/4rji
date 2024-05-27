@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+import requests
+import csv
+import concurrent.futures
+import sys
+
+if len(sys.argv) != 2:
+    print("Uso: script <nombre_archivo_proxylist>")
+    sys.exit(1)
+
+nombre_archivo = sys.argv[1]
+
+proxylist = []
+
+with open(nombre_archivo, 'r') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        proxylist.append(row[0])
+
+def extract(proxy):
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0'}
+    try:
+        r = requests.get('https://httpbin.org/ip', headers=headers, proxies={'http': proxy, 'https': proxy}, timeout=2)
+        print(r.json(), ' | Works')
+    except:
+        pass
+    return proxy
+
+with concurrent.futures.ThreadPoolExecutor() as executor:
+    executor.map(extract, proxylist)
+
+# Instrucciones de uso:
+# Verifica si funcionan los proxies. Necesita un archivo CSV con la lista de proxies.
+#para cortar la lista se usa: awk '{print $1 ":" $2}' lista > proxylist.csv   
+#ese comando junsta la ip y puerto y genera el archivo necesario
+
+# Formato de la lista en el CSV:
+#   66.60.150.190,80,US,United States,anonymous
+
+#asi pasa cuando se copia de alguna pagina web

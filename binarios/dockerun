@@ -1,0 +1,99 @@
+#!/bin/zsh
+
+# Verificar si el servicio de Docker está activo o inactivo
+docker_service_status=$(systemctl is-active docker)
+
+if [[ $docker_service_status == "active" ]]; then
+    echo "El servicio de Docker está activo."
+else
+    echo "El servicio de Docker está inactivo. ¿Quieres activarlo? (s para activarlo, enter continuar.)"
+    read activate_docker
+
+    if [[ $activate_docker == "s" ]]; then
+        sudo systemctl start docker
+        echo "El servicio de Docker ha sido activado."
+    else
+        echo "No se ha activado el servicio de Docker. Saliendo."
+        exit 1
+    fi
+fi
+
+# Mostrar el menú principal
+echo ""
+echo "[1] Iniciar contenedor"
+echo "[2] Guardar"
+echo "[3] Borrar "
+echo "[4] Descargar"
+
+read choice
+
+if [[ $choice == 1 ]]; then
+    # Si elige correr, preguntar por el ImageID
+    # Ejecutar el contenedor
+    sudo dockerrr
+elif [[ $choice == 2 ]]; then
+    # Si elige guardar, mostrar la lista de contenedores
+    sudo docker ps
+    # Preguntar por el Container ID y el nombre de la imagen
+    echo "Ingresa el Container ID:"
+    read container_id
+    echo "Ingresa el nombre de la imagen:"
+    read image_name
+    # Hacer un commit del contenedor
+    sudo docker commit $container_id $image_name
+elif [[ $choice == 3 ]]; then
+    # Si elige borrar, mostrar la lista de imágenes
+    sudo docker images
+    # Preguntar por el ImageID a borrar
+    echo "Ingresa el ImageID a borrar:"
+    read image_id_to_delete
+    # Intentar eliminar la imagen forzadamente
+    sudo docker rmi -f $image_id_to_delete
+
+    # Preguntar al usuario si quiere ejecutar docker system prune -a
+    echo "¿Quieres eliminar todos los contenedores, redes y imágenes no utilizadas? [y/N]"
+    read prune_choice
+
+    if [[ $prune_choice == [yY] || $prune_choice == [yY][eE][sS] ]]; then
+        sudo docker system prune -a
+    fi
+
+    # Mostrar el mensaje independientemente del resultado
+    echo "Operación completada."
+
+
+    # Mostrar el mensaje independientemente del resultado
+    echo " "
+    echo ""
+    echo "Para eliminar todas las imágenes no utilizadas y no borrar las que corren:"
+    echo "Debes de correr la imagen que quieres salvar"
+    echo "docker system prune -a"
+    echo ""   
+    echo "En caso de error, para purgar TODO (borrar):"
+    echo "Para eliminar todos los contenedores en ejecución y sin ejecutar:"
+    echo "docker rm -f \$(docker ps -aq)"
+    echo ""
+elif [[ $choice == 4 ]]; then
+    # Si elige descargar imágenes, mostrar el menú de opciones
+    echo "¿Qué imagen deseas descargar?"
+    echo "1.- docker pull kalilinux/kali-rolling"
+    echo "2.- docker pull ubuntu"
+    echo "3.- docker pull debian"
+    read download_choice
+
+    if [[ $download_choice == 1 ]]; then
+        sudo docker pull kalilinux/kali-rolling
+    elif [[ $download_choice == 2 ]]; then
+        sudo docker pull ubuntu
+    elif [[ $download_choice == 3 ]]; then
+        sudo docker pull debian
+    else
+        echo "Opción no válida."
+    fi
+else
+    echo "Opción no válida."
+fi
+
+echo ""
+echo "MEnsaje"
+echo " *** Control p and Control q para salir del contenedor sin cerrarlo"

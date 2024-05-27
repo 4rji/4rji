@@ -1,0 +1,22 @@
+#!/bin/bash
+
+sudo apt install gdebi
+# Descarga y añade la clave GPG
+wget -qO - https://mirror.mwt.me/ghd/gpgkey | sudo tee /etc/apt/trusted.gpg.d/shiftkey-desktop.asc > /dev/null
+
+# Actualiza la lista de paquetes e instala GitHub Desktop
+sudo apt update && sudo apt install github-desktop > /dev/null
+
+# Descarga el paquete de GitHub Desktop
+sudo wget https://github.com/shiftkey/desktop/releases/download/release-3.1.1-linux1/GitHubDesktop-linux-3.1.1-linux1.deb
+
+# Instala el paquete con gdebi
+sudo gdebi GitHubDesktop-linux-3.1.1-linux1.deb
+
+# Limpia los archivos generados durante la instalación
+sudo rm GitHubDesktop-linux-3.1.1-linux1.deb
+sudo rm /etc/apt/trusted.gpg.d/shiftkey-desktop.asc
+
+echo "GitHub Desktop ha sido instalado exitosamente."
+
+exit 0

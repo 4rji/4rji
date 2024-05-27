@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Ruta del archivo de configuración
+archivo_config="docker-conexion"
+
+# Verificar si el archivo existe
+if [ ! -f "$archivo_config" ]; then
+    # Solicitar los datos y guardarlos en el archivo
+    read -p "Ingresa la subnet que quieres copiar, ejemplo 192.168.122: " variable1
+    read -p "¿Cuál es la imagen que quieres correr, ejemplo kali?: " variable2
+    read -p "¿Cuál es la red creada?: " variable3
+    echo "variable1=$variable1" > $archivo_config
+    echo "variable2=$variable2" >> $archivo_config
+    echo "variable3=$variable3" >> $archivo_config
+else
+    # Cargar los datos del archivo
+    source $archivo_config
+fi
+
+# Función para generar una dirección IP aleatoria
+#aqui se sumo 150 para limitar las direcciones al rango de 100 al 254 y no 
+#tener conflicto con las primeras 150 ips, bajar numero si quiero mas ips
+generate_random_ip() {
+    local ip="${variable1}.$((RANDOM % 105 + 150))"
+    echo $ip
+}
+
+# Generar IP aleatoria
+random_ip=$(generate_random_ip)
+
+# Mostrar el comando para ejecutar el contenedor Docker con la IP aleatoria
+
+comando_docker="docker run -it --network $variable3 --ip $random_ip $variable2"
+echo ""
+echo "Comando a ejecutar:"
+echo "$comando_docker"
+
+# Preguntar si desea ejecutar el comando
+echo ""
+read -p "¿Quieres ejecutar este comando? (s/enter): " respuesta
+
+case $respuesta in
+    [Ss]* )
+        echo ""
+	echo "Ejecutando el comando..."
+        $comando_docker
+        ;;
+    * )
+        echo "Comando cancelado."
+        ;;
+esac

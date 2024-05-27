@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# Función para iniciar la red predeterminada
+function iniciar_network {
+    # Preguntar si desea iniciar la red
+    read -p "¿Desea iniciar la Network ahora? [S/n] " respuesta_network
+    respuesta_network=${respuesta_network:-S} # Si no se proporciona respuesta, asumir S (iniciar)
+
+    case "$respuesta_network" in
+        [sS]*)
+            if sudo virsh net-info default | grep -q "Active:.*yes"; then
+                echo "La Network ya esta iniciada."
+            else
+                echo -e "${GREEN}Iniciando Network...${NC}"
+                sudo virsh net-start default
+                echo -e "La Network ha sido iniciada.${NC}"
+            fi
+            ;;
+        [nN]*)
+            echo "No se inició la Network."
+            ;;
+        *)
+            echo "Opción no reconocida. No se inició la Network."
+            ;;
+    esac
+}
+
+# Pregunta si desea iniciar la red predeterminada al ejecutar el script con -n
+if [[ $1 == "-n" ]]; then
+    iniciar_network
+    exit 0
+fi
+
+# Función para mostrar el menú de opciones y gestionar las máquinas virtuales
+function gestionar_vms {
+    while true; do
+        echo -e "\e[34m_________________________________________________________\e[0m"
+        echo ""
+        echo -e "\e[32mListando todas las maquinas virtuales:\e[0m"
+        echo ""
+        mapfile -t vms < <(sudo virsh list --all | awk 'NR>2 {print NR-2 ")\t" $2 "\t" $3}')
+        printf '%s\n' "${vms[@]}"
+        echo -e "\e[34m_________________________________________________________\e[0m"
+        echo ""
+
+        read -n1 -p "Ingresa el numero de la maquina virtual que deseas gestionar: " vm_number
+        echo ""
+        selected_vm=$(echo "${vms[vm_number-1]}" | awk '{print $2}')
+        echo -e "\e[34m_________________________________________________________\e[0m"
+        echo ""
+        echo -e "Has seleccionado la maquina: \e[33m$selected_vm\e[0m"
+        echo -e "\e[34m_________________________________________________________\e[0m"
+        echo ""
+
+        echo -e "\e[32m¿Qué accion deseas realizar?\e[0m"
+        echo ""
+        echo "1) Consola"
+        echo "2) START vm"
+        echo "3) STOP vm"
+        echo "4) Forzar apagado (destroy)"
+        echo "5) Borrar VM y su almacenamiento (undefine)"
+        echo "6) Virsh Viewer"
+        echo -e "\e[34m_________________________________________________________\e[0m"
+        read -n1 -p "Selecciona una opción (1/2/3/4/5/6): " action
+        echo ""
+        echo -e "\e[34m_________________________________________________________\e[0m"
+
+        case $action in
+            1)
+                echo "Accediendo a la consola de $selected_vm. Para salir, presiona Ctrl+]"
+                sudo virsh console "$selected_vm"
+                ;;
+            2)
+                echo "Iniciando $selected_vm..."
+                sudo virsh start "$selected_vm"
+                ;;
+            3)
+                echo "Deteniendo $selected_vm..."
+                sudo virsh shutdown "$selected_vm"
+                ;;
+            4)
+                echo "Forzando apagado (destroy) de $selected_vm..."
+                sudo virsh destroy "$selected_vm"
+                ;;
+            5)
+                echo "Borrando $selected_vm y su almacenamiento (undefine)..."
+                sudo virsh undefine "$selected_vm" --remove-all-storage
+                ;;
+            6)
+                echo "Abriendo $selected_vm en Virsh Viewer..."
+                sudo virt-viewer "$selected_vm" &
+                ;;
+            *)
+                echo -e "\e[31mOpción no válida. Saliendo...\e[0m"
+                exit 1
+                ;;
+        esac
+    done
+}
+
+# Llamada a la función para gestionar las máquinas virtuales
+gestionar_vms

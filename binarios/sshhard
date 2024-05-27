@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Backup the sshd_config file
+sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.backup
+
+# Define the lines to search for and insert in the file
+lines_to_insert=(
+    "PermitRootLogin no"
+    "PermitEmptyPasswords no"
+    "KerberosAuthentication no"
+    "GSSAPIAuthentication no"
+    "X11Forwarding no"
+    "MaxAuthTries 2"
+    "LoginGraceTime 20"
+    "PermitUserEnvironment no"
+    "AllowAgentForwarding no"
+    "AllowTcpForwarding no"
+    "PermitTunnel no"
+    "MaxSessions 2"
+    "Compression no"
+    "TCPKeepAlive no"
+    "UseDNS no"
+    "LogLevel VERBOSE"
+    "MaxAuthTries 2"
+    "MaxSessions 1"
+    "PubkeyAuthentication yes"
+    "PasswordAuthentication no"  # Added line
+    "Port 2246"  # Added line
+)
+
+# Replace or add the specified lines in the sshd_config file
+for line in "${lines_to_insert[@]}"; do
+    if ! sudo grep -q "^$line" /etc/ssh/sshd_config; then
+        echo "$line" | sudo tee -a /etc/ssh/sshd_config
+    else
+        sudo sed -i "s/^$line.*/$line/" /etc/ssh/sshd_config
+    fi
+done
+
+# Ask if the user wants to restart the SSH service
+read -p "Do you want to restart the SSH service? (y/n): " response
+
+# Verify the response
+if [[ $response == "y" ]]; then
+    # Restart the sshd service
+    sudo service ssh restart
+else
+    echo "Operation cancelled."
+fi
+
+# Show the current configuration of sshd
+echo "sudo sshd -T"
+sudo sshd -T

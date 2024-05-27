@@ -1,0 +1,119 @@
+#!/bin/bash
+echo ""
+#echo -e "\e[34m_________________________________________________________\e[0m\n"
+echo -e "\e[31m_________________________________________________________________________________________________________________\e[0m\n"
+echo -e "\e[31m-----------------------------------------------------------------------------------------------------------------\e[0m\n"
+
+# Colores para mejorar la visualización
+amarillo='\033[1;33m'
+azul='\033[0;34m'
+rojo='\033[0;31m'
+cafe='\033[0;33m'
+verde='\033[0;32m'
+fin_color='\033[0m'
+
+
+
+
+# Funcion para verificar conexiones SSH y mostrar el puerto de escucha configurado
+verificar_conexiones_ssh() {
+    echo -e "${amarillo}Buscando conexiones SSH y puerto de escucha configurado${fin_color}"
+
+    # Extraer el puerto de escucha configurado en sshd_config
+    puerto_ssh=$(grep -E '^#?Port ' /etc/ssh/sshd_config | awk '!/^#/ {print $2}')
+    if [ -n "$puerto_ssh" ]; then
+        echo -e "${amarillo}Puerto de escucha SSH configurado(s): $puerto_ssh${fin_color}"
+    else
+        echo -e "${amarillo}Puerto de escucha SSH predeterminado: 22 (No especificado en sshd_config)${fin_color}"
+    fi
+
+    # Usamos netstat para buscar conexiones TCP ESTABLISHED sin filtrar por puerto específico y luego filtramos por procesos SSH
+    lineas=$(sudo netstat -tnp | grep 'ESTABLISHED' | awk '{print $7}' | grep '/sshd' | wc -l)
+    if [ "$lineas" -gt 0 ]; then
+        echo -e "${rojo}ALERTA: Conexion activa de SSH detectada.${fin_color}"
+        return 1
+    else
+        echo -e "${verde}No hay conexiones SSH activas en este momento.${fin_color}"
+        return 0
+    fi
+}
+
+
+
+
+
+# Función para verificar y terminar conexiones utilizando lsof
+verificar_y_terminar_conexiones() {
+    
+    echo -e "\e[34m_________________________________________________________\e[0m\n"
+    
+    echo -e "${amarillo}Verificando conexiones activas con lsof y netstat${fin_color}"
+    local conexiones=$(sudo lsof -i -n -P | grep 'ESTABLISHED' | grep -v 'LISTEN' | grep -v 'tailscale' | nl)
+
+    if [ -z "$conexiones" ]; then
+        echo -e "${verde}No hay conexiones activas encontradas.${fin_color}"
+        return
+    fi
+
+    echo -e "${cafe}Conexiones activas encontradas:${fin_color}"
+    echo ""
+    echo "$conexiones"
+
+    echo ""
+    #esta es normal espera respuesta del usuario
+    #echo -e "${amarillo}Cual conexion deseas terminar, [s] para cerrar todas:${fin_color}"
+    #read -n1 -p " >  " opcion || true
+
+    #esta la cierra despues de 4 segundos
+    echo -e "${amarillo}Cual conexion deseas terminar, [s] para cerrar todas:${fin_color}"
+    read -t 4 -n1 -p " >  " opcion || exit
+
+
+
+
+    if [[ $opcion =~ ^[Ss]$ ]]; then
+        matar_todas_las_conexiones
+    elif [ -n "$opcion" ]; then
+        pid=$(echo "$conexiones" | awk -v num="$opcion" '$1 == num {print $3}')
+        
+        if [ -n "$pid" ]; then
+            echo "Terminando el proceso con PID $pid..."
+            sudo kill -9 $pid
+            echo -e "${verde}Proceso terminado.${fin_color}"
+        else
+            echo -e "${rojo}Numero de conexión no válido.${fin_color}"
+        fi
+    else
+        echo -e "${cafe}Escaneando de nuevo...${fin_color}"
+    fi
+}
+
+
+
+# Función para matar todas las conexiones activas
+matar_todas_las_conexiones() {
+    echo ""
+    echo -e "\e[34m_________________________________________________________\e[0m\n"
+
+    
+    echo ""
+    echo -e "${rojo}Cerrando todas las conexiones activas...${fin_color}"
+    # Obtiene los PIDs de todas las conexiones activas excluyendo las que están en escucha y las de tailscale
+    pids=$(sudo lsof -i -n -P | grep 'ESTABLISHED' | grep -v 'LISTEN' | grep -v 'tailscale' | awk '{print $2}' | uniq)
+
+    # Itera sobre cada PID y los termina
+    for pid in $pids; do
+        echo "Terminando el proceso con PID $pid..."
+        sudo kill -9 $pid
+    done
+
+    echo -e "${verde}Todas las conexiones activas han sido eliminadas.${fin_color}"
+}
+
+
+
+# Verificar conexiones SSH al inicio
+verificar_conexiones_ssh
+
+# Verificar y terminar conexiones
+verificar_y_terminar_conexiones

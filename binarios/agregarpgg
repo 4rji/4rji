@@ -1,0 +1,36 @@
+#!/bin/zsh
+
+# Definir la función a agregar
+function_to_add=$(cat << 'EOF'
+check_internet_and_pgg() {
+    echo "¿Desea verificar su conexión a Internet? (s/n): "
+    read choice
+    if [ "$choice" = "s" ]; then
+        pgg
+    fi
+}
+
+check_ip() {
+    echo "¿Desea verificar su dirección IP pública? (s/n): "
+    read choice
+    if [ "$choice" = "s" ]; then
+        echo "Su dirección IP pública es:"
+        curl -s ifconfig.me
+    fi
+}
+
+check_internet_and_pgg
+check_ip
+EOF
+)
+
+# Verificar si la función ya existe en el archivo .zshrc
+if grep -q "check_internet_and_pgg" ~/.zshrc; then
+    echo "La función ya existe en el archivo .zshrc."
+else
+    # Agregar la función al final del archivo .zshrc si no existe
+    echo "$function_to_add" >> /tmp/temp_zshrc
+    cat /tmp/temp_zshrc >> ~/.zshrc
+    rm /tmp/temp_zshrc
+    echo "La función se ha agregado al archivo .zshrc."
+fi

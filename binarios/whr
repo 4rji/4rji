@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Verifica si se proporciona un argumento
+if [ -z "$1" ]
+then
+  echo "Error: Se requiere un nombre de archivo como argumento."
+  exit 1
+fi
+
+# Utiliza sudo para abrir nano con el archivo especificado
+sudo nano "/usr/bin/$1"

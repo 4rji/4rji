@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+# Obtener el contenido del portapapeles y dividirlo en palabras separadas por comas
+CLIP_CONTENT=$(xclip -selection clipboard -o)
+IFS=',' read -r -A WORDS <<< "$CLIP_CONTENT"
+
+# Crear un archivo nuevo llamado clip1 y escribir el contenido del portapapeles
+for word in "${WORDS[@]}"; do
+  echo "$word" >> clip1
+done
+
+# Notificar al usuario que se ha creado el archivo clip1 con el contenido del portapapeles segmentado por comas.
+echo "Se ha creado el archivo clip1 con el contenido del portapapeles segmentado por comas."
+
+# Verificar si ambos archivos existen
+if [ ! -f "clip1" ]; then
+    echo "El archivo 'clip1' no existe."
+    exit 1
+fi
+
+if [ ! -f "targeted" ]; then
+    echo "El archivo 'targeted' no existe."
+    exit 1
+fi
+
+# Verificar si el archivo resumen ya existe y hacer una copia de seguridad si es necesario
+if [ -f "resumen" ]; then
+    mv resumen resumen.old
+fi
+
+# Leer el archivo clip1 y buscar coincidencias en targeted
+while IFS= read -r number; do
+    grep -w "$number" targeted | grep -v "^#" >> resumen
+done < clip1
+
+# Mostrar el contenido del archivo resumen
+cat resumen

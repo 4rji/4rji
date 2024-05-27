@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+# Preguntar al usuario la ruta del directorio que quiere copiar
+echo "Por favor, ingrese la ruta del directorio que desea copiar: "
+read source_dir
+
+# Preguntar al usuario el nombre de usuario y la dirección IP del cliente de destino
+echo "Ingrese el nombre de usuario y la dirección IP del cliente de destino (usuario@ip): "
+read client_info
+
+# Copiar el directorio especificado al cliente de destino en el directorio HOME sin crear una carpeta adicional
+scp -r "$source_dir" "$client_info:~"
+

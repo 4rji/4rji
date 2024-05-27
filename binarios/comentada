@@ -1,0 +1,95 @@
+#!/bin/bash
+
+echo ""
+echo -e "\e[94m_________________________________________________________\e[0m"
+echo ""
+
+# Función para expandir la tilde en la ruta del archivo
+expand_path() {
+    local path="$1"
+    if [[ "$path" == "~"* ]]; then
+        echo "${path/\~/$HOME}"
+    else
+        echo "$path"
+    fi
+}
+
+# Función para modificar el archivo
+modify_file() {
+    local file_path="$(expand_path "$1")"
+    local search_term
+    local new_content
+    local continue_modifying="s"
+
+    while [ "$continue_modifying" = "s" ]; do
+        echo ""
+        echo -e "\e[94mArchivo seleccionado: $file_path\e[0m"
+        echo ""
+        echo -e "\e[94mIngresa la cadena de texto para buscar las líneas que deseas comentar (por ejemplo, 'colors'), la búsqueda será insensible a mayúsculas/minusculas:\e[0m"
+        echo ""
+        read -p "Buscar: " search_term
+
+        # Buscar todas las líneas que coincidan (insensible a mayúsculas/minúsculas) y almacenarlas en un array
+        mapfile -t lines < <(grep -ni "^$search_term" "$file_path")
+        if [ ${#lines[@]} -eq 0 ]; then
+            echo -e "\e[91mNo se encontró ninguna línea que comience con '$search_term'.\e[0m"
+            continue
+        fi
+echo ""
+
+        echo -e "\e[94mLíneas encontradas:\e[0m"
+        echo ""
+        for i in "${!lines[@]}"; do
+            echo -e "\e[93m$((i+1))) ${lines[i]}\e[0m"
+        done
+
+        echo ""
+        echo -e "\e[94mPor favor, selecciona el numero de la línea que deseas modificar:\e[0m"
+        echo ""
+        read -p "Selección: " selection
+
+        # Validar la selección
+        if [ "$selection" -le 0 ] || [ "$selection" -gt "${#lines[@]}" ]; then
+            echo -e "\e[91mSelección invalida. Intenta de nuevo.\e[0m"
+            continue
+        fi
+
+        # Extraer solo el número de línea de la selección
+        local selected_line_number=$(echo "${lines[$((selection-1))]}" | cut -f1 -d:)
+
+        # Mostrar la línea seleccionada
+        echo ""
+        echo -e "\e[91m    -----   Linea encontrada se comentara con #    -----\e[0m"
+        echo ""
+        sed -n "${selected_line_number}p" "$file_path"
+
+        # Comentar la línea seleccionada y pedir contenido para agregar debajo
+        echo ""
+        read -p "Nuevo contenido : " new_content
+
+        # Comentar la línea y agregar el nuevo contenido
+        sed -i "${selected_line_number}s/^/# /; ${selected_line_number}a $new_content" "$file_path"
+
+        # Preguntar si se desea modificar otra línea
+        echo ""
+        read -n1 -p "¿Quieres modificar otra linea? s/n): " continue_modifying
+        echo ""
+    done
+
+    echo -e "\e[94mModificaciones completadas.\e[0m"
+}
+
+# Script principal
+if [ "$#" -ne 1 ]; then
+    echo -e "\e[91mUso: $0 <ruta-del-archivo>\e[0m"
+    echo -e "\e[91mPor ejemplo: $0 ~/.config/neofetch/config.conf\e[0m"
+    exit 1
+fi
+
+file_path="$1"
+if [ -f "$(expand_path "$file_path")" ]; then
+    modify_file "$file_path"
+else
+    echo -e "\e[91mEl archivo no existe.\e[0m"
+    exit 1
+fi

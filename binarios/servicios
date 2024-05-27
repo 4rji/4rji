@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Listar todos los servicios en ejecución
+echo "Servicios en ejecución que no son del kernel de Linux:"
+
+# Usar systemctl para obtener la lista de servicios y filtrar los del kernel
+systemctl list-units --type=service --state=running | grep -v "kernel"

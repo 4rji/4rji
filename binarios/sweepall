@@ -1,0 +1,61 @@
+#!/bin/bash
+
+echo ""
+echo "Se ejecutará un escaneo de puertos y se generará un archivo"
+echo "xml para abrir con Firefox. Usa sweep, IPs y puertos."
+echo ""
+
+# Pide al usuario que ingrese la subred o la toma del primer argumento del script
+if [ -z "$1" ]; then
+    echo "Ingresa la subred que deseas escanear (ejemplo: 10.0.0):"
+    read subnet
+else
+    subnet="$1"
+fi
+
+tempfile=$(mktemp) # Crea un archivo temporal
+
+echo "Escaneando la subred $subnet.0/24, por favor espera..."
+
+# Hace ping a cada IP en la subred y guarda las IP activas
+for ip in $(seq 1 254); do
+    (ping -c 1 -W 1 "$subnet.$ip" | grep "64 bytes" >> $tempfile &) &
+    # Limita el número de pings en paralelo para evitar sobrecarga
+    [[ $(jobs -r -p | wc -l) -ge 10 ]] && wait -n
+done
+
+# Espera a que todos los procesos en segundo plano terminen
+wait
+
+# Procesa el archivo temporal para obtener las IPs y limpia el formato
+awk -F'[ :]' '/64 bytes/{print $4}' $tempfile > ips.txt
+
+# Muestra las IPs
+cat ips.txt
+
+# Limpieza
+rm $tempfile
+
+
+
+# Pregunta al usuario qué tipo de escaneo desea realizar
+echo "¿Qué escaneo deseas realizar?"
+echo "1.- Puertos: nmap -v --reason -sS -oX puertos.xml"
+echo "2.- Puertos2: nmap -A -O -sV -oX puerto.xml"
+read opcion
+
+# Ejecuta el comando nmap basado en la elección del usuario
+case $opcion in
+    1)
+    sudo puertos
+        echo "Escaneo de puertos realizado."
+        ;;
+    2)
+    sudo puertos2
+        echo "Escaneo de puertos avanzado realizado."
+        ;;
+    *)
+        echo "Opción no válida."
+        ;;
+esac
+

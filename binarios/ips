@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+file="ips.txt"
+
+if [ -f "$file" ]; then
+    for ip in $(cat "$file"); do
+        nmap "$ip"
+    done
+else
+    echo "Advertencia: El archivo $file no se encuentra."
+fi
+

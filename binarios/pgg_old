@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+# Función para comprobar la conexión a Internet
+check_internet_connection() {
+    local host="google.com"  # Cambia "google.com" por el host que desees
+
+    ping -c 1 "$host" > /dev/null 2>&1
+
+    if [[ $? -eq 0 ]]; then
+        echo "La conexión a Internet está ACTIVA."
+    else
+        echo "No se puede acceder a Internet."
+    fi
+}
+
+# Preguntar si se desea ejecutar el script
+echo "¿Deseas verificar la conexion? (s para sí, enter para continuar)"
+read response
+
+if [[ "$response" == "s" ]]; then
+    check_internet_connection
+    echo "Tu dirección IP pública es: $(curl -s ifconfig.me 2>&1)"
+    echo ""
+fi

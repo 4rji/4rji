@@ -1,0 +1,48 @@
+
+
+#nmap 
+
+#busca scripts por categorias
+locate .nse | xargs grep "categories" | grep -oP '".*?"' | sort -u
+
+#nmap -p80 [IP] --script http-enum
+
+#masscan. #less rate=5000 more host, play
+sudo masscan -p22,80,445,8080,443  192.168.142.156/26 --rate=10000
+#esta buscan los top-ports 
+❯ sudo masscan -p1-65535 10.0.4.0/24 --top-ports 100 --rate=10000 -i wlan0 > 10.0.4.0
+
+
+#localizar vulnerabilidades y safe
+nmap -p[puerto] 192.10.0.88 --script="vuln and safe" -sV
+
+
+
+#buscar quien usa los puertos
+lsof -i:puerto
+#ver quien los usa los puertos, el PID se saca de lsoft -i:puerto
+pwdx PID   
+
+
+
+
+#wireshark
+#correr este antes de hacer la captura
+#si se usa en la maquina para pruebas usar la interfase > lo
+tcpdump -i interfase -w captura.cap -v
+
+
+
+
+#ver la captura
+tshark -r captura.cap 2>/dev/null 
+terminarl el video para ver mas comandos
+
+
+
+#discovery host scaner
+sudo arp-scan -I wlan0 10.0.4.1-10.0.4.254   #este escanea bien
+netdiscover -i wlan0
+
+#para evitar que ssh se duerma en conexiones
+ssh -o ServerAliveInterval=60 -o ServerAliveCountMax=3 usuario@servidor

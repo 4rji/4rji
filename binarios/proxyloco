@@ -1,0 +1,49 @@
+#!/bin/bash
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+echo "AMD64"
+echo "Ligolo-ng Proxy 0.5.1 Linux"
+echo ""
+
+# Pregunta y descarga directamente si la respuesta es afirmativa
+read -n1 -p "¿Deseas descargar el proxy? [s/N] " descargar_proxy
+echo ""
+if [[ "$descargar_proxy" == "S" ]] || [[ "$descargar_proxy" == "s" ]]; then
+    wget -q https://github.com/nicocha30/ligolo-ng/releases/download/v0.5.1/ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz
+    tar xzf ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz > /dev/null
+
+    #tar xzvf ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz -q
+fi
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+
+# Pregunta y configura la interfaz directamente si la respuesta es afirmativa
+read -n1 -p "¿Quieres iniciar la interfaz? [s/N] " iniciar_interfaz
+echo ""
+if [[ "$iniciar_interfaz" == "S" ]] || [[ "$iniciar_interfaz" == "s" ]]; then
+    sudo ip tuntap add user $USER mode tun ligolo
+    sudo ip link set ligolo up
+    ip a | grep ligolo
+    echo ""
+fi
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+
+# Pregunta y inicia el proxy directamente si la respuesta es afirmativa
+read -n1 -p "¿Quieres iniciar el proxy? [s/N] " iniciar_proxy
+echo ""
+if [[ "$iniciar_proxy" == "S" ]] || [[ "$iniciar_proxy" == "s" ]]; then
+    echo "Iniciando el proxy..."
+    ./proxy -selfcert
+fi
+
+echo ""
+echo "_________________________________________________________"
+echo ""
+rm -f LICENSE README.md ligolo-ng_proxy_0.5.1_linux_amd64.tar.gz

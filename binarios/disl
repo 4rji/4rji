@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Obtener la lista de distribuciones de distrobox, omitiendo la primera línea (cabecera)
+distros=$(distrobox list | awk 'NR>1 {print $3}')
+
+# Mostrar las distribuciones disponibles con números
+echo "Distribuciones disponibles:"
+i=1
+while read -r line; do
+    echo "$i) $line"
+    i=$((i+1))
+done <<< "$distros"
+
+# Calcular el número total de distribuciones
+total_distros=$(echo "$distros" | wc -l)
+
+# Pedir al usuario que elija una distribución
+echo "Por favor, ingresa el número de la distro que quieres ejecutar:"
+read choice
+
+# Verificar que la entrada es un número y está dentro del rango
+if ! [[ $choice =~ ^[0-9]+$ ]] || [ "$choice" -lt 1 ] || [ "$choice" -gt "$total_distros" ]; then
+    echo "Selección no válida."
+    exit 1
+fi
+
+# Extraer el nombre de la distro seleccionada
+distro_name=$(echo "$distros" | sed -n "${choice}p")
+
+# Ejecutar distrobox enter con la distro elegida
+distrobox enter "$distro_name"

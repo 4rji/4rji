@@ -1,0 +1,141 @@
+#!/bin/bash
+
+# Lista de paquetes a instalar
+paquetes=("rkhunter" "chkrootkit" )
+
+
+# Función para verificar si un paquete está instalado (Debian/Ubuntu/Kali)
+paquete_instalado_apt() {  
+    dpkg -l "$1" | grep -q '^ii'  
+}
+
+# Función para verificar si un paquete está instalado (CentOS/RHEL)
+paquete_instalado_yum() {
+    yum list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Fedora)
+paquete_instalado_dnf() {
+    dnf list installed "$1" &> /dev/null
+}
+
+# Función para verificar si un paquete está instalado (Arch Linux)
+paquete_instalado_pacman() {
+    pacman -Qi "$1" &> /dev/null
+}
+
+# Detectar el sistema operativo
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+fi
+
+# Instalar paquetes basados en el sistema operativo
+for paquete in "${paquetes[@]}"; do
+    case $OS in
+        "debian"|"ubuntu"|"kali")
+            if ! paquete_instalado_apt "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo apt-get install -y "$paquete"
+            fi
+            ;;
+        "centos"|"rhel")
+            if ! paquete_instalado_yum "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo yum install -y "$paquete"
+            fi
+            ;;
+        "fedora")
+            if ! paquete_instalado_dnf "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo dnf install -y "$paquete"
+            fi
+            ;;
+        "arch")
+            if ! paquete_instalado_pacman "$paquete"; then
+                echo "Instalando el paquete $paquete..."
+                sudo pacman -S --noconfirm "$paquete"
+            fi
+            ;;
+        *)
+            ;;
+    esac
+done
+
+
+
+
+
+
+
+
+echo "modify the files"
+echo "sudo nano /etc/rkhunter.conf"
+echo "sudo nano /etc/default/rkhunter"
+echo ""
+read -p "Do you want to modify the files automatic? y/[enter]: " modify
+
+if [[ $modify == "y" ]]; then
+    sudo rkhunconf
+    sudo rkhuncron
+    echo "Files modified with scripts"
+    sleep 1
+fi
+
+# Ask the user if they want to update the database
+read -p "Do you want to update the database? y/[enter]: " update
+
+if [[ $update == "y" ]]; then
+    sudo rkhunter --update
+fi
+
+sleep 1
+# list of binaries below is executed
+# sudo rkhunter --propupd
+
+# Ask the user if they want to run the scan
+echo "Do you want to execute the scan now? (y/[enter]): "
+read response
+
+if [[ $response = "y" ]]; then
+    # If the user responds 's', execute rkhunter
+    echo "Running rkhunter..."
+    sudo rkhunter --propupd
+    sudo rkhunter --check -sk
+else
+    # If the user presses enter or any other key, show how to execute it later
+    echo ""
+fi
+
+
+# Ask the user if they want to run chkrootkit
+read -p "Do you want to execute chkrootkit? (y/[enter]): " run_chkrootkit
+
+if [[ $run_chkrootkit == "y" ]]; then
+    echo "Running chkrootkit..."
+    sudo chkrootkit
+else
+    echo "chkrootkit execution skipped."
+fi
+
+
+echo ""
+echo ""
+echo ""
+echo "**************** END ****************"
+echo ""
+echo ""
+echo ""
+echo ""
+
+
+echo "useful commands"
+echo ""
+echo "version"
+echo "sudo rkhunter --versioncheck"
+echo ""
+echo "To run the scanner again"
+echo "sudo rkhunter --check -sk"
+echo ""
+echo "To run chkrootkit scanner"
+echo "sudo chkrootkit"

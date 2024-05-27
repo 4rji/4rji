@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# Función para agregar configuración al archivo SSH
+agregar_config_ssh() {
+    local host_alias=$1
+    local host_info=$2
+    local ssh_port=$3
+    local agregar_identity=$4
+    local ssh_config="$HOME/.ssh/config"
+
+    # Descomponer la información del host en usuario y host
+    IFS='@' read -ra ADDR <<< "$host_info"
+    local user="${ADDR[0]}"
+    local host="${ADDR[1]}"
+
+    # Crear el archivo config si no existe
+    if [ ! -f "$ssh_config" ]; then
+        touch "$ssh_config"
+        chmod 600 "$ssh_config"
+    fi
+
+    # Añadir la nueva configuración al final del archivo config
+    echo ""
+    echo -e "\e[33m_________________________________________________________\e[0m"
+    echo ""
+    echo ""
+    echo -e "\e[36mAgregando la siguiente configuración al archivo SSH:\e[0m"
+    echo ""
+    echo -e "\e[33mHost: $host_alias\e[0m"
+    echo -e "\e[33m  HostName: $host\e[0m"
+    echo -e "\e[33m  User: $user\e[0m"
+    if [ ! -z "$ssh_port" ]; then
+        echo -e "\e[33m  Port: $ssh_port\e[0m"
+    fi
+    if [[ $agregar_identity == "s" ]]; then
+        echo -e "\e[33m  IdentityFile: ~/.ssh/id_ed25519\e[0m"
+    fi
+    echo ""
+    echo ""
+    echo -e "\e[32m *** La configuración ha sido añadida correctamente al archivo $ssh_config ***\e[0m"
+    echo ""
+}
+
+# Función para el menú de configuración de host simple
+configurar_host_simple() {
+    read -p $'\e[33mNombre del Host para la máquina: \e[0m' final_alias
+    read -p $'\e[33mDirección usuario@host: \e[0m' final_host
+    read -p $'\e[33mPuerto de conexión o Enter para puerto 22: \e[0m' -n 3 final_ssh_port
+    read -n1 -p $'\e[33m¿Deseas agregar \'IdentityFile ~/.ssh/id_ed25519\' para el host? [S/n]: \e[0m' agregar_identity
+    agregar_config_ssh "$final_alias" "$final_host" "$final_ssh_port" "$agregar_identity"
+}
+
+# Menú principal y bucle de configuración
+continuar="s"
+while [ "$continuar" == "s" ]; do
+    echo ""
+    echo -e "\e[34mElige una opción:\e[0m"
+    echo ""
+    echo -e "\e[33mv - Ver el archivo ~/.ssh_config\e[0m"
+    echo -e "\e[33me - Editar el archivo ~/.ssh_config\e[0m"
+    echo -e "\e[33ma - Agregar un host\e[0m"
+    echo ""
+    read -n1 -p $'\e[33mSeleccion: \e[0m' opcion
+    echo ""
+
+    case $opcion in
+        v)
+            cat ~/.ssh/config
+            echo ""
+            read -n1 -p $'\e[33m¿Quieres editarlo? [S/n]: \e[0m' respuesta
+            echo ""
+            if [[ $respuesta =~ ^[Ss]$ ]]
+            then
+                nano ~/.ssh/config
+            fi
+            ;;
+        e)
+            nano ~/.ssh/config
+            ;;
+        a)
+            configurar_host_simple
+            ;;
+        *)
+            echo -e "\e[31mOpción no válida.\e[0m"
+            ;;
+    esac
+
+    echo ""
+    read -n1 -p $'\e[33m¿Deseas realizar otra configuración? [S/n]: \e[0m' continuar
+    echo ""
+done
