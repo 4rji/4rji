@@ -148,7 +148,7 @@ echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync'" >> ~/.zshrc
+echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync && rm testfile'" >> ~/.zshrc
 echo "alias trr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
