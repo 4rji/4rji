@@ -173,3 +173,6 @@ echo "alias pega='xclip -sel clip -o'" >> ~/.zshrc
 echo "alias copia='xclip -sel clip'" >> ~/.zshrc
 echo "alias libreshm='sudo rm -rf /dev/shm/*'" >> ~/.zshrc
 
+echo "alias nixe='sudo nano /etc/nixos/configuration.nix'" >> ~/.zshrc
+echo "alias nixr='sudo nixos-rebuild switch'" >> ~/.zshrc
+

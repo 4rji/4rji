@@ -1,17 +1,0 @@
-Type ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa root@192.168.1.100 and hit Enter. WHY? We should be able to SSH to S1.100 from Kali. Since S1.100 is using an older SSH server, we need to enable legacy protocols.
-
-You should see: 
-
-Type Ctrl-C
-
-This verifies SSH connectivity with S1.100.
-
-Type ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa root@192.168.1.123 and hit Enter. WHY? We should be able to SSH to Hackerdemia from Kali. 
-
-
-ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa root@192.168.10.128 and hit Enter. WHY? We should be able to SSH to Metasploitable2 from Kali. 
-
-
-Stage 9 – Shutdown unneeded VMs
-
-
