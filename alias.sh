@@ -23,6 +23,8 @@ echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
 echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
 echo 'alias catnl="batcat"' >> ~/.zshrc
 echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
+#ver el tamano de las carpetas en directorio actual
+echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
 
 
 
@@ -148,7 +150,7 @@ echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
 echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
 echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
 echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync && rm testfile'" >> ~/.zshrc
+#echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync && rm testfile'" >> ~/.zshrc
 echo "alias trr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
@@ -157,7 +159,7 @@ echo "alias readme='cat /usr/bin/README.md  '" >> ~/.zshrc
 echo "alias na='nano '" >> ~/.zshrc
 echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
 
-echo "alias bye='kill -9 -1 '" >> ~/.zshrc
+echo "alias bye='pkill -KILL -u $(whoami)'" >> ~/.zshrc
 
 echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
 
