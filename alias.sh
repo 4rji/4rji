@@ -178,3 +178,5 @@ echo "alias libreshm='sudo rm -rf /dev/shm/*'" >> ~/.zshrc
 echo "alias nixe='sudo nano /etc/nixos/configuration.nix'" >> ~/.zshrc
 echo "alias nixr='sudo nixos-rebuild switch'" >> ~/.zshrc
 
+#escritorio de kali  en windows de la store de windows 
+echo "alias kplas='kex --esm --wtstart --desktop plasma'" >> ~/.zshrc
