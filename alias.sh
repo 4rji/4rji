@@ -9,6 +9,7 @@ sudo cp ~/.zshrc ~/.zshrc.alias_backup
 sed -i.bak '/^alias/d' ~/.zshrc
 
 echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de ~/.zshrc"
+echo "alias bypass='oobe\BypassNRO'"  >> ~/.zshrc
 
 
 echo ""
