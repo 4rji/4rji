@@ -5,8 +5,8 @@
 sudo cp ~/.zshrc ~/.zshrc.alias_backup
 
 
-# Eliminar las líneas que comienzan con "alias" en ~/.zshrc
-sed -i.bak '/^alias/d' ~/.zshrc
+# comenta las líneas que comienzan con "alias" en ~/.zshrc
+sed -i.bak 's/^alias/#&/' ~/.zshrc
 
 echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de ~/.zshrc"
 echo "alias bypass='oobe\BypassNRO'"  >> ~/.zshrc
@@ -56,7 +56,7 @@ echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 
 # Agregar alias a .zshrc
-echo "alias smbserver='impacket-smbserver smbFolder \$(pwd) -smb2support'" >> ~/.zshrc
+#echo "alias smbserver='sudo impacket-smbserver smbFolder \$(pwd) -smb2support'" >> ~/.zshrc
 echo "alias kalideb='sudo cp /etc/apt/sources.list.kali /etc/apt/sources.list'" >> ~/.zshrc
 echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'" >> ~/.zshrc
 echo "alias rmk='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
