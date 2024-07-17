@@ -157,7 +157,7 @@ echo "alias trr='trash '" >> ~/.zshrc
 echo "alias trl='trash-list '" >> ~/.zshrc
 echo "alias tre='trash-empty '" >> ~/.zshrc
 echo "alias weather='curl wttr.in '" >> ~/.zshrc
-echo "alias readme='cat /usr/bin/README.md  '" >> ~/.zshrc
+echo "alias readme='cat /opt/4rji/bin/README.md  '" >> ~/.zshrc
 echo "alias na='nano '" >> ~/.zshrc
 echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
 
