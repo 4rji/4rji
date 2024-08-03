@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+sudo apt-get update
+sudo apt-get install libxcb1 libxcb-util1 libxcb-xkb1 -f
+
 
 # Descargar el repositorio
 git clone https://github.com/4rji/polybar.git

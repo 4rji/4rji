@@ -160,14 +160,14 @@ echo "alias weather='curl wttr.in '" >> ~/.zshrc
 echo "alias readme='cat /opt/4rji/bin/README.md  '" >> ~/.zshrc
 echo "alias na='nano '" >> ~/.zshrc
 echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
-
+echo "alias exitt='exiftool -all= -overwrite_original /Users/ozono/Dropbox/documentation/img/*'" >> ~/.zshrc
 echo "alias bye='pkill -KILL -u $(whoami)'" >> ~/.zshrc
 
 echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
 
 #echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
-echo "alias carpeta='du -sh '" >> ~/.zshrc
+echo "alias tamano='du -sh '" >> ~/.zshrc
 echo "alias archivserv='cd ~/archivebox && docker-compose up'" >> ~/.zshrc
 echo "alias qwe='clipc && pas'" >> ~/.zshrc
 echo "alias verlos='fzf --preview='cat {}''" >> ~/.zshrc
