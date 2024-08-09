@@ -182,3 +182,4 @@ echo "alias nixr='sudo nixos-rebuild switch'" >> ~/.zshrc
 
 #escritorio de kali  en windows de la store de windows 
 echo "alias kplas='kex --esm --wtstart --desktop plasma'" >> ~/.zshrc
+echo "alias barrer='flatpak run com.github.debauchee.barrier --config /home/nala/.config/barrier.conf & disown':" >> ~/.zshrc

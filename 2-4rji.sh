@@ -37,6 +37,8 @@ sudo cp -r ~/4rji/Wallpaper/jack-dragon2_2048x2048.png /boot/grub/background.png
 sudo cp .zshrc.original ~
 sudo cp ~/4rji/Wallpaper/background.png /usr/share/desktop-base/kali-theme/login/background
 
+sudo cp ~/.config/Wallpaper/grub-16x9/02/grub-16x9.png  /usr/share/grub/themes/kali/grub-4x3.png
+sudo cp ~/.config/Wallpaper/guacamaya.jpg /usr/share/grub/themes/kali/grub-16x9.png
 
 #la imagen despues del grub es esta corregir la ruta:
 #/usr/share/grub/themes/kali/grub-16x9.png
