@@ -148,7 +148,7 @@ echo "alias na='nano '" >> ~/.bashrc
 echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.bashrc
 
 echo "alias bye='kill -9 -1 '" >> ~/.bashrc
-
+echo "alias interf='sudo nano /etc/network/interfaces'" >> ~/.bashrc
 echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.bashrc
 
 #echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.bashrc
