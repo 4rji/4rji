@@ -71,6 +71,9 @@ echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
 echo "alias ssk='kitty +kitten ssh '" >> ~/.zshrc
 echo "alias sshh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '" >> ~/.zshrc
+echo "alias scpp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '" >> ~/.zshrc
+scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 
+
 echo "alias lockf='i3lock-fancy '" >> ~/.zshrc
 echo "alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts '"  >> ~/.zshrc 
 #echo "alias ansip='ansible all -m ping -i ~/.ssh/ansible_hosts '"  >> ~/.zshrc 
