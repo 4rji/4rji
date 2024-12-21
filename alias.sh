@@ -188,3 +188,5 @@ echo "alias nixr='sudo nixos-rebuild switch'" >> ~/.zshrc
 echo "alias kplas='kex --esm --wtstart --desktop plasma'" >> ~/.zshrc
 echo "alias barrer='flatpak run com.github.debauchee.barrier --config /home/nala/.config/barrier.conf & disown':" >> ~/.zshrc
 echo "alias interf='sudo nano /etc/network/interfaces'" >> ~/.zshrc
+echo "alias tr1='traceroute 1.1.1.1'" >> ~/.zshrc
+echo "alias trg='traceroute 8.8.8.8'" >> ~/.zshrc
