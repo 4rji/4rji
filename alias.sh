@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#spice
+#sudo systemctl enable --now spice-vdagent
 
 # Copiar ~/.zshrc a /respaldos/zshrc
 sudo cp ~/.zshrc ~/.zshrc.alias_backup
@@ -191,3 +193,5 @@ echo "alias interf='sudo nano /etc/network/interfaces'" >> ~/.zshrc
 echo "alias tr1='traceroute 1.1.1.1'" >> ~/.zshrc
 echo "alias trg='traceroute 8.8.8.8'" >> ~/.zshrc
 echo "alias cdd='cd \${_%/*}'" >> ~/.zshrc
+echo "alias copia='wl-copy < '"  >> ~/.zshrc
+echo "alias pega='wl-paste '"  >> ~/.zshrc

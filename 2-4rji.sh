@@ -51,11 +51,6 @@ sudo mv ~/4rji/Wallpaper ~/.config
 
 ./alias.sh
 
-#mkdir $HOME/Downloads/vpnit
-sudo apt install zip -y
-unzip Ban1_aa12.zip
-mv vpnitos $HOME/Downloads/.vpnitos
-sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
 
 chmod +x fix-4rji.sh tmux_zsh.sh
