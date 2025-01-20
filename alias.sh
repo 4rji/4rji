@@ -169,7 +169,10 @@ echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest
 echo "alias exitt='exiftool -all= -overwrite_original /Users/ozono/Dropbox/documentation/img/*'" >> ~/.zshrc
 echo "alias bye='pkill -KILL -u $(whoami)'" >> ~/.zshrc
 
-echo "alias iniciafakep='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
+#porting
+echo "alias fakei='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
+
+
 
 #echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
 
