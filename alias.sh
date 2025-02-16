@@ -110,7 +110,7 @@ echo "alias fixsc='cd $HOME/4rji/fixed/binarios'" >> ~/.zshrc
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
-echo "alias mkdirr='function _mkdirr(){ mkdir "$1" && cd "$1" };_mkdirr'"  >> ~/.zshrc
+
 echo "alias g4rji='f(){ git clone --depth 1 https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
 #echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
@@ -187,8 +187,13 @@ echo "alias pega='xclip -sel clip -o'" >> ~/.zshrc
 echo "alias copia='xclip -sel clip'" >> ~/.zshrc
 echo "alias libreshm='sudo rm -rf /dev/shm/*'" >> ~/.zshrc
 
-echo "alias nixe='sudo nano /etc/nixos/configuration.nix'" >> ~/.zshrc
+#nixs
+echo "alias nflutter='nix develop /etc/nixos#flutter --command zsh'" >> ~/.zshrc
+echo "alias nixe='sudo nano /etc/nixos/paquetes.nix'" >> ~/.zshrc
+echo "alias nixg='nix-collect-garbage -d'" >> ~/.zshrc
+echo "alias nixee='sudo nano /etc/nixos/configuration.nix'" >> ~/.zshrc
 echo "alias nixr='sudo nixos-rebuild switch'" >> ~/.zshrc
+
 
 #escritorio de kali  en windows de la store de windows 
 echo "alias kplas='kex --esm --wtstart --desktop plasma'" >> ~/.zshrc
