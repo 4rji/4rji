@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #spice
 #sudo systemctl enable --now spice-vdagent
@@ -26,7 +26,7 @@ echo ""
 #echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
 #echo 'alias catnl="batcat"' >> ~/.zshrc
 #echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
-
+echo "alias ls='ls --color'" >> ~/.zshrc
 
 #ver el tamano de las carpetas en directorio actual
 echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
@@ -67,7 +67,7 @@ echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'"
 echo "alias i='sudo apt install'" >> ~/.zshrc
 echo "alias bas='nano ~/.zshrc'" >> ~/.zshrc
 echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
-#echo "alias mkt='mkdir content exploits nmap'" >> ~/.zshrc
+
 echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
 echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
 echo "alias pg='ping 8.8.8.8 -c4'" >> ~/.zshrc
