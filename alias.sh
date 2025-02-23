@@ -36,6 +36,7 @@ echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
 echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
+echo "alias ufwa='sudo ufw allow'"  >> ~/.zshrc
 echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
 echo "alias ufwn='sudo ufw status numbered'"  >> ~/.zshrc
 
