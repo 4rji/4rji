@@ -168,7 +168,7 @@ echo "alias tre='trash-empty '" >> ~/.zshrc
 echo "alias weather='curl wttr.in '" >> ~/.zshrc
 echo "alias readme='cat /opt/4rji/bin/README.md  '" >> ~/.zshrc
 echo "alias na='nano '" >> ~/.zshrc
-echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
+#echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
 echo "alias exitt='exiftool -all= -overwrite_original /Users/ozono/Dropbox/documentation/img/*'" >> ~/.zshrc
 echo "alias bye='pkill -KILL -u $(whoami)'" >> ~/.zshrc
 
