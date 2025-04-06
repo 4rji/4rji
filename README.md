@@ -15,8 +15,6 @@
 </picture>
 </p>
 
-⸻
-
 	•	🧑‍💻 HomeLab fanatic — daily tinkering with a full rack: ESXi server, Ubiquiti stack, dual ISPs, and Starlink v2.
 	•	⚙️ Automation-driven — writes scripts to streamline tasks, monitor networks, and kill repetitive work.
 	•	🌐 Web app enjoyer — likes building tools with clean UIs and efficient backends.
