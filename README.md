@@ -15,9 +15,6 @@
 </picture>
 </p>
 
-_You can define me a..._
-Got it. Here’s a tighter version with focus on your homelab, automation scripts, and web app interests:
-
 ⸻
 
 	•	🧑‍💻 HomeLab fanatic — daily tinkering with a full rack: ESXi server, Ubiquiti stack, dual ISPs, and Starlink v2.
