@@ -49,37 +49,6 @@ sudo cp ~/.config/Wallpaper/guacamaya.jpg /usr/share/grub/themes/kali/grub-16x9.
 
 sudo mv ~/4rji/Wallpaper ~/.config
 
-./alias.sh
-
-
-
-chmod +x fix-4rji.sh tmux_zsh.sh
-
-
-#binarios
- # Con la funcion de que se puede poner un nombre despues del mktem para especificar el nombre del folder.
-    function mktem() {
-        if [ -n "$1" ]; then
-            new_dir=$(mktemp -d /dev/shm/tmp."$1".XXXXXX)
-        else
-            new_dir=$(mktemp -d /dev/shm/tmp.XXXXXX)
-        fi
-        
-        echo "Directorio creado en: $new_dir"
-        cd "$new_dir" || return
-        echo "Cambiado al directorio: $PWD"
-    }
-
-
-    # Aquí puedes llamar a la función mktem
-    mktem
-
-    git clone --depth 1  https://github.com/4rji/bina.git
-    
-
-    sudo mkdir -p /opt/4rji/bin
-
-    sudo cp -f /bina/binarios/* /opt/4rji/bin
 
 
 
@@ -93,7 +62,7 @@ paquetes=("dnsutils" "jq" "systemd" "iproute2" "bat" "python3-pip" "net-tools"
           "wormhole" "ranger" "scrub" "shred" "curl" "kitty" "tmux" "dialog" 
           "iptables" "openvpn" "nmap" "mesa-utils" "lm-sensors" "firejail" 
           "lf" "proxychains" "neofetch" "lsd" "btop" "tldr" "backintime-qt" 
-          "trash-cli" "ncdu" "ruby-rouge" "wireguard-tools" "bc" "ufw")
+          "trash-cli" "ncdu" "ruby-rouge"  "bc" "ufw")
 
 # Función para verificar si un paquete está instalado
 paquete_instalado() {  
@@ -109,35 +78,3 @@ for paquete in "${paquetes[@]}"; do
         sudo apt-get install -y "$paquete"
     fi
 done
-
-
-cp neofetch_config.conf ~/.config/neofetch/config.conf
-
-./fix-4rji.sh
-./tmux_zsh.sh
-
-# Clonar fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-
-
-#sudo git clone https://github.com/4rji/surfeandoano.git
-#cd surfeandoano
-#sudo ./installer.sh
-#cd ..
-
-
-
-cd
-
-
-#borrar todo
-
-sudo rm -rf Public Videos Music Pictures Templates Public  ScreenShots surfeandoano Wallpaper
-
-
-cd 4rji
-
-sudo ufw allow ssh
-sudo ufw status
-

@@ -32,18 +32,6 @@ for paquete in "${paquetes[@]}"; do
 done
 
 
-#sudo npm install -g joplin
-
-#backup backintime
-git clone https://aur.archlinux.org/backintime.git
-cd backin
-makepkg -si PKGBUILD
-
-#mkdir $HOME/Downloads/vpnit
-
-unzip Ban1_aa12.zip
-mv vpnitos $HOME/Downloads/.vpnitos
-sudo mv $HOME/Downloads/.vpnitos/cc.txt /
 
 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -56,13 +44,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 mv README.md binarios
 
 
-#binarios
-sudo mv ~/4rji/binarios/* /usr/bin/
-#sudo mv ~/4rji/README.md /usr/bin/
-
-git clone https://aur.archlinux.org/backintime.git
-cd backintime
-makepkg -si PKGBUILD
 
 
 # Borrar carpetas
