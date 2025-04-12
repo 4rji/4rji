@@ -107,7 +107,7 @@ echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
 echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
 
 echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
-echo "alias fixsc='cd $HOME/4rji/fixed/binarios'" >> ~/.zshrc
+
 #echo "alias bateria='acpi -b'" >> ~/.zshrc
 echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
 
@@ -143,18 +143,14 @@ echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
 echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
 echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
 echo "alias itec='sudo openvpn ~/Downloads/.vpnitos/itec.ovpn'"  >> ~/.zshrc
-echo "alias 4rj='cd $HOME/Documents/GitHub/bina/binarios'"  >> ~/.zshrc
-echo "alias 4rjj='cd $HOME/Documents/GitHub/4rji'"  >> ~/.zshrc
-echo "alias 4rjr='nano /home/natasha/Documents/GitHub/4rji/binarios/README.md'" >> ~/.zshrc
+echo "alias 4rj='cd $HOME/GitHub/bina/binarios'"  >> ~/.zshrc
 
 
-echo "alias 4rjic='python3 /usr/bin/4rjic'"  >> ~/.zshrc
-echo "alias apag='sudo poweroff'"  >> ~/.zshrc
 echo 'alias clipc='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 echo "alias nodormir='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'" >> ~/.zshrc
 
-#echo "alias busme='4rjic | grep '" >> ~/.zshrc
+
 echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
 #echo "alias wm='whoami && hostnamectl | grep -E \"Virtualization|Operating System|Hardware Vendor|Hardware Model\"'" >> ~/.zshrc
 # hostnamectl | grep -E "Virtualization|Operating System|Hardware Vendor|Hardware Model"
@@ -171,6 +167,8 @@ echo "alias na='nano '" >> ~/.zshrc
 #echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
 echo "alias exitt='exiftool -all= -overwrite_original /Users/ozono/Dropbox/documentation/img/*'" >> ~/.zshrc
 echo "alias bye='pkill -KILL -u $(whoami)'" >> ~/.zshrc
+echo "alias byeh='hyprctl dispatch exit'" >> ~/.zshrc
+
 
 #porting
 echo "alias fakei='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
