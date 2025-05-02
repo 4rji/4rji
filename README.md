@@ -30,7 +30,7 @@
 
 <p align="center">
   <a href="https://penkitpro.com" target="_blank">
-    <img src="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect.png" width="500px" alt="AI detector">
+    <img src="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect.png" width="700px" alt="AI detector">
   </a>
 </p>
 
