@@ -22,7 +22,7 @@ echo ""
 #echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 #echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 #echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-#echo 'alias cat="/bin/batcat --paging=never"' >> ~/.zshrc
+echo 'alias cat="/bin/batcat --paging=never --style=full -p -l rb"' >> ~/.zshrc
 #echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
 #echo 'alias catnl="batcat"' >> ~/.zshrc
 #echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
