@@ -27,7 +27,7 @@ echo 'alias cat="/bin/batcat --paging=never --style=full -p -l rb"' >> ~/.zshrc
 #echo 'alias catnl="batcat"' >> ~/.zshrc
 #echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
 echo "alias ls='ls --color'" >> ~/.zshrc
-
+echo "alias v=nvim'" >> ~/.zshrc
 #ver el tamano de las carpetas en directorio actual
 echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
 
