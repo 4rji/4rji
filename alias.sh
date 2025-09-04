@@ -14,20 +14,18 @@ echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de 
 echo "alias bypass='oobe\BypassNRO'"  >> ~/.zshrc
 
 
-echo ""
-
 #custom alias
 #echo 'alias ll="lsd -lh --group-dirs=first"' >> ~/.zshrc
 #echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
 #echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 #echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 #echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-echo 'alias cat="/bin/batcat --paging=never --pager=none --style=plain -l rb"' >> ~/.zshrc
+echo "alias cat='/bin/batcat --paging=never --pager=none --style=plain -l rb'" >> ~/.zshrc
 #echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
 #echo 'alias catnl="batcat"' >> ~/.zshrc
 #echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
 echo "alias ls='ls --color'" >> ~/.zshrc
-echo "alias v=nvim'" >> ~/.zshrc
+echo "alias v='nvim'" >> ~/.zshrc
 #ver el tamano de las carpetas en directorio actual
 echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
 
