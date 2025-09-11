@@ -28,6 +28,7 @@ echo "alias ls='ls --color'" >> ~/.zshrc
 echo "alias v='nvim'" >> ~/.zshrc
 #ver el tamano de las carpetas en directorio actual
 echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
+echo "alias fd='fdfind'" >> ~/.zshrc
 
 
 
