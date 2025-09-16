@@ -31,6 +31,11 @@ echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
 echo "alias fd='fdfind'" >> ~/.zshrc
 
 
+#para youtube
+echo "alias youdown='yt-dlp -S res,ext:mp4:m4a'" >> ~/.zshrc
+
+
+
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
