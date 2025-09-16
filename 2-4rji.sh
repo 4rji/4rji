@@ -43,6 +43,9 @@ sudo cp ~/.config/Wallpaper/guacamaya.jpg /usr/share/grub/themes/kali/grub-16x9.
 #la imagen despues del grub es esta corregir la ruta:
 #/usr/share/grub/themes/kali/grub-16x9.png
 
+#debian
+sudo cp ~/.config/Wallpaper/background4x3.png /usr/share/desktop-base/ceratopsian-theme/grub/grub-4x3.png
+sudo cp ~/.config/Wallpaper/background.png /usr/share/desktop-base/ceratopsian-theme/grub/grub-16x9.png 
 
 
 #algunos script que se deben ejecutar al inicio para instalacion
