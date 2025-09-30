@@ -28,6 +28,12 @@ echo "alias ls='ls --color'" >> ~/.zshrc
 echo "alias v='nvim'" >> ~/.zshrc
 #ver el tamano de las carpetas en directorio actual
 echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
+echo "alias fd='fdfind'" >> ~/.zshrc
+
+
+#para youtube
+echo "alias youdown='yt-dlp -S res,ext:mp4:m4a'" >> ~/.zshrc
+
 
 
 
@@ -180,6 +186,7 @@ echo "alias archivserv='cd ~/archivebox && docker-compose up'" >> ~/.zshrc
 echo "alias qwe='clipc && pas'" >> ~/.zshrc
 echo "alias verlos='fzf --preview='cat {}''" >> ~/.zshrc
 echo "alias pega='xclip -sel clip -o'" >> ~/.zshrc
+echo "alias pegam='pbpaste'" >> ~/.zshrc
 #alias copia='xsel --input --clipboard'
 #alias pega='xsel --output --clipboard'
 echo "alias copia='xclip -sel clip'" >> ~/.zshrc
@@ -200,5 +207,5 @@ echo "alias interf='sudo nano /etc/network/interfaces'" >> ~/.zshrc
 echo "alias tr1='traceroute 1.1.1.1'" >> ~/.zshrc
 echo "alias trg='traceroute 8.8.8.8'" >> ~/.zshrc
 echo "alias cdd='cd \${_%/*}'" >> ~/.zshrc
-echo "alias copia='wl-copy < '"  >> ~/.zshrc
-echo "alias pega='wl-paste '"  >> ~/.zshrc
+#echo "alias copia='wl-copy < '"  >> ~/.zshrc
+#echo "alias pega='wl-paste '"  >> ~/.zshrc
