@@ -51,6 +51,7 @@ echo "alias kaliefi='distrobox-ephemeral create --name kali-efimero --image dock
 echo "alias dise='distrobox enter '"  >> ~/.zshrc
 echo "alias disr='distrobox rm  '"  >> ~/.zshrc
 
+echo "alias lst='ls -ltrh'" >> ~/.zshrc
 
 #f2ban
 echo "alias rs2='sudo nano /etc/rsyslog.conf'" >> ~/.zshrc 
