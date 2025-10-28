@@ -209,3 +209,6 @@ echo "alias trg='traceroute 8.8.8.8'" >> ~/.zshrc
 echo "alias cdd='cd \${_%/*}'" >> ~/.zshrc
 #echo "alias copia='wl-copy < '"  >> ~/.zshrc
 #echo "alias pega='wl-paste '"  >> ~/.zshrc
+
+echo "alias shadowcurl='curl --socks5 127.0.0.1:1080 https://ifconfig.me'" >> ~/.zshrc
+
