@@ -34,8 +34,9 @@ echo "alias fd='fdfind'" >> ~/.zshrc
 #para youtube
 echo "alias youdown='yt-dlp -S res,ext:mp4:m4a'" >> ~/.zshrc
 
-
-
+#emails
+#echo "alias emails=\"grep -rE -o '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' . | tee listaemails.txt\"" >> ~/.zshrc
+#grep -E -o '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'  para emails
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
