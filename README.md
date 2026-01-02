@@ -30,7 +30,17 @@
 
 <p align="center">
   <a href="https://penkitpro.com" target="_blank">
-    <img src="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect.png" width="700px" alt="AI detector">
+    <picture>
+      <source
+        media="(prefers-color-scheme: dark)"
+        srcset="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect-dark.png"
+      >
+      <img
+        src="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect.png"
+        width="700px"
+        alt="AI detector"
+      >
+    </picture>
   </a>
 </p>
 
