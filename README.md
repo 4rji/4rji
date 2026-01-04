@@ -51,7 +51,7 @@
 
 
 
-[![GitHub Streak](https://streak-stats.demolab.com/4rji)](https://git.io/streak-stats)
+[![GitHub Streak](https://streak-stats.demolab.com?user=4rji)](https://git.io/streak-stats)
 
 ---
 
