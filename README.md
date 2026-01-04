@@ -51,7 +51,10 @@
 
 
 
+[![GitHub Streak](https://streak-stats.demolab.com/4rji)](https://git.io/streak-stats)
+
 ---
+
 
 [![Havi's GitHub stats](https://github-readme-stats.vercel.app/api?username=4rji)](https://github.com/anuraghazra/github-readme-stats)
 
