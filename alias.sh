@@ -15,9 +15,7 @@ echo "alias bypass='oobe\BypassNRO'"  >> ~/.zshrc
 
 
 #custom alias
-
 echo "alias NE='2>/dev/null'" >> ~/.zshrc
-
 #echo 'alias ll="lsd -lh --group-dirs=first"' >> ~/.zshrc
 #echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
 #echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
@@ -29,17 +27,11 @@ echo "alias cat='/bin/batcat --paging=never --pager=none --style=plain -l rb'" >
 #echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
 echo "alias ls='ls --color'" >> ~/.zshrc
 echo "alias v='nvim'" >> ~/.zshrc
-#ver el tamano de las carpetas en directorio actual
-echo 'alias lss="sudo du -sh * 2>/dev/null | sort -h"' >> ~/.zshrc
-echo "alias fd='fdfind'" >> ~/.zshrc
 
+echo "alias fd='fdfind'" >> ~/.zshrc
 
 #para youtube
 echo "alias youdown='yt-dlp -S res,ext:mp4:m4a'" >> ~/.zshrc
-
-#emails
-#echo "alias emails=\"grep -rE -o '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}' . | tee listaemails.txt\"" >> ~/.zshrc
-#grep -E -o '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'  para emails
 
 #ufw alias
 echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
@@ -56,8 +48,6 @@ echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZS
 echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
 
 #Distrobox
-echo "alias kaliefi='distrobox-ephemeral create --name kali-efimero --image docker.io/kalilinux/kali-rolling:latest'" >> ~/.zshrc 
-#echo "alias disl='distrobox list'"  >> ~/.zshrc
 echo "alias dise='distrobox enter '"  >> ~/.zshrc
 echo "alias disr='distrobox rm  '"  >> ~/.zshrc
 
@@ -70,10 +60,6 @@ echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
 
 # Agregar alias a .zshrc
-#echo "alias smbserver='sudo impacket-smbserver smbFolder \$(pwd) -smb2support'" >> ~/.zshrc
-echo "alias kalideb='sudo cp /etc/apt/sources.list.kali /etc/apt/sources.list'" >> ~/.zshrc
-echo "alias nokali='sudo cp /etc/apt/sources.list.debian /etc/apt/sources.list'" >> ~/.zshrc
-#echo "alias rmk='() { scrub -p dod \$1; shred -zun 10 -v \$1; }'" >> ~/.zshrc
 echo "alias i='sudo apt install'" >> ~/.zshrc
 echo "alias bas='nano ~/.zshrc'" >> ~/.zshrc
 echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
@@ -94,18 +80,9 @@ echo "alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts '"  >> 
 #echo "alias ansip='ansible all -m ping -i ~/.ssh/ansible_hosts '"  >> ~/.zshrc 
 #echo "alias ansihost='nano $HOME/.ssh/ansible_hosts '" >> ~/.zshrc
 
-
-## de el archivo primera
-#echo "alias joplininst='sudo apt-get install nodejs npm joplin'" >> ~/.zshrc
-#echo "alias joplininstapp='wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash'" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
 echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
-#echo "alias expo2='extractPorts allPorts'" >> ~/.zshrc
-echo "alias ippp='curl ifconfig.me'" >> ~/.zshrc
-echo "alias surfeando='sudo anonsurf start'" >> ~/.zshrc
-#echo "alias servidor='python3 -m http.server 8000'"  >> ~/.zshrc
-echo "alias shortc='nano ~/.config/sxhkd/sxhkdrc'"  >> ~/.zshrc
 
 echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >> ~/.zshrc
 echo "alias tails='sudo tailscale status'" >> ~/.zshrc
@@ -123,25 +100,21 @@ echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" 
 
 echo "alias g4rji='f(){ git clone --depth 1 https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
 
-#echo "alias redr='sudo systemctl restart NetworkManager'"  >> ~/.zshrc
 echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
-
-echo "alias resta='sudo systemctl restart '"  >> ~/.zshrc
-echo "alias statt='sudo systemctl status '"  >> ~/.zshrc
 
 
 #echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
 echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1" ' >> ~/.zshrc
 
 echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
-echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
+#echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
 echo "alias wse='wormhole send '"  >> ~/.zshrc
 echo "alias wre='wormhole receive '"  >> ~/.zshrc
 
 echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.sh '"  >> ~/.zshrc
 
 #newbin script with new alias
-echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
+#echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
 #echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc #change  for proxyssh
 echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
 echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
@@ -149,13 +122,9 @@ echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
 
 echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
 
-echo "alias pwndoc='cat $HOME/Downloads/.pwndoc-main.md/pwndoc.md'"  >> ~/.zshrc
-echo "alias scanporty='python3 /usr/bin/scanporty.py'"  >> ~/.zshrc
-echo "alias itec='sudo openvpn ~/Downloads/.vpnitos/itec.ovpn'"  >> ~/.zshrc
 echo "alias 4rj='cd $HOME/GitHub/bina/binarios'"  >> ~/.zshrc
 
-
-echo 'alias clipc='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
+echo 'alias lastc='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
 echo "alias dormir='systemctl suspend'" >> ~/.zshrc
 echo "alias nodormir='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'" >> ~/.zshrc
 
