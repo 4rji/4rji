@@ -70,7 +70,7 @@ echo "alias pg='ping 8.8.8.8 -c4'" >> ~/.zshrc
 echo "alias pg1='ping 1.1.1.1 -c4'" >> ~/.zshrc
 echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
 echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
-echo "alias ssk='kitty +kitten ssh '" >> ~/.zshrc
+echo "alias sshk='kitty +kitten ssh '" >> ~/.zshrc
 echo "alias sssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '" >> ~/.zshrc
 echo "alias scpp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '" >> ~/.zshrc
 scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 
