@@ -15,13 +15,14 @@ echo "alias bypass='oobe\BypassNRO'"  >> ~/.zshrc
 
 
 #custom alias
+echo "alias mapat='telnet mapscii.me'" >> ~/.zshrc
 echo "alias NE='2>/dev/null'" >> ~/.zshrc
 #echo 'alias ll="lsd -lh --group-dirs=first"' >> ~/.zshrc
 #echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
 #echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
 #echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
 #echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-echo "alias cat='/bin/batcat --paging=never --pager=none --style=plain -l rb'" >> ~/.zshrc
+echo "alias cat='/bin/bat --paging=never --pager=none --style=plain -l rb'" >> ~/.zshrc
 #echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
 #echo 'alias catnl="batcat"' >> ~/.zshrc
 #echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
