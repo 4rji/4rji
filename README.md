@@ -15,7 +15,7 @@
 - 🌐 Web app enjoyer — likes building tools with clean UIs and efficient backends.
 - 🦀 Rustacean — solves problems with performance and safety in mind.
 - 🔍 Detail hunter — nothing goes live until it's rock solid.
-- ✍️ Writes at 4rji.com — tech notes, tools, and experiments.
+- ✍️ Writes at [4rji.com](https://docs.4rji.com) — tech notes, tools, and experiments.
 
 <br>
 
