@@ -13,9 +13,13 @@ sed -i.bak 's/^[[:space:]]*alias[[:space:]]/#&/' "$BASHRC"
 
 {
   echo
+  
+
+  echo "# === sudo autocomplete ==="
+  echo complete -cf sudo
+
   echo "# ===== aliases (added by alias script) ====="
   echo "alias bypass='oobe\\BypassNRO'"
-
   # custom alias
   echo "alias getweb='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'"
   echo "alias mapat='telnet mapscii.me'"
