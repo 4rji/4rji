@@ -14,7 +14,6 @@ sed -i.bak 's/^[[:space:]]*alias[[:space:]]/#&/' "$BASHRC"
 {
   echo
   
-
   echo "# === sudo autocomplete ==="
   echo complete -cf sudo
 
@@ -28,6 +27,9 @@ sed -i.bak 's/^[[:space:]]*alias[[:space:]]/#&/' "$BASHRC"
   #echo "alias ls='ls --color'"
   echo "alias v='nvim'"
   echo "alias fd='fdfind'"
+
+  echo "alias splunkstart='sudo /opt/splunk/bin/splunk start'"
+  echo "alias splunkstop='sudo /opt/splunk/bin/splunk stop'"
 
   # youtube
   echo "alias youdown='yt-dlp -S res,ext:mp4:m4a'"
