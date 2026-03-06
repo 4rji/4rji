@@ -1,189 +1,126 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-#spice
-#sudo systemctl enable --now spice-vdagent
+ZSHRC="${HOME}/.zshrc"
+BACKUP="${HOME}/.zshrc.alias_backup.$(date +%Y%m%d-%H%M%S)"
 
-# Copiar ~/.zshrc a /respaldos/zshrc
-sudo cp ~/.zshrc ~/.zshrc.alias_backup
+# 1) Backup
+cp -a "$ZSHRC" "$BACKUP"
 
+# 2) Comentar aliases existentes (solo líneas que empiezan con "alias ")
+# macOS: sed -i '' ...
+# Linux: sed -i ...
+if sed --version >/dev/null 2>&1; then
+  sed -i.bak -E 's/^alias[[:space:]]+/#&/' "$ZSHRC"
+else
+  sed -i '' -E 's/^alias[[:space:]]+/#&/' "$ZSHRC"
+fi
 
-# comenta las líneas que comienzan con "alias" en ~/.zshrc
-sed -i.bak 's/^alias/#&/' ~/.zshrc
+# 3) Agregar tus aliases como bloque (sin pelearte con comillas)
+cat >> "$ZSHRC" <<'EOF'
 
-echo "Se ha realizado el respaldo y se han eliminado las líneas con 'alias' de ~/.zshrc"
-echo "alias bypass='oobe\BypassNRO'"  >> ~/.zshrc
+# ==== custom aliases (managed block) ====
+alias bypass='oobe\BypassNRO'
+alias getweb='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'
+alias mapat='telnet mapscii.me'
+alias NE='2>/dev/null'
+alias cat='/bin/bat --paging=never --pager=none --style=plain -l rb'
+alias ls='ls --color'
+alias v='nvim'
+alias fd='fdfind'
 
+# youtube
+alias youdown='yt-dlp -S res,ext:mp4:m4a'
 
-#custom alias
-echo "alias getweb='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'" >> ~/.zshrc
-echo "alias mapat='telnet mapscii.me'" >> ~/.zshrc
-echo "alias NE='2>/dev/null'" >> ~/.zshrc
-#echo 'alias ll="lsd -lh --group-dirs=first"' >> ~/.zshrc
-#echo 'alias la="lsd -a --group-dirs=first"' >> ~/.zshrc
-#echo 'alias l="lsd --group-dirs=first"' >> ~/.zshrc
-#echo 'alias lla="lsd -lha --group-dirs=first"' >> ~/.zshrc
-#echo 'alias ls="lsd --group-dirs=first"' >> ~/.zshrc
-echo "alias cat='/bin/bat --paging=never --pager=none --style=plain -l rb'" >> ~/.zshrc
-#echo 'alias catt="/usr/bin/cat"' >> ~/.zshrc
-#echo 'alias catnl="batcat"' >> ~/.zshrc
-#echo "alias catr='bat -l rb --paging=never '" >> ~/.zshrc
-echo "alias ls='ls --color'" >> ~/.zshrc
-echo "alias v='nvim'" >> ~/.zshrc
+# ufw
+alias ufws='sudo ufw status'
+alias ufwe='sudo ufw enable'
+alias ufwa='sudo ufw allow'
+alias ufwr='sudo ufw reload'
+alias ufwn='sudo ufw status numbered'
 
-echo "alias fd='fdfind'" >> ~/.zshrc
+# zsh/oh-my-zsh helpers
+alias c1='git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k'
+alias c2='sed -i "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/" ~/.zshrc'
+alias c3='sed -i "s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/" ~/.zshrc'
+alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'
+alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'
 
-#para youtube
-echo "alias youdown='yt-dlp -S res,ext:mp4:m4a'" >> ~/.zshrc
+# distrobox
+alias dise='distrobox enter'
+alias disr='distrobox rm'
 
-#ufw alias
-echo "alias ufws='sudo ufw status'"  >> ~/.zshrc
-echo "alias ufwe='sudo ufw enable'"  >> ~/.zshrc
-echo "alias ufwa='sudo ufw allow'"  >> ~/.zshrc
-echo "alias ufwr='sudo ufw reload'"  >> ~/.zshrc
-echo "alias ufwn='sudo ufw status numbered'"  >> ~/.zshrc
+alias lst='ls -ltrh'
 
-#instalar zsh solamente
-echo "alias c1='git clone https://github.com/romkatv/powerlevel10k.git \$ZSH_CUSTOM/themes/powerlevel10k'" >> ~/.zshrc
-echo "alias c2='sed -i \"s/ZSH_THEME=\\\"robbyrussell\\\"/ZSH_THEME=\\\"powerlevel10k\/powerlevel10k\\\"/\" ~/.zshrc'" >> ~/.zshrc
-echo "alias c3='sed -i \"s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/\" ~/.zshrc'" >> ~/.zshrc
-echo "alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'" >> ~/.zshrc
-echo "alias c5='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting'" >> ~/.zshrc
+# fail2ban
+alias rs2='sudo nano /etc/rsyslog.conf'
+alias f2mod='sudo nano /etc/fail2ban/jail.local'
+alias f2r='sudo systemctl restart fail2ban'
+alias f2s='sudo systemctl status fail2ban'
 
-#Distrobox
-echo "alias dise='distrobox enter '"  >> ~/.zshrc
-echo "alias disr='distrobox rm  '"  >> ~/.zshrc
+# apt
+alias i='sudo apt install'
+alias apu='sudo apt update && sudo apt upgrade'
+alias bas='nano ~/.zshrc'
+alias basrc='source ~/.zshrc'
 
-echo "alias lst='ls -ltrh'" >> ~/.zshrc
+alias folder='cd /home/natasha/MaquinasHTB/'
 
-#f2ban
-echo "alias rs2='sudo nano /etc/rsyslog.conf'" >> ~/.zshrc 
-echo "alias f2mod='sudo nano /etc/fail2ban/jail.local'" >> ~/.zshrc
-echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
-echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
+# ping minimal output
+alias pg="ping -c2 8.8.8.8 | sed -n '2p' && ping -c1 google.com | sed -n '1p'"
+alias pg1='ping 1.1.1.1 -c4'
 
-# Agregar alias a .zshrc
-echo "alias i='sudo apt install'" >> ~/.zshrc
-echo "alias bas='nano ~/.zshrc'" >> ~/.zshrc
-echo "alias basrc='source ~/.zshrc'" >> ~/.zshrc
+alias kittyconf='nano ~/.config/kitty/kitty.conf'
 
-echo "alias folder='cd /home/natasha/MaquinasHTB/'" >> ~/.zshrc
-echo "alias apu='sudo apt update && sudo apt upgrade'" >> ~/.zshrc
-echo "alias pg='ping 8.8.8.8 -c4'" >> ~/.zshrc
-echo "alias pg1='ping 1.1.1.1 -c4'" >> ~/.zshrc
-echo "alias kittyconf='nano ~/.config/kitty/kitty.conf'" >> ~/.zshrc
-echo "alias acceder='echo "marca de la lavadora mayusculas y segundo renglon la letra c mas mi numero"'" >> ~/.zshrc
-echo "alias sshk='kitty +kitten ssh '" >> ~/.zshrc
-echo "alias sssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '" >> ~/.zshrc
-echo "alias scpp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no '" >> ~/.zshrc
-scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no 
+# ssh/scp relaxed
+alias sshk='kitty +kitten ssh'
+alias sssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias scpp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
-echo "alias lockf='i3lock-fancy '" >> ~/.zshrc
-echo "alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts '"  >> ~/.zshrc 
-#echo "alias ansip='ansible all -m ping -i ~/.ssh/ansible_hosts '"  >> ~/.zshrc 
-#echo "alias ansihost='nano $HOME/.ssh/ansible_hosts '" >> ~/.zshrc
+alias lockf='i3lock-fancy'
+alias ansipl='ansible-playbook -i /home/natasha/.ssh/ansible_hosts'
 
-echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
-echo "alias f2r='sudo systemctl restart fail2ban'" >> ~/.zshrc
-echo "alias f2s='sudo systemctl status fail2ban'" >> ~/.zshrc
+alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'
+alias tails='sudo tailscale status'
+alias tailip='sudo tailscale ip'
 
-echo "alias tailscaleinst='curl -fsSL https://tailscale.com/install.sh | sh'"  >> ~/.zshrc
-echo "alias tails='sudo tailscale status'" >> ~/.zshrc
-echo "alias tailip='sudo tailscale ip'" >> ~/.zshrc
-echo "alias vm-to='sudo apt install -y --reinstall open-vm-tools-desktop'" >> ~/.zshrc
+alias pantalla='nano ~/.config/bspwm/bspwmrc'
+alias notas='ranger $HOME/notas'
 
-echo "alias pantalla='nano ~/.config/bspwm/bspwmrc'"  >> ~/.zshrc
-echo "alias notas='ranger $HOME/notas'"  >> ~/.zshrc
+alias apagar='sudo shutdown -h now'
+alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
-echo "alias apagar='sudo shutdown -h now'"  >> ~/.zshrc
+alias dormir='sudo systemctl suspend'
+alias nodormir='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'
 
-#echo "alias bateria='acpi -b'" >> ~/.zshrc
-echo "alias bateria-f='upower -i /org/freedesktop/UPower/devices/battery_BAT0'" >> ~/.zshrc
+alias matavpn='sudo killall openvpn'
 
+alias osr='cat /etc/os-release'
+alias trr='trash'
+alias trl='trash-list'
+alias tre='trash-empty'
+alias weather='curl wttr.in'
+alias readme='cat /opt/4rji/bin/README.md'
+alias na='nano'
 
-echo "alias g4rji='f(){ git clone --depth 1 https://github.com/4rji/4rji.git && cd 4rji/; unset -f f; }; f'"  >> ~/.zshrc
+alias byeh='hyprctl dispatch exit'
 
-echo "alias dormir='sudo systemctl suspend'"  >> ~/.zshrc
+alias portfake='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'
+alias flushtables='sudo iptables -t nat -F'
 
+alias tamano='du -sh'
+alias pega='xclip -sel clip -o'
+alias copia='xclip -sel clip'
 
-#echo 'alias mygpu="DRI_PRIME=1 glxinfo | grep \"OpenGL renderer\"" ' >> ~/.zshrc
-echo 'alias pantallin="xrandr --output DP-1 --rotate left --auto --left-of eDP-1" ' >> ~/.zshrc
+alias libreshm='sudo rm -rf /dev/shm/*'
 
-echo "alias vmware-tools='sudo apt install -y --reinstall open-vm-tools-desktop fuse3'"  >> ~/.zshrc
-#echo "alias fixwifi='sudo wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant/wpa_supplicant.conf && sudo dhclient wlan0'"  >> ~/.zshrc
-echo "alias wse='wormhole send '"  >> ~/.zshrc
-echo "alias wre='wormhole receive '"  >> ~/.zshrc
+alias tr1='traceroute 1.1.1.1'
+alias trg='traceroute 8.8.8.8'
 
-echo "alias target1.1='cp ~/.config/bin/bateria_backup.sh ~/.config/bin/bateria.sh '"  >> ~/.zshrc
+alias shadowcurl='curl --socks5 127.0.0.1:1080 https://ifconfig.me'
+# ==== end managed block ====
 
-#newbin script with new alias
-#echo "alias jfirefox='firejail firefox '"  >> ~/.zshrc
-#echo "alias proxyc='ssh -D 1080 '"  >> ~/.zshrc #change  for proxyssh
-echo "alias sse='sudo nano /etc/ssh/sshd_config'"  >> ~/.zshrc
-echo "alias ssr='sudo systemctl restart ssh'"  >> ~/.zshrc
-echo "alias sst='sudo systemctl stop ssh'"  >> ~/.zshrc
+EOF
 
-echo "alias blue='sudo systemctl start bluetooth.service'"  >> ~/.zshrc
-
-echo "alias 4rj='cd $HOME/GitHub/bina/binarios'"  >> ~/.zshrc
-
-echo 'alias lastc='"'"'history -r | head -n 1 | awk "{\$1=\"\"; print \$0}" | xclip -selection clipboard'"'" >> ~/.zshrc
-echo "alias dormir='systemctl suspend'" >> ~/.zshrc
-echo "alias nodormir='sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target'" >> ~/.zshrc
-
-
-echo "alias matavpn='sudo killall openvpn'" >> ~/.zshrc
-#echo "alias wm='whoami && hostnamectl | grep -E \"Virtualization|Operating System|Hardware Vendor|Hardware Model\"'" >> ~/.zshrc
-# hostnamectl | grep -E "Virtualization|Operating System|Hardware Vendor|Hardware Model"
-#echo "alias dockercp='echo "ejecutar lo siguiente: docker cp ruta/del/archivo.txt nombre_o_id_del_contenedor:/ruta/del/contenedor/"'" >> ~/.zshrc
-echo "alias osr='cat /etc/os-release'" >> ~/.zshrc
-echo "alias chator='onionshare-cli --chat --public -v'" >> ~/.zshrc
-#echo "alias ddtest='dd if=/dev/zero of=testfile bs=10M count=1000 conv=fdatasync && rm testfile'" >> ~/.zshrc
-echo "alias trr='trash '" >> ~/.zshrc
-echo "alias trl='trash-list '" >> ~/.zshrc
-echo "alias tre='trash-empty '" >> ~/.zshrc
-echo "alias weather='curl wttr.in '" >> ~/.zshrc
-echo "alias readme='cat /opt/4rji/bin/README.md  '" >> ~/.zshrc
-echo "alias na='nano '" >> ~/.zshrc
-#echo "alias velocidad='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'" >> ~/.zshrc
-echo "alias exitt='exiftool -all= -overwrite_original /Users/ozono/Dropbox/documentation/img/*'" >> ~/.zshrc
-echo "alias bye='pkill -KILL -u $(whoami)'" >> ~/.zshrc
-echo "alias byeh='hyprctl dispatch exit'" >> ~/.zshrc
-
-
-#porting
-echo "alias portfake='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'" >> ~/.zshrc
-echo "alias flushtables='sudo iptables -t nat -F'" >> ~/.zshrc
-
-#echo "alias minet='ifconfig | grep "inet " | grep -v 127.0.0.1'" >> ~/.zshrc
-
-echo "alias tamano='du -sh '" >> ~/.zshrc
-echo "alias archivserv='cd ~/archivebox && docker-compose up'" >> ~/.zshrc
-echo "alias qwe='clipc && pas'" >> ~/.zshrc
-echo "alias verlos='fzf --preview='cat {}''" >> ~/.zshrc
-echo "alias pega='xclip -sel clip -o'" >> ~/.zshrc
-echo "alias pegam='pbpaste'" >> ~/.zshrc
-#alias copia='xsel --input --clipboard'
-#alias pega='xsel --output --clipboard'
-echo "alias copia='xclip -sel clip'" >> ~/.zshrc
-echo "alias libreshm='sudo rm -rf /dev/shm/*'" >> ~/.zshrc
-
-#nixs
-echo "alias nflutter='nix develop /etc/nixos#flutter --command zsh'" >> ~/.zshrc
-echo "alias nixe='sudo nano /etc/nixos/paquetes.nix'" >> ~/.zshrc
-echo "alias nixg='nix-collect-garbage -d'" >> ~/.zshrc
-echo "alias nixee='sudo nano /etc/nixos/configuration.nix'" >> ~/.zshrc
-echo "alias nixr='sudo nixos-rebuild switch'" >> ~/.zshrc
-
-
-#escritorio de kali  en windows de la store de windows 
-echo "alias kplas='kex --esm --wtstart --desktop plasma'" >> ~/.zshrc
-echo "alias barrer='flatpak run com.github.debauchee.barrier --config /home/nala/.config/barrier.conf & disown':" >> ~/.zshrc
-echo "alias interf='sudo nano /etc/network/interfaces'" >> ~/.zshrc
-echo "alias tr1='traceroute 1.1.1.1'" >> ~/.zshrc
-echo "alias trg='traceroute 8.8.8.8'" >> ~/.zshrc
-echo "alias cdd='cd \${_%/*}'" >> ~/.zshrc
-#echo "alias copia='wl-copy < '"  >> ~/.zshrc
-#echo "alias pega='wl-paste '"  >> ~/.zshrc
-
-echo "alias shadowcurl='curl --socks5 127.0.0.1:1080 https://ifconfig.me'" >> ~/.zshrc
-
+echo "OK: backup -> $BACKUP"
+echo "Reload: source ~/.zshrc"
