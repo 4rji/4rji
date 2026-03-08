@@ -102,7 +102,7 @@ alias tre='trash-empty'
 alias weather='curl wttr.in'
 alias readme='cat /opt/4rji/bin/README.md'
 alias na='nano'
-
+alias 4rj='cd ~/github/bina/binarios/'
 alias byeh='hyprctl dispatch exit'
 
 alias portfake='portspoof -c /etc/portspoof/portspoof.conf -s /etc/portspoof/portspoof_signatures'
