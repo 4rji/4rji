@@ -40,7 +40,7 @@ alias ufwr='sudo ufw reload'
 alias ufwn='sudo ufw status numbered'
 
 # zsh/oh-my-zsh helpers
-alias c1='git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k'
+alias c1='git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k'
 alias c2='sed -i "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"powerlevel10k\/powerlevel10k\"/" ~/.zshrc'
 alias c3='sed -i "s/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)/" ~/.zshrc'
 alias c4='git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions'
