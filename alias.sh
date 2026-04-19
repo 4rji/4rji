@@ -53,12 +53,6 @@ alias disr='distrobox rm'
 alias lst='ls -ltrh'
 
 
-#obsidian y quartz
-alias syncquartz="rsync -av --exclude=\".*\" /Volumes/cam-internal/Obsidian-SMB/ debian-server:/home/nala/quartz/co$
-alias syncobsi="rsync -av --delete --exclude=\".git\" --exclude=\".gitignore\" --exclude=\".gitattributes\" debian-$
-alias quartzbuild='ssh debian-server '\''export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" && nvm use 22 && cd /ho$
-
-
 # fail2ban
 alias rs2='sudo nano /etc/rsyslog.conf'
 alias f2mod='sudo nano /etc/fail2ban/jail.local'
