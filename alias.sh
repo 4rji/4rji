@@ -28,7 +28,8 @@ alias cat='/bin/bat --paging=never --pager=none --style=plain -l rb'
 alias ls='ls --color'
 alias v='nvim'
 alias fd='fdfind'
-
+alias sse='sudo nano /etc/ssh/sshd_config'
+alias ssr='sudo systemctl restart ssh'
 # youtube
 alias youdown='yt-dlp -S res,ext:mp4:m4a'
 
