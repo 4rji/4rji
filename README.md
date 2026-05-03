@@ -29,7 +29,7 @@
 <p align="center">Real-Time AI Detection of Botnets, Malware, and Network Threats</p>
 
 <p align="center">
-  <a href="https://penkitpro.com" target="_blank">
+  <a href="https://getnala.com" target="_blank">
     <picture>
       <source
         media="(prefers-color-scheme: dark)"
