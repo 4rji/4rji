@@ -29,14 +29,10 @@
 <p align="center">Real-Time AI Detection of Botnets, Malware, and Network Threats</p>
 
 <p align="center">
-  <a href="https://getnala.com" target="_blank">
+  <a href="https://getnala.org" target="_blank">
     <picture>
-      <source
-        media="(prefers-color-scheme: dark)"
-        srcset="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect-dark.png"
-      >
       <img
-        src="https://github.com/4rji/4rji/blob/6a1b54e991232b0db7b2f9e8252686c110b7b0bd/Wallpaper/proyect.png"
+        src="Wallpaper/proyect.png"
         width="700px"
         alt="AI detector"
       >
@@ -51,7 +47,6 @@
 
 
 
-[![Havi's GitHub stats](https://github-readme-stats.vercel.app/api?username=4rji)](https://github.com/anuraghazra/github-readme-stats)
 
 
 [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=4rji&theme=dark&hide_border=true&border_radius=5.5)](https://git.io/streak-stats)
