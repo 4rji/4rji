@@ -32,7 +32,7 @@
   <a href="https://getnala.org" target="_blank">
     <picture>
       <img
-        src="Wallpaper/proyect.png"
+        src="Wallpaper/proyect.webp"
         width="700px"
         alt="AI detector"
       >
