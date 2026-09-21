@@ -20,6 +20,7 @@ fi
 cat >> "$ZSHRC" <<'EOF'
 
 # ==== custom aliases (managed block) ====
+alias extract-ips='grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort -u -t. -k1,1n -k2,2n -k3,3n -k4,4n'
 alias bypass='oobe\BypassNRO'
 alias getweb='wget --mirror --convert-links --adjust-extension --page-requisites --no-parent'
 alias mapat='telnet mapscii.me'
